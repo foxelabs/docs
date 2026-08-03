@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
-import { nav, socialLinks, footer } from '../../shared/theme.mjs'
+// No logoLink here: this site is already at the root, so the title's default
+// link is correct.
+import { nav, logo, socialLinks, footer } from '../../shared/theme.mjs'
 
 // The landing page at the root of docs.foxelabs.com. It exists only to send
 // visitors into one of the two tracks, so it has no sidebar and no search.
@@ -80,6 +82,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
+    logo,
     nav,
     socialLinks,
     footer,

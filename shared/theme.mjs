@@ -30,6 +30,16 @@ export const nav = [
   { text: 'Support', link: 'mailto:support@foxelabs.com', noIcon: true },
 ]
 
+// Fox mark shown beside the site title. VitePress swaps the two with CSS on the
+// theme toggle, so there is no flash. These paths are root-relative on purpose:
+// unlike `head` entries, the logo is rendered through the theme and so it does
+// get prefixed with each site's `base`.
+export const logo = {
+  light: '/logo-black.png',
+  dark: '/logo-white.png',
+  alt: 'Foxe Labs',
+}
+
 // The site title in the navbar. It would otherwise point at the site's own
 // `base` — e.g. '/software/' — which has no index page, so client-side routing
 // renders a 404 and only a hard refresh reaches the Vercel redirect. Sending it

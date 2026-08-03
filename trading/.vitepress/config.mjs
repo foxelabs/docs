@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { nav, logoLink, socialLinks, footer } from '../../shared/theme.mjs'
+import { nav, logo, logoLink, socialLinks, footer } from '../../shared/theme.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -65,6 +65,7 @@ export default defineConfig({
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo,
     nav,
     logoLink,
 

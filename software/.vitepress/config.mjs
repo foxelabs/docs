@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { nav, logoLink, socialLinks, footer } from '../../shared/theme.mjs'
+import { nav, logo, logoLink, socialLinks, footer } from '../../shared/theme.mjs'
 
 export default defineConfig({
   title: 'Foxe Labs Docs',
@@ -79,6 +79,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
+    logo,
     nav,
     logoLink,
 
