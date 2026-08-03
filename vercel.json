@@ -14,6 +14,11 @@
       "source": "/trading",
       "destination": "/trading/get-started",
       "permanent": false
+    },
+    {
+      "source": "/trading/expert-advisors/:path*",
+      "destination": "/trading/:path*",
+      "permanent": true
     }
   ]
 }

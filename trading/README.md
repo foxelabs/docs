@@ -17,9 +17,9 @@ There is no home page here — the landing page at
 | Section | Directory |
 | --- | --- |
 | Getting started | [`get-started.md`](./get-started.md) |
-| Gold Scalpel | [`expert-advisors/gold-scalpel/`](./expert-advisors/gold-scalpel) |
+| Gold Scalpel | [`gold-scalpel/`](./gold-scalpel) |
 
-Each expert advisor gets its own directory under `expert-advisors/`, typically
+Each expert advisor gets its own top-level directory, typically
 with getting-started, how-it-works, performance, an inputs reference, and a
 changelog. Images and favicons live in [`public/`](./public).
 
@@ -47,9 +47,9 @@ automatically on the next build — nothing external to update.
 
 ## Adding a new expert advisor
 
-Create `expert-advisors/<name>/` and add a matching top-level sidebar group in
-`.vitepress/config.mjs` using `base: '/expert-advisors/<name>'` so the child
-links stay short. Mirror the Gold Scalpel page set as a starting point.
+Create `<name>/` at the top level and add a matching sidebar group in
+`.vitepress/config.mjs` using `base: '/<name>'` so the child links stay
+short. Mirror the Gold Scalpel page set as a starting point.
 
 ## License
 

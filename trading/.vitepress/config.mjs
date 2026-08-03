@@ -76,7 +76,7 @@ export default defineConfig({
       },
       {
         text: 'Gold Scalpel',
-        base: '/expert-advisors/gold-scalpel',
+        base: '/gold-scalpel',
         items: [
           { text: 'Getting Started', link: '/getting-started' },
           { text: 'How It Works', link: '/how-it-works' },
