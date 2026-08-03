@@ -10,7 +10,7 @@ hero:
   text: "Documentation"
   tagline: Guides, references and changelogs for everything we build — open-source WordPress plugins and PHP libraries, and algorithmic trading tools for MetaTrader 5.
   image:
-    src: /banner.svg
+    src: /documentation.svg
     alt: Foxe Labs
 
 features:
