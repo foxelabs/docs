@@ -1,0 +1,15 @@
+{
+  "name": "@foxelabs/docs-software",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Documentation for Foxe Labs WordPress plugins and PHP libraries, served at docs.foxelabs.com/software.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.19"
+  }
+}

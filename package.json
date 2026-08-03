@@ -1,0 +1,34 @@
+{
+  "name": "@foxelabs/docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Documentation for Foxe Labs software and trading products, published to docs.foxelabs.com.",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxelabs/docs.git"
+  },
+  "homepage": "https://docs.foxelabs.com",
+  "bugs": {
+    "url": "https://github.com/foxelabs/docs/issues"
+  },
+  "workspaces": [
+    "software",
+    "trading"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:software": "npm run build -w @foxelabs/docs-software",
+    "build:trading": "npm run build -w @foxelabs/docs-trading",
+    "dev": "npm run dev -w @foxelabs/docs-software",
+    "dev:software": "npm run dev -w @foxelabs/docs-software",
+    "dev:trading": "npm run dev -w @foxelabs/docs-trading",
+    "preview": "npm run preview -w @foxelabs/docs-software",
+    "preview:software": "npm run preview -w @foxelabs/docs-software",
+    "preview:trading": "npm run preview -w @foxelabs/docs-trading",
+    "clean": "rm -rf dist software/.vitepress/cache trading/.vitepress/cache"
+  }
+}
