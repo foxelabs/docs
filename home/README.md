@@ -23,8 +23,15 @@ neither track has a home page of its own:
 
 | Card | Links to |
 | --- | --- |
-| Software | `/software/get-started` |
-| Trading | `/trading/get-started` |
+| Software | `https://docs.foxelabs.com/software/get-started` |
+| Trading | `https://docs.foxelabs.com/trading/get-started` |
+
+Those have to be **absolute URLs with `target: _self`**, not root-relative
+paths. Each of the three sites is a separate VitePress build with its own
+client-side router, so a link to `/software/get-started` would be resolved as a
+route within *this* site and render a 404 — while a hard refresh would work,
+since that reaches the server instead. The same constraint applies to the
+cross-site nav links in [`shared/theme.mjs`](../shared/theme.mjs).
 
 If either intro page is ever renamed, update the card here, the nav in
 `shared/theme.mjs`, and the redirect in [`vercel.json`](../vercel.json) — all

@@ -117,6 +117,11 @@ Most of these are the same underlying issue: **VitePress rewrites some paths by
   as outbound links.
 - **Markdown links _are_ rewritten by `base`**, so ordinary in-page links like
   `[Getting Started](/loggedin/getting-started)` need no prefix.
+- **Any link that crosses between the three sites must be an absolute URL.**
+  Each site is a separate build with its own client-side router, so a
+  root-relative cross-site link is resolved as a route within the current site
+  and renders a 404 — while a hard refresh works, since that reaches the
+  server. This covers the nav, the landing page cards, and the site title.
 - **`outDir` resolves from the site root**, i.e. `software/` — which is why it
   is `../dist/software` and not `../../dist/software`.
 - **`home/` builds to its own `.vitepress/dist` and is copied into `dist/`** by
