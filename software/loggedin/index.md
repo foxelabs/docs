@@ -4,7 +4,7 @@ description: Loggedin — WordPress plugin documentation.
 head:
   - - meta
     - http-equiv: refresh
-      content: 0; url=/loggedin/getting-started
+      content: 0; url=/software/loggedin/getting-started
   - - link
     - rel: canonical
       href: https://docs.foxelabs.com/software/loggedin/getting-started

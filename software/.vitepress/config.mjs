@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
-
-const year = new Date().getFullYear()
+import { nav, socialLinks, footer } from '../../shared/theme.mjs'
 
 export default defineConfig({
   title: 'Foxe Labs Docs',
@@ -80,10 +79,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Support', link: 'mailto:support@foxelabs.com' },
-    ],
+    nav,
 
     sidebar: [
       {
@@ -243,11 +239,7 @@ export default defineConfig({
       },
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/foxelabs' },
-      { icon: 'twitter', link: 'https://x.com/foxelabs' },
-      { icon: 'facebook', link: 'https://facebook.com/foxelabs' },
-    ],
+    socialLinks,
 
     editLink: {
       pattern: 'https://github.com/foxelabs/docs/edit/main/software/:path',
@@ -258,8 +250,6 @@ export default defineConfig({
       provider: 'local',
     },
 
-    footer: {
-      copyright: `Copyright © ${year}, <a href="https://foxelabs.com">Foxe Labs</a>. All rights reserved.`,
-    },
+    footer,
   },
 })

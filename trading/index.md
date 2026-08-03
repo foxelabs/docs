@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Foxe Labs"
-  text: "Documentation"
+  text: "Trading Documentation"
   tagline: Open-source software development, algorithmic trading systems, and custom Expert Advisors (EAs).
   actions:
     - theme: brand

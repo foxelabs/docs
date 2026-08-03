@@ -4,7 +4,7 @@ description: Lazy Load for Comments — WordPress plugin documentation.
 head:
   - - meta
     - http-equiv: refresh
-      content: 0; url=/lazy-load-for-comments/getting-started
+      content: 0; url=/software/lazy-load-for-comments/getting-started
   - - link
     - rel: canonical
       href: https://docs.foxelabs.com/software/lazy-load-for-comments/getting-started
