@@ -9,11 +9,24 @@
 
 export const SITE_URL = 'https://docs.foxelabs.com'
 
+// Each track links to its intro page rather than a section root: the two sites
+// have no home page of their own, since the landing page at / is the chooser.
+//
 // `target`/`noIcon` stop VitePress treating these as outbound links — without
 // them our own docs would open in a new tab with an external-link arrow.
 export const nav = [
-  { text: 'Software', link: `${SITE_URL}/software/`, target: '_self', noIcon: true },
-  { text: 'Trading', link: `${SITE_URL}/trading/`, target: '_self', noIcon: true },
+  {
+    text: 'Software',
+    link: `${SITE_URL}/software/general/getting-help`,
+    target: '_self',
+    noIcon: true,
+  },
+  {
+    text: 'Trading',
+    link: `${SITE_URL}/trading/get-started`,
+    target: '_self',
+    noIcon: true,
+  },
   { text: 'Support', link: 'mailto:support@foxelabs.com', noIcon: true },
 ]
 

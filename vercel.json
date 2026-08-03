@@ -5,6 +5,15 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/", "destination": "/software/", "permanent": false }
+    {
+      "source": "/software",
+      "destination": "/software/general/getting-help",
+      "permanent": false
+    },
+    {
+      "source": "/trading",
+      "destination": "/trading/get-started",
+      "permanent": false
+    }
   ]
 }

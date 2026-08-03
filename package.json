@@ -13,6 +13,7 @@
     "url": "https://github.com/foxelabs/docs/issues"
   },
   "workspaces": [
+    "home",
     "software",
     "trading"
   ],
@@ -20,15 +21,19 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build:home && npm run build:software && npm run build:trading",
+    "build:home": "npm run build -w @foxelabs/docs-home && npm run copy:home",
     "build:software": "npm run build -w @foxelabs/docs-software",
     "build:trading": "npm run build -w @foxelabs/docs-trading",
-    "dev": "npm run dev -w @foxelabs/docs-software",
+    "copy:home": "mkdir -p dist && cp -R home/.vitepress/dist/. dist/",
+    "dev": "npm run dev -w @foxelabs/docs-home",
+    "dev:home": "npm run dev -w @foxelabs/docs-home",
     "dev:software": "npm run dev -w @foxelabs/docs-software",
     "dev:trading": "npm run dev -w @foxelabs/docs-trading",
-    "preview": "npm run preview -w @foxelabs/docs-software",
+    "preview": "npm run preview -w @foxelabs/docs-home",
+    "preview:home": "npm run preview -w @foxelabs/docs-home",
     "preview:software": "npm run preview -w @foxelabs/docs-software",
     "preview:trading": "npm run preview -w @foxelabs/docs-trading",
-    "clean": "rm -rf dist software/.vitepress/cache trading/.vitepress/cache"
+    "clean": "rm -rf dist home/.vitepress/{cache,dist} software/.vitepress/cache trading/.vitepress/cache"
   }
 }
