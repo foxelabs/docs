@@ -4,8 +4,13 @@ The software half of [docs.foxelabs.com](https://docs.foxelabs.com) — publishe
 at **[/software](https://docs.foxelabs.com/software)**. Covers our WordPress
 plugins and PHP libraries.
 
-This is one of two VitePress sites in this repo; see the
+This is one of three VitePress sites in this repo; see the
 [root README](../README.md) for the overall setup.
+
+There is no home page here — the landing page at
+[`/`](https://docs.foxelabs.com) is the chooser, and it links straight to
+`general/getting-help` as this track's intro page. `/software` redirects there
+too, via [`vercel.json`](../vercel.json).
 
 ## What lives here
 
@@ -40,6 +45,11 @@ Build just this site with `npm run build:software` — output lands in
 
 Search is VitePress's built-in local provider, so new pages are indexed
 automatically on the next build — nothing external to update.
+
+Each product directory has an `index.md` that redirects to that product's
+getting-started page. Those redirects live in frontmatter `head`, which
+VitePress does **not** rewrite by `base`, so the URL must include the prefix:
+`url=/software/loggedin/getting-started`.
 
 ## A note on naming
 

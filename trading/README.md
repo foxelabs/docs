@@ -4,8 +4,13 @@ The trading half of [docs.foxelabs.com](https://docs.foxelabs.com) — published
 at **[/trading](https://docs.foxelabs.com/trading)**. Covers our MetaTrader
 expert advisors and trading tools.
 
-This is one of two VitePress sites in this repo; see the
+This is one of three VitePress sites in this repo; see the
 [root README](../README.md) for the overall setup.
+
+There is no home page here — the landing page at
+[`/`](https://docs.foxelabs.com) is the chooser, and it links straight to
+`get-started` as this track's intro page. `/trading` redirects there too, via
+[`vercel.json`](../vercel.json).
 
 ## What lives here
 
