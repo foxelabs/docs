@@ -23,7 +23,7 @@ neither track has a home page of its own:
 
 | Card | Links to |
 | --- | --- |
-| Software | `/software/general/getting-help` |
+| Software | `/software/get-started` |
 | Trading | `/trading/get-started` |
 
 If either intro page is ever renamed, update the card here, the nav in

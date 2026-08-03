@@ -9,14 +9,14 @@ This is one of three VitePress sites in this repo; see the
 
 There is no home page here — the landing page at
 [`/`](https://docs.foxelabs.com) is the chooser, and it links straight to
-`general/getting-help` as this track's intro page. `/software` redirects there
+`get-started` as this track's intro page. `/software` redirects there
 too, via [`vercel.json`](../vercel.json).
 
 ## What lives here
 
 | Section | Directory |
 | --- | --- |
-| General guides (installing, updating, getting help) | [`general/`](./general) |
+| Getting started | [`get-started.md`](./get-started.md) |
 | Loggedin | [`loggedin/`](./loggedin) |
 | 404 to 301 | [`404-to-301/`](./404-to-301) |
 | Lazy Load for Comments | [`lazy-load-for-comments/`](./lazy-load-for-comments) |

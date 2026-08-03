@@ -7,7 +7,7 @@
   "redirects": [
     {
       "source": "/software",
-      "destination": "/software/general/getting-help",
+      "destination": "/software/get-started",
       "permanent": false
     },
     {

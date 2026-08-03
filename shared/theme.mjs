@@ -17,7 +17,7 @@ export const SITE_URL = 'https://docs.foxelabs.com'
 export const nav = [
   {
     text: 'Software',
-    link: `${SITE_URL}/software/general/getting-help`,
+    link: `${SITE_URL}/software/get-started`,
     target: '_self',
     noIcon: true,
   },
@@ -29,6 +29,16 @@ export const nav = [
   },
   { text: 'Support', link: 'mailto:support@foxelabs.com', noIcon: true },
 ]
+
+// The site title in the navbar. It would otherwise point at the site's own
+// `base` — e.g. '/software/' — which has no index page, so client-side routing
+// renders a 404 and only a hard refresh reaches the Vercel redirect. Sending it
+// to the landing page instead makes it behave like a normal home link.
+export const logoLink = {
+  link: `${SITE_URL}/`,
+  target: '_self',
+  rel: '',
+}
 
 export const socialLinks = [
   { icon: 'github', link: 'https://github.com/foxelabs' },
