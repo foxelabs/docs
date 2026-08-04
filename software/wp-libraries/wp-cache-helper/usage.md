@@ -17,7 +17,7 @@ Every callback-based helper checks the callback return with `is_wp_error()` and 
 ## `remember()` — object-cache read-through
 
 ```php
-$cache = \DuckDev\Cache\Cache::get_instance( 'my_plugin' );
+$cache = \FoxeLabs\Cache\Cache::get_instance( 'my_plugin' );
 
 $posts = $cache->remember( 'latest_posts', function () {
     return new WP_Query( array(

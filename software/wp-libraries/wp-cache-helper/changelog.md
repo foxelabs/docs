@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.0
+
+Rebrand from DuckDev to FoxeLabs. No behavioural changes — but the rename touches the package name and the namespace, so it is a breaking release.
+
+::: tip No cache migration needed
+Keys, groups, and the `can_cache` filter are all built from your own prefix, never from a vendor name, so this release changes nothing the library reads or writes. Update your `use` statements and you are done.
+
+Coming from **1.x**? That upgrade did change the prefix, and leaves stale transient rows behind — see [Upgrading from 1.x](./installation#upgrading-from-1-x) for the one-time cleanup.
+:::
+
+### Changed
+- Composer package renamed `duckdev/wp-cache-helper` → **`foxelabs/wp-cache-helper`**. Update your `composer.json` require entry.
+- Namespace renamed `DuckDev\Cache\` → **`FoxeLabs\Cache\`**. Update every `use` statement and class reference.
+
+### Unchanged
+- Public API (`remember`, `forget`, `persist`, `cease`, `flush_group`, `flush`), the `{prefix}_can_cache` filter, every cache key and group name, and all behaviour.
+
 ## 2.0.2
 
 ### Added
