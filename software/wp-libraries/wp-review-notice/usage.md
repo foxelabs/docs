@@ -6,14 +6,14 @@ The default set-up shows the notice on the dashboard and plugins screen after 7 
 
 ```php
 add_action( 'plugins_loaded', function () {
-    \DuckDev\Reviews\Notice::create( 'my-plugin', 'My Plugin' )->register();
+    \FoxeLabs\Reviews\Notice::create( 'my-plugin', 'My Plugin' )->register();
 } );
 ```
 
 ## Custom copy
 
 ```php
-add_filter( 'duckdev_reviews_notice_message', function ( $message, $days ) {
+add_filter( 'foxelabs_reviews_notice_message', function ( $message, $days ) {
     return "We're glad you've been with us for {$days}+ days!";
 }, 10, 2 );
 ```
@@ -23,8 +23,8 @@ add_filter( 'duckdev_reviews_notice_message', function ( $message, $days ) {
 Every collaborator is constructor-injectable, so tests and unusual integrations can swap any single piece without forking the library:
 
 ```php
-use DuckDev\Reviews\Notice;
-use DuckDev\Reviews\Support\Config;
+use FoxeLabs\Reviews\Notice;
+use FoxeLabs\Reviews\Support\Config;
 
 $notice = new Notice(
     Config::fromArray( 'my-plugin', 'My Plugin' ),
@@ -51,7 +51,7 @@ $notice->register();
 
 | Filter | Arguments | Use |
 | --- | --- | --- |
-| `duckdev_reviews_notice_message` | `string $message, int $days` | Replace the default notice copy. |
+| `foxelabs_reviews_notice_message` | `string $message, int $days` | Replace the default notice copy. |
 
 ### Actions
 
