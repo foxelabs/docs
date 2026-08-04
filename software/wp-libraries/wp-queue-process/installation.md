@@ -9,10 +9,10 @@
 ## Composer
 
 ```console
-composer require duckdev/wp-queue-process
+composer require foxelabs/wp-queue-process
 ```
 
-Classes autoload under the `DuckDev\Queue\` namespace via PSR-4.
+Classes autoload under the `FoxeLabs\Queue\` namespace via PSR-4.
 
 ## Bootstrapping
 

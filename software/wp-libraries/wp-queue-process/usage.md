@@ -5,7 +5,7 @@
 Async requests are useful for pushing slow one-off tasks — sending an email, warming a cache — to a background process. Once dispatched, the request processes immediately and out of band.
 
 ```php
-class WP_Example_Request extends \DuckDev\Queue\Async {
+class WP_Example_Request extends \FoxeLabs\Queue\Async {
 
     protected $action = 'example_request';
 
@@ -27,7 +27,7 @@ $request->data( array( 'value1' => $value1, 'value2' => $value2 ) )->dispatch();
 Background processes queue tasks and work through them in batches. Higher-end servers process more items per batch. A health check runs by default every 5 minutes to restart the queue if it ever fails; queues are processed first-in-first-out, so items can be pushed even while one is already running.
 
 ```php
-class WP_Example_Process extends \DuckDev\Queue\Task {
+class WP_Example_Process extends \FoxeLabs\Queue\Task {
 
     protected $action = 'example_process';
 
@@ -81,7 +81,7 @@ $process = new WP_Example_Process( new MyCustomStore( 'my_plugin_example_process
 
 ## Filters
 
-Every filter is namespaced with the process identifier (`{prefix}_{action}`, e.g. `duckdev_example_process`):
+Every filter is namespaced with the process identifier (`{prefix}_{action}`, e.g. `foxelabs_example_process`):
 
 | Filter | Default | Purpose |
 | --- | --- | --- |

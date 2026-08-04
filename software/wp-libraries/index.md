@@ -9,4 +9,4 @@ A collection of small, focused PHP libraries we maintain and reuse across our Wo
 | [WP Queue Process](/wp-libraries/wp-queue-process/overview) | Non-blocking async requests and a self-healing background queue for long jobs. |
 | [WP Review Notice](/wp-libraries/wp-review-notice/overview) | A gentle, dismissable admin notice asking for a wp.org review after a few days of usage. |
 
-All libraries require **PHP 7.4+**, ship on Composer under the `duckdev/*` namespace, and are released under **GPL-2.0-or-later**.
+All libraries require **PHP 7.4+**, ship on Composer, and are released under **GPL-2.0-or-later**. See each library's installation page for its Composer package name.

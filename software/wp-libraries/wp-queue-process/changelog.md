@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.0
+
+Rebrand from DuckDev to FoxeLabs. No behavioural changes — but the rename touches the namespace and the generated hook names, so it is a breaking release.
+
+### Changed
+- Composer package renamed `duckdev/wp-queue-process` → **`foxelabs/wp-queue-process`**. Update your `composer.json` require entry.
+- Namespace renamed `DuckDev\Queue\` → **`FoxeLabs\Queue\`**. Update every `use` statement and class reference.
+- The default process prefix changed `duckdev` → **`foxelabs`**, so every generated filter name, option key, cron hook, and lock transient moves from `duckdev_{action}_*` to `foxelabs_{action}_*`.
+
+### Upgrading
+- Drain your queues **before** upgrading. Batches persisted under the old `duckdev_*` option keys are not visible to the new prefix and will be orphaned in the options table.
+- Any `add_filter( 'duckdev_my_action_time_exceeded', … )` calls must be renamed to `foxelabs_my_action_*`.
+- To keep the old keys and filter names, override `$prefix` back to `'duckdev'` in your subclass.
+
+### Unchanged
+- Public API (`Async`, `Task`, `push_to_queue()`, `set_queue()`, `save()`, `dispatch()`, `update()`, `delete()`, `cancel_process()`), the filter list, and all behaviour.
+
 ## 2.0.0
 
 ### Changed
