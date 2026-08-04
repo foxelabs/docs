@@ -1,4 +1,4 @@
-# Freemius Plugin Licensing — Overview
+# WP Freemius Client — Overview
 
 A lite, UI-free Freemius SDK for Foxe Labs WordPress plugins. It handles license activation, deactivation, update delivery, and addon listing by talking to the Freemius API directly.
 
@@ -18,7 +18,7 @@ The library deliberately ships **no admin screens** — host plugins build their
 
 ## Architecture
 
-Small dependency-injection container wired up by `DuckDev\Freemius\Freemius`:
+Small dependency-injection container wired up by `FoxeLabs\Freemius\Freemius`:
 
 ```
 src/

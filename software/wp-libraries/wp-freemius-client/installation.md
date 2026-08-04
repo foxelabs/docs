@@ -9,17 +9,17 @@
 ## Composer
 
 ```console
-composer require duckdev/freemius-plugin-licensing
+composer require foxelabs/wp-freemius-client
 ```
 
-Classes autoload under the `DuckDev\Freemius\` namespace via PSR-4.
+Classes autoload under the `FoxeLabs\Freemius\` namespace via PSR-4.
 
 ## Bootstrapping
 
 Initialise the container by calling `Freemius::get_instance()` with your Freemius product ID and an arguments array. The first call creates the container and registers WordPress hooks; subsequent calls for the same plugin ID return the existing instance.
 
 ```php
-$freemius = \DuckDev\Freemius\Freemius::get_instance(
+$freemius = \FoxeLabs\Freemius\Freemius::get_instance(
     12345, // Freemius product ID.
     array(
         'slug'       => 'loggedin',

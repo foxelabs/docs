@@ -50,7 +50,7 @@ $addons = $freemius->addon()->get_addons();       // Cached for 24h.
 $addons = $freemius->addon()->get_addons( true ); // Force refresh.
 ```
 
-Each entry is enriched with a `link` field (Freemius checkout URL) and an `is_premium` boolean. Use the `duckdev_freemius_format_addon_data` filter to rewrite fields per addon.
+Each entry is enriched with a `link` field (Freemius checkout URL) and an `is_premium` boolean. Use the `foxelabs_freemius_format_addon_data` filter to rewrite fields per addon.
 
 ## Hooks
 
@@ -58,18 +58,18 @@ Each entry is enriched with a `link` field (Freemius checkout URL) and an `is_pr
 
 | Hook | Arguments | When |
 | --- | --- | --- |
-| `duckdev_freemius_license_activated` | `array $activation, bool $success` | After a successful activation. |
-| `duckdev_freemius_license_deactivated` | `array $activation, bool $success` | After a successful deactivation. |
+| `foxelabs_freemius_license_activated` | `array $activation, bool $success` | After a successful activation. |
+| `foxelabs_freemius_license_deactivated` | `array $activation, bool $success` | After a successful deactivation. |
 
 ### Filters
 
 | Hook | Arguments | Use |
 | --- | --- | --- |
-| `duckdev_freemius_api_request_args` | `array $args, string $method, string $url, array $data, array $headers` | Tweak request arguments before they reach `wp_remote_request()`. |
-| `duckdev_freemius_api_request_verify_ssl` | `bool $verify, Client $client` | Disable SSL verification (typically only in local dev). |
-| `duckdev_freemius_format_addon_data` | `array $addon, Addon $service` | Rewrite or augment each addon entry before it is returned. |
+| `foxelabs_freemius_api_request_args` | `array $args, string $method, string $url, array $data, array $headers` | Tweak request arguments before they reach `wp_remote_request()`. |
+| `foxelabs_freemius_api_request_verify_ssl` | `bool $verify, Client $client` | Disable SSL verification (typically only in local dev). |
+| `foxelabs_freemius_format_addon_data` | `array $addon, Addon $service` | Rewrite or augment each addon entry before it is returned. |
 
 ## Security notes
 
 - The library does **not** verify nonces or capabilities. Host plugins MUST do that before forwarding form input to `License::activate()` / `License::deactivate()`.
-- The license key is stored in the `duckdev_freemius_activation_data` option, keyed by plugin ID. It is blanked from storage on deactivation.
+- The license key is stored in the `foxelabs_freemius_activation_data` option, keyed by plugin ID. It is blanked from storage on deactivation.

@@ -190,8 +190,8 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/wp-libraries/' },
           {
-            text: 'Freemius Plugin Licensing',
-            base: '/wp-libraries/freemius-plugin-licensing',
+            text: 'WP Cache Helper',
+            base: '/wp-libraries/wp-cache-helper',
             collapsed: true,
             items: [
               { text: 'Overview', link: '/overview' },
@@ -201,8 +201,8 @@ export default defineConfig({
             ],
           },
           {
-            text: 'WP Cache Helper',
-            base: '/wp-libraries/wp-cache-helper',
+            text: 'WP Freemius Client',
+            base: '/wp-libraries/wp-freemius-client',
             collapsed: true,
             items: [
               { text: 'Overview', link: '/overview' },

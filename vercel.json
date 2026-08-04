@@ -19,6 +19,11 @@
       "source": "/trading/expert-advisors/:path*",
       "destination": "/trading/:path*",
       "permanent": true
+    },
+    {
+      "source": "/software/wp-libraries/freemius-plugin-licensing/:path*",
+      "destination": "/software/wp-libraries/wp-freemius-client/:path*",
+      "permanent": true
     }
   ]
 }
