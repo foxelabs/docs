@@ -201,6 +201,17 @@ export default defineConfig({
             ],
           },
           {
+            text: 'WP Flash Notices',
+            base: '/wp-libraries/wp-flash-notices',
+            collapsed: true,
+            items: [
+              { text: 'Overview', link: '/overview' },
+              { text: 'Installation', link: '/installation' },
+              { text: 'Usage', link: '/usage' },
+              { text: 'Changelog', link: '/changelog' },
+            ],
+          },
+          {
             text: 'WP Freemius Client',
             base: '/wp-libraries/wp-freemius-client',
             collapsed: true,

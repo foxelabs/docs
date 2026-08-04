@@ -5,6 +5,7 @@ A collection of small, focused PHP libraries we maintain and reuse across our Wo
 | Library | Purpose |
 | --- | --- |
 | [WP Cache Helper](/wp-libraries/wp-cache-helper/overview) | Callback-style `remember()` wrapper around the object cache and transients, with group flushing. |
+| [WP Flash Notices](/wp-libraries/wp-flash-notices/overview) | Admin notices queued before a redirect and shown once on the next page load. |
 | [WP Freemius Client](/wp-libraries/wp-freemius-client/overview) | UI-free Freemius SDK: license activation, updates, and addon listing. |
 | [WP Queue Process](/wp-libraries/wp-queue-process/overview) | Non-blocking async requests and a self-healing background queue for long jobs. |
 | [WP Review Notice](/wp-libraries/wp-review-notice/overview) | A gentle, dismissable admin notice asking for a wp.org review after a few days of usage. |
