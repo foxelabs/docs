@@ -108,7 +108,7 @@ Most of these are the same underlying issue: **VitePress rewrites some paths by
   route URLs resolve under `/software/` or `/trading/`.
 - **`head` entries are not rewritten by `base`.** Favicon paths and the
   `http-equiv="refresh"` redirects on section pages must be written out in full
-  (`/software/favicon-white/...`), not as bare root paths, or they resolve
+  (`/software/favicon.svg`), not as bare root paths, or they resolve
   against the domain root.
 - **Theme links _are_ rewritten by `base`.** So cross-site nav links cannot be
   root-relative: `/trading/` inside the software site would become

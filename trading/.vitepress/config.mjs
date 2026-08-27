@@ -12,45 +12,16 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   head: [
-    // Black fox on light tabs, white fox on dark tabs (via prefers-color-scheme).
+    // One icon for every theme: black fox in a rounded white tile, so it reads on
+    // light and dark tabs alike. .ico is the fallback for browsers without SVG icons.
+    ['link', { rel: 'icon', href: '/trading/favicon.ico', sizes: '48x48' }],
     [
       'link',
       {
         rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        media: '(prefers-color-scheme: light)',
-        href: '/trading/favicon-black/favicon-32x32.png',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        media: '(prefers-color-scheme: light)',
-        href: '/trading/favicon-black/favicon-16x16.png',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        media: '(prefers-color-scheme: dark)',
-        href: '/trading/favicon-white/favicon-32x32.png',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        media: '(prefers-color-scheme: dark)',
-        href: '/trading/favicon-white/favicon-16x16.png',
+        type: 'image/svg+xml',
+        sizes: 'any',
+        href: '/trading/favicon.svg',
       },
     ],
     [
@@ -58,7 +29,7 @@ export default defineConfig({
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/trading/favicon-white/apple-touch-icon.png',
+        href: '/trading/apple-touch-icon.png',
       },
     ],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Foxe Labs' }],

@@ -11,46 +11,16 @@ export default defineConfig({
   // READMEs are for GitHub only — they link to directories, which are not pages.
   srcExclude: ['**/README.md'],
   head: [
-    // Black fox on light tabs, white fox on dark tabs (via prefers-color-scheme).
-    // Paths are base-prefixed: VitePress does not rewrite head hrefs by `base`.
+    // One icon for every theme: black fox in a rounded white tile, so it reads on
+    // light and dark tabs alike. .ico is the fallback for browsers without SVG icons.
+    ['link', { rel: 'icon', href: '/software/favicon.ico', sizes: '48x48' }],
     [
       'link',
       {
         rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        media: '(prefers-color-scheme: light)',
-        href: '/software/favicon-black/favicon-32x32.png',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        media: '(prefers-color-scheme: light)',
-        href: '/software/favicon-black/favicon-16x16.png',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        media: '(prefers-color-scheme: dark)',
-        href: '/software/favicon-white/favicon-32x32.png',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        media: '(prefers-color-scheme: dark)',
-        href: '/software/favicon-white/favicon-16x16.png',
+        type: 'image/svg+xml',
+        sizes: 'any',
+        href: '/software/favicon.svg',
       },
     ],
     [
@@ -58,7 +28,7 @@ export default defineConfig({
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/software/favicon-white/apple-touch-icon.png',
+        href: '/software/apple-touch-icon.png',
       },
     ],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Foxe Labs' }],
