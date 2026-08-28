@@ -8,6 +8,25 @@ Full release history for **Loggedin**. The plugin's bundled
 `readme.txt` keeps only the latest couple of releases; the complete
 history lives here.
 
+## 3.2.0
+
+### Improved
+
+* Loggedin is now published under the **Foxe Labs** brand. Product pages moved to [foxelabs.com](https://foxelabs.com/software/plugins/loggedin) and the documentation to docs.foxelabs.com; every link in the plugin points at the new home. Nothing about how the plugin works has changed.
+* License activations are carried onto the rebranded storage key automatically. The licensing library renamed its option from `duckdev_freemius_activation_data` to `foxelabs_freemius_activation_data`, and the upgrader copies the value across on the first load after updating — premium add-ons stay licensed with no re-activation. The copy only ever writes to an empty destination, so a site that activated *after* upgrading is never rolled back.
+* PHP namespace renamed `DuckDev\Loggedin\` → **`FoxeLabs\Loggedin\`**. See the [architecture overview](/loggedin/developer-docs#architecture-overview).
+* The review notice now uses the rebranded [`foxelabs/wp-review-notice`](https://github.com/foxelabs/wp-review-notice) 3.0.0. Its storage keys are derived from the plugin slug rather than a vendor name, so nobody's **No thanks** or **Maybe later** is reset by the switch.
+* Tested with WordPress 7.1.
+
+### Compatibility
+
+Add-ons are separate plugins that WordPress updates independently of the parent, so a site can run this release alongside an add-on built against the old namespace — or the reverse. Both directions are handled:
+
+* `DuckDev\Loggedin\Plugin` is registered as an alias of the renamed class, so an add-on that has not been updated yet still boots.
+* Each add-on's matching release accepts the parent `Plugin` class under either name.
+
+`Plugin` is the only class add-ons reference across that boundary; everything else is a `loggedin_`-prefixed hook, and none of those names changed. Update the parent and the add-ons in whichever order suits you. The alias will be dropped in a later release, once every add-on update has had time to roll out.
+
 ## 3.1.0
 
 ### Added
@@ -28,7 +47,7 @@ history lives here.
 
 ### Added
 
-* Review-request notice is back after being dropped in the 3.0 refactor. Now powered by the [`duckdev/wp-review-notice`](https://github.com/duckdev/wp-review-notice) library, scoped to the **Users → Loggedin** screen only, and prompts after 7 days of use.
+* Review-request notice is back after being dropped in the 3.0 refactor. Now powered by the [`duckdev/wp-review-notice`](https://github.com/foxelabs/wp-review-notice) library, scoped to the **Users → Loggedin** screen only, and prompts after 7 days of use.
 
 ### Improved
 

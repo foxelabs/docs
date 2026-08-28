@@ -18,7 +18,7 @@ small companion plugin.
 ## Architecture overview
 
 ```
-DuckDev\Loggedin\
+FoxeLabs\Loggedin\
 ├── Plugin                       Constants (version, slug, option key, REST namespace)
 ├── Core                         Boot orchestrator — wires every module and fires loggedin_init
 ├── Setup\{Settings, Upgrader}   Options store + version bump handler
@@ -30,6 +30,14 @@ DuckDev\Loggedin\
 ├── Contracts\Singleton          Shared trait used by every module
 └── Utils\…                      Shared helpers
 ```
+
+::: info Namespace changed in 3.2.0
+These classes lived under `DuckDev\Loggedin\` before 3.2.0, when the plugin
+moved to the Foxe Labs brand. `DuckDev\Loggedin\Plugin` is kept as an alias so
+add-ons and custom code written against the old name keep working, but new code
+should use `FoxeLabs\Loggedin\`. Hook, filter and option names all start with
+`loggedin_` and were not affected.
+:::
 
 The recommended way to extend the plugin is:
 
@@ -44,11 +52,11 @@ The recommended way to extend the plugin is:
 ## Plugin constants
 
 Useful when writing extensions or talking to the plugin from a sibling
-add-on. All live on `DuckDev\Loggedin\Plugin`:
+add-on. All live on `FoxeLabs\Loggedin\Plugin`:
 
 | Constant | Value | Purpose |
 | --- | --- | --- |
-| `VERSION` | `3.0.1` | Current plugin version. |
+| `VERSION` | `3.2.0` | Current plugin version. |
 | `SLUG` | `loggedin` | Plugin slug; matches the Freemius and i18n slugs. |
 | `TEXT_DOMAIN` | `loggedin` | Translation text domain. |
 | `OPTION_KEY` | `loggedin_settings` | WP option name where every plugin setting is stored. |
@@ -97,7 +105,7 @@ installs depend on the value, not the label.
 Fires once every plugin module has been wired up.
 
 ```php
-do_action( 'loggedin_init', \DuckDev\Loggedin\Core $core );
+do_action( 'loggedin_init', \FoxeLabs\Loggedin\Core $core );
 ```
 
 | Parameter | Type | Description |
@@ -111,7 +119,7 @@ time this fires.
 ```php
 add_action(
     'loggedin_init',
-    array( \DuckDev\Loggedin\RealtimeLogout\Plugin::class, 'boot' )
+    array( \FoxeLabs\Loggedin\RealtimeLogout\Plugin::class, 'boot' )
 );
 ```
 

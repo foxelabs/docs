@@ -53,12 +53,18 @@ VitePress does **not** rewrite by `base`, so the URL must include the prefix:
 
 ## A note on naming
 
-The prose here refers to **Foxe Labs**, but code identifiers still use the
-original `DuckDev` namespace — `DuckDev\Loggedin\`, the `duckdev/*` Composer
-packages, and `duckdev_*` filter and action names. That is intentional: those
-are the real symbols in the shipped plugins and libraries. Renaming them in
-the docs would document an API that does not exist. They should only change
-here after the corresponding code migration ships.
+The prose here refers to **Foxe Labs** throughout, but a code identifier is
+only renamed once the corresponding code migration has actually shipped —
+documenting an API that does not exist is worse than documenting an old name.
+
+Migrated so far: the `wp-*` libraries (`foxelabs/*` packages, `FoxeLabs\`
+namespaces) and Loggedin as of 3.2.0 (`FoxeLabs\Loggedin\`). 404 to 301 has
+not migrated — its docs still say `DuckDev\FourNotFour\`, which is correct.
+
+Two kinds of `duckdev_*` reference are deliberate and stay put regardless:
+historical changelog entries describing what a past release actually did, and
+legacy option keys a plugin still reads in order to migrate away from them,
+such as `duckdev_freemius_activation_data`.
 
 ## License
 
