@@ -18,7 +18,6 @@ too, via [`vercel.json`](../vercel.json).
 | --- | --- |
 | Getting started | [`get-started.md`](./get-started.md) |
 | Loggedin | [`loggedin/`](./loggedin) |
-| 404 to 301 | [`404-to-301/`](./404-to-301) |
 | Lazy Load for Comments | [`lazy-load-for-comments/`](./lazy-load-for-comments) |
 | WordPress libraries | [`wp-libraries/`](./wp-libraries) |
 
@@ -58,8 +57,7 @@ only renamed once the corresponding code migration has actually shipped —
 documenting an API that does not exist is worse than documenting an old name.
 
 Migrated so far: the `wp-*` libraries (`foxelabs/*` packages, `FoxeLabs\`
-namespaces) and Loggedin as of 3.2.0 (`FoxeLabs\Loggedin\`). 404 to 301 has
-not migrated — its docs still say `DuckDev\FourNotFour\`, which is correct.
+namespaces) and Loggedin as of 3.2.0 (`FoxeLabs\Loggedin\`).
 
 Two kinds of `duckdev_*` reference are deliberate and stay put regardless:
 historical changelog entries describing what a past release actually did, and

@@ -569,9 +569,8 @@ Return:
 | A React node | Replace the default banner with your own. |
 | _anything else_ | Falls through to the default. |
 
-This is the same hook contract the 404 to 301 plugin's add-ons use to
-suppress their own promo banners — keep the wrapper as a `PanelRow` with
-`className="loggedin-cross-sell"` and an inner `Notice` so your
+When replacing the banner, keep the wrapper as a `PanelRow` with
+`className="loggedin-cross-sell"` and an inner `Notice`, so your
 replacement inherits the shared spacing rules.
 
 ## REST API

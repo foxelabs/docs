@@ -21,16 +21,6 @@ Limit the number of **concurrent sessions** a WordPress user can have, and force
 - 🧑‍💻 **[Developer Docs](./loggedin/developer-docs)** — Hooks, filters and internals
 - 🗒️ **[Changelog](./loggedin/changelog)** — Version history
 
-### 404 to 301
-
-Catch **404 errors** and redirect, log, or get alerted about them. Includes match modes for tricky URLs, a full log browser, and add-ons for exporting, importing and alerting.
-
-- 🚀 **[Getting Started](./404-to-301/getting-started)** — Install and set your default redirect
-- ⚙️ **[Settings](./404-to-301/general-settings)** — Redirects, logs, notifications and tools
-- 🧩 **[Add-ons](./404-to-301/addons/)** — Log cleaning, exports, imports and alerts
-- 🧑‍💻 **[Developer Docs](./404-to-301/developer-docs)** — Hooks, filters and internals
-- 🗒️ **[Changelog](./404-to-301/changelog)** — Version history
-
 ### Lazy Load for Comments
 
 Stop comments from loading on every page view. They load **on scroll or on click** instead, which keeps comment-heavy pages fast.

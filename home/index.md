@@ -16,7 +16,7 @@ hero:
 features:
   - title: Software
     icon: <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 24 24" fill="none" stroke="#3aa0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-    details: WordPress plugins and PHP libraries — Loggedin, 404 to 301, Lazy Load for Comments, and our reusable WordPress libraries. Installation, settings, WP-CLI, developer reference and changelogs.
+    details: WordPress plugins and PHP libraries — Loggedin, Lazy Load for Comments, and our reusable WordPress libraries. Installation, settings, WP-CLI, developer reference and changelogs.
     link: https://docs.foxelabs.com/software/get-started
     linkText: Read the software docs
     target: _self

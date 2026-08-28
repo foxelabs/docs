@@ -51,12 +51,12 @@ Add-ons are separate plugins that WordPress updates independently of the parent,
 
 ### Improved
 
-* Admin notices (including the review prompt itself) are relocated into the centered page column so they sit between the plugin header and the settings panels instead of above the header — matches the 404 to 301 plugin shell.
+* Admin notices (including the review prompt itself) are relocated into the centered page column so they sit between the plugin header and the settings panels instead of above the header.
 * Pre-3.0.2 review-notice state is migrated in-place: users who clicked **No thanks** in an earlier version stay dismissed, and anyone with a **Maybe later** deferral keeps their scheduled show time. Legacy option `loggedin_rating_notice` and user meta `loggedin_rating_notice_dismissed` are renamed to the library's storage layout in a single upgrader pass.
 
 ### Fixed
 
-* Left-hand gap between the plugin header and the admin sidebar caused by WordPress's default `#wpcontent` padding; the header now sits flush like the 404 to 301 shell.
+* Left-hand gap between the plugin header and the admin sidebar caused by WordPress's default `#wpcontent` padding; the header now sits flush.
 
 ## 3.0.1
 
@@ -67,7 +67,7 @@ Add-ons are separate plugins that WordPress updates independently of the parent,
 
 ### Improved
 
-* Add-on card layout now matches the 404 to 301 plugin — primary CTA pinned to the left of the footer, **More details** link on the right, title-cased license button labels.
+* Add-on card layout reworked — primary CTA pinned to the left of the footer, **More details** link on the right, title-cased license button labels.
 
 ### Fixed
 

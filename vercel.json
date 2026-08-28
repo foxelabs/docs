@@ -24,6 +24,16 @@
       "source": "/software/wp-libraries/freemius-plugin-licensing/:path*",
       "destination": "/software/wp-libraries/wp-freemius-client/:path*",
       "permanent": true
+    },
+    {
+      "source": "/software/404-to-301",
+      "destination": "https://foxelabs.com/software/plugins/404-to-301",
+      "permanent": true
+    },
+    {
+      "source": "/software/404-to-301/:path*",
+      "destination": "https://foxelabs.com/software/plugins/404-to-301",
+      "permanent": true
     }
   ]
 }
