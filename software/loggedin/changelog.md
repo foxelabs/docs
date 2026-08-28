@@ -12,20 +12,17 @@ history lives here.
 
 ### Improved
 
-* Loggedin is now published under the **Foxe Labs** brand. Product pages moved to [foxelabs.com](https://foxelabs.com/software/plugins/loggedin) and the documentation to docs.foxelabs.com; every link in the plugin points at the new home. Nothing about how the plugin works has changed.
-* License activations are carried onto the rebranded storage key automatically. The licensing library renamed its option from `duckdev_freemius_activation_data` to `foxelabs_freemius_activation_data`, and the upgrader copies the value across on the first load after updating — premium add-ons stay licensed with no re-activation. The copy only ever writes to an empty destination, so a site that activated *after* upgrading is never rolled back.
-* PHP namespace renamed `DuckDev\Loggedin\` → **`FoxeLabs\Loggedin\`**. See the [architecture overview](/loggedin/developer-docs#architecture-overview).
-* The review notice now uses the rebranded [`foxelabs/wp-review-notice`](https://github.com/foxelabs/wp-review-notice) 3.0.0. Its storage keys are derived from the plugin slug rather than a vendor name, so nobody's **No thanks** or **Maybe later** is reset by the switch.
+* Settings are now built once per request instead of on every read. The session guard checks a setting two or three times per login, and each check previously rebuilt the whole settings array; it is now cached for the request and invalidated whenever the option is written.
+* Loggedin is now published under the **Foxe Labs** brand. Nothing about how the plugin works has changed.
+* Every link in the plugin now points at the [foxelabs.com](https://foxelabs.com/software/plugins/loggedin) product pages and this documentation site.
 * Tested with WordPress 7.1.
 
-### Compatibility
-
-Add-ons are separate plugins that WordPress updates independently of the parent, so a site can run this release alongside an add-on built against the old namespace — or the reverse. Both directions are handled:
-
-* `DuckDev\Loggedin\Plugin` is registered as an alias of the renamed class, so an add-on that has not been updated yet still boots.
-* Each add-on's matching release accepts the parent `Plugin` class under either name.
-
-`Plugin` is the only class add-ons reference across that boundary; everything else is a `loggedin_`-prefixed hook, and none of those names changed. Update the parent and the add-ons in whichever order suits you. The alias will be dropped in a later release, once every add-on update has had time to roll out.
+::: info Extending the plugin
+The PHP namespace changed in this release. If you have written an add-on or
+custom code against it, see the [architecture
+overview](/loggedin/developer-docs#architecture-overview) — the old class name
+still resolves, so nothing breaks while you update.
+:::
 
 ## 3.1.0
 
@@ -128,7 +125,7 @@ Add-ons are separate plugins that WordPress updates independently of the parent,
 
 * Settings page.
 * Add-ons.
-* Logout Oldest logic. Thanks [#19](https://github.com/Joel-James/loggedin/pull/19).
+* Logout Oldest logic. Thanks [#19](https://github.com/joel-james/loggedin/pull/19).
 
 ### Improved
 
