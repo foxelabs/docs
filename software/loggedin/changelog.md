@@ -17,6 +17,10 @@ history lives here.
 * Every link in the plugin now points at the [foxelabs.com](https://foxelabs.com/software/plugins/loggedin) product pages and this documentation site.
 * Tested with WordPress 7.1.
 
+### Removed
+
+* The leftover **Loggedin** section on **Settings → General**. Pre-2.0 registered the plugin's options there; 2.0 replaced them with a one-line pointer to the new page for anyone who had bookmarked the old location. Now that 3.x is well established, the pointer is gone — settings live under **Users → Loggedin**.
+
 ::: info Extending the plugin
 The PHP namespace changed in this release. If you have written an add-on or
 custom code against it, see the [architecture
