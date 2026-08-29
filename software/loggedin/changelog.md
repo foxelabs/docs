@@ -19,6 +19,7 @@ history lives here.
 
 ### Removed
 
+* The `load_plugin_textdomain()` call. WordPress has loaded translations for wordpress.org-hosted plugins on demand since 4.6, keyed on the `Text Domain` header, so the call was redundant. The bundled `.po`/`.mo` catalogues went with it — translations now come from the wordpress.org language pack.
 * The leftover **Loggedin** section on **Settings → General**. Pre-2.0 registered the plugin's options there; 2.0 replaced them with a one-line pointer to the new page for anyone who had bookmarked the old location. Now that 3.x is well established, the pointer is gone — settings live under **Users → Loggedin**.
 
 ::: info Extending the plugin
