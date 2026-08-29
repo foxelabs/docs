@@ -72,6 +72,7 @@ export default defineConfig({
             items: [
               { text: 'Overview', link: '/' },
               { text: 'Active Sessions', link: '/active-sessions' },
+              { text: 'Auto Logout', link: '/auto-logout' },
               { text: 'Real-time Logout', link: '/realtime-logout' },
               { text: 'Limit Per User', link: '/limit-per-user' },
               { text: 'Limit Per Role', link: '/limit-per-role' },

@@ -847,6 +847,14 @@ This affects WordPress globally — Loggedin reads `WP_Session_Tokens` for
 the count and doesn't care how long each individual session is configured
 to last.
 
+::: tip Prefer a setting to a snippet
+The [Auto Logout](/loggedin/addons/auto-logout) add-on exposes both
+durations as settings, and adds an idle timeout on top. It hooks
+`auth_cookie_expiration` at priority `20`, so if you keep a snippet like the
+one above at the default priority the add-on's value wins — pick one or the
+other rather than running both.
+:::
+
 ::: info Need help?
 If you think a hook is missing or you need help extending Loggedin,
 [reach out via the contact form](https://foxelabs.com/contact/) — we use

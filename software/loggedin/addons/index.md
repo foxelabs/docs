@@ -32,6 +32,7 @@ new add-on has just been released.
 | Add-on | What it does | Where it lives |
 | --- | --- | --- |
 | **[Active Sessions](/loggedin/addons/active-sessions)** | List every user with a live session, drill into per-device detail, and sign out single sessions or every session for a user. | Sessions tab |
+| **[Auto Logout](/loggedin/addons/auto-logout)** | Sign out idle users after a timeout you set, with a warning countdown and per-role rules, plus control over how long a login lasts. | Settings tab |
 | **[Real-time Logout](/loggedin/addons/realtime-logout)** | Polls the server every few seconds so a session that ends on one device immediately reloads any open tabs to wp-login. | Settings tab |
 | **[Limit Per User](/loggedin/addons/limit-per-user)** | Override the global session cap for a single user account from the user's profile page. | Profile screen |
 | **[Limit Per Role](/loggedin/addons/limit-per-role)** | Override the global session cap per WordPress role (admin/editor/subscriber/custom). | Settings tab |
