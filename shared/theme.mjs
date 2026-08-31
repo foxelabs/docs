@@ -27,7 +27,12 @@ export const nav = [
     target: '_self',
     noIcon: true,
   },
-  { text: 'Support', link: 'mailto:support@foxelabs.com', noIcon: true },
+  {
+    text: 'Support',
+    link: 'https://foxelabs.com/contact/',
+    target: '_self',
+    noIcon: true,
+  },
 ]
 
 // Fox mark shown beside the site title. VitePress swaps the two with CSS on the
