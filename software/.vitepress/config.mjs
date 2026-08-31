@@ -11,9 +11,19 @@ export default defineConfig({
   // READMEs are for GitHub only — they link to directories, which are not pages.
   srcExclude: ['**/README.md'],
   head: [
-    // One icon for every theme: black fox in a rounded white tile, so it reads on
-    // light and dark tabs alike. .ico is the fallback for browsers without SVG icons.
-    ['link', { rel: 'icon', href: '/software/favicon.ico', sizes: '48x48' }],
+    // One icon for every theme: white fox head in a rounded black tile, so it
+    // reads on light and dark tabs alike. .ico is the fallback for browsers
+    // without SVG icons — Safari never uses the SVG.
+    ['link', { rel: 'icon', href: '/software/favicon.ico', sizes: '48x48 32x32 16x16' }],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '96x96',
+        href: '/software/favicon-96x96.png',
+      },
+    ],
     [
       'link',
       {

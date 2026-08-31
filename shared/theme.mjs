@@ -40,8 +40,8 @@ export const nav = [
 // unlike `head` entries, the logo is rendered through the theme and so it does
 // get prefixed with each site's `base`.
 export const logo = {
-  light: '/logo-black.png',
-  dark: '/logo-white.png',
+  light: '/mark-black.svg',
+  dark: '/mark-white.svg',
   alt: 'Foxe Labs',
 }
 
