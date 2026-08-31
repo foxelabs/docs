@@ -35,13 +35,14 @@ export const nav = [
   },
 ]
 
-// Fox mark shown beside the site title. VitePress swaps the two with CSS on the
-// theme toggle, so there is no flash. These paths are root-relative on purpose:
+// Fox mark shown beside the site title. One file for both themes, inverted by
+// CSS in dark -- a light and a dark variant would both be fetched on every
+// page, since VitePress renders both and hides one. Inverting is exact here
+// because the mark is a single colour. The path is root-relative on purpose:
 // unlike `head` entries, the logo is rendered through the theme and so it does
 // get prefixed with each site's `base`.
 export const logo = {
-  light: '/mark-black.svg',
-  dark: '/mark-white.svg',
+  src: '/mark.svg',
   alt: 'Foxe Labs',
 }
 

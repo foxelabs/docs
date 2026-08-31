@@ -435,3 +435,10 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* The one-colour fox mark beside the site title. Inverting is exact for a
+   single-colour mark -- black becomes white -- and saves shipping a second
+   file that every page would download whether shown or not. */
+.dark .VPNavBarTitle .logo {
+  filter: invert(1);
+}
