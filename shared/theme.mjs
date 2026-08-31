@@ -41,8 +41,11 @@ export const nav = [
 // because the mark is a single colour. The path is root-relative on purpose:
 // unlike `head` entries, the logo is rendered through the theme and so it does
 // get prefixed with each site's `base`.
+// A PNG, not an SVG: the redrawn mark was delivered as a raster, so there is
+// no vector to ship. It paints at 24px in the navbar, which 256 covers well
+// past 3x.
 export const logo = {
-  src: '/mark.svg',
+  src: '/mark.png',
   alt: 'Foxe Labs',
 }
 
