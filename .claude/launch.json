@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docs-home",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:home"],
+      "port": 5173
+    },
+    {
+      "name": "docs-software",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:software"],
+      "port": 5173
+    }
+  ]
+}

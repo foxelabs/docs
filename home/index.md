@@ -1,29 +1,64 @@
 ---
-# Card links must be absolute URLs, not root-relative paths. Each site is a
+# A plain page layout, not VitePress's home layout: the landing content is a
+# custom component styled with the marketing site's bands and cards.
+#
+# Track and link URLs must be absolute, not root-relative. Each site is a
 # separate VitePress build with its own client-side router, so '/software/...'
-# would be resolved as a route within this site and render a 404. `target`
-# keeps them opening in the same tab.
-layout: home
+# would resolve as a route within this site and render a 404. `target: _self`
+# on the anchors keeps them opening in the same tab.
+layout: page
+sidebar: false
+aside: false
 
-hero:
-  name: "Foxe Labs"
-  text: "Documentation"
-  tagline: Guides, references and changelogs for everything we build — open-source WordPress plugins and PHP libraries, and algorithmic trading tools for MetaTrader 5.
-  image:
-    src: /documentation.svg
-    alt: Foxe Labs
+title: Foxe Labs documentation
+eyebrow: Guides, references and changelogs
+lead: Everything we build, documented in one place — open-source WordPress plugins and PHP libraries, and algorithmic trading tools for MetaTrader 5.
 
-features:
-  - title: Software
-    icon: <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 24 24" fill="none" stroke="#3aa0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-    details: WordPress plugins and PHP libraries — Loggedin, Lazy Load for Comments, and our reusable WordPress libraries. Installation, settings, WP-CLI, developer reference and changelogs.
+tracks:
+  - label: Software
+    title: WordPress plugins and PHP libraries
+    body: Loggedin and its add-ons, Lazy Load for Comments, and the reusable libraries behind them.
+    covers:
+      - Installation and settings
+      - WP-CLI commands
+      - Developer reference and hooks
+      - Changelogs
+    cta: Read the software docs
     link: https://docs.foxelabs.com/software/get-started
-    linkText: Read the software docs
-    target: _self
-  - title: Trading
-    icon: <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
-    details: Expert advisors and trading tools for MetaTrader 5, starting with Gold Scalpel. Setup, how each strategy works, performance notes, full inputs reference and changelogs.
+
+  - label: Trading
+    title: Expert advisors for MetaTrader 5
+    body: Gold Scalpel and the tools alongside it, for prop firm and algorithmic traders.
+    covers:
+      - Setup and installation
+      - How each strategy works
+      - Full inputs reference
+      - Changelogs
+    cta: Read the trading docs
     link: https://docs.foxelabs.com/trading/get-started
-    linkText: Read the trading docs
-    target: _self
+
+popular:
+  title: Start here
+  lead: The pages people open first.
+  links:
+    - title: Loggedin
+      desc: Limit concurrent WordPress logins
+      link: https://docs.foxelabs.com/software/loggedin/getting-started
+    - title: Loggedin add-ons
+      desc: Per-role limits, auto logout, active sessions
+      link: https://docs.foxelabs.com/software/loggedin/addons/
+    - title: Lazy Load for Comments
+      desc: Defer comment loading until asked
+      link: https://docs.foxelabs.com/software/lazy-load-for-comments/getting-started
+    - title: Gold Scalpel
+      desc: XAUUSD expert advisor for MetaTrader 5
+      link: https://docs.foxelabs.com/trading/gold-scalpel/getting-started
+    - title: WordPress libraries
+      desc: Cache helper, flash notices, Freemius client
+      link: https://docs.foxelabs.com/software/wp-libraries/
+    - title: Changelogs
+      desc: What shipped and when
+      link: https://docs.foxelabs.com/software/loggedin/changelog
 ---
+
+<Landing />

@@ -1,46 +1,23 @@
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #62d154 30%, #22c3a6);
-
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, rgba(98, 209, 84, 0.45) 50%, rgba(34, 195, 166, 0.45) 50%);
-  --vp-home-hero-image-filter: blur(44px);
-}
-
-.VPHero .name,
-.VPHero .text {
-  font-weight: 800;
-}
-
-/* "Coming Soon" badge on the TickerLogs feature card (2nd card) */
+/* TickerLogs has no docs yet, so its feature card on the trading home page is
+   flagged rather than linked. Everything else about the card comes from the
+   shared theme. */
 .VPFeatures .items .item:nth-child(2) .VPFeature {
   position: relative;
 }
 
 .VPFeatures .items .item:nth-child(2) .VPFeature .title::after {
-  content: 'Coming Soon';
+  content: 'Coming soon';
   position: absolute;
   top: 16px;
   right: 16px;
-  padding: 3px 10px;
+  padding: 2px var(--fx-space-050);
   font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
+  font-weight: var(--fx-fw-bold);
+  line-height: 16px;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: #fff;
-  background: linear-gradient(120deg, #158f4c, #0f8f7a);
-  border-radius: 999px;
+  color: var(--fx-yellow-bold);
+  background: var(--fx-yellow-soft);
+  border-radius: 3px;
   white-space: nowrap;
-}
-
-@media (min-width: 640px) {
-  :root {
-    --vp-home-hero-image-filter: blur(56px);
-  }
-}
-
-@media (min-width: 960px) {
-  :root {
-    --vp-home-hero-image-filter: blur(68px);
-  }
 }

@@ -1,0 +1,437 @@
+/* ===========================================================================
+   Foxe Labs component styling for the VitePress default theme.
+   Tokens alone get the colours right; this file fixes the shapes the default
+   theme gets wrong for us — heading weights, the nav, sidebar, code surfaces,
+   tables and callouts — so the docs read like foxelabs.com rather than like a
+   VitePress site wearing our colours.
+   =========================================================================== */
+
+html {
+  font-size: 16px;
+}
+
+/* Bricolage is a display face: it needs the tighter tracking the marketing
+   site gives it, or headings look loose at large sizes. */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6,
+.VPHero .name,
+.VPHero .text {
+  font-family: var(--fx-font-display);
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc h1 {
+  font-size: var(--fx-text-h1);
+  font-weight: var(--fx-fw-display);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+/* The default theme rules off every h2. One hairline under the page title is
+   enough structure; the size break carries the rest. */
+.vp-doc h2 {
+  font-size: var(--fx-text-h2);
+  font-weight: var(--fx-fw-display);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  margin-top: var(--fx-space-600);
+  padding-top: var(--fx-space-300);
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc h3 {
+  font-size: var(--fx-text-h3);
+  font-weight: var(--fx-fw-display);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  margin-top: var(--fx-space-500);
+}
+
+.vp-doc h4 {
+  font-size: var(--fx-text-h4);
+  font-weight: var(--fx-fw-subhead);
+  line-height: 1.24;
+  letter-spacing: -0.014em;
+  margin-top: var(--fx-space-400);
+}
+
+.vp-doc p,
+.vp-doc li {
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc strong {
+  color: var(--vp-c-text-1);
+  font-weight: var(--fx-fw-subhead);
+}
+
+/* Marketing prose underlines its links. Docs are dense with them, so keep the
+   underline but hold it off until hover — the blue already marks them. */
+.vp-doc a {
+  font-weight: var(--fx-fw-body);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+.vp-doc a:hover {
+  text-decoration: underline;
+}
+
+.vp-doc li::marker {
+  color: var(--vp-c-brand-1);
+}
+
+/* ---- Code ---------------------------------------------------------------- */
+
+.vp-doc :not(pre) > code {
+  font-family: var(--fx-font-mono);
+  font-size: 0.85em;
+  background: var(--fx-code-wash);
+  border-radius: var(--fx-r-sm);
+  padding: 0.1em 0.35em;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc div[class*='language-'] {
+  border-radius: var(--fx-r-md);
+  background: var(--fx-code-wash);
+  box-shadow: none;
+}
+
+.vp-doc div[class*='language-'] code {
+  font-family: var(--fx-font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+/* The language tag sits in the corner of every block; at the default size it
+   competes with the code itself. */
+.vp-doc div[class*='language-'] > span.lang {
+  font-family: var(--fx-font-mono);
+  font-size: var(--fx-text-small);
+  color: var(--vp-c-text-3);
+}
+
+.vp-doc [class*='language-'] > button.copy {
+  border-radius: var(--fx-r-sm);
+}
+
+/* ---- Callouts ------------------------------------------------------------ */
+
+/* ADS section messages: soft fill, no left bar, 8px radius. The default theme
+   draws a thick coloured rail that fights the flat marketing surfaces. */
+.vp-doc .custom-block {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--fx-r-md);
+  padding: var(--fx-space-200) var(--fx-space-300);
+  font-size: var(--fx-text-ui);
+  line-height: 1.6;
+}
+
+.vp-doc .custom-block .custom-block-title {
+  font-weight: var(--fx-fw-bold);
+  letter-spacing: 0;
+}
+
+.vp-doc .custom-block a {
+  font-weight: var(--fx-fw-medium);
+}
+
+.vp-doc .custom-block.tip,
+.vp-doc .custom-block.note,
+.vp-doc .custom-block.info {
+  border-color: var(--fx-b200);
+}
+.vp-doc .custom-block.warning {
+  border-color: var(--fx-yellow);
+}
+.vp-doc .custom-block.danger,
+.vp-doc .custom-block.caution {
+  border-color: var(--fx-red);
+}
+
+/* ---- Tables -------------------------------------------------------------- */
+
+/* Marketing tables: centred data, left-aligned and emphasised row labels, a
+   filled header row and no outer frame. */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  margin: var(--fx-space-400) 0;
+}
+
+.vp-doc tr {
+  background: transparent;
+  border-top: none;
+}
+
+.vp-doc th {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-weight: var(--fx-fw-bold);
+  font-size: var(--fx-text-ui);
+  text-align: left;
+  border: none;
+  border-bottom: 2px solid var(--vp-c-divider);
+  padding: 0.7em 0.85em;
+}
+
+.vp-doc td {
+  color: var(--vp-c-text-2);
+  border: none;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding: 0.7em 0.85em;
+}
+
+.vp-doc th:first-child,
+.vp-doc td:first-child {
+  color: var(--vp-c-text-1);
+  font-weight: var(--fx-fw-medium);
+}
+
+/* ---- Navbar -------------------------------------------------------------- */
+
+.VPNavBar .title {
+  font-family: var(--fx-font-display);
+  font-weight: var(--fx-fw-display);
+  letter-spacing: -0.02em;
+}
+
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup .VPFlyout .button {
+  font-size: var(--fx-text-ui);
+  font-weight: var(--fx-fw-medium);
+}
+
+/* The default nav underlines the active item in brand blue and leaves hover
+   bare. ADS nav items take a neutral wash instead. */
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-text-1);
+}
+
+.VPNavBar.has-sidebar .curtain {
+  background: var(--vp-c-bg);
+}
+
+/* ---- Sidebar ------------------------------------------------------------- */
+
+.VPSidebarItem .text {
+  font-size: var(--fx-text-ui);
+  line-height: 1.5;
+}
+
+/* Section titles are structure, not links: heavier, tighter, in the display
+   face, so a long sidebar scans by group rather than as one long list. */
+.VPSidebarItem.level-0 > .item > .indicator + .text,
+.VPSidebarItem.level-0 > .item > .text {
+  font-family: var(--fx-font-display);
+  font-weight: var(--fx-fw-subhead);
+  font-size: var(--fx-text-ui);
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.008em;
+}
+
+.VPSidebarItem.is-link > .item:hover .link .text {
+  color: var(--vp-c-text-1);
+}
+
+.VPSidebarItem.is-active > .item .link .text {
+  font-weight: var(--fx-fw-bold);
+  color: var(--vp-c-brand-1);
+}
+
+/* ---- Right-hand outline -------------------------------------------------- */
+
+.VPDocAsideOutline .outline-title {
+  font-family: var(--fx-font-display);
+  font-weight: var(--fx-fw-subhead);
+  font-size: var(--fx-text-ui);
+  color: var(--vp-c-text-1);
+}
+
+.VPDocAsideOutline .outline-link {
+  font-size: var(--fx-text-ui);
+}
+
+/* ---- Prev / next --------------------------------------------------------- */
+
+.VPDocFooter .pager-link {
+  border-radius: var(--fx-r-md);
+  border-color: var(--vp-c-divider);
+  box-shadow: var(--fx-shadow-raised);
+  transition: background-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.VPDocFooter .pager-link:hover {
+  border-color: var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  box-shadow: var(--fx-shadow-raised);
+}
+
+.VPDocFooter .pager-link .desc {
+  font-size: var(--fx-text-small);
+  color: var(--vp-c-text-3);
+}
+
+.VPDocFooter .pager-link .title {
+  font-family: var(--fx-font-display);
+  font-weight: var(--fx-fw-subhead);
+}
+
+/* ---- Buttons ------------------------------------------------------------- */
+
+/* ADS buttons are 4px, medium weight and flat — the default theme's pill with
+   a border is the one shape that would give the VitePress origin away. */
+.VPButton {
+  border-radius: var(--fx-r-sm);
+  font-weight: var(--fx-fw-medium);
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.VPButton.medium {
+  font-size: var(--fx-text-ui);
+  padding: 0 var(--fx-space-200);
+  line-height: 38px;
+}
+
+.VPButton.big {
+  font-size: var(--fx-text-body);
+  padding: 0 var(--fx-space-300);
+  line-height: 46px;
+}
+
+/* ---- Home hero and feature cards ----------------------------------------- */
+
+/* Used by the software and trading sites, which still run the stock home
+   layout. The landing page at the root has its own component. */
+.VPHero .name {
+  font-weight: var(--fx-fw-display);
+  letter-spacing: -0.03em;
+}
+
+.VPHero .text {
+  font-weight: var(--fx-fw-display);
+  letter-spacing: -0.025em;
+}
+
+.VPHero .tagline {
+  color: var(--vp-c-text-2);
+  font-weight: var(--fx-fw-body);
+}
+
+.VPFeature {
+  border-radius: var(--fx-r-md);
+  border: none;
+  background: var(--vp-c-bg);
+  box-shadow: var(--fx-shadow-raised);
+  transition: background-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.VPFeature.link:hover {
+  border: none;
+  background: var(--vp-c-bg-soft);
+  box-shadow: var(--fx-shadow-raised);
+}
+
+.VPFeature .title {
+  font-family: var(--fx-font-display);
+  font-weight: var(--fx-fw-subhead);
+}
+
+.VPFeature .details {
+  color: var(--vp-c-text-2);
+}
+
+/* ---- Search -------------------------------------------------------------- */
+
+.DocSearch-Button {
+  border-radius: var(--fx-r-sm);
+}
+
+/* ---- Footer -------------------------------------------------------------- */
+
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  font-size: var(--fx-text-small);
+  color: var(--vp-c-text-3);
+}
+
+.VPFooter a {
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+}
+
+.VPFooter a:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* ---- Badges -------------------------------------------------------------- */
+
+/* ADS lozenge: 3px radius, 11px uppercase, 600. */
+.VPBadge {
+  border: none;
+  border-radius: 3px;
+  padding: 2px var(--fx-space-050);
+  font-family: var(--fx-font-display);
+  font-size: 11px;
+  font-weight: var(--fx-fw-bold);
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.VPBadge.info {
+  background: var(--fx-b50);
+  color: var(--fx-b500);
+}
+
+.VPBadge.tip {
+  background: var(--fx-green-soft);
+  color: var(--fx-green-bold);
+}
+
+.VPBadge.warning {
+  background: var(--fx-yellow-soft);
+  color: var(--fx-yellow-bold);
+}
+
+.VPBadge.danger {
+  background: var(--fx-red-soft);
+  color: var(--fx-red-bold);
+}
+
+/* ---- Images -------------------------------------------------------------- */
+
+/* Screenshots are UI captures on a light chrome; a hairline and a radius keep
+   them from bleeding into the page. */
+.vp-doc img {
+  border-radius: var(--fx-r-md);
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* Inline icons and badges are images too, and a border around them looks like
+   a mistake. */
+.vp-doc a > img,
+.vp-doc img[src$='.svg'] {
+  border: none;
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

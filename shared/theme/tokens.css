@@ -1,0 +1,274 @@
+/* ===========================================================================
+   Foxe Labs design tokens for VitePress.
+   The same Atlassian Design System palette, type scale and spacing that
+   foxelabs.com runs on, expressed as VitePress theme variables so the default
+   theme picks them up without us restyling every component by hand.
+   Load this before any other stylesheet in the theme entry.
+
+   The marketing site is light only. Docs get a dark mode as well, built from
+   ADS's own dark neutral and blue ramps rather than by inverting the light
+   ones — inverted greys go muddy and the blue loses contrast on dark.
+   =========================================================================== */
+
+:root {
+  /* ---- ADS neutrals. Marketing surfaces use the neutral near-black, not the
+     bluish product navy; only --fx-n1100 stays navy for dark bands. ---- */
+  --fx-n0:    #FFFFFF;
+  --fx-n100:  #F7F7F8;
+  --fx-n200:  #F1F1F2;
+  --fx-n300:  #E3E3E5;
+  --fx-n400:  #DFDFE2;
+  --fx-n500:  #B6B6BA;
+  --fx-n600:  #7A7B80;
+  --fx-n700:  #5E6166;
+  --fx-n800:  #3D4045;
+  --fx-n900:  #26282C;
+  --fx-n1000: #101214;
+  --fx-n1100: #091E42;
+
+  /* ---- ADS brand blue ---- */
+  --fx-b50:  #E9F2FF;
+  --fx-b100: #CCE0FF;
+  --fx-b200: #85B8FF;
+  --fx-b400: #0C66E4;
+  --fx-b500: #0055CC;
+  --fx-b700: #05389E;
+
+  /* ---- ADS accent hues. Illustration, lozenges and callout fills only —
+     never a product or track identity. ---- */
+  --fx-green:  #22A06B;  --fx-green-bold:  #216E4E;  --fx-green-soft:  #DCFFF1;
+  --fx-yellow: #FCA700;  --fx-yellow-bold: #7F5F01;  --fx-yellow-soft: #FFF7D6;
+  --fx-orange: #C75300;  --fx-orange-bold: #A54800;  --fx-orange-soft: #FFF3EB;
+  --fx-purple: #BF63F3;  --fx-purple-bold: #803FA5;  --fx-purple-soft: #F3F0FF;
+  --fx-red:    #C9372C;  --fx-red-bold:    #AE2E24;  --fx-red-soft:    #FFECEB;
+  --fx-teal:   #1D7F8C;  --fx-teal-bold:   #164555;  --fx-teal-soft:   #E7F9FF;
+
+  /* ---- Type ---- */
+  --fx-font-display: 'Bricolage Grotesque Variable', system-ui, -apple-system, sans-serif;
+  --fx-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fx-text-h1:    2.1875rem;
+  --fx-text-h2:    1.8125rem;
+  --fx-text-h3:    1.5rem;
+  --fx-text-h4:    1.25rem;
+  --fx-text-body:  1rem;
+  --fx-text-ui:    0.875rem;
+  --fx-text-small: 0.75rem;
+
+  --fx-fw-display: 800;
+  --fx-fw-subhead: 700;
+  --fx-fw-bold:    600;
+  --fx-fw-medium:  500;
+  --fx-fw-body:    400;
+
+  /* ---- ADS 4px space scale ---- */
+  --fx-space-050: 4px;
+  --fx-space-100: 8px;
+  --fx-space-150: 12px;
+  --fx-space-200: 16px;
+  --fx-space-300: 24px;
+  --fx-space-400: 32px;
+  --fx-space-500: 40px;
+  --fx-space-600: 48px;
+  --fx-space-800: 64px;
+
+  /* ---- ADS radius and elevation ---- */
+  --fx-r-sm:   4px;
+  --fx-r-md:   8px;
+  --fx-r-lg:   16px;
+  --fx-r-pill: 999px;
+
+  --fx-shadow-raised:  0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  --fx-shadow-overlay: 0 8px 12px rgba(9, 30, 66, 0.15), 0 0 1px rgba(9, 30, 66, 0.31);
+
+  /* Wash used for code surfaces and inline code, matching the marketing
+     site's prose. Redefined in dark mode, so never inline the rgba(). */
+  --fx-code-wash: rgba(5, 21, 36, 0.06);
+  --fx-hover-wash: rgba(9, 30, 66, 0.06);
+  --fx-press-wash: rgba(9, 30, 66, 0.14);
+}
+
+/* ---------------------------------------------------------------------------
+   VitePress variable mapping — light.
+   --------------------------------------------------------------------------- */
+:root {
+  --vp-font-family-base: var(--fx-font-display);
+  --vp-font-family-mono: var(--fx-font-mono);
+
+  --vp-c-brand-1: var(--fx-b500);   /* links and other text-sized brand use */
+  --vp-c-brand-2: var(--fx-b400);
+  --vp-c-brand-3: var(--fx-b400);   /* solid button fill */
+  --vp-c-brand-soft: var(--fx-b50);
+
+  --vp-c-bg: var(--fx-n0);
+  --vp-c-bg-alt: var(--fx-n100);
+  --vp-c-bg-soft: var(--fx-n100);
+  --vp-c-bg-elv: var(--fx-n0);
+
+  --vp-c-divider: var(--fx-n300);
+  --vp-c-border: var(--fx-n400);
+  --vp-c-gutter: var(--fx-n300);
+
+  --vp-c-text-1: var(--fx-n1000);
+  --vp-c-text-2: var(--fx-n800);
+  --vp-c-text-3: var(--fx-n600);
+
+  --vp-c-default-1: var(--fx-n600);
+  --vp-c-default-2: var(--fx-n500);
+  --vp-c-default-3: var(--fx-n400);
+  --vp-c-default-soft: var(--fx-n200);
+
+  --vp-c-tip-1: var(--fx-b500);
+  --vp-c-tip-2: var(--fx-b400);
+  --vp-c-tip-3: var(--fx-b200);
+  --vp-c-tip-soft: var(--fx-b50);
+
+  --vp-c-note-1: var(--fx-b500);
+  --vp-c-note-2: var(--fx-b400);
+  --vp-c-note-3: var(--fx-b200);
+  --vp-c-note-soft: var(--fx-b50);
+
+  --vp-c-success-1: var(--fx-green-bold);
+  --vp-c-success-2: var(--fx-green);
+  --vp-c-success-3: var(--fx-green);
+  --vp-c-success-soft: var(--fx-green-soft);
+
+  --vp-c-important-1: var(--fx-purple-bold);
+  --vp-c-important-2: var(--fx-purple);
+  --vp-c-important-3: var(--fx-purple);
+  --vp-c-important-soft: var(--fx-purple-soft);
+
+  --vp-c-warning-1: var(--fx-orange-bold);
+  --vp-c-warning-2: var(--fx-orange);
+  --vp-c-warning-3: var(--fx-yellow);
+  --vp-c-warning-soft: var(--fx-yellow-soft);
+
+  --vp-c-danger-1: var(--fx-red-bold);
+  --vp-c-danger-2: var(--fx-red);
+  --vp-c-danger-3: var(--fx-red);
+  --vp-c-danger-soft: var(--fx-red-soft);
+
+  --vp-c-caution-1: var(--fx-red-bold);
+  --vp-c-caution-2: var(--fx-red);
+  --vp-c-caution-3: var(--fx-red);
+  --vp-c-caution-soft: var(--fx-red-soft);
+
+  --vp-shadow-1: var(--fx-shadow-raised);
+  --vp-shadow-2: var(--fx-shadow-raised);
+  --vp-shadow-3: var(--fx-shadow-overlay);
+  --vp-shadow-4: var(--fx-shadow-overlay);
+  --vp-shadow-5: var(--fx-shadow-overlay);
+
+  /* ADS buttons: 4px radius, medium weight, no lift on hover. */
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #FFFFFF;
+  --vp-button-brand-bg: var(--fx-b400);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #FFFFFF;
+  --vp-button-brand-hover-bg: var(--fx-b500);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #FFFFFF;
+  --vp-button-brand-active-bg: var(--fx-b700);
+
+  --vp-button-alt-border: transparent;
+  --vp-button-alt-text: var(--fx-b500);
+  --vp-button-alt-bg: transparent;
+  --vp-button-alt-hover-border: transparent;
+  --vp-button-alt-hover-text: var(--fx-b500);
+  --vp-button-alt-hover-bg: var(--fx-hover-wash);
+  --vp-button-alt-active-border: transparent;
+  --vp-button-alt-active-text: var(--fx-b700);
+  --vp-button-alt-active-bg: var(--fx-press-wash);
+
+  --vp-code-block-bg: var(--fx-code-wash);
+  --vp-code-copy-code-bg: var(--fx-n200);
+  --vp-code-copy-code-hover-bg: var(--fx-n300);
+  --vp-code-copy-code-active-text: var(--fx-n800);
+  --vp-code-tab-divider: var(--fx-n400);
+  --vp-code-tab-text-color: var(--fx-n700);
+  --vp-code-tab-hover-text-color: var(--fx-n1000);
+  --vp-code-tab-active-text-color: var(--fx-n1000);
+  --vp-code-tab-active-bar-color: var(--fx-b400);
+
+  --vp-custom-block-font-size: var(--fx-text-ui);
+  --vp-custom-block-code-font-size: var(--fx-text-ui);
+
+  --vp-local-search-highlight-bg: var(--fx-yellow-soft);
+  --vp-local-search-highlight-text: var(--fx-n1000);
+
+  /* No gradient wash behind the hero: the marketing site has no such effect,
+     and the stock blur reads as a Vite starter artefact. */
+  --vp-home-hero-name-color: var(--fx-b400);
+  --vp-home-hero-name-background: none;
+  --vp-home-hero-image-background-image: none;
+  --vp-home-hero-image-filter: none;
+
+  --vp-nav-height: 64px;
+  --vp-layout-max-width: 1440px;
+  --vp-sidebar-width: 272px;
+}
+
+/* ---------------------------------------------------------------------------
+   VitePress variable mapping — dark. ADS dark neutrals and the dark blue ramp,
+   not inverted light values.
+   --------------------------------------------------------------------------- */
+.dark {
+  --fx-n0:    #161A1D;   /* page surface */
+  --fx-n100:  #1D2125;   /* raised surface */
+  --fx-n200:  #22272B;   /* sunken / hovered */
+  --fx-n300:  #2C333A;   /* divider */
+  --fx-n400:  #38414A;   /* border */
+  --fx-n500:  #454F59;
+  --fx-n600:  #8C9BAB;   /* subtlest readable text */
+  --fx-n700:  #9FADBC;
+  --fx-n800:  #B6C2CF;   /* body copy */
+  --fx-n900:  #C7D1DB;
+  --fx-n1000: #DEE4EA;   /* headings */
+  --fx-n1100: #0D1B33;
+
+  --fx-b50:  #1C2B41;    /* soft fill on dark */
+  --fx-b100: #09326C;
+  --fx-b200: #388BFF;
+  --fx-b400: #579DFF;    /* primary on dark */
+  --fx-b500: #85B8FF;    /* hovered on dark reads lighter, not darker */
+  --fx-b700: #CCE0FF;
+
+  --fx-green:  #4BCE97;  --fx-green-bold:  #7EE2B8;  --fx-green-soft:  #1C3329;
+  --fx-yellow: #F5CD47;  --fx-yellow-bold: #E2B203;  --fx-yellow-soft: #332E1B;
+  --fx-orange: #FEA362;  --fx-orange-bold: #FBC28B;  --fx-orange-soft: #38291E;
+  --fx-purple: #C97CF4;  --fx-purple-bold: #D8A0F7;  --fx-purple-soft: #2B273F;
+  --fx-red:    #F87168;  --fx-red-bold:    #FD9891;  --fx-red-soft:    #42221F;
+  --fx-teal:   #6CC3E0;  --fx-teal-bold:   #9DD9EE;  --fx-teal-soft:   #1E3137;
+
+  --fx-shadow-raised:  0 1px 1px rgba(3, 4, 4, 0.5), 0 0 1px rgba(3, 4, 4, 0.56);
+  --fx-shadow-overlay: 0 8px 12px rgba(3, 4, 4, 0.36), 0 0 1px rgba(3, 4, 4, 0.56);
+
+  --fx-code-wash: rgba(255, 255, 255, 0.05);
+  --fx-hover-wash: rgba(255, 255, 255, 0.08);
+  --fx-press-wash: rgba(255, 255, 255, 0.16);
+
+  /* Links want the lighter end of the ramp on dark, so the brand slots swap
+     direction: brand-1 (text) is the light blue, brand-3 (fill) the mid. */
+  --vp-c-brand-1: var(--fx-b400);
+  --vp-c-brand-2: var(--fx-b500);
+  --vp-c-brand-3: var(--fx-b200);
+  --vp-c-brand-soft: var(--fx-b50);
+
+  --vp-c-bg-alt: #12161A;
+  --vp-c-bg-elv: var(--fx-n100);
+  --vp-c-bg-soft: var(--fx-n100);
+
+  --vp-button-brand-bg: var(--fx-b200);
+  --vp-button-brand-text: #FFFFFF;
+  --vp-button-brand-hover-bg: var(--fx-b400);
+  --vp-button-brand-active-bg: var(--fx-b500);
+  --vp-button-alt-text: var(--fx-b400);
+  --vp-button-alt-active-text: var(--fx-b500);
+
+  --vp-code-copy-code-bg: var(--fx-n200);
+  --vp-code-copy-code-hover-bg: var(--fx-n300);
+  --vp-local-search-highlight-bg: var(--fx-yellow-soft);
+  --vp-local-search-highlight-text: var(--fx-n1000);
+
+  --vp-home-hero-name-color: var(--fx-b400);
+}
