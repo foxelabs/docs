@@ -6,8 +6,9 @@
    Load this before any other stylesheet in the theme entry.
 
    The marketing site is light only. Docs get a dark mode as well, built from
-   ADS's own dark neutral and blue ramps rather than by inverting the light
-   ones — inverted greys go muddy and the blue loses contrast on dark.
+   ADS's own dark neutral ramp rather than by inverting the light one —
+   inverted greys go muddy. The lime brand hue keeps its light-theme fill on
+   dark; only its text cuts lighten.
    =========================================================================== */
 
 :root {
@@ -26,13 +27,21 @@
   --fx-n1000: #101214;
   --fx-n1100: #091E42;
 
-  /* ---- ADS brand blue ---- */
-  --fx-b50:  #E9F2FF;
-  --fx-b100: #CCE0FF;
-  --fx-b200: #85B8FF;
-  --fx-b400: #0C66E4;
-  --fx-b500: #0055CC;
-  --fx-b700: #05389E;
+  /* ---- Brand hue: lime x ink. The token names keep the b- prefix they had
+     when the brand was ADS blue; renaming them across both docs sites is a
+     separate cleanup. THE RULE, as on the marketing site: lime never colours
+     text -- type is ink or the olive cut, and lime is the fill behind it. ---- */
+  --fx-b50:  #F2F8E6;   /* soft tint */
+  --fx-b100: #DDEEC4;   /* light fill */
+  --fx-b200: #A8D95E;   /* bright lime -- hover fill */
+  --fx-b400: #94C749;   /* primary fill (carries INK text, never white) */
+  --fx-b500: #4C6B1F;   /* olive -- the text cut, AA on white */
+  --fx-b700: #33470F;   /* deep olive -- pressed text */
+
+  /* Text/icon colour that sits ON a lime fill. Ink in both themes, because
+     lime keeps its light value on dark and white on it fails contrast. */
+  --fx-accent-on: #101214;
+  --fx-accent-press: #7FAE3B;
 
   /* ---- ADS accent hues. Illustration, lozenges and callout fills only —
      never a product or track identity. ---- */
@@ -95,8 +104,10 @@
   --vp-font-family-base: var(--fx-font-display);
   --vp-font-family-mono: var(--fx-font-mono);
 
+  /* brand-1/2 are text-sized slots, so they take the olive cuts; only
+     brand-3, the solid fill, is lime. */
   --vp-c-brand-1: var(--fx-b500);   /* links and other text-sized brand use */
-  --vp-c-brand-2: var(--fx-b400);
+  --vp-c-brand-2: var(--fx-b700);
   --vp-c-brand-3: var(--fx-b400);   /* solid button fill */
   --vp-c-brand-soft: var(--fx-b50);
 
@@ -119,12 +130,12 @@
   --vp-c-default-soft: var(--fx-n200);
 
   --vp-c-tip-1: var(--fx-b500);
-  --vp-c-tip-2: var(--fx-b400);
+  --vp-c-tip-2: var(--fx-b700);
   --vp-c-tip-3: var(--fx-b200);
   --vp-c-tip-soft: var(--fx-b50);
 
   --vp-c-note-1: var(--fx-b500);
-  --vp-c-note-2: var(--fx-b400);
+  --vp-c-note-2: var(--fx-b700);
   --vp-c-note-3: var(--fx-b200);
   --vp-c-note-soft: var(--fx-b50);
 
@@ -159,16 +170,18 @@
   --vp-shadow-4: var(--fx-shadow-overlay);
   --vp-shadow-5: var(--fx-shadow-overlay);
 
-  /* ADS buttons: 4px radius, medium weight, no lift on hover. */
+  /* ADS buttons: 4px radius, medium weight, no lift on hover. The lime fill
+     carries ink, and gets BRIGHTER on hover rather than darker -- the olive
+     cuts are text colours and would swallow the label. */
   --vp-button-brand-border: transparent;
-  --vp-button-brand-text: #FFFFFF;
+  --vp-button-brand-text: var(--fx-accent-on);
   --vp-button-brand-bg: var(--fx-b400);
   --vp-button-brand-hover-border: transparent;
-  --vp-button-brand-hover-text: #FFFFFF;
-  --vp-button-brand-hover-bg: var(--fx-b500);
+  --vp-button-brand-hover-text: var(--fx-accent-on);
+  --vp-button-brand-hover-bg: var(--fx-b200);
   --vp-button-brand-active-border: transparent;
-  --vp-button-brand-active-text: #FFFFFF;
-  --vp-button-brand-active-bg: var(--fx-b700);
+  --vp-button-brand-active-text: var(--fx-accent-on);
+  --vp-button-brand-active-bg: var(--fx-accent-press);
 
   --vp-button-alt-border: transparent;
   --vp-button-alt-text: var(--fx-b500);
@@ -198,7 +211,7 @@
 
   /* No gradient wash behind the hero: the marketing site has no such effect,
      and the stock blur reads as a Vite starter artefact. */
-  --vp-home-hero-name-color: var(--fx-b400);
+  --vp-home-hero-name-color: var(--fx-b500);
   --vp-home-hero-name-background: none;
   --vp-home-hero-image-background-image: none;
   --vp-home-hero-image-filter: none;
@@ -226,12 +239,18 @@
   --fx-n1000: #DEE4EA;   /* headings */
   --fx-n1100: #0D1B33;
 
-  --fx-b50:  #1C2B41;    /* soft fill on dark */
-  --fx-b100: #09326C;
-  --fx-b200: #388BFF;
-  --fx-b400: #579DFF;    /* primary on dark */
-  --fx-b500: #85B8FF;    /* hovered on dark reads lighter, not darker */
-  --fx-b700: #CCE0FF;
+  /* Lime keeps its light-theme fill on dark -- it pops harder on a dark
+     ground and ink-on-lime stays AA. Only the TEXT cuts lighten. */
+  --fx-b50:  #26331A;    /* soft fill on dark */
+  --fx-b100: #3E5321;    /* mid olive -- must stay visibly lighter than --fx-b50 */
+  --fx-b200: #A8D95E;
+  --fx-b400: #94C749;    /* fill -- still carries ink text */
+  --fx-b500: #A8D95E;    /* text cut lightens on dark */
+  --fx-b700: #C0E585;
+
+  /* The fill did not lighten, so ink stays ink; it only shifts to the dark
+     page's near-black. */
+  --fx-accent-on: #1D2125;
 
   --fx-green:  #4BCE97;  --fx-green-bold:  #7EE2B8;  --fx-green-soft:  #1C3329;
   --fx-yellow: #F5CD47;  --fx-yellow-bold: #E2B203;  --fx-yellow-soft: #332E1B;
@@ -247,28 +266,30 @@
   --fx-hover-wash: rgba(255, 255, 255, 0.08);
   --fx-press-wash: rgba(255, 255, 255, 0.16);
 
-  /* Links want the lighter end of the ramp on dark, so the brand slots swap
-     direction: brand-1 (text) is the light blue, brand-3 (fill) the mid. */
-  --vp-c-brand-1: var(--fx-b400);
-  --vp-c-brand-2: var(--fx-b500);
-  --vp-c-brand-3: var(--fx-b200);
+  /* The slots keep their light-theme roles: brand-1/2 are the (now lightened)
+     text cuts, brand-3 the lime fill. */
+  --vp-c-brand-1: var(--fx-b500);
+  --vp-c-brand-2: var(--fx-b700);
+  --vp-c-brand-3: var(--fx-b400);
   --vp-c-brand-soft: var(--fx-b50);
 
   --vp-c-bg-alt: #12161A;
   --vp-c-bg-elv: var(--fx-n100);
   --vp-c-bg-soft: var(--fx-n100);
 
-  --vp-button-brand-bg: var(--fx-b200);
-  --vp-button-brand-text: #FFFFFF;
-  --vp-button-brand-hover-bg: var(--fx-b400);
-  --vp-button-brand-active-bg: var(--fx-b500);
-  --vp-button-alt-text: var(--fx-b400);
-  --vp-button-alt-active-text: var(--fx-b500);
+  --vp-button-brand-bg: var(--fx-b400);
+  --vp-button-brand-text: var(--fx-accent-on);
+  --vp-button-brand-hover-text: var(--fx-accent-on);
+  --vp-button-brand-active-text: var(--fx-accent-on);
+  --vp-button-brand-hover-bg: var(--fx-b200);
+  --vp-button-brand-active-bg: var(--fx-accent-press);
+  --vp-button-alt-text: var(--fx-b500);
+  --vp-button-alt-active-text: var(--fx-b700);
 
   --vp-code-copy-code-bg: var(--fx-n200);
   --vp-code-copy-code-hover-bg: var(--fx-n300);
   --vp-local-search-highlight-bg: var(--fx-yellow-soft);
   --vp-local-search-highlight-text: var(--fx-n1000);
 
-  --vp-home-hero-name-color: var(--fx-b400);
+  --vp-home-hero-name-color: var(--fx-b500);
 }
