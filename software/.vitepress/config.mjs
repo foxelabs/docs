@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { nav, logo, logoLink, socialLinks, footer } from '../../shared/theme.mjs'
+import { nav, logo, logoLink, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
 
 export default defineConfig({
   title: 'Foxe Labs Docs',
@@ -57,7 +57,11 @@ export default defineConfig({
 			gtag('js', new Date());
 			gtag('config', 'G-5SN0WR5ETP');`,
     ],
+    ...shareHead,
   ],
+  // Per-page title, description and canonical URL for share previews.
+  transformHead: shareTags('/software/'),
+
   themeConfig: {
     logo,
     nav,

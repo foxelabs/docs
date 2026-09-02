@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 // No logoLink here: this site is already at the root, so the title's default
 // link is correct.
-import { nav, logo, socialLinks, footer } from '../../shared/theme.mjs'
+import { nav, logo, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
 
 // The landing page at the root of docs.foxelabs.com. It exists only to send
 // visitors into one of the two tracks, so it has no sidebar and no search.
@@ -61,7 +61,11 @@ export default defineConfig({
 			gtag('js', new Date());
 			gtag('config', 'G-5SN0WR5ETP');`,
     ],
+    ...shareHead,
   ],
+  // Per-page title, description and canonical URL for share previews.
+  transformHead: shareTags('/'),
+
   themeConfig: {
     logo,
     nav,
