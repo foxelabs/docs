@@ -35,14 +35,13 @@ export const nav = [
   },
 ]
 
-// Fox mark shown beside the site title. One file for both themes, inverted by
-// CSS in dark -- a light and a dark variant would both be fetched on every
-// page, since VitePress renders both and hides one. Inverting is exact here
-// because the mark is a single colour. The path is root-relative on purpose:
-// unlike `head` entries, the logo is rendered through the theme and so it does
-// get prefixed with each site's `base`.
-// A PNG, not an SVG: the redrawn mark was delivered as a raster, so there is
-// no vector to ship. It paints at 24px in the navbar, which 256 covers well
+// Fox badge shown beside the site title. One file serves both themes untouched:
+// the badge carries its own colour, so it needs no dark-mode variant and no
+// filter. The path is root-relative on purpose: unlike `head` entries, the logo
+// is rendered through the theme and so it does get prefixed with each site's
+// `base`.
+// A PNG, not an SVG: the badge was delivered as a raster, so there is no
+// vector to ship. It paints at 24px in the navbar, which 256 covers well
 // past 3x.
 export const logo = {
   src: '/mark.png',

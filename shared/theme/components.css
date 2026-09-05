@@ -80,8 +80,10 @@ html {
   text-decoration: underline;
 }
 
+/* Markers are decoration, so they take the track hue rather than the link
+   blue — otherwise every bullet reads as a link. */
 .vp-doc li::marker {
-  color: var(--vp-c-brand-1);
+  color: var(--fx-track);
 }
 
 /* ---- Code ---------------------------------------------------------------- */
@@ -236,6 +238,26 @@ html {
   font-size: var(--fx-text-ui);
   color: var(--vp-c-text-1);
   letter-spacing: -0.008em;
+}
+
+/* Each section gets a hue from its position in the sidebar, so a long list
+   scans by group at a glance and no two neighbours share a colour. VitePress
+   wraps every top-level section in its own .group, so the cycle counts those
+   rather than the sections themselves. The hue is a marker, never the type. */
+.VPSidebar .group:nth-of-type(4n + 1) { --hue: var(--fx-acc-1); }
+.VPSidebar .group:nth-of-type(4n + 2) { --hue: var(--fx-acc-2); }
+.VPSidebar .group:nth-of-type(4n + 3) { --hue: var(--fx-acc-3); }
+.VPSidebar .group:nth-of-type(4n + 4) { --hue: var(--fx-acc-4); }
+
+.VPSidebar .group .VPSidebarItem.level-0 > .item > .text::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: var(--fx-space-100);
+  border-radius: 2px;
+  background: var(--hue, var(--fx-track));
+  vertical-align: baseline;
 }
 
 .VPSidebarItem.is-link > .item:hover .link .text {
@@ -436,9 +458,6 @@ html {
   }
 }
 
-/* The one-colour fox mark beside the site title. Inverting is exact for a
-   single-colour mark -- black becomes white -- and saves shipping a second
-   file that every page would download whether shown or not. */
-.dark .VPNavBarTitle .logo {
-  filter: invert(1);
-}
+/* The fox badge beside the site title needs no dark-mode treatment: it carries
+   its own colour, so it holds its contrast on either ground. Inverting it here
+   would rotate every hue in the badge. */

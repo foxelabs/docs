@@ -7,6 +7,7 @@
 import DefaultTheme from 'vitepress/theme'
 
 import '@fontsource-variable/bricolage-grotesque'
+import '@fontsource-variable/public-sans'
 import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/jetbrains-mono/500.css'
 

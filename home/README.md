@@ -3,9 +3,6 @@
 The page served at the root of [docs.foxelabs.com](https://docs.foxelabs.com).
 Its only job is to offer the two tracks and send visitors into one of them.
 
-The hero art is `public/documentation.svg`, carried over from the old software
-docs home page.
-
 This is one of three VitePress sites in this repo; see the
 [root README](../README.md) for the overall setup.
 

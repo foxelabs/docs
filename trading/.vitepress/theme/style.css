@@ -1,23 +1,5 @@
-/* TickerLogs has no docs yet, so its feature card on the trading home page is
-   flagged rather than linked. Everything else about the card comes from the
-   shared theme. */
-.VPFeatures .items .item:nth-child(2) .VPFeature {
-  position: relative;
-}
-
-.VPFeatures .items .item:nth-child(2) .VPFeature .title::after {
-  content: 'Coming soon';
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 2px var(--fx-space-050);
-  font-size: 11px;
-  font-weight: var(--fx-fw-bold);
-  line-height: 16px;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  color: var(--fx-yellow-bold);
-  background: var(--fx-yellow-soft);
-  border-radius: 3px;
-  white-space: nowrap;
+/* The trading docs carry the purple of the Trading track card on the marketing
+   site. It is a fill only — links stay the shared blue, type stays ink. */
+:root {
+  --fx-track: var(--fx-acc-2);
 }

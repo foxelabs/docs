@@ -1,0 +1,5 @@
+/* The software docs carry the blue of the Software track card on the marketing
+   site. It is a fill only — links stay the shared blue, type stays ink. */
+:root {
+  --fx-track: var(--fx-acc-1);
+}

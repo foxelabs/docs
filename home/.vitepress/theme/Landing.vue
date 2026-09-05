@@ -4,6 +4,14 @@ import { useData } from 'vitepress'
 // Content lives in the page's frontmatter so the landing page stays editable
 // as markdown rather than as a component.
 const { frontmatter } = useData()
+
+// The accent quad, in the marketing site's order. A hue is taken from an
+// item's position among its siblings, so a row never repeats a colour until it
+// runs past four — the same rule accentFor() follows on foxelabs.com. Blue and
+// purple therefore land on the software and trading cards, matching the two
+// track cards on the marketing home page.
+const QUAD = ['var(--fx-acc-1)', 'var(--fx-acc-2)', 'var(--fx-acc-3)', 'var(--fx-acc-4)']
+const hue = (index) => QUAD[index % QUAD.length]
 </script>
 
 <template>
@@ -20,9 +28,10 @@ const { frontmatter } = useData()
       <div class="wrap">
         <div class="tracks">
           <a
-            v-for="track in frontmatter.tracks"
+            v-for="(track, index) in frontmatter.tracks"
             :key="track.link"
             class="track"
+            :style="{ '--hue': hue(index) }"
             :href="track.link"
             target="_self"
           >
@@ -56,13 +65,17 @@ const { frontmatter } = useData()
         <p class="section-lead">{{ frontmatter.popular.lead }}</p>
         <div class="links">
           <a
-            v-for="link in frontmatter.popular.links"
+            v-for="(link, index) in frontmatter.popular.links"
             :key="link.link"
             class="link"
+            :style="{ '--hue': hue(index) }"
             :href="link.link"
             target="_self"
           >
-            <span class="link__title">{{ link.title }}</span>
+            <span class="link__title">
+              <span class="link__dot" aria-hidden="true"></span>
+              {{ link.title }}
+            </span>
             <span class="link__desc">{{ link.desc }}</span>
           </a>
         </div>
@@ -133,30 +146,37 @@ const { frontmatter } = useData()
   }
 }
 
+/* A wash of the card's own hue at the top, fading into the card ground — the
+   same treatment the track cards carry on the marketing home page. */
 .track {
   display: flex;
   flex-direction: column;
   padding: var(--fx-space-400);
   border-radius: var(--fx-r-md);
-  background: var(--vp-c-bg);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--hue) 9%, var(--vp-c-bg)) 0%,
+    var(--vp-c-bg) 45%
+  );
   box-shadow: var(--fx-shadow-raised);
   color: inherit;
   text-decoration: none;
-  transition: background-color 0.1s ease, box-shadow 0.1s ease;
+  transition: box-shadow 0.1s ease;
 }
 
 .track:hover {
-  background: var(--vp-c-bg-soft);
   box-shadow: var(--fx-shadow-overlay);
 }
 
+/* The hue on a tint of itself, which holds AA in both themes — a solid fill
+   would need white type, and the quad lightens on dark until white fails. */
 .track__label {
   font-size: 11px;
   font-weight: var(--fx-fw-bold);
   line-height: 16px;
   text-transform: uppercase;
-  color: var(--fx-b500);
-  background: var(--fx-b50);
+  color: var(--hue);
+  background: color-mix(in srgb, var(--hue) 12%, var(--vp-c-bg));
   border-radius: 3px;
   padding: 2px var(--fx-space-050);
   align-self: flex-start;
@@ -193,15 +213,16 @@ const { frontmatter } = useData()
   position: relative;
 }
 
+/* A rounded square, not a circle, as on the marketing site's track cards. */
 .track__list li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--vp-c-brand-1);
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--hue);
 }
 
 .track__cta {
@@ -211,7 +232,7 @@ const { frontmatter } = useData()
   margin-top: auto;
   font-size: var(--fx-text-ui);
   font-weight: var(--fx-fw-medium);
-  color: var(--vp-c-brand-1);
+  color: var(--hue);
 }
 
 .section-title {
@@ -262,17 +283,32 @@ const { frontmatter } = useData()
 
 .link:hover {
   background: var(--vp-c-bg-soft);
-  border-color: var(--vp-c-brand-1);
+  border-color: var(--hue);
 }
 
 .link__title {
+  display: flex;
+  align-items: center;
+  gap: var(--fx-space-100);
   font-family: var(--fx-font-display);
   font-size: var(--fx-text-ui);
   font-weight: var(--fx-fw-subhead);
   color: var(--vp-c-text-1);
 }
 
+/* The card's hue as a fill rather than on the type, so six cards read as a set
+   without six differently coloured headings. */
+.link__dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--hue);
+}
+
+/* Indented past the dot and its gap so the two lines start on the same edge. */
 .link__desc {
+  padding-left: 15px;
   font-size: var(--fx-text-small);
   color: var(--vp-c-text-3);
 }
