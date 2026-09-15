@@ -12,7 +12,7 @@ aside: false
 
 title: Foxe Labs documentation
 eyebrow: Guides, references and changelogs
-lead: Everything we build, documented in one place — open-source WordPress plugins and PHP libraries, and algorithmic trading tools for MetaTrader 5.
+lead: Everything we build, documented in one place — open-source WordPress plugins and PHP libraries, and tools for algorithmic traders.
 
 tracks:
   - label: Software
