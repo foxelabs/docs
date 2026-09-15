@@ -35,18 +35,18 @@ export const nav = [
   },
 ]
 
-// Fox badge shown beside the site title. One file serves both themes untouched:
-// the badge carries its own colour, so it needs no dark-mode variant and no
-// filter. The path is root-relative on purpose: unlike `head` entries, the logo
-// is rendered through the theme and so it does get prefixed with each site's
-// `base`.
-// A PNG, not an SVG: the badge was delivered as a raster, so there is no
-// vector to ship. It paints at 24px in the navbar, which 256 covers well
-// past 3x.
+// The same foxe.svg the marketing site's navbar uses, painted at 26px. The path
+// is root-relative on purpose: unlike `head` entries, the logo is rendered
+// through the theme and so it does get prefixed with each site's `base`.
 export const logo = {
-  src: '/mark.png',
-  alt: 'Foxe Labs',
+  src: '/foxe.svg',
+  alt: '',
 }
+
+// The wordmark beside the logo. Every site shares it, so the three builds'
+// own `title` values never leak into the navbar; the "Docs" pill after it is
+// drawn by components.css.
+export const siteTitle = 'Foxe Labs'
 
 // The site title in the navbar. It would otherwise point at the site's own
 // `base` — e.g. '/software/' — which has no index page, so client-side routing
@@ -66,8 +66,11 @@ export const socialLinks = [
   { icon: 'youtube', link: 'https://youtube.com/@foxelabs' },
 ]
 
+// Shown only on pages without a sidebar (the landing page); doc pages carry
+// the same line through theme/components/DocFooter.vue.
 export const footer = {
-  copyright: `Copyright © ${new Date().getFullYear()}, <a href="https://foxelabs.com">Foxe Labs</a>. All rights reserved.`,
+  message: '<a href="https://foxelabs.com/legal/terms/">Terms</a> · <a href="https://foxelabs.com/legal/privacy/">Privacy</a> · <a href="https://foxelabs.com/legal/refunds/">Refunds</a> · <a href="https://foxelabs.com/contact/">Support</a>',
+  copyright: `Copyright © ${new Date().getFullYear()} Foxe Labs LLP · Kerala, India`,
 }
 
 // Share preview (Open Graph + Twitter card), shared by both docs sites.

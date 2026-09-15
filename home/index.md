@@ -27,8 +27,8 @@ tracks:
     link: https://docs.foxelabs.com/software/get-started
 
   - label: Trading
-    title: Expert advisors for MetaTrader 5
-    body: Gold Scalpel and the tools alongside it, for prop firm and algorithmic traders.
+    title: Tools for algorithmic trading
+    body: Gold Scalpel and the other tools we build for prop firm and algorithmic traders.
     covers:
       - Setup and installation
       - How each strategy works
@@ -44,21 +44,21 @@ popular:
     - title: Loggedin
       desc: Limit concurrent WordPress logins
       link: https://docs.foxelabs.com/software/loggedin/getting-started
-    - title: Loggedin add-ons
-      desc: Per-role limits, auto logout, active sessions
-      link: https://docs.foxelabs.com/software/loggedin/addons/
     - title: Lazy Load for Comments
       desc: Defer comment loading until asked
       link: https://docs.foxelabs.com/software/lazy-load-for-comments/getting-started
     - title: Gold Scalpel
       desc: XAUUSD expert advisor for MetaTrader 5
       link: https://docs.foxelabs.com/trading/gold-scalpel/getting-started
-    - title: WordPress libraries
-      desc: Cache helper, flash notices, Freemius client
-      link: https://docs.foxelabs.com/software/wp-libraries/
-    - title: Changelogs
-      desc: What shipped and when
-      link: https://docs.foxelabs.com/software/loggedin/changelog
+    - title: WP Freemius Client
+      desc: Lite Freemius SDK for licensing and updates
+      link: https://docs.foxelabs.com/software/wp-libraries/wp-freemius-client/overview
+    - title: WP Review Notice
+      desc: Ask for a wp.org review after a few days
+      link: https://docs.foxelabs.com/software/wp-libraries/wp-review-notice/overview
+    - title: WP Queue Process
+      desc: Async requests and background job queues
+      link: https://docs.foxelabs.com/software/wp-libraries/wp-queue-process/overview
 ---
 
 <Landing />

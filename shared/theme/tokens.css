@@ -1,322 +1,197 @@
 /* ===========================================================================
-   Foxe Labs design tokens for VitePress.
-   The same Atlassian Design System palette, type scale and spacing that
-   foxelabs.com runs on, expressed as VitePress theme variables so the default
-   theme picks them up without us restyling every component by hand.
-   Load this before any other stylesheet in the theme entry.
+   Foxe Labs design tokens for VitePress — "Foxe Mono Kit".
 
-   Docs carry a dark mode, built from ADS's own dark neutral ramp rather than
-   by inverting the light one — inverted greys go muddy. Type follows the
-   marketing site's split: Bricolage for headings, Public Sans for body. Links
-   are the site's blue; the accent quad is decoration, and each docs site
-   carries its track's hue through --fx-track.
+   A copy of the marketing site's theme (foxelabs.com src/styles/global.css),
+   expressed as VitePress theme variables. Nothing propagates: change a colour
+   there and it has to be changed here.
+
+   The kit's rules came with it:
+     - Space Grotesk carries prose, headings and nav; Inconsolata carries code,
+       micro-labels and figures.
+     - No brand accent. Links are ink at 500 and never underlined; the primary
+       button is inverted; colour is reserved for meaning (callouts, tints).
+     - The chart-hue quad is decoration only, as 12% fills / 38% borders.
+     - Elevation is a lighter fill, not a shadow. Cards and tables are 16px.
+     - Dark is the default (config `appearance: 'dark'`).
+
+   Load this before components.css.
    =========================================================================== */
 
+/* ---- Light ---- */
 :root {
-  /* ---- ADS neutrals, on the neutral near-black rather than the bluish
-     product navy. ---- */
-  --fx-n0:    #FFFFFF;
-  --fx-n100:  #F7F7F8;
-  --fx-n200:  #F1F1F2;
-  --fx-n300:  #E3E3E5;
-  --fx-n400:  #DFDFE2;
-  --fx-n500:  #B6B6BA;
-  --fx-n600:  #7A7B80;
-  --fx-n700:  #5E6166;
-  --fx-n800:  #3D4045;
-  --fx-n900:  #26282C;
-  --fx-n1000: #101214;
+  --fx-bg: #f4f4f5;
+  --fx-bg-subtle: #fafafa;
+  --fx-bg-card: #ffffff;
+  --fx-bg-hover: #ececee;
 
-  /* ---- The lime ramp. Once the brand hue; now one of the four accents, kept
-     as its own ramp because the callout and badge fills are built from it. The
-     token names keep the b- prefix they had when the brand was ADS blue.
-     THE RULE, as on the marketing site: lime never colours type -- text is ink,
-     the olive cut, or the link blue, and lime is the fill behind it. ---- */
-  --fx-b50:  #F2F8E6;   /* soft tint */
-  --fx-b200: #A9D66A;   /* bright lime -- hover fill */
-  --fx-b500: #4C6B1F;   /* olive -- the text cut, AA on white */
-  --fx-b700: #33470F;   /* deep olive -- pressed text */
+  --fx-text: #17181a;
+  --fx-text-strong: #000000;
+  --fx-text-subtle: #50555a;
+  --fx-text-caps: #5b6168;
+  --fx-text-faint: #6a7076;
 
-  /* ---- Link blue. The marketing site's link colour, and the only hue that is
-     allowed to colour text. Every other hue here is a fill. ---- */
-  --fx-link:       #1A6BD6;
-  --fx-link-hover: #0157CB;
-  --fx-link-tint:  #F2F7FE;
+  --fx-border: #e4e4e7;
+  --fx-border-strong: #d4d4d8;
+  --fx-border-dashed: #d4d4d8;
 
-  /* ---- Bold: the emphatic pairing behind primary buttons, as on the
-     marketing site. Ink on light, and it inverts on dark. ---- */
-  --fx-bold:       #1D1E20;
-  --fx-bold-text:  #FFFFFF;
+  --fx-bold: #1a1b1e;
+  --fx-bold-text: #ffffff;
   --fx-bold-hover: #000000;
 
-  /* ---- The accent quad, matching foxelabs.com exactly. Decoration only:
-     a fill behind something, never the colour of type. ---- */
-  --fx-acc-1: #1A6BD6;   /* blue */
-  --fx-acc-2: #9C46D6;   /* purple */
-  --fx-acc-3: #F9A50B;   /* amber */
-  --fx-acc-4: #97C94E;   /* lime */
+  --fx-shadow-pop: 0 12px 32px rgb(20 20 25 / 0.12);
 
-  /* The hue for THIS docs site, keyed the way the marketing site keys its two
-     track cards: software blue, trading purple. Each sub-site overrides it in
-     its own theme; the landing page keeps the house lime. */
-  --fx-track: var(--fx-acc-4);
+  /* The quad and chart hues darken on light so hue-coloured text clears 4.5:1
+     on white — the same inks the marketing site uses. */
+  --fx-acc-1: #2f4fd8; /* blue */
+  --fx-acc-2: #7c3aed; /* purple */
+  --fx-acc-3: #b45309; /* amber */
+  --fx-acc-4: #047857; /* emerald */
+  --fx-hue-blue: #2f4fd8;
+  --fx-hue-emerald: #047857;
+  --fx-hue-purple: #7c3aed;
+  --fx-hue-amber: #b45309;
+  --fx-hue-red: #dc2626;
+  --fx-hue-cyan: #0e7490;
 
-  /* ---- ADS accent hues. Illustration, lozenges and callout fills only —
-     never a product or track identity. ---- */
-  --fx-green:  #22A06B;  --fx-green-bold:  #216E4E;  --fx-green-soft:  #DCFFF1;
-  --fx-yellow: #F9A50B;  --fx-yellow-bold: #7F5F01;  --fx-yellow-soft: #FFF7D6;
-  --fx-orange: #C75300;  --fx-orange-bold: #A54800;
-  --fx-purple: #9C46D6;  --fx-purple-bold: #803FA5;  --fx-purple-soft: #F3F0FF;
-  --fx-red:    #C9372C;  --fx-red-bold:    #AE2E24;  --fx-red-soft:    #FFECEB;
+  --fx-font-body: 'Space Grotesk Variable', 'Space Grotesk', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --fx-font-mono: 'Inconsolata Variable', 'Inconsolata', ui-monospace,
+    SFMono-Regular, Menlo, monospace;
 
-  /* ---- Type. Two faces, as on the marketing site: Bricolage sets headings and
-     other display slots, Public Sans carries body copy and UI — a display face
-     is too loud to read long-form documentation in. ---- */
-  --fx-font-display: 'Bricolage Grotesque Variable', system-ui, -apple-system, sans-serif;
-  --fx-font-body: 'Public Sans Variable', 'Public Sans', system-ui, -apple-system, sans-serif;
-  --fx-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  --fx-text-h1:    2.1875rem;
-  --fx-text-h2:    1.8125rem;
-  --fx-text-h3:    1.5rem;
-  --fx-text-h4:    1.25rem;
-  --fx-text-body:  1rem;
-  --fx-text-ui:    0.875rem;
-  --fx-text-small: 0.75rem;
-
-  --fx-fw-display: 800;
-  --fx-fw-subhead: 700;
-  --fx-fw-bold:    600;
-  --fx-fw-medium:  500;
-  --fx-fw-body:    400;
-
-  /* ---- ADS 4px space scale ---- */
-  --fx-space-050: 4px;
-  --fx-space-100: 8px;
-  --fx-space-150: 12px;
-  --fx-space-200: 16px;
-  --fx-space-300: 24px;
-  --fx-space-400: 32px;
-  --fx-space-500: 40px;
-  --fx-space-600: 48px;
-  --fx-space-800: 64px;
-
-  /* ---- ADS radius and elevation ---- */
-  --fx-r-sm:   4px;
-  --fx-r-md:   8px;
-  --fx-r-lg:   16px;
+  --fx-r-sm: 8px;
+  --fx-r-md: 12px;
+  --fx-r-lg: 16px;
   --fx-r-pill: 999px;
 
-  --fx-shadow-raised:  0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
-  --fx-shadow-overlay: 0 8px 12px rgba(9, 30, 66, 0.15), 0 0 1px rgba(9, 30, 66, 0.31);
-
-  /* Wash used for code surfaces and inline code, matching the marketing
-     site's prose. Redefined in dark mode, so never inline the rgba(). */
-  --fx-code-wash: rgba(5, 21, 36, 0.06);
-  --fx-hover-wash: rgba(9, 30, 66, 0.06);
-  --fx-press-wash: rgba(9, 30, 66, 0.14);
-}
-
-/* ---------------------------------------------------------------------------
-   VitePress variable mapping — light.
-   --------------------------------------------------------------------------- */
-:root {
+  /* ---- VitePress tokens, mapped onto the kit ---- */
   --vp-font-family-base: var(--fx-font-body);
   --vp-font-family-mono: var(--fx-font-mono);
 
-  /* brand-1/2 are text-sized slots, so they take the link blue — the one hue
-     allowed on type. brand-3 is a solid fill, so it takes the track hue. */
-  --vp-c-brand-1: var(--fx-link);   /* links and other text-sized brand use */
-  --vp-c-brand-2: var(--fx-link-hover);
-  --vp-c-brand-3: var(--fx-track);  /* solid fill */
-  --vp-c-brand-soft: var(--fx-link-tint);
+  --vp-c-bg: var(--fx-bg);
+  --vp-c-bg-alt: var(--fx-bg-subtle);
+  --vp-c-bg-elv: var(--fx-bg-card);
+  --vp-c-bg-soft: var(--fx-bg-hover);
 
-  --vp-c-bg: var(--fx-n0);
-  --vp-c-bg-alt: var(--fx-n100);
-  --vp-c-bg-soft: var(--fx-n100);
-  --vp-c-bg-elv: var(--fx-n0);
+  --vp-c-text-1: var(--fx-text);
+  --vp-c-text-2: var(--fx-text-subtle);
+  --vp-c-text-3: var(--fx-text-faint);
 
-  --vp-c-divider: var(--fx-n300);
-  --vp-c-border: var(--fx-n400);
-  --vp-c-gutter: var(--fx-n300);
+  --vp-c-divider: var(--fx-border);
+  --vp-c-border: var(--fx-border-strong);
+  --vp-c-gutter: var(--fx-border);
 
-  --vp-c-text-1: var(--fx-n1000);
-  --vp-c-text-2: var(--fx-n800);
-  --vp-c-text-3: var(--fx-n600);
+  /* No brand accent: the "brand" slots resolve to ink. */
+  --vp-c-brand-1: var(--fx-text);
+  --vp-c-brand-2: var(--fx-text-strong);
+  --vp-c-brand-3: var(--fx-bold);
+  --vp-c-brand-soft: color-mix(in srgb, var(--fx-text) 8%, transparent);
 
-  --vp-c-default-1: var(--fx-n600);
-  --vp-c-default-2: var(--fx-n500);
-  --vp-c-default-3: var(--fx-n400);
-  --vp-c-default-soft: var(--fx-n200);
+  --vp-code-color: var(--fx-text);
+  --vp-code-bg: var(--fx-bg-hover);
+  --vp-code-block-bg: var(--fx-bg-subtle);
+  --vp-code-tab-active-bar-color: var(--fx-text);
 
-  --vp-c-tip-1: var(--fx-b500);
-  --vp-c-tip-2: var(--fx-b700);
-  --vp-c-tip-3: var(--fx-b200);
-  --vp-c-tip-soft: var(--fx-b50);
-
-  --vp-c-note-1: var(--fx-b500);
-  --vp-c-note-2: var(--fx-b700);
-  --vp-c-note-3: var(--fx-b200);
-  --vp-c-note-soft: var(--fx-b50);
-
-  --vp-c-success-1: var(--fx-green-bold);
-  --vp-c-success-2: var(--fx-green);
-  --vp-c-success-3: var(--fx-green);
-  --vp-c-success-soft: var(--fx-green-soft);
-
-  --vp-c-important-1: var(--fx-purple-bold);
-  --vp-c-important-2: var(--fx-purple);
-  --vp-c-important-3: var(--fx-purple);
-  --vp-c-important-soft: var(--fx-purple-soft);
-
-  --vp-c-warning-1: var(--fx-orange-bold);
-  --vp-c-warning-2: var(--fx-orange);
-  --vp-c-warning-3: var(--fx-yellow);
-  --vp-c-warning-soft: var(--fx-yellow-soft);
-
-  --vp-c-danger-1: var(--fx-red-bold);
-  --vp-c-danger-2: var(--fx-red);
-  --vp-c-danger-3: var(--fx-red);
-  --vp-c-danger-soft: var(--fx-red-soft);
-
-  --vp-c-caution-1: var(--fx-red-bold);
-  --vp-c-caution-2: var(--fx-red);
-  --vp-c-caution-3: var(--fx-red);
-  --vp-c-caution-soft: var(--fx-red-soft);
-
-  --vp-shadow-1: var(--fx-shadow-raised);
-  --vp-shadow-2: var(--fx-shadow-raised);
-  --vp-shadow-3: var(--fx-shadow-overlay);
-  --vp-shadow-4: var(--fx-shadow-overlay);
-  --vp-shadow-5: var(--fx-shadow-overlay);
-
-  /* Primary buttons are the marketing site's bold pairing: an ink fill with
-     white type, darkening on hover. The accent hues stay decorative. */
-  --vp-button-brand-border: transparent;
-  --vp-button-brand-text: var(--fx-bold-text);
   --vp-button-brand-bg: var(--fx-bold);
-  --vp-button-brand-hover-border: transparent;
-  --vp-button-brand-hover-text: var(--fx-bold-text);
+  --vp-button-brand-border: var(--fx-bold);
+  --vp-button-brand-text: var(--fx-bold-text);
   --vp-button-brand-hover-bg: var(--fx-bold-hover);
-  --vp-button-brand-active-border: transparent;
-  --vp-button-brand-active-text: var(--fx-bold-text);
+  --vp-button-brand-hover-border: var(--fx-bold-hover);
+  --vp-button-brand-hover-text: var(--fx-bold-text);
   --vp-button-brand-active-bg: var(--fx-bold-hover);
+  --vp-button-brand-active-border: var(--fx-bold-hover);
+  --vp-button-brand-active-text: var(--fx-bold-text);
 
-  --vp-button-alt-border: transparent;
-  --vp-button-alt-text: var(--fx-link);
-  --vp-button-alt-bg: transparent;
-  --vp-button-alt-hover-border: transparent;
-  --vp-button-alt-hover-text: var(--fx-link);
-  --vp-button-alt-hover-bg: var(--fx-hover-wash);
-  --vp-button-alt-active-border: transparent;
-  --vp-button-alt-active-text: var(--fx-link-hover);
-  --vp-button-alt-active-bg: var(--fx-press-wash);
+  --vp-nav-height: 72px;
+  --vp-nav-bg-color: var(--fx-bg);
+  --vp-sidebar-bg-color: var(--fx-bg);
+  --vp-sidebar-width: 300px;
 
-  --vp-code-block-bg: var(--fx-code-wash);
-  --vp-code-copy-code-bg: var(--fx-n200);
-  --vp-code-copy-code-hover-bg: var(--fx-n300);
-  --vp-code-copy-code-active-text: var(--fx-n800);
-  --vp-code-tab-divider: var(--fx-n400);
-  --vp-code-tab-text-color: var(--fx-n700);
-  --vp-code-tab-hover-text-color: var(--fx-n1000);
-  --vp-code-tab-active-text-color: var(--fx-n1000);
-  --vp-code-tab-active-bar-color: var(--fx-track);
+  --vp-local-search-bg: var(--fx-bg);
+  --vp-local-search-result-bg: var(--fx-bg-card);
+  --vp-local-search-result-border: var(--fx-border);
+  --vp-local-search-result-selected-bg: var(--fx-bg-hover);
+  --vp-local-search-result-selected-border: var(--fx-border-strong);
+  --vp-local-search-highlight-bg: var(--fx-text);
+  --vp-local-search-highlight-text: var(--fx-bg);
 
-  --vp-custom-block-font-size: var(--fx-text-ui);
-  --vp-custom-block-code-font-size: var(--fx-text-ui);
-
-  --vp-local-search-highlight-bg: var(--fx-yellow-soft);
-  --vp-local-search-highlight-text: var(--fx-n1000);
-
-  /* No gradient wash behind the hero: the marketing site has no such effect,
-     and the stock blur reads as a Vite starter artefact. */
-  --vp-home-hero-name-color: var(--vp-c-text-1);
-  --vp-home-hero-name-background: none;
-  --vp-home-hero-image-background-image: none;
-  --vp-home-hero-image-filter: none;
-
-  --vp-nav-height: 64px;
-  --vp-layout-max-width: 1440px;
-  --vp-sidebar-width: 272px;
+  /* Callouts: a tint, a matching 1px border, the title in the hue. */
+  --vp-custom-block-info-bg: color-mix(in srgb, var(--fx-hue-blue) 8%, transparent);
+  --vp-custom-block-info-border: color-mix(in srgb, var(--fx-hue-blue) 38%, transparent);
+  --vp-custom-block-info-text: var(--fx-text-subtle);
+  --vp-custom-block-note-bg: var(--vp-custom-block-info-bg);
+  --vp-custom-block-note-border: var(--vp-custom-block-info-border);
+  --vp-custom-block-note-text: var(--fx-text-subtle);
+  --vp-custom-block-tip-bg: color-mix(in srgb, var(--fx-hue-emerald) 8%, transparent);
+  --vp-custom-block-tip-border: color-mix(in srgb, var(--fx-hue-emerald) 38%, transparent);
+  --vp-custom-block-tip-text: var(--fx-text-subtle);
+  --vp-custom-block-important-bg: color-mix(in srgb, var(--fx-hue-purple) 8%, transparent);
+  --vp-custom-block-important-border: color-mix(in srgb, var(--fx-hue-purple) 38%, transparent);
+  --vp-custom-block-important-text: var(--fx-text-subtle);
+  --vp-custom-block-warning-bg: color-mix(in srgb, var(--fx-hue-amber) 8%, transparent);
+  --vp-custom-block-warning-border: color-mix(in srgb, var(--fx-hue-amber) 38%, transparent);
+  --vp-custom-block-warning-text: var(--fx-text-subtle);
+  --vp-custom-block-danger-bg: color-mix(in srgb, var(--fx-hue-red) 8%, transparent);
+  --vp-custom-block-danger-border: color-mix(in srgb, var(--fx-hue-red) 38%, transparent);
+  --vp-custom-block-danger-text: var(--fx-text-subtle);
+  --vp-custom-block-caution-bg: var(--vp-custom-block-danger-bg);
+  --vp-custom-block-caution-border: var(--vp-custom-block-danger-border);
+  --vp-custom-block-caution-text: var(--fx-text-subtle);
+  --vp-custom-block-details-bg: var(--fx-bg-card);
+  --vp-custom-block-details-border: var(--fx-border);
 }
 
-/* ---------------------------------------------------------------------------
-   VitePress variable mapping — dark. ADS dark neutrals and the dark blue ramp,
-   not inverted light values.
-   --------------------------------------------------------------------------- */
-.dark {
-  --fx-n0:    #161A1D;   /* page surface */
-  --fx-n100:  #1D2125;   /* raised surface */
-  --fx-n200:  #22272B;   /* sunken / hovered */
-  --fx-n300:  #2C333A;   /* divider */
-  --fx-n400:  #38414A;   /* border */
-  --fx-n500:  #454F59;
-  --fx-n600:  #8C9BAB;   /* subtlest readable text */
-  --fx-n700:  #9FADBC;
-  --fx-n800:  #B6C2CF;   /* body copy */
-  --fx-n900:  #C7D1DB;
-  --fx-n1000: #DEE4EA;   /* headings */
+/* ---- Dark (the default) ----
+   `html.dark` rather than `.dark`: VitePress's own block is a bare `.dark` at
+   the same specificity, so a plain `.dark` only wins if this file loads last. */
+html.dark {
+  --fx-bg: #0a0a0b;
+  --fx-bg-subtle: #101113;
+  --fx-bg-card: #17181b;
+  --fx-bg-hover: #1f2124;
 
-  /* Lime keeps its light-theme fill on dark -- it pops harder on a dark
-     ground and ink-on-lime stays AA. Only the TEXT cuts lighten. */
-  --fx-b50:  #26331A;    /* soft fill on dark */
-  --fx-b200: #A9D66A;
-  --fx-b500: #A9D66A;    /* text cut lightens on dark */
-  --fx-b700: #C0E585;
+  --fx-text: #f4f5f6;
+  --fx-text-strong: #ffffff;
+  --fx-text-subtle: #b0b6be;
+  --fx-text-caps: #9ea6b0;
+  --fx-text-faint: #8d949d;
 
-  /* Blue lightens to clear the dark ground, as on the marketing site. */
-  --fx-link:       #589EFC;
-  --fx-link-hover: #86B9FD;
-  --fx-link-tint:  #1B2A40;
+  --fx-border: #26282d;
+  --fx-border-strong: #34373d;
+  --fx-border-dashed: #3a3d43;
 
-  /* Bold inverts: on a dark page the emphatic fill is the light one. */
-  --fx-bold:       #FFFFFF;
-  --fx-bold-text:  #1D1E20;
-  --fx-bold-hover: #DDE3E9;
+  --fx-bold: #ececec;
+  --fx-bold-text: #131313;
+  --fx-bold-hover: #ffffff;
 
-  /* The quad lightens just enough to hold up against a dark ground. */
-  --fx-acc-1: #4C93EE;
-  --fx-acc-2: #C084EE;
-  --fx-acc-3: #FBBA47;
-  --fx-acc-4: #A9D66A;
+  --fx-shadow-pop: 0 12px 32px rgb(0 0 0 / 0.45);
 
-  --fx-green:  #4BCE97;  --fx-green-bold:  #7EE2B8;  --fx-green-soft:  #1C3329;
-  --fx-yellow: #FBBA47;  --fx-yellow-bold: #E2B203;  --fx-yellow-soft: #332E1B;
-  --fx-orange: #FEA362;  --fx-orange-bold: #FBC28B;
-  --fx-purple: #C084EE;  --fx-purple-bold: #D8A0F7;  --fx-purple-soft: #2B273F;
-  --fx-red:    #F87168;  --fx-red-bold:    #FD9891;  --fx-red-soft:    #42221F;
+  --fx-acc-1: #4d6bfa;
+  --fx-acc-2: #9a5cf5;
+  --fx-acc-3: #f5a30b;
+  --fx-acc-4: #10c877;
+  --fx-hue-blue: #4d6bfa;
+  --fx-hue-emerald: #10c877;
+  --fx-hue-purple: #9a5cf5;
+  --fx-hue-amber: #f5a30b;
+  --fx-hue-red: #ef3f52;
+  --fx-hue-cyan: #0cb8c4;
 
-  --fx-shadow-raised:  0 1px 1px rgba(3, 4, 4, 0.5), 0 0 1px rgba(3, 4, 4, 0.56);
-  --fx-shadow-overlay: 0 8px 12px rgba(3, 4, 4, 0.36), 0 0 1px rgba(3, 4, 4, 0.56);
-
-  --fx-code-wash: rgba(255, 255, 255, 0.05);
-  --fx-hover-wash: rgba(255, 255, 255, 0.08);
-  --fx-press-wash: rgba(255, 255, 255, 0.16);
-
-  /* The slots keep their light-theme roles: brand-1/2 are the lightened blue,
-     brand-3 the track fill. */
-  --vp-c-brand-1: var(--fx-link);
-  --vp-c-brand-2: var(--fx-link-hover);
-  --vp-c-brand-3: var(--fx-track);
-  --vp-c-brand-soft: var(--fx-link-tint);
-
-  --vp-c-bg-alt: #12161A;
-  --vp-c-bg-elv: var(--fx-n100);
-  --vp-c-bg-soft: var(--fx-n100);
-
-  --vp-button-brand-bg: var(--fx-bold);
-  --vp-button-brand-text: var(--fx-bold-text);
-  --vp-button-brand-hover-text: var(--fx-bold-text);
-  --vp-button-brand-active-text: var(--fx-bold-text);
-  --vp-button-brand-hover-bg: var(--fx-bold-hover);
-  --vp-button-brand-active-bg: var(--fx-bold-hover);
-  --vp-button-alt-text: var(--fx-link);
-  --vp-button-alt-active-text: var(--fx-link-hover);
-
-  --vp-code-copy-code-bg: var(--fx-n200);
-  --vp-code-copy-code-hover-bg: var(--fx-n300);
-  --vp-local-search-highlight-bg: var(--fx-yellow-soft);
-  --vp-local-search-highlight-text: var(--fx-n1000);
-
-  --vp-home-hero-name-color: var(--vp-c-text-1);
+  /* VitePress re-declares these under .dark, so they are restated here. */
+  --vp-c-bg: var(--fx-bg);
+  --vp-c-bg-alt: var(--fx-bg-subtle);
+  --vp-c-bg-elv: var(--fx-bg-card);
+  --vp-c-bg-soft: var(--fx-bg-hover);
+  --vp-c-text-1: var(--fx-text);
+  --vp-c-text-2: var(--fx-text-subtle);
+  --vp-c-text-3: var(--fx-text-faint);
+  --vp-c-divider: var(--fx-border);
+  --vp-c-border: var(--fx-border-strong);
+  --vp-c-gutter: var(--fx-border);
+  --vp-c-brand-1: var(--fx-text);
+  --vp-c-brand-2: var(--fx-text-strong);
+  --vp-c-brand-3: var(--fx-bold);
+  --vp-code-color: var(--fx-text);
+  --vp-code-bg: var(--fx-bg-hover);
+  --vp-code-block-bg: var(--fx-bg-subtle);
+  --vp-local-search-highlight-text: var(--fx-bg);
 }

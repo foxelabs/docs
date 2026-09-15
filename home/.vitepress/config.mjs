@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 // No logoLink here: this site is already at the root, so the title's default
 // link is correct.
-import { nav, logo, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
+import { nav, siteTitle, logo, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
 
 // The landing page at the root of docs.foxelabs.com. It exists only to send
 // visitors into one of the two tracks, so it has no sidebar and no search.
@@ -46,6 +46,7 @@ export default defineConfig({
       },
     ],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Foxe Labs' }],
+    ['meta', { name: 'theme-color', content: '#0a0a0b' }],
     [
       'script',
       {
@@ -66,7 +67,10 @@ export default defineConfig({
   // Per-page title, description and canonical URL for share previews.
   transformHead: shareTags('/'),
 
+  appearance: 'dark',
+
   themeConfig: {
+    siteTitle,
     logo,
     nav,
     socialLinks,

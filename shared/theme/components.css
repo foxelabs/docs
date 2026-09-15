@@ -1,455 +1,384 @@
 /* ===========================================================================
    Foxe Labs component styling for the VitePress default theme.
-   Tokens alone get the colours right; this file fixes the shapes the default
-   theme gets wrong for us — heading weights, the nav, sidebar, code surfaces,
-   tables and callouts — so the docs read like foxelabs.com rather than like a
-   VitePress site wearing our colours.
+   Tokens get the colours right; this file fixes the shapes — nav, sidebar,
+   prose, code, callouts, tables, pager, footer and search — so the docs read
+   like foxelabs.com rather than like a stock VitePress site.
    =========================================================================== */
 
-html {
-  font-size: 16px;
+/* ---- Base ---- */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Bricolage is a display face: it needs the tighter tracking the marketing
-   site gives it, or headings look loose at large sizes. */
+:where(a, button, input, summary):focus-visible {
+  outline: 2px solid var(--fx-text);
+  outline-offset: 2px;
+  border-radius: var(--fx-r-sm);
+}
+
+/* ---- Navbar: the site's 72px bar, a hairline under the page ground ---- */
+.VPNavBar,
+.VPNavBar .content-body,
+.VPNavBar.has-sidebar .title,
+.VPNavBar:not(.home.top) .content-body {
+  background-color: var(--fx-bg) !important;
+}
+.VPNavBar .divider-line { background-color: var(--fx-border) !important; }
+.VPNavBar.has-sidebar .divider { padding-left: 0 !important; }
+.VPNavBar.has-sidebar .curtain { background-color: var(--fx-bg); }
+
+/* The wordmark as on the site: fox mark, then "Foxe Labs" in Space Grotesk. */
+.VPNavBarTitle .title {
+  gap: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fx-text);
+  border-bottom-color: transparent !important;
+}
+.VPNavBarTitle .logo { width: 26px; height: 26px; margin-right: 0; }
+
+/* The "Docs" badge beside the wordmark — the site's neutral pill in the caps
+   micro-label, so it reads as a label rather than a link. CSS rather than
+   markup because siteTitle is plain text. */
+.VPNavBarTitle .title::after {
+  content: 'Docs';
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--fx-border-strong);
+  border-radius: var(--fx-r-pill);
+  background: var(--fx-bg-hover);
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fx-text-caps);
+}
+
+/* Nav links: subtle ink, with the marketing nav's hue underline that grows in
+   on hover and stays on the active track. VitePress puts no class on a nav
+   item, so the hue is keyed to the hrefs in shared/theme.mjs. */
+.VPNavBarMenuLink {
+  position: relative;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--fx-text-subtle) !important;
+  border-bottom: 0 !important;
+}
+.VPNavBarMenuLink::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--hue, var(--fx-text));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.18s ease;
+}
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuLink.active { color: var(--fx-text) !important; }
+.VPNavBarMenuLink:hover::after,
+.VPNavBarMenuLink.active::after { transform: scaleX(1); }
+.VPNavBarMenuLink[href*='/software/'] { --hue: var(--fx-acc-1); }
+.VPNavBarMenuLink[href*='/trading/'] { --hue: var(--fx-acc-2); }
+.VPNavBarMenuLink[href*='/contact'] { --hue: var(--fx-acc-4); }
+
+.DocSearch-Button {
+  border: 1px solid var(--fx-border) !important;
+  border-radius: var(--fx-r-md) !important;
+  background: var(--fx-bg-card) !important;
+}
+.DocSearch-Button:hover { border-color: var(--fx-border-strong) !important; }
+.DocSearch-Button-Key {
+  font-family: var(--fx-font-mono);
+  border-color: var(--fx-border) !important;
+}
+
+.VPSwitchAppearance {
+  border: 1px solid var(--fx-border) !important;
+  background-color: var(--fx-bg-card) !important;
+}
+
+.VPSocialLink { color: var(--fx-text-faint); }
+.VPSocialLink:hover { color: var(--fx-text); }
+
+/* ---- Sidebar: mono caps group labels, ink-and-weight active rows ---- */
+.VPSidebar { border-right: 1px solid var(--fx-border); }
+
+.VPSidebarItem.level-0 > .item .text {
+  font-family: var(--fx-font-mono);
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fx-text-caps) !important;
+}
+.VPSidebarItem.level-0 { padding-bottom: 20px; }
+
+.VPSidebarItem.level-1 .text,
+.VPSidebarItem.level-2 .text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fx-text-faint);
+}
+.VPSidebarItem.level-1 .link:hover .text,
+.VPSidebarItem.level-2 .link:hover .text,
+.VPSidebarItem.level-1.collapsible > .item:hover .text { color: var(--fx-text); }
+.VPSidebarItem.is-active > .item .link .text {
+  color: var(--fx-text);
+  font-weight: 700;
+}
+.VPSidebarItem.is-active > .item .indicator {
+  background-color: var(--fx-text);
+  width: 2px;
+  border-radius: 2px;
+}
+.VPSidebarItem .caret { color: var(--fx-text-faint); }
+
+/* ---- Outline ("On this page") ---- */
+.VPDocAsideOutline .outline-title {
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fx-text-caps);
+}
+.VPDocAsideOutline .outline-link { color: var(--fx-text-faint); }
+.VPDocAsideOutline .outline-link:hover,
+.VPDocAsideOutline .outline-link.active { color: var(--fx-text); font-weight: 500; }
+.VPDocAsideOutline .outline-marker { background-color: var(--fx-text); }
+
+/* ---- Prose ---- */
+.vp-doc { color: var(--fx-text-subtle); }
+
 .vp-doc h1,
 .vp-doc h2,
 .vp-doc h3,
 .vp-doc h4,
 .vp-doc h5,
-.vp-doc h6,
-.VPHero .name,
-.VPHero .text {
-  font-family: var(--fx-font-display);
-  color: var(--vp-c-text-1);
+.vp-doc h6 {
+  font-family: var(--fx-font-body);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--fx-text);
+  text-wrap: balance;
 }
-
-.vp-doc h1 {
-  font-size: var(--fx-text-h1);
-  font-weight: var(--fx-fw-display);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-}
-
-/* The default theme rules off every h2. One hairline under the page title is
-   enough structure; the size break carries the rest. */
+.vp-doc h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.5rem); line-height: 1.08; }
 .vp-doc h2 {
-  font-size: var(--fx-text-h2);
-  font-weight: var(--fx-fw-display);
-  line-height: 1.12;
-  letter-spacing: -0.022em;
-  margin-top: var(--fx-space-600);
-  padding-top: var(--fx-space-300);
-  border-top: 1px solid var(--vp-c-divider);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--fx-border);
 }
-
-.vp-doc h3 {
-  font-size: var(--fx-text-h3);
-  font-weight: var(--fx-fw-display);
-  line-height: 1.18;
-  letter-spacing: -0.018em;
-  margin-top: var(--fx-space-500);
-}
-
-.vp-doc h4 {
-  font-size: var(--fx-text-h4);
-  font-weight: var(--fx-fw-subhead);
-  line-height: 1.24;
-  letter-spacing: -0.014em;
-  margin-top: var(--fx-space-400);
-}
+.vp-doc h3 { font-size: 1.2rem; line-height: 1.3; margin-top: 36px; }
+.vp-doc h4 { font-size: 1rem; }
 
 .vp-doc p,
-.vp-doc li {
-  color: var(--vp-c-text-2);
-}
+.vp-doc li { color: var(--fx-text-subtle); }
+.vp-doc strong { color: var(--fx-text); font-weight: 700; }
 
-.vp-doc strong {
-  color: var(--vp-c-text-1);
-  font-weight: var(--fx-fw-subhead);
-}
-
-/* Marketing prose underlines its links. Docs are dense with them, so keep the
-   underline but hold it off until hover — the blue already marks them. */
+/* Links: ink at 500, never underlined. */
 .vp-doc a {
-  font-weight: var(--fx-fw-body);
+  color: var(--fx-text);
+  font-weight: 500;
   text-decoration: none;
-  text-underline-offset: 2px;
+  transition: color 0.15s ease;
 }
-.vp-doc a:hover {
-  text-decoration: underline;
-}
-
-/* Markers are decoration, so they take the track hue rather than the link
-   blue — otherwise every bullet reads as a link. */
-.vp-doc li::marker {
-  color: var(--fx-track);
-}
-
-/* ---- Code ---------------------------------------------------------------- */
+.vp-doc a:hover { color: var(--fx-text-strong); text-decoration: none; }
+.vp-doc li::marker { color: var(--fx-text-faint); }
 
 .vp-doc :not(pre) > code {
   font-family: var(--fx-font-mono);
-  font-size: 0.85em;
-  background: var(--fx-code-wash);
-  border-radius: var(--fx-r-sm);
-  padding: 0.1em 0.35em;
-  color: var(--vp-c-text-1);
+  color: var(--fx-text);
+  background: var(--fx-bg-hover);
+  border: 1px solid var(--fx-border);
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
 }
-
+.vp-doc a > code { color: inherit; }
 .vp-doc div[class*='language-'] {
+  border: 1px solid var(--fx-border);
   border-radius: var(--fx-r-md);
-  background: var(--fx-code-wash);
-  box-shadow: none;
 }
-
-.vp-doc div[class*='language-'] code {
-  font-family: var(--fx-font-mono);
-  font-size: 0.8125rem;
-  line-height: 1.7;
-}
-
-/* The language tag sits in the corner of every block; at the default size it
-   competes with the code itself. */
 .vp-doc div[class*='language-'] > span.lang {
   font-family: var(--fx-font-mono);
-  font-size: var(--fx-text-small);
-  color: var(--vp-c-text-3);
-}
-
-.vp-doc [class*='language-'] > button.copy {
-  border-radius: var(--fx-r-sm);
-}
-
-/* ---- Callouts ------------------------------------------------------------ */
-
-/* ADS section messages: soft fill, no left bar, 8px radius. The default theme
-   draws a thick coloured rail that fights the flat marketing surfaces. */
-.vp-doc .custom-block {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: var(--fx-r-md);
-  padding: var(--fx-space-200) var(--fx-space-300);
-  font-size: var(--fx-text-ui);
-  line-height: 1.6;
-}
-
-.vp-doc .custom-block .custom-block-title {
-  font-weight: var(--fx-fw-bold);
-  letter-spacing: 0;
-}
-
-.vp-doc .custom-block a {
-  font-weight: var(--fx-fw-medium);
-}
-
-.vp-doc .custom-block.tip,
-.vp-doc .custom-block.note,
-.vp-doc .custom-block.info {
-  border-color: var(--fx-b200);
-}
-.vp-doc .custom-block.warning {
-  border-color: var(--fx-yellow);
-}
-.vp-doc .custom-block.danger,
-.vp-doc .custom-block.caution {
-  border-color: var(--fx-red);
-}
-
-/* ---- Tables -------------------------------------------------------------- */
-
-/* Marketing tables: centred data, left-aligned and emphasised row labels, a
-   filled header row and no outer frame. */
-.vp-doc table {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  margin: var(--fx-space-400) 0;
-}
-
-.vp-doc tr {
-  background: transparent;
-  border-top: none;
-}
-
-.vp-doc th {
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  font-weight: var(--fx-fw-bold);
-  font-size: var(--fx-text-ui);
-  text-align: left;
-  border: none;
-  border-bottom: 2px solid var(--vp-c-divider);
-  padding: 0.7em 0.85em;
-}
-
-.vp-doc td {
-  color: var(--vp-c-text-2);
-  border: none;
-  border-bottom: 1px solid var(--vp-c-divider);
-  padding: 0.7em 0.85em;
-}
-
-.vp-doc th:first-child,
-.vp-doc td:first-child {
-  color: var(--vp-c-text-1);
-  font-weight: var(--fx-fw-medium);
-}
-
-/* ---- Navbar -------------------------------------------------------------- */
-
-.VPNavBar .title {
-  font-family: var(--fx-font-display);
-  font-weight: var(--fx-fw-display);
-  letter-spacing: -0.02em;
-}
-
-.VPNavBarMenuLink,
-.VPNavBarMenuGroup .VPFlyout .button {
-  font-size: var(--fx-text-ui);
-  font-weight: var(--fx-fw-medium);
-}
-
-/* The default nav underlines the active item in brand blue and leaves hover
-   bare. ADS nav items take a neutral wash instead. */
-.VPNavBarMenuLink:hover,
-.VPNavBarMenuLink.active {
-  color: var(--vp-c-text-1);
-}
-
-.VPNavBar.has-sidebar .curtain {
-  background: var(--vp-c-bg);
-}
-
-/* ---- Sidebar ------------------------------------------------------------- */
-
-.VPSidebarItem .text {
-  font-size: var(--fx-text-ui);
-  line-height: 1.5;
-}
-
-/* Section titles are structure, not links: heavier, tighter, in the display
-   face, so a long sidebar scans by group rather than as one long list. */
-.VPSidebarItem.level-0 > .item > .indicator + .text,
-.VPSidebarItem.level-0 > .item > .text {
-  font-family: var(--fx-font-display);
-  font-weight: var(--fx-fw-subhead);
-  font-size: var(--fx-text-ui);
-  color: var(--vp-c-text-1);
-  letter-spacing: -0.008em;
-}
-
-/* Each section gets a hue from its position in the sidebar, so a long list
-   scans by group at a glance and no two neighbours share a colour. VitePress
-   wraps every top-level section in its own .group, so the cycle counts those
-   rather than the sections themselves. The hue is a marker, never the type. */
-.VPSidebar .group:nth-of-type(4n + 1) { --hue: var(--fx-acc-1); }
-.VPSidebar .group:nth-of-type(4n + 2) { --hue: var(--fx-acc-2); }
-.VPSidebar .group:nth-of-type(4n + 3) { --hue: var(--fx-acc-3); }
-.VPSidebar .group:nth-of-type(4n + 4) { --hue: var(--fx-acc-4); }
-
-.VPSidebar .group .VPSidebarItem.level-0 > .item > .text::before {
-  content: '';
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: var(--fx-space-100);
-  border-radius: 2px;
-  background: var(--hue, var(--fx-track));
-  vertical-align: baseline;
-}
-
-.VPSidebarItem.is-link > .item:hover .link .text {
-  color: var(--vp-c-text-1);
-}
-
-.VPSidebarItem.is-active > .item .link .text {
-  font-weight: var(--fx-fw-bold);
-  color: var(--vp-c-brand-1);
-}
-
-/* ---- Right-hand outline -------------------------------------------------- */
-
-.VPDocAsideOutline .outline-title {
-  font-family: var(--fx-font-display);
-  font-weight: var(--fx-fw-subhead);
-  font-size: var(--fx-text-ui);
-  color: var(--vp-c-text-1);
-}
-
-.VPDocAsideOutline .outline-link {
-  font-size: var(--fx-text-ui);
-}
-
-/* ---- Prev / next --------------------------------------------------------- */
-
-.VPDocFooter .pager-link {
-  border-radius: var(--fx-r-md);
-  border-color: var(--vp-c-divider);
-  box-shadow: var(--fx-shadow-raised);
-  transition: background-color 0.1s ease, box-shadow 0.1s ease;
-}
-
-.VPDocFooter .pager-link:hover {
-  border-color: var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  box-shadow: var(--fx-shadow-raised);
-}
-
-.VPDocFooter .pager-link .desc {
-  font-size: var(--fx-text-small);
-  color: var(--vp-c-text-3);
-}
-
-.VPDocFooter .pager-link .title {
-  font-family: var(--fx-font-display);
-  font-weight: var(--fx-fw-subhead);
-}
-
-/* ---- Buttons ------------------------------------------------------------- */
-
-/* ADS buttons are 4px, medium weight and flat — the default theme's pill with
-   a border is the one shape that would give the VitePress origin away. */
-.VPButton {
-  border-radius: var(--fx-r-sm);
-  font-weight: var(--fx-fw-medium);
-  transition: background-color 0.1s ease, color 0.1s ease;
-}
-
-.VPButton.medium {
-  font-size: var(--fx-text-ui);
-  padding: 0 var(--fx-space-200);
-  line-height: 38px;
-}
-
-.VPButton.big {
-  font-size: var(--fx-text-body);
-  padding: 0 var(--fx-space-300);
-  line-height: 46px;
-}
-
-/* ---- Home hero and feature cards ----------------------------------------- */
-
-/* Used by the software and trading sites, which still run the stock home
-   layout. The landing page at the root has its own component. */
-.VPHero .name {
-  font-weight: var(--fx-fw-display);
-  letter-spacing: -0.03em;
-}
-
-.VPHero .text {
-  font-weight: var(--fx-fw-display);
-  letter-spacing: -0.025em;
-}
-
-.VPHero .tagline {
-  color: var(--vp-c-text-2);
-  font-weight: var(--fx-fw-body);
-}
-
-.VPFeature {
-  border-radius: var(--fx-r-md);
-  border: none;
-  background: var(--vp-c-bg);
-  box-shadow: var(--fx-shadow-raised);
-  transition: background-color 0.1s ease, box-shadow 0.1s ease;
-}
-
-.VPFeature.link:hover {
-  border: none;
-  background: var(--vp-c-bg-soft);
-  box-shadow: var(--fx-shadow-raised);
-}
-
-.VPFeature .title {
-  font-family: var(--fx-font-display);
-  font-weight: var(--fx-fw-subhead);
-}
-
-.VPFeature .details {
-  color: var(--vp-c-text-2);
-}
-
-/* ---- Search -------------------------------------------------------------- */
-
-.DocSearch-Button {
-  border-radius: var(--fx-r-sm);
-}
-
-/* ---- Footer -------------------------------------------------------------- */
-
-.VPFooter {
-  border-top: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
-}
-
-.VPFooter .message,
-.VPFooter .copyright {
-  font-size: var(--fx-text-small);
-  color: var(--vp-c-text-3);
-}
-
-.VPFooter a {
-  color: var(--vp-c-text-2);
-  text-decoration: none;
-}
-
-.VPFooter a:hover {
-  color: var(--vp-c-brand-1);
-}
-
-/* ---- Badges -------------------------------------------------------------- */
-
-/* ADS lozenge: 3px radius, 11px uppercase, 600. */
-.VPBadge {
-  border: none;
-  border-radius: 3px;
-  padding: 2px var(--fx-space-050);
-  font-family: var(--fx-font-display);
   font-size: 11px;
-  font-weight: var(--fx-fw-bold);
-  line-height: 16px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0;
+  color: var(--fx-text-caps);
 }
-
-.VPBadge.info {
-  background: var(--fx-b50);
-  color: var(--fx-b500);
+.vp-doc .vp-code-group .tabs {
+  border: 1px solid var(--fx-border);
+  border-bottom: 0;
+  border-radius: var(--fx-r-md) var(--fx-r-md) 0 0;
 }
+.vp-doc .vp-code-group div[class*='language-'] { border-radius: 0 0 var(--fx-r-md) var(--fx-r-md); }
 
-.VPBadge.tip {
-  background: var(--fx-green-soft);
-  color: var(--fx-green-bold);
-}
+.vp-doc hr { border-top: 1px dashed var(--fx-border-dashed); }
+.vp-doc blockquote { border-left: 2px solid var(--fx-border-strong); color: var(--fx-text-faint); }
 
-.VPBadge.warning {
-  background: var(--fx-yellow-soft);
-  color: var(--fx-yellow-bold);
-}
-
-.VPBadge.danger {
-  background: var(--fx-red-soft);
-  color: var(--fx-red-bold);
-}
-
-/* ---- Images -------------------------------------------------------------- */
-
-/* Screenshots are UI captures on a light chrome; a hairline and a radius keep
-   them from bleeding into the page. */
+/* Screenshots get a hairline and the kit radius; inline icons do not. */
 .vp-doc img {
   border-radius: var(--fx-r-md);
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--fx-border);
 }
-
-/* Inline icons and badges are images too, and a border around them looks like
-   a mistake. */
 .vp-doc a > img,
 .vp-doc img[src$='.svg'] {
   border: none;
   border-radius: 0;
 }
+
+/* ---- Callouts ---- */
+.vp-doc .custom-block {
+  border-radius: var(--fx-r-lg);
+  border-width: 1px;
+}
+.vp-doc .custom-block .custom-block-title {
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.vp-doc .custom-block.info .custom-block-title,
+.vp-doc .custom-block.note .custom-block-title { color: var(--fx-hue-blue); }
+.vp-doc .custom-block.tip .custom-block-title { color: var(--fx-hue-emerald); }
+.vp-doc .custom-block.important .custom-block-title { color: var(--fx-hue-purple); }
+.vp-doc .custom-block.warning .custom-block-title { color: var(--fx-hue-amber); }
+.vp-doc .custom-block.danger .custom-block-title,
+.vp-doc .custom-block.caution .custom-block-title { color: var(--fx-hue-red); }
+.vp-doc .custom-block.details .custom-block-title {
+  font-family: var(--fx-font-body);
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fx-text);
+}
+.vp-doc .custom-block a,
+.vp-doc .custom-block strong { color: var(--fx-text); }
+.vp-doc .custom-block code { background: var(--fx-bg-hover); }
+
+/* ---- Tables: mono caps heads, hairline rows, on a 16px card ---- */
+.vp-doc table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--fx-border);
+  border-radius: var(--fx-r-lg);
+  background: var(--fx-bg-card);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.vp-doc tr { background: transparent !important; border-top: 0; }
+.vp-doc th,
+.vp-doc td { border: 0; border-bottom: 1px solid var(--fx-border); padding: 10px 16px; }
+.vp-doc tbody tr:last-child td { border-bottom: 0; }
+.vp-doc th {
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fx-text-caps);
+  white-space: nowrap;
+  background: transparent;
+}
+.vp-doc td { color: var(--fx-text-subtle); }
+
+/* ---- Badges: the site's tint pills ---- */
+.VPBadge {
+  border: 1px solid transparent;
+  border-radius: var(--fx-r-pill);
+  padding: 0 8px;
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.VPBadge.info { --hue: var(--fx-hue-blue); }
+.VPBadge.tip { --hue: var(--fx-hue-emerald); }
+.VPBadge.warning { --hue: var(--fx-hue-amber); }
+.VPBadge.danger { --hue: var(--fx-hue-red); }
+.VPBadge.info,
+.VPBadge.tip,
+.VPBadge.warning,
+.VPBadge.danger {
+  background: color-mix(in srgb, var(--hue) 12%, transparent);
+  border-color: color-mix(in srgb, var(--hue) 38%, transparent);
+  color: var(--hue);
+}
+
+/* ---- Buttons: 12px radius, inverted primary ---- */
+.VPButton {
+  border-radius: var(--fx-r-md);
+  font-weight: 700;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.VPButton.alt {
+  border-color: var(--fx-border-strong);
+  background: var(--fx-bg-card);
+  color: var(--fx-text);
+}
+.VPButton.alt:hover { border-color: var(--fx-text-faint); }
+
+/* ---- Edit link / last updated ---- */
+.VPDocFooter .edit-link-button { color: var(--fx-text-subtle); font-weight: 500; }
+.VPDocFooter .edit-link-button:hover { color: var(--fx-text); }
+.VPLastUpdated {
+  font-family: var(--fx-font-mono);
+  font-size: 12px !important;
+  color: var(--fx-text-faint) !important;
+}
+
+/* ---- Prev / next ---- */
+.VPDocFooter .prev-next { border-top: 1px solid var(--fx-border); }
+.VPDocFooter .pager-link {
+  border: 1px solid var(--fx-border);
+  border-radius: var(--fx-r-lg);
+  background: var(--fx-bg-card);
+}
+.VPDocFooter .pager-link:hover { border-color: var(--fx-border-strong); }
+.VPDocFooter .pager-link .desc {
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fx-text-caps);
+}
+.VPDocFooter .pager-link .title { color: var(--fx-text); font-weight: 700; }
+
+/* ---- Footer: mono, dim, like the site's legal line ---- */
+.VPFooter {
+  border-top: 1px solid var(--fx-border) !important;
+  background: var(--fx-bg) !important;
+}
+.VPFooter .message,
+.VPFooter .copyright {
+  font-family: var(--fx-font-mono);
+  font-size: 12px;
+  color: var(--fx-text-faint);
+}
+.VPFooter a { color: var(--fx-text); font-weight: 500; text-decoration: none; }
+.VPFooter a:hover { color: var(--fx-text-strong); }
+
+/* ---- Local search modal ---- */
+.VPLocalSearchBox .shell {
+  border: 1px solid var(--fx-border);
+  border-radius: var(--fx-r-lg) !important;
+  box-shadow: var(--fx-shadow-pop) !important;
+}
+.VPLocalSearchBox .search-bar,
+.VPLocalSearchBox .result { border-radius: var(--fx-r-md) !important; }
 
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -457,7 +386,3 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
-
-/* The fox badge beside the site title needs no dark-mode treatment: it carries
-   its own colour, so it holds its contrast on either ground. Inverting it here
-   would rotate every hue in the badge. */

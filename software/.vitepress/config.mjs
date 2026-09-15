@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { nav, logo, logoLink, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
+import { nav, siteTitle, logo, logoLink, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
 
 export default defineConfig({
   title: 'Foxe Labs Docs',
@@ -42,6 +42,7 @@ export default defineConfig({
       },
     ],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Foxe Labs' }],
+    ['meta', { name: 'theme-color', content: '#0a0a0b' }],
     [
       'script',
       {
@@ -62,7 +63,10 @@ export default defineConfig({
   // Per-page title, description and canonical URL for share previews.
   transformHead: shareTags('/software/'),
 
+  appearance: 'dark',
+
   themeConfig: {
+    siteTitle,
     logo,
     nav,
     logoLink,

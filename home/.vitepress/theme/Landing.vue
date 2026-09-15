@@ -5,13 +5,15 @@ import { useData } from 'vitepress'
 // as markdown rather than as a component.
 const { frontmatter } = useData()
 
-// The accent quad, in the marketing site's order. A hue is taken from an
-// item's position among its siblings, so a row never repeats a colour until it
-// runs past four — the same rule accentFor() follows on foxelabs.com. Blue and
-// purple therefore land on the software and trading cards, matching the two
-// track cards on the marketing home page.
+// Tracks take fixed, far-apart hues — blue for software, amber for trading —
+// since blue and purple read as one colour side by side. Other rows use the
+// accent quad, in the marketing site's order: a hue is taken from an item's
+// position among its siblings, so a row never repeats a colour until it runs
+// past four — the same rule accentFor() follows on foxelabs.com.
 const QUAD = ['var(--fx-acc-1)', 'var(--fx-acc-2)', 'var(--fx-acc-3)', 'var(--fx-acc-4)']
 const hue = (index) => QUAD[index % QUAD.length]
+const TRACK_HUES = ['var(--fx-acc-1)', 'var(--fx-acc-3)']
+const trackHue = (index) => TRACK_HUES[index % TRACK_HUES.length]
 </script>
 
 <template>
@@ -31,7 +33,7 @@ const hue = (index) => QUAD[index % QUAD.length]
             v-for="(track, index) in frontmatter.tracks"
             :key="track.link"
             class="track"
-            :style="{ '--hue': hue(index) }"
+            :style="{ '--hue': trackHue(index) }"
             :href="track.link"
             target="_self"
           >
@@ -85,50 +87,57 @@ const hue = (index) => QUAD[index % QUAD.length]
 </template>
 
 <style scoped>
+/* The marketing site's kit: page-ground bands, 16px bordered cards on a lighter
+   fill, mono caps micro-labels, hues only as 12% / 38% tints and dots. */
 .landing {
   padding-top: var(--vp-nav-height);
 }
 
 .band {
   padding-block: clamp(3.5rem, 6vw, 5rem);
-  background: var(--vp-c-bg);
+  background: var(--fx-bg);
 }
 
 .band--alt {
-  background: var(--vp-c-bg-alt);
+  background: var(--fx-bg-subtle);
+  border-block: 1px solid var(--fx-border);
 }
 
 .wrap {
-  max-width: 1152px;
+  max-width: 1180px;
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
 }
 
-.eyebrow {
-  margin: 0 0 var(--fx-space-150);
-  font-size: var(--fx-text-ui);
-  font-weight: var(--fx-fw-bold);
-  color: var(--vp-c-brand-1);
+.eyebrow,
+.track__label {
+  margin: 0;
+  font-family: var(--fx-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fx-text-caps);
 }
 
 .hero-title {
-  margin: 0 0 var(--fx-space-300);
+  margin: 14px 0 24px;
   max-width: 18ch;
-  font-family: var(--fx-font-display);
-  font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
-  font-weight: var(--fx-fw-display);
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 1.4rem + 4.2vw, 4rem);
+  font-weight: 700;
+  line-height: 1.04;
   letter-spacing: -0.03em;
-  color: var(--vp-c-text-1);
+  color: var(--fx-text);
   text-wrap: balance;
 }
 
 .hero-lead {
   margin: 0;
   max-width: 60ch;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.6;
-  color: var(--vp-c-text-2);
+  color: var(--fx-text-subtle);
 }
 
 /* Two tracks, side by side on desktop and stacked below it. The whole card is
@@ -136,7 +145,7 @@ const hue = (index) => QUAD[index % QUAD.length]
    card that otherwise looks clickable. */
 .tracks {
   display: grid;
-  gap: var(--fx-space-300);
+  gap: 24px;
   grid-template-columns: 1fr;
 }
 
@@ -146,81 +155,74 @@ const hue = (index) => QUAD[index % QUAD.length]
   }
 }
 
-/* A wash of the card's own hue at the top, fading into the card ground — the
-   same treatment the track cards carry on the marketing home page. */
 .track {
   display: flex;
   flex-direction: column;
-  padding: var(--fx-space-400);
-  border-radius: var(--fx-r-md);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--hue) 9%, var(--vp-c-bg)) 0%,
-    var(--vp-c-bg) 45%
-  );
-  box-shadow: var(--fx-shadow-raised);
+  padding: 32px;
+  border: 1px solid var(--fx-border);
+  border-radius: var(--fx-r-lg);
+  background: var(--fx-bg-card);
   color: inherit;
   text-decoration: none;
-  transition: box-shadow 0.1s ease;
+  transition: border-color 0.2s ease;
 }
 
 .track:hover {
-  box-shadow: var(--fx-shadow-overlay);
+  border-color: var(--fx-border-strong);
 }
 
-/* The hue on a tint of itself, which holds AA in both themes — a solid fill
-   would need white type, and the quad lightens on dark until white fails. */
+/* The hue as a tint pill: 12% fill, 38% border, label in the hue. */
 .track__label {
-  font-size: 11px;
-  font-weight: var(--fx-fw-bold);
-  line-height: 16px;
-  text-transform: uppercase;
-  color: var(--hue);
-  background: color-mix(in srgb, var(--hue) 12%, var(--vp-c-bg));
-  border-radius: 3px;
-  padding: 2px var(--fx-space-050);
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--fx-r-pill);
+  background: color-mix(in srgb, var(--hue) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--hue) 38%, transparent);
+  color: var(--hue);
 }
 
 .track__title {
-  margin: var(--fx-space-200) 0 var(--fx-space-100);
-  font-family: var(--fx-font-display);
-  font-size: var(--fx-text-h3);
-  font-weight: var(--fx-fw-display);
-  line-height: 1.18;
-  letter-spacing: -0.018em;
-  color: var(--vp-c-text-1);
+  margin: 20px 0 8px;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--fx-text);
 }
 
 .track__body {
-  margin: 0 0 var(--fx-space-200);
-  font-size: var(--fx-text-ui);
-  line-height: 1.6;
-  color: var(--vp-c-text-2);
+  margin: 0 0 20px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--fx-text-subtle);
 }
 
 .track__list {
-  margin: 0 0 var(--fx-space-300);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 28px;
   padding: 0;
   list-style: none;
-  font-size: var(--fx-text-ui);
-  color: var(--vp-c-text-2);
+  font-size: 0.9375rem;
+  color: var(--fx-text-subtle);
 }
 
 .track__list li {
-  padding-left: 18px;
-  margin-bottom: var(--fx-space-050);
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* A rounded square, not a circle, as on the marketing site's track cards. */
+/* The site's .dot-list: an 8px rounded square in the card's hue. */
 .track__list li::before {
   content: '';
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 7px;
-  height: 7px;
+  flex: none;
+  width: 8px;
+  height: 8px;
   border-radius: 2px;
   background: var(--hue);
 }
@@ -228,33 +230,37 @@ const hue = (index) => QUAD[index % QUAD.length]
 .track__cta {
   display: inline-flex;
   align-items: center;
-  gap: var(--fx-space-100);
+  gap: 8px;
   margin-top: auto;
-  font-size: var(--fx-text-ui);
-  font-weight: var(--fx-fw-medium);
-  color: var(--hue);
+  font-family: var(--fx-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--fx-text);
+}
+
+.track:hover .track__cta {
+  color: var(--fx-text-strong);
 }
 
 .section-title {
-  margin: 0 0 var(--fx-space-100);
-  font-family: var(--fx-font-display);
-  font-size: var(--fx-text-h2);
-  font-weight: var(--fx-fw-display);
-  line-height: 1.12;
-  letter-spacing: -0.022em;
-  color: var(--vp-c-text-1);
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 1.35rem + 1.1vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--fx-text);
 }
 
 .section-lead {
-  margin: 0 0 var(--fx-space-400);
+  margin: 0 0 32px;
   max-width: 60ch;
-  font-size: var(--fx-text-body);
-  color: var(--vp-c-text-2);
+  font-size: 1rem;
+  color: var(--fx-text-subtle);
 }
 
 .links {
   display: grid;
-  gap: var(--fx-space-200);
+  gap: 16px;
   grid-template-columns: 1fr;
 }
 
@@ -273,43 +279,43 @@ const hue = (index) => QUAD[index % QUAD.length]
 .link {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: var(--fx-space-200);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: var(--fx-r-md);
+  gap: 4px;
+  padding: 20px 24px;
+  border: 1px solid var(--fx-border);
+  border-radius: var(--fx-r-lg);
+  background: var(--fx-bg-card);
   text-decoration: none;
-  transition: background-color 0.1s ease, border-color 0.1s ease;
+  transition: border-color 0.2s ease;
 }
 
 .link:hover {
-  background: var(--vp-c-bg-soft);
-  border-color: var(--hue);
+  border-color: var(--fx-border-strong);
 }
 
 .link__title {
   display: flex;
   align-items: center;
-  gap: var(--fx-space-100);
-  font-family: var(--fx-font-display);
-  font-size: var(--fx-text-ui);
-  font-weight: var(--fx-fw-subhead);
-  color: var(--vp-c-text-1);
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fx-text);
 }
 
 /* The card's hue as a fill rather than on the type, so six cards read as a set
    without six differently coloured headings. */
 .link__dot {
   flex: none;
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 2px;
   background: var(--hue);
 }
 
 /* Indented past the dot and its gap so the two lines start on the same edge. */
 .link__desc {
-  padding-left: 15px;
-  font-size: var(--fx-text-small);
-  color: var(--vp-c-text-3);
+  padding-left: 18px;
+  font-size: 0.875rem;
+  color: var(--fx-text-faint);
 }
 </style>
