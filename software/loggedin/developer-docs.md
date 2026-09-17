@@ -211,6 +211,56 @@ add_action( 'loggedin_destroy_session', function ( $user_id, $token ) {
 
 Since 3.1.0.
 
+### `loggedin_logout_all_users`
+
+Fires once when a site-wide logout is triggered — by the
+[Logout All Users](/loggedin/force-logout#logout-all-users) button, the
+REST endpoint, or `wp loggedin sessions destroy-all`.
+
+```php
+do_action( 'loggedin_logout_all_users', int $epoch );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$epoch` | int | Unix timestamp sessions must be newer than to stay valid. |
+
+Treat this as "every session older than `$epoch` is now dead". The
+per-user [`loggedin_destroy_all_sessions`](#loggedin_destroy_all_sessions)
+action never fires for a bulk logout — no per-user loop runs. Sessions
+are destroyed lazily, one by one, as their owners next make a request;
+each of those destructions fires
+[`loggedin_session_invalidated`](#loggedin_session_invalidated).
+
+```php
+add_action( 'loggedin_logout_all_users', function ( $epoch ) {
+    // Audit-log the site-wide logout.
+} );
+```
+
+Since 3.3.0.
+
+### `loggedin_session_invalidated`
+
+Fires when a session is rejected by the logout epoch — i.e. its owner
+made a request after a [site-wide logout](#loggedin_logout_all_users)
+with a session predating it.
+
+```php
+do_action( 'loggedin_session_invalidated', int $user_id, string $token );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$user_id` | int | User whose session was invalidated. |
+| `$token` | string | Hashed token of the destroyed session. |
+
+Fires at most once per stale session, at the moment that session's
+owner next makes an authenticated request — which may be seconds or
+weeks after the bulk logout was triggered, or never.
+
+Since 3.3.0.
+
 ### `loggedin_cli_init`
 
 Fires after Loggedin registers its own [WP-CLI commands](/loggedin/wp-cli),
@@ -659,6 +709,32 @@ Errors:
 This endpoint also fires
 [`loggedin_destroy_all_sessions`](#loggedin_destroy_all_sessions) on
 success.
+
+#### `POST /loggedin/v1/sessions/destroy-all`
+
+Signs out every user on the site via the logout epoch. Powers the
+[Logout All Users](/loggedin/force-logout#logout-all-users) button. No
+body fields.
+
+```bash
+curl -X POST https://example.com/wp-json/loggedin/v1/sessions/destroy-all \
+  -u admin:application-password
+```
+
+Success response (200):
+
+```json
+{ "success": true, "epoch": 1789718400 }
+```
+
+`epoch` is the stored timestamp — every session created before it is
+invalidated on its next request. When the call is authenticated by a
+session cookie (the admin app), that session is re-stamped and
+survives; when authenticated by an application password (as above),
+there is no session to keep, and nobody is exempted.
+
+Fires [`loggedin_logout_all_users`](#loggedin_logout_all_users), not
+`loggedin_destroy_all_sessions`.
 
 ### Add-ons endpoints
 

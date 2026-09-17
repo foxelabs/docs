@@ -79,3 +79,50 @@ Force Logout requires the `manage_options` capability — the same capability
 needed to view the Loggedin settings screen in the first place. There is no
 per-role override.
 :::
+
+## Logout All Users
+
+Below the per-user form sits **Logout All Users** — a single button that
+signs out every account on the site. Reach for it after a password-reset
+campaign, a suspected credential leak, a change to your session policy,
+or any other moment where you want a clean slate.
+
+Clicking the button opens a confirmation dialog; nothing happens until
+you confirm. On confirmation the button calls
+[`POST /loggedin/v1/sessions/destroy-all`](/loggedin/developer-docs#post-loggedin-v1-sessions-destroy-all)
+and a snackbar confirms the logout once the request completes.
+
+### How it works
+
+Unlike the per-user Force Logout, this doesn't loop through users
+destroying sessions one account at a time — an approach that times out
+on large sites. Instead, Loggedin stores a single site-wide timestamp,
+the **logout epoch**. From then on, any session created *before* that
+moment is rejected the next time its owner makes a request: the session
+token is destroyed, the auth cookies are cleared, and the visitor is
+treated as logged out on that very request — there's no "one last page
+view".
+
+Consequences of that design:
+
+* **Instant at any scale.** Triggering the logout is one database
+  write, whether the site has ten users or a million.
+* **Your session survives.** The admin who clicks the button is
+  exempted — your own session is re-stamped as the epoch is set, so
+  you stay in wp-admin. Every other session, including other
+  administrators', is logged out.
+* **Any storage backend.** Everything goes through the standard
+  `WP_Session_Tokens` API, so Redis / Memcached session storage works
+  the same as stock WordPress.
+* **Different hooks fire.** Because there's no per-user loop,
+  `loggedin_destroy_all_sessions` does not fire. Add-ons get
+  [`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin_logout_all_users)
+  once at trigger time, and
+  [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin_session_invalidated)
+  for each stale session as it's rejected.
+
+::: tip Same thing from the command line
+`wp loggedin sessions destroy-all --yes` — with one difference: the CLI
+has no session of its own, so nobody is exempted. See the
+[WP-CLI reference](/loggedin/wp-cli#wp-loggedin-sessions-destroy-all).
+:::

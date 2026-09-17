@@ -22,6 +22,7 @@ normal page load.
 wp loggedin sessions list <user>      # Active sessions for a user
 wp loggedin sessions count <user>     # Number of active sessions
 wp loggedin sessions destroy <user>   # Sign a user out
+wp loggedin sessions destroy-all      # Sign out every user on the site
 
 wp loggedin settings list             # Every setting and its value
 wp loggedin settings get <key>        # Read one setting
@@ -137,6 +138,45 @@ would otherwise silently destroy *all* of the user's sessions. The
 command errors out instead. Drop the flag entirely when you mean "all".
 :::
 
+## `wp loggedin sessions destroy-all`
+
+Signs out **every user on the site** — the CLI equivalent of the
+[Logout All Users](/loggedin/force-logout#logout-all-users) button.
+
+```bash
+wp loggedin sessions destroy-all [--yes]
+```
+
+| Option | Description |
+| --- | --- |
+| `--yes` | Skip the confirmation prompt. Required in unattended scripts. |
+
+```bash
+$ wp loggedin sessions destroy-all --yes
+Success: All users will be logged out on their next request.
+```
+
+Unlike the destroy command, this doesn't iterate users. It stores a
+site-wide logout timestamp (the *logout epoch*); every session created
+before that moment is rejected and destroyed on its owner's next
+request. That makes the command O(1) — it completes instantly whether
+the site has ten users or a million — and it works with any session
+storage backend.
+
+Because no per-user loop runs, `loggedin_destroy_all_sessions` does
+**not** fire. Listen for
+[`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin_logout_all_users)
+(once, at trigger time) and
+[`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin_session_invalidated)
+(per session, as each is rejected) instead.
+
+::: warning Nobody is exempt on the CLI
+The wp-admin button keeps the clicking admin's session alive. The CLI
+has no session of its own, so no exemption applies — every session is
+logged out, including yours if you're also signed in to wp-admin in a
+browser.
+:::
+
 ## `wp loggedin settings list`
 
 Prints every setting and its current value.
@@ -201,6 +241,7 @@ has no way to address one specific session:
 | --- | --- |
 | `sessions count` | ✅ Works |
 | `sessions destroy` (all) | ✅ Works |
+| `sessions destroy-all` | ✅ Works |
 | `sessions list` | ⚠️ Needs the default user-meta storage |
 | `sessions destroy --token=` | ⚠️ Needs the default user-meta storage |
 

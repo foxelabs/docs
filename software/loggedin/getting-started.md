@@ -59,7 +59,8 @@ lets you exempt specific users or roles from the check entirely.
   limit and the three login-logic modes (**Logout Oldest**, **Logout All**,
   **Block New**).
 - [Force Logout](/loggedin/force-logout) — the admin-facing panel for
-  clearing every active session for a user.
+  clearing every active session for a user, or for every user on the
+  site at once.
 - [WP-CLI](/loggedin/wp-cli) — manage sessions and settings from the
   command line.
 - [Add-ons](/loggedin/addons/) — first-party extensions (Active Sessions,

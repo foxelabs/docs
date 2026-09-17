@@ -8,6 +8,16 @@ Full release history for **Loggedin**. The plugin's bundled
 `readme.txt` keeps only the latest couple of releases; the complete
 history lives here.
 
+## 3.3.0
+
+### Added
+
+* [Logout All Users](/loggedin/force-logout#logout-all-users) — a button in the Force Logout panel that signs out every account on the site, behind a confirmation dialog. It doesn't loop through users: a single site-wide *logout epoch* timestamp invalidates every session created before it, and each stale session is destroyed on its owner's next request. Instant at any user count, works with any session storage backend, and the admin who triggers it stays logged in.
+* [`wp loggedin sessions destroy-all`](/loggedin/wp-cli#wp-loggedin-sessions-destroy-all) — the same site-wide logout from WP-CLI. No exemption there: the CLI has no session of its own, so every session is logged out.
+* REST endpoint [`POST /loggedin/v1/sessions/destroy-all`](/loggedin/developer-docs#post-loggedin-v1-sessions-destroy-all) backing the admin button.
+* Action [`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin_logout_all_users) — fires once when a site-wide logout is triggered. Note for add-on authors: the per-user `loggedin_destroy_all_sessions` action does **not** fire for a bulk logout.
+* Action [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin_session_invalidated) — fires for each stale session as the epoch check rejects it.
+
 ## 3.2.0
 
 ### Improved
