@@ -35,11 +35,18 @@ export const nav = [
   },
 ]
 
-// The same foxe.svg the marketing site's navbar uses, painted at 26px. The path
-// is root-relative on purpose: unlike `head` entries, the logo is rendered
-// through the theme and so it does get prefixed with each site's `base`.
+// The same mark the marketing site's navbar uses, painted at 26px. It is a
+// single-colour silhouette on a transparent ground, so it needs one file per
+// appearance: the marketing site recolours a single copy through a CSS mask,
+// but a VitePress logo is an <img>, and a light/dark pair is what the theme
+// understands.
+//
+// The paths are root-relative on purpose: unlike `head` entries, the logo is
+// rendered through the theme and so it does get prefixed with each site's
+// `base` — which is why all three sites keep their own copy in public/.
 export const logo = {
-  src: '/foxe.svg',
+  light: '/foxe-on-light.svg',
+  dark: '/foxe-on-dark.svg',
   alt: '',
 }
 
