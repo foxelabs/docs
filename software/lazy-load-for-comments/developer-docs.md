@@ -304,6 +304,15 @@ script to fetch the comments on click or scroll.
 * **Permission:** public (no nonce, no capability check) — the response
   only contains markup WordPress would have served inline. The route is
   full-page-cache friendly.
+* **Nonce:** the front-end script only sends an `X-WP-Nonce` header when
+  the visitor is logged in, so the comment form renders for the right
+  user. Logged-out visitors send no nonce at all. This matters behind a
+  full-page cache: a nonce baked into cached HTML expires after 12–24
+  hours, and WordPress rejects a stale `X-WP-Nonce` with a `403` in
+  `rest_cookie_check_errors()` before the route's own permission check
+  runs. If that happens anyway — for example when a logged-in visitor is
+  served a page cached for logged-out visitors — the script retries the
+  request once without the header.
 * **Response (200):** `{ "html": "<ol class=\"commentlist\">…</ol>" }`
 * **Response (404):** `{ "html": "" }` — post missing or not publicly
   viewable.

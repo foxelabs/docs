@@ -33,3 +33,13 @@ This is a button. Clicking it sends a `DELETE` request to the plugin's REST endp
 ::: info Note
 Only administrators can clear the cache. The action affects all posts at once — there is no per-post clear.
 :::
+
+## Full-page caches and CDNs
+
+This plugin's own cache is separate from any full-page cache you run in front of WordPress — Cloudflare, a host-level page cache such as BigScoots, or a caching plugin. Those store the whole HTML page, including the placeholder the comments load into.
+
+Lazy Load for Comments is designed to work behind them: the request that fetches the comments is a plain public `GET`, with nothing user-specific baked into the cached page, so a page can sit in a CDN cache indefinitely and still load its comments.
+
+::: tip Upgrading from 2.0.1 or earlier
+Versions up to 2.0.1 embedded a security token in the page that expired after 12–24 hours, which made comments intermittently stop loading on cached sites until the cache was cleared. If you are upgrading from one of those versions, clear your full-page and CDN cache once after updating so the old pages are replaced.
+:::
