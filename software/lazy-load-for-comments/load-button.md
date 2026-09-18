@@ -6,8 +6,6 @@ title: Load Button Settings
 
 The Load Button settings let you customise the **Load Comments** button. You can find them under **Comments → Lazy Load** in your WordPress admin, inside the **Load Button** section of the settings page.
 
-[![Load Button Settings](/lazy-load-for-comments/load-button.png)](/lazy-load-for-comments/load-button.png)
-
 ::: info Note
 These settings only take effect when the **Load Method** in the [Loading Behaviour](./loading-behaviour) section is set to **On Button Click**. With the *On Scroll* method there is no button to customise.
 :::

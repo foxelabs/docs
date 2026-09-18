@@ -39,8 +39,6 @@ Build just this site with `npm run build:trading` — output lands in
 1. Create the Markdown file in the relevant product directory.
 2. Add a sidebar entry in [`.vitepress/config.mjs`](./.vitepress/config.mjs).
    Pages without one are built but unreachable from the navigation.
-3. Reference images as root-relative paths from `public/`, e.g.
-   `/gold-scalpel/inputs.png`.
 
 Search is VitePress's built-in local provider, so new pages are indexed
 automatically on the next build — nothing external to update.

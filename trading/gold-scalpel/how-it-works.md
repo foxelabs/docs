@@ -57,9 +57,7 @@ There's no manual lot math to do — set your risk percentage and the EA does th
 
 ## The On-Chart Dashboard
 
-When enabled, Gold Scalpel draws a clean, styled status panel directly on the chart so you can see what it's doing at a glance:
-
-![Gold Scalpel on-chart dashboard](/gold-scalpel/dashboard.png)
+When enabled, Gold Scalpel draws a clean, styled status panel directly on the chart so you can see what it's doing at a glance.
 
 The panel is organised into four zones:
 

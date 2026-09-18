@@ -6,8 +6,6 @@ title: Cache Management
 
 The Cache section lets you control how Lazy Load for Comments stores the rendered comments markup, and gives you a quick way to clear it. You can find it under **Comments → Lazy Load** in your WordPress admin, inside the **Cache** section of the settings page.
 
-[![Cache Management](/lazy-load-for-comments/cache.png)](/lazy-load-for-comments/cache.png)
-
 ::: info How the cache works
 On block themes the plugin stashes the serialized `core/comments` block in a transient (`llc_comments_block_{post_id}`) the first time a post is viewed. The REST endpoint then re-renders that transient instead of parsing the block tree on every request. The cache is automatically flushed when you switch themes.
 :::

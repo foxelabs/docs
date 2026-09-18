@@ -6,8 +6,6 @@ title: Loading Behaviour
 
 The Loading Behaviour section controls how and when comments are lazy loaded on your posts and pages. You can find it under **Comments → Lazy Load** in your WordPress admin, inside the **Loading Behaviour** section of the settings page.
 
-[![Loading Behaviour](/lazy-load-for-comments/loading-behaviour.png)](/lazy-load-for-comments/loading-behaviour.png)
-
 ## Load Method
 
 This setting decides when the comments should be loaded on a single post or page.
