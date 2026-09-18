@@ -117,6 +117,7 @@ export default defineConfig({
             text: 'Developer Docs',
             link: '/lazy-load-for-comments/developer-docs',
           },
+          { text: 'Changelog', link: '/lazy-load-for-comments/changelog' },
         ],
       },
       {
