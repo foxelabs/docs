@@ -18,12 +18,12 @@ small companion plugin.
 ## Architecture overview
 
 Lazy Load for Comments 2.x is built with namespaced PHP classes under
-`DuckDev\LazyComments\…` and a Composer classmap autoloader. Every
+`FoxeLabs\LazyComments\…` and a Composer classmap autoloader. Every
 subsystem lives in its own dedicated class so it can be reasoned about,
 tested and replaced independently.
 
 ```
-DuckDev\LazyComments\
+FoxeLabs\LazyComments\
 ├── Plugin                       Identity helpers (name, version, slug, URL)
 ├── Core                         Boot orchestrator + service locator
 ├── Settings                     Settings CRUD + REST registration
@@ -38,6 +38,20 @@ DuckDev\LazyComments\
 ├── Utils\{Singleton, Permission, Assets}
 └── Contracts\{Replacer, Routable}
 ```
+
+::: info Namespace changed in 2.1.0
+These classes lived under `DuckDev\LazyComments\` before 2.1.0, when the plugin
+moved to the Foxe Labs brand. Every old name is still resolvable — the plugin
+registers an autoloader that aliases `DuckDev\LazyComments\*` to its current
+equivalent on first use — so add-ons and custom templates written against the
+old names keep working. They are deprecated, raise a `_doing_it_wrong()` notice
+and will be removed in a future version, so new code should use
+`FoxeLabs\LazyComments\`.
+
+Hook, filter, option and setting names all start with `lazy_load_for_comments_`
+and were not affected. The Composer package was renamed
+`duckdev/lazy-load-for-comments` → **`foxelabs/lazy-load-for-comments`**.
+:::
 
 The recommended way to extend the plugin is:
 
@@ -63,7 +77,7 @@ active.
 
 #### Parameters
 
-* `$core` *(Core)* — the singleton instance of `DuckDev\LazyComments\Core`.
+* `$core` *(Core)* — the singleton instance of `FoxeLabs\LazyComments\Core`.
 
 #### Example
 
@@ -240,7 +254,7 @@ function my_restrict_access( $has_access ) {
 ## Settings API
 
 The settings live in a single WordPress option (`lazy_load_for_comments_settings`),
-managed by `DuckDev\LazyComments\Settings`. The recommended way to read
+managed by `FoxeLabs\LazyComments\Settings`. The recommended way to read
 and write them from PHP is the global helper:
 
 ```php
@@ -269,7 +283,7 @@ markup is cached per-post in a transient so the REST endpoint can
 re-render it on demand without walking the active template tree again.
 
 ```php
-use DuckDev\LazyComments\Cache\BlockCache;
+use FoxeLabs\LazyComments\Cache\BlockCache;
 
 // Read.
 $key   = BlockCache::key( $post_id );   // transient key for a post
@@ -321,7 +335,7 @@ script to fetch the comments on click or scroll.
 
 Clears every cached comments-block transient.
 
-* **Permission:** routed through `DuckDev\LazyComments\Utils\Permission::has_access()` — defaults to `manage_options`, filterable via [`lazy_load_for_comments_capability`](#lazy-load-for-comments-capability) and [`lazy_load_for_comments_has_access`](#lazy-load-for-comments-has-access).
+* **Permission:** routed through `FoxeLabs\LazyComments\Utils\Permission::has_access()` — defaults to `manage_options`, filterable via [`lazy_load_for_comments_capability`](#lazy-load-for-comments-capability) and [`lazy_load_for_comments_has_access`](#lazy-load-for-comments-has-access).
 * **Response (200):** `{ "success": true, "message": "Comments cache cleared." }`
 
 ## Placeholder helper
@@ -331,7 +345,7 @@ block-theme render paths — for example, in a custom block or shortcode
 — call the renderer directly:
 
 ```php
-use DuckDev\LazyComments\Front\Renderer;
+use FoxeLabs\LazyComments\Front\Renderer;
 
 echo Renderer::placeholder();
 ```
