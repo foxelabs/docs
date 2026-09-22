@@ -39,10 +39,24 @@ new add-on has just been released.
 
 ## Installing an add-on
 
-Premium add-ons require a license. After purchase you'll receive an email
-with login credentials for `foxelabs.com` and your unique license key. Sign
-in at foxelabs.com, open the **My Downloads** section of your account, and
-download the add-on's ZIP file.
+Premium add-ons require a license. Our add-ons are sold through
+[Freemius](https://freemius.com/), our reseller, so your purchase, download
+and license key all live in the Freemius customer portal rather than on
+foxelabs.com.
+
+After purchase you'll receive an email from Freemius with your license key
+and a link to the
+[customer portal](https://customers.freemius.com/store/21/). To download
+the add-on:
+
+1. Open the [customer portal](https://customers.freemius.com/store/21/) and
+   log in with the email address you used at checkout. On your first login,
+   use the credentials from the purchase email — you'll be asked to replace
+   the auto-generated password. If you don't have a password, request a
+   login link by email instead.
+2. Open the **Downloads** section and download the add-on's ZIP file.
+3. Your license key is shown in the **Licenses** section if you need it
+   again later.
 
 Then install it like any other WordPress plugin:
 
