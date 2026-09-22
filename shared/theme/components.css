@@ -186,7 +186,7 @@ body {
 .vp-doc li { color: var(--fx-text-subtle); }
 .vp-doc strong { color: var(--fx-text); font-weight: 700; }
 
-/* Links: ink at 500, never underlined. */
+/* Links: ink at 500. */
 .vp-doc a {
   color: var(--fx-text);
   font-weight: 500;
@@ -194,6 +194,17 @@ body {
   transition: color 0.15s ease;
 }
 .vp-doc a:hover { color: var(--fx-text-strong); text-decoration: none; }
+/* Plain body links get the foxelabs.com prose underline: a faint hairline
+   that darkens to the text colour on hover. Classed links (header anchors,
+   buttons) and the in-page table of contents opt out. */
+.vp-doc a:not([class]):not(.table-of-contents a) {
+  text-decoration: underline;
+  text-decoration-color: var(--fx-text-faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.vp-doc a:not([class]):not(.table-of-contents a):hover { text-decoration-color: currentColor; }
 .vp-doc li::marker { color: var(--fx-text-faint); }
 
 .vp-doc :not(pre) > code {
