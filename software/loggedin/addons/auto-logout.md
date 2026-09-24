@@ -1,4 +1,5 @@
 ---
+description: "Log WordPress users out after a period of inactivity, and cap how long any session can last, with the Loggedin Auto Logout add-on."
 title: Auto Logout
 ---
 

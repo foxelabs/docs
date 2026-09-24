@@ -1,4 +1,5 @@
 ---
+description: "Full release history of Lazy Load for Comments, the WordPress plugin that loads comments on scroll or click."
 title: Changelog
 ---
 

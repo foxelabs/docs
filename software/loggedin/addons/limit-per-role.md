@@ -1,4 +1,5 @@
 ---
+description: "Set a different concurrent session limit for each WordPress user role with the Loggedin Limit Per Role add-on."
 title: Limit Per Role
 ---
 

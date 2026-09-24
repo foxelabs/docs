@@ -1,3 +1,7 @@
+---
+description: "A WordPress library for non-blocking async requests and batched background job queues."
+---
+
 # WP Queue Process — Overview
 
 A WordPress library for firing off non-blocking asynchronous requests and for running long jobs as a background queue. Items pushed onto the queue are worked through in batches that bail out before exhausting the server's time or memory budget; each finished batch chains the next instantly, and a self-healing cron restarts a stalled queue.

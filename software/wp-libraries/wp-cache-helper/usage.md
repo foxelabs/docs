@@ -1,3 +1,7 @@
+---
+description: "Cache values with remember() and persist(), and flush cache groups in WordPress with WP Cache Helper."
+---
+
 # Usage
 
 ## Available methods

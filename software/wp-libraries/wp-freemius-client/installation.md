@@ -1,3 +1,7 @@
+---
+description: "Requirements, Composer installation and migration steps for the WP Freemius Client library."
+---
+
 # Installation
 
 ## Requirements

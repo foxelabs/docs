@@ -1,4 +1,5 @@
 ---
+description: "Customise the text and style of the Load Comments button in Lazy Load for Comments."
 title: Load Button Settings
 ---
 

@@ -1,4 +1,5 @@
 ---
+description: "Control how Lazy Load for Comments caches rendered comments, and clear the cache when needed."
 title: Cache Management
 ---
 

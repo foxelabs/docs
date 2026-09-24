@@ -16,6 +16,21 @@
       "permanent": false
     },
     {
+      "source": "/software/better-disqus-comments",
+      "destination": "/software/better-disqus-comments/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/software/loggedin",
+      "destination": "/software/loggedin/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/software/lazy-load-for-comments",
+      "destination": "/software/lazy-load-for-comments/getting-started",
+      "permanent": true
+    },
+    {
       "source": "/trading/expert-advisors/:path*",
       "destination": "/trading/:path*",
       "permanent": true

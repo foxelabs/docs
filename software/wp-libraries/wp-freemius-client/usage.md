@@ -1,3 +1,7 @@
+---
+description: "Activate and deactivate licenses, deliver premium updates and list addons with the WP Freemius Client PHP library."
+---
+
 # Usage
 
 ## License activation

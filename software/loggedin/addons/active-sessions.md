@@ -1,4 +1,5 @@
 ---
+description: "See every WordPress user with a live session, with IP, device and login time, and sign sessions out from one admin screen."
 title: Active Sessions
 ---
 

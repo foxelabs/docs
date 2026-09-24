@@ -1,3 +1,7 @@
+---
+description: "Requirements, Composer installation and upgrade steps for the WP Cache Helper library."
+---
+
 # Installation
 
 ## Requirements

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { nav, siteTitle, logo, logoLink, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
+import { nav, siteTitle, logo, logoLink, socialLinks, footer, shareHead, shareTags, pageTitles, SITE_URL } from '../../shared/theme.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -9,6 +9,8 @@ export default defineConfig({
   outDir: '../dist/trading',
   // READMEs are for GitHub only — they link to directories, which are not pages.
   srcExclude: ['**/README.md'],
+  // Sitemap page URLs resolve against this, so it must carry the base.
+  sitemap: { hostname: `${SITE_URL}/trading/` },
   lastUpdated: true,
   cleanUrls: true,
   head: [
@@ -48,6 +50,7 @@ export default defineConfig({
   ],
   // Per-page title, description and canonical URL for share previews.
   transformHead: shareTags('/trading/'),
+  transformPageData: pageTitles('/trading/'),
 
   appearance: 'dark',
 

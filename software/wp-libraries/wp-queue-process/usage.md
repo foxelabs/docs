@@ -1,3 +1,7 @@
+---
+description: "Dispatch async requests and run long jobs as background queues in WordPress with WP Queue Process."
+---
+
 # Usage
 
 ## One-off async request

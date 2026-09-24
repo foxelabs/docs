@@ -1,4 +1,5 @@
 ---
+description: "Choose whether WordPress comments load on scroll or on button click with Lazy Load for Comments."
 title: Loading Behaviour
 ---
 

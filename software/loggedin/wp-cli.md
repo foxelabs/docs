@@ -1,4 +1,5 @@
 ---
+description: "WP-CLI commands to inspect and clear WordPress user sessions and manage Loggedin settings from the command line."
 title: WP-CLI
 ---
 

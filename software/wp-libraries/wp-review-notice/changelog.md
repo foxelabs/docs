@@ -1,3 +1,7 @@
+---
+description: "Release history of the WP Review Notice library, with upgrade notes for breaking changes."
+---
+
 # Changelog
 
 ## 3.0.0

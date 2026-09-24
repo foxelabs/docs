@@ -1,3 +1,7 @@
+---
+description: "Install and run Gold Scalpel, a pre-tuned breakout scalper for XAUUSD (Gold) on MetaTrader 5."
+---
+
 # Getting Started
 
 Welcome to **Gold Scalpel** — a precision breakout scalper for MetaTrader 5, available on the **MQL5 Market**.

@@ -1,4 +1,5 @@
 ---
+description: "Install Lazy Load for Comments and load WordPress comments on scroll or click so pages with long threads load fast."
 title: Getting Started
 ---
 

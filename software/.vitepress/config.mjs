@@ -1,6 +1,9 @@
 import { defineConfig } from 'vitepress'
-import { nav, siteTitle, logo, logoLink, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
+import { nav, siteTitle, logo, logoLink, socialLinks, footer, shareHead, shareTags, pageTitles, SITE_URL } from '../../shared/theme.mjs'
 
+
+// Index pages that only redirect (see vercel.json), kept out of the sitemap.
+const REDIRECT_STUBS = ['better-disqus-comments/', 'loggedin/', 'lazy-load-for-comments/']
 export default defineConfig({
   title: 'Foxe Labs Docs',
   description: 'Official documentation for Foxe Labs software',
@@ -10,6 +13,13 @@ export default defineConfig({
   outDir: '../dist/software',
   // READMEs are for GitHub only — they link to directories, which are not pages.
   srcExclude: ['**/README.md'],
+  // Sitemap page URLs resolve against this, so it must carry the base.
+  sitemap: {
+    hostname: `${SITE_URL}/software/`,
+    // Product index pages only redirect to their Getting Started page.
+    transformItems: (items) =>
+      items.filter(({ url }) => !REDIRECT_STUBS.includes(url)),
+  },
   head: [
     // One icon for every theme: white fox head in a rounded black tile, so it
     // reads on light and dark tabs alike. .ico is the fallback for browsers
@@ -62,6 +72,7 @@ export default defineConfig({
   ],
   // Per-page title, description and canonical URL for share previews.
   transformHead: shareTags('/software/'),
+  transformPageData: pageTitles('/software/'),
 
   appearance: 'dark',
 

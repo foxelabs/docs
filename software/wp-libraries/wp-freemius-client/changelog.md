@@ -1,3 +1,7 @@
+---
+description: "Release history of WP Freemius Client, formerly freemius-plugin-licensing, with upgrade notes for breaking changes."
+---
+
 # Changelog
 
 ## 3.0.0

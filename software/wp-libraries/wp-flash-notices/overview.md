@@ -1,3 +1,7 @@
+---
+description: "A WordPress library for flash admin notices: queue a notice before a redirect and show it once on the next page load."
+---
+
 # WP Flash Notices — Overview
 
 A small WordPress library that turns admin notices into *flash* notices: queue a notice during one request — typically right before a redirect — and it is printed on the next page load, then cleared. It borrows the idea from framework flash messages and implements it on the WordPress transient API.

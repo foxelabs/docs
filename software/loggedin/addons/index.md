@@ -1,4 +1,5 @@
 ---
+description: "Optional Loggedin add-ons for active session management, auto logout, real-time logout and per-user or per-role session limits."
 title: Add-ons
 ---
 

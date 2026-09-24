@@ -1,3 +1,7 @@
+---
+description: "A WordPress library that wraps the object cache and transients with a remember() helper and group flushing."
+---
+
 # WP Cache Helper — Overview
 
 A small WordPress library that wraps the object cache and transient APIs with a callback-style `remember()` helper, group-flush support for the object cache (delegating to core's `wp_cache_flush_group()` on WP 6.1+ backends that support it, with a version-sentinel fallback for backends that don't), and per-prefix scoping so multiple consumers on the same site never collide.

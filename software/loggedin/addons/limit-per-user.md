@@ -1,4 +1,5 @@
 ---
+description: "Override the global Loggedin session limit for individual WordPress user accounts."
 title: Limit Per User
 ---
 

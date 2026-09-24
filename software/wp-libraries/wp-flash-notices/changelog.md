@@ -1,3 +1,7 @@
+---
+description: "Release history of the WP Flash Notices library, with upgrade notes for breaking changes."
+---
+
 # Changelog
 
 ## 2.0.0

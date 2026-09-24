@@ -1,3 +1,7 @@
+---
+description: "Every Gold Scalpel input explained, from RiskPercent to trade management and dashboard settings in MetaTrader 5."
+---
+
 # Inputs Reference
 
 Gold Scalpel ships **pre-tuned**: the strategy's internal parameters are fixed and optimised at the factory, so the only settings you see are the ones that let you tailor **risk and behaviour to your own account**. This keeps configuration simple and safe — there's nothing to over-optimise.

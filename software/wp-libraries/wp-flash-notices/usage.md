@@ -1,3 +1,7 @@
+---
+description: "Queue, display and remove one-time WordPress admin notices with the WP Flash Notices library."
+---
+
 # Usage
 
 ## Available methods

@@ -1,3 +1,7 @@
+---
+description: "Version history of Gold Scalpel, the pre-tuned XAUUSD breakout scalper for MetaTrader 5."
+---
+
 # Changelog
 
 All notable changes to **Gold Scalpel** are documented here. The version is shown in the `#property version` field and on the on-chart dashboard.

@@ -1,4 +1,5 @@
 ---
+description: "Actions, filters, settings panels and other public extension points for customising the Loggedin WordPress plugin."
 title: Developer Docs
 ---
 

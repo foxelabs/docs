@@ -1,4 +1,5 @@
 ---
+description: "Reload open browser tabs the moment a WordPress session ends, so logged-out users are sent straight to the login page."
 title: Real-time Logout
 ---
 

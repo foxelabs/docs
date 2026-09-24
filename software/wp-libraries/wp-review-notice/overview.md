@@ -1,3 +1,7 @@
+---
+description: "A small WordPress library that asks for a WordPress.org plugin review in a dismissable admin notice after a few days of use."
+---
+
 # WP Review Notice — Overview
 
 A small, opinionated WordPress library that gently asks for a wp.org plugin review after a few days of usage. Built around a tiny set of focused, swappable collaborators so it stays trivially testable and easy to extend.

@@ -1,4 +1,5 @@
 ---
+description: "Install Loggedin and limit how many simultaneous login sessions each WordPress user can have."
 title: Getting Started
 ---
 

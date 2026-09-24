@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 // No logoLink here: this site is already at the root, so the title's default
 // link is correct.
-import { nav, siteTitle, logo, socialLinks, footer, shareHead, shareTags } from '../../shared/theme.mjs'
+import { nav, siteTitle, logo, socialLinks, footer, shareHead, shareTags, pageTitles, SITE_URL } from '../../shared/theme.mjs'
 
 // The landing page at the root of docs.foxelabs.com. It exists only to send
 // visitors into one of the two tracks, so it has no sidebar and no search.
@@ -14,6 +14,8 @@ export default defineConfig({
   description: 'Documentation for Foxe Labs software and trading products.',
   cleanUrls: true,
   srcExclude: ['**/README.md'],
+  // Sitemap page URLs resolve against this, so it must carry the base.
+  sitemap: { hostname: `${SITE_URL}/` },
   head: [
     // One icon for every theme: white fox head in a rounded black tile, so it
     // reads on light and dark tabs alike. .ico is the fallback for browsers
@@ -66,6 +68,7 @@ export default defineConfig({
   ],
   // Per-page title, description and canonical URL for share previews.
   transformHead: shareTags('/'),
+  transformPageData: pageTitles('/'),
 
   appearance: 'dark',
 

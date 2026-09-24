@@ -1,4 +1,5 @@
 ---
+description: "Full release history of Better Disqus Comments, formerly Disqus Conditional Load, including version notes for every addon."
 title: Changelog
 ---
 

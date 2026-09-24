@@ -1,3 +1,7 @@
+---
+description: "Documentation for Foxe Labs algorithmic trading systems and Expert Advisors for MetaTrader 5, including Gold Scalpel."
+---
+
 # Get Started
 
 Welcome to the **Foxe Labs** documentation.

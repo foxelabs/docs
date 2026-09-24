@@ -1,3 +1,7 @@
+---
+description: "Requirements and Composer installation for the WP Queue Process library."
+---
+
 # Installation
 
 ## Requirements

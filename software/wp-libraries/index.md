@@ -1,3 +1,7 @@
+---
+description: "Small, tested PHP libraries for WordPress plugin development: caching, flash notices, background queues, review notices and Freemius licensing."
+---
+
 # WordPress Libraries
 
 A collection of small, focused PHP libraries we maintain and reuse across our WordPress plugins. Each one solves a single problem well, ships with a full test suite, and is built around small, injectable collaborators so it stays easy to test and extend.

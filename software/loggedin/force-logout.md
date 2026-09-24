@@ -1,4 +1,5 @@
 ---
+description: "Sign out every active session of a WordPress user, or every user on the site, from the Loggedin Force Logout panel."
 title: Force Logout
 ---
 

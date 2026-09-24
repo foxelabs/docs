@@ -1,3 +1,7 @@
+---
+description: "Documentation for Foxe Labs WordPress plugins and PHP libraries: Better Disqus Comments, Loggedin, Lazy Load for Comments and the wp-* libraries."
+---
+
 # Get Started
 
 Welcome to the **Foxe Labs** software documentation.

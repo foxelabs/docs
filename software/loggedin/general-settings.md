@@ -1,4 +1,5 @@
 ---
+description: "Set the maximum number of concurrent sessions per WordPress user and choose what Loggedin does when the limit is reached."
 title: General Settings
 ---
 

@@ -1,3 +1,7 @@
+---
+description: "Show a plugin review request notice with WP Review Notice, and configure its delay, screens and capability checks."
+---
+
 # Usage
 
 ## Basic

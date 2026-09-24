@@ -1,3 +1,7 @@
+---
+description: "Gold Scalpel backtest results, the live MQL5 signal and how to read the numbers with realistic expectations."
+---
+
 # Performance
 
 This page summarises how Gold Scalpel behaves in testing and, just as importantly, how to read those results honestly. The goal is to set **realistic expectations** — not to sell a number.

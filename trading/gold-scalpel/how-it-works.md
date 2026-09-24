@@ -1,3 +1,7 @@
+---
+description: "How the Gold Scalpel breakout strategy trades XAUUSD: entries, breakeven, trailing stops and risk management."
+---
+
 # How It Works
 
 This page explains the **approach** behind Gold Scalpel and what to expect when you run it. Gold Scalpel ships pre-tuned, so this is a conceptual overview rather than a tuning guide — the strategy's internal parameters are fixed and optimised at the factory.

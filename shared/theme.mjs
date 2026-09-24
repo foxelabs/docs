@@ -111,6 +111,51 @@ export const shareHead = [
   ['meta', { name: 'twitter:image', content: BANNER }],
 ]
 
+// Product each docs section belongs to, keyed by path prefix within a site.
+// Pages like "Changelog" or "Usage" exist once per product, so the product
+// name goes into their titles to keep every title on the domain unique.
+const PRODUCTS = {
+  "better-disqus-comments/": "Better Disqus Comments",
+  "loggedin/": "Loggedin",
+  "lazy-load-for-comments/": "Lazy Load for Comments",
+  "wp-libraries/wp-cache-helper/": "WP Cache Helper",
+  "wp-libraries/wp-flash-notices/": "WP Flash Notices",
+  "wp-libraries/wp-freemius-client/": "WP Freemius Client",
+  "wp-libraries/wp-queue-process/": "WP Queue Process",
+  "wp-libraries/wp-review-notice/": "WP Review Notice",
+  "gold-scalpel/": "Gold Scalpel",
+}
+
+// Pages outside any product fall back to the track name.
+const TRACKS = { "/software/": "Foxe Labs Software", "/trading/": "Foxe Labs Trading" }
+
+/** Everything after the page heading in its title: product, then site. */
+const titleSuffix = (base, pageData) => {
+  const heading = pageHeading(pageData)
+  if (heading.includes('Foxe Labs')) return ''
+  const prefix = Object.keys(PRODUCTS).find((key) =>
+    pageData.relativePath.startsWith(key)
+  )
+  const product = prefix ? PRODUCTS[prefix] : TRACKS[base]
+  return product && !heading.includes(product)
+    ? ` — ${product} | Foxe Labs Docs`
+    : ' | Foxe Labs Docs'
+}
+
+// frontmatter wins, then the page's own H1, then the site title. `??` is no
+// use here: VitePress fills both fields with '' rather than leaving them
+// undefined, so the fallbacks have to be falsy-checked.
+const pageHeading = (pageData) =>
+  pageData.frontmatter.title || pageData.title || 'Foxe Labs Docs'
+
+/**
+ * Gives each page a title template carrying its product name. Returned as a
+ * `transformPageData` for defineConfig.
+ */
+export const pageTitles = (base = '/') => (pageData) => {
+  pageData.titleTemplate = ':title' + titleSuffix(base, pageData)
+}
+
 /**
  * Per-page share tags: the title, description and canonical URL of the page
  * being rendered. `base` is the site's VitePress base ('/' for the landing
@@ -122,23 +167,20 @@ export const shareHead = [
 export const shareTags = (base = '/') => ({ pageData }) => {
   const path = pageData.relativePath.replace(/(?:index)?\.md$/, '')
   const url = `${SITE_URL}${base}${path}`
-  // frontmatter wins, then the page's own H1, then the site title. `??` is no
-  // use here: VitePress fills both fields with '' rather than leaving them
-  // undefined, so the fallbacks have to be falsy-checked.
-  const heading =
-    pageData.frontmatter.title || pageData.title || 'Foxe Labs Docs'
-  // A page title alone ('Changelog') says nothing in a timeline, so it carries
-  // the site name the way the <title> tag does.
-  const title = heading.includes('Foxe Labs')
-    ? heading
-    : `${heading} | Foxe Labs Docs`
+  const title = pageHeading(pageData) + titleSuffix(base, pageData)
   const description =
     pageData.frontmatter.description ||
     pageData.description ||
     'Documentation for Foxe Labs software and trading products.'
 
+  // Redirect stubs declare their own canonical (the redirect target) in
+  // frontmatter; a second one here would contradict it.
+  const hasCanonical = (pageData.frontmatter.head || []).some(
+    ([tag, attrs]) => tag === 'link' && attrs?.rel === 'canonical'
+  )
+
   return [
-    ['link', { rel: 'canonical', href: url }],
+    ...(hasCanonical ? [] : [['link', { rel: 'canonical', href: url }]]),
     ['meta', { property: 'og:url', content: url }],
     ['meta', { property: 'og:title', content: title }],
     ['meta', { property: 'og:description', content: description }],

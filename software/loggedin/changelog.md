@@ -1,4 +1,5 @@
 ---
+description: "Full release history of Loggedin, the WordPress plugin that limits concurrent login sessions per user."
 title: Changelog
 ---
 

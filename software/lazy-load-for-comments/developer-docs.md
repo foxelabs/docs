@@ -1,4 +1,5 @@
 ---
+description: "Hooks, filters and other public extension points for customising Lazy Load for Comments."
 title: Developer Docs
 ---
 
