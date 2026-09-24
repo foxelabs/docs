@@ -22,17 +22,9 @@ plug into the free plugin's settings page.
 | **[Comments Widget](/better-disqus-comments/addons/comments-widget)** | The Disqus thread in a sidebar or footer widget. | Widgets screen |
 | **[Latest Comments Widget](/better-disqus-comments/addons/latest-comments)** | Your latest Disqus comments in a widget, with avatars and excerpts. | Widgets screen |
 
-Each addon is sold on its own:
-
-| Sites | Yearly | Lifetime |
-| --- | --- | --- |
-| 1 | $14.99 | $59.99 |
-| 3 | $29.99 | $89.99 |
-| 15 | $89.99 | $269.99 |
-
-The **[Pro Bundle](/better-disqus-comments/addons/pro-bundle)** includes all
-of them — and every future addon — from **$34.99 a year**. See
-[dclwp.com/pricing](https://dclwp.com/pricing/) for current prices.
+Each addon is sold on its own at [dclwp.com](https://dclwp.com/). The
+**[Pro Bundle](/better-disqus-comments/addons/pro-bundle)** includes all of
+them — and every future addon — under one license.
 
 Addons need Better Disqus Comments **13.0** or later. Each one declares the
 free plugin as a required plugin, so WordPress won't activate an addon until
@@ -115,8 +107,7 @@ active — deactivate first to change it.
 
 ::: info What a license covers
 A license gives you automatic updates and support for the addon while it's
-valid — a year, or for life on a lifetime plan — on as many sites as your
-plan allows. Deactivate it on a site you no longer use to free up the slot.
+valid, on as many sites as your plan allows. Deactivate it on a site you no longer use to free up the slot.
 :::
 
 ## Updates

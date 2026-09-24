@@ -20,22 +20,10 @@ is valid.
 
 [[toc]]
 
-## Pricing
-
-| Sites | Yearly | Lifetime |
-| --- | --- | --- |
-| 1 | $34.99 | $139.99 |
-| 3 | $69.99 | $219.99 |
-| 15 | $199.99 | $499.99 |
-
-Bought one by one, the six addons cost $89.94 a year for a single site — the
-bundle saves about 60%, and the saving grows with every addon we add. See
-[dclwp.com/pricing](https://dclwp.com/pricing/) for current prices.
-
 ## Buying
 
 Click **Get Pro Bundle** on the banner at the top of **Disqus → Addons**, or
-go to [dclwp.com/pricing](https://dclwp.com/pricing/). Checkout is handled by
+go to [dclwp.com](https://dclwp.com/). Checkout is handled by
 [Freemius](https://freemius.com/), which emails your license key and a link
 to your [Freemius account](https://users.freemius.com/).
 
