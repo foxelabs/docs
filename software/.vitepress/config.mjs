@@ -121,6 +121,54 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Better Disqus Comments',
+        items: [
+          {
+            text: 'Getting Started',
+            link: '/disqus-conditional-load/getting-started',
+          },
+          {
+            text: 'Disqus Account',
+            link: '/disqus-conditional-load/disqus-account',
+          },
+          {
+            text: 'Comment Loading',
+            link: '/disqus-conditional-load/comment-loading',
+          },
+          { text: 'Display', link: '/disqus-conditional-load/display' },
+          {
+            text: 'Comment Sync',
+            link: '/disqus-conditional-load/comment-sync',
+          },
+          { text: 'SEO Mode', link: '/disqus-conditional-load/seo-mode' },
+          { text: 'Advanced', link: '/disqus-conditional-load/advanced' },
+          { text: 'Upgrading', link: '/disqus-conditional-load/upgrading' },
+          {
+            text: 'Addons',
+            base: '/disqus-conditional-load/addons',
+            collapsed: true,
+            items: [
+              { text: 'Overview', link: '/' },
+              { text: 'Pro Bundle', link: '/pro-bundle' },
+              { text: 'Advanced Buttons', link: '/advanced-buttons' },
+              { text: 'Scroll Load', link: '/scroll-load' },
+              {
+                text: 'Comments for WooCommerce',
+                link: '/woocommerce-comments',
+              },
+              { text: 'Comments for EDD', link: '/edd-comments' },
+              { text: 'Comments Widget', link: '/comments-widget' },
+              { text: 'Latest Comments Widget', link: '/latest-comments' },
+            ],
+          },
+          {
+            text: 'Developer Docs',
+            link: '/disqus-conditional-load/developer-docs',
+          },
+          { text: 'Changelog', link: '/disqus-conditional-load/changelog' },
+        ],
+      },
+      {
         text: 'WordPress Libraries',
         items: [
           { text: 'Overview', link: '/wp-libraries/' },

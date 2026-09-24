@@ -17,7 +17,7 @@ lead: Everything we build, documented in one place — open-source WordPress plu
 tracks:
   - label: Software
     title: WordPress plugins and PHP libraries
-    body: Loggedin and its add-ons, Lazy Load for Comments, and the reusable libraries behind them.
+    body: Loggedin and its add-ons, Better Disqus Comments, Lazy Load for Comments, and the reusable libraries behind them.
     covers:
       - Installation and settings
       - WP-CLI commands
@@ -44,6 +44,9 @@ popular:
     - title: Loggedin
       desc: Limit concurrent WordPress logins
       link: https://docs.foxelabs.com/software/loggedin/getting-started
+    - title: Better Disqus Comments
+      desc: Lazy-loaded Disqus, comment sync and SEO
+      link: https://docs.foxelabs.com/software/disqus-conditional-load/getting-started
     - title: Lazy Load for Comments
       desc: Defer comment loading until asked
       link: https://docs.foxelabs.com/software/lazy-load-for-comments/getting-started

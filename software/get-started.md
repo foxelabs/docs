@@ -29,6 +29,16 @@ Stop comments from loading on every page view. They load **on scroll or on click
 - ⚙️ **[Loading Behaviour](./lazy-load-for-comments/loading-behaviour)** — On scroll, on click, or both
 - 🧑‍💻 **[Developer Docs](./lazy-load-for-comments/developer-docs)** — Hooks, filters and internals
 
+### Better Disqus Comments
+
+Put [Disqus](https://disqus.com/) comments on your site without the weight. Disqus loads **on scroll or on click**, comments sync into WordPress, and search engines can index them. Formerly *Disqus Conditional Load*.
+
+- 🚀 **[Getting Started](./disqus-conditional-load/getting-started)** — Install and connect your Disqus site
+- ⚙️ **[Comment Loading](./disqus-conditional-load/comment-loading)** — On scroll, on click, or straight away
+- 🔄 **[Comment Sync](./disqus-conditional-load/comment-sync)** — Keep a copy of your comments in WordPress
+- 🧩 **[Addons](./disqus-conditional-load/addons/)** — WooCommerce, EDD, widgets and the Pro Bundle
+- 🧑‍💻 **[Developer Docs](./disqus-conditional-load/developer-docs)** — Hooks, filters and REST endpoints
+
 ### WordPress Libraries
 
 Small, focused PHP libraries we maintain and reuse across our own plugins — licensing, caching, background queues and review notices. All require PHP 7.4+ and ship on Composer.

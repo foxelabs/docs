@@ -19,6 +19,7 @@ too, via [`vercel.json`](../vercel.json).
 | Getting started | [`get-started.md`](./get-started.md) |
 | Loggedin | [`loggedin/`](./loggedin) |
 | Lazy Load for Comments | [`lazy-load-for-comments/`](./lazy-load-for-comments) |
+| Better Disqus Comments | [`disqus-conditional-load/`](./disqus-conditional-load) |
 | WordPress libraries | [`wp-libraries/`](./wp-libraries) |
 
 Images and favicons live in [`public/`](./public), organised per product.
