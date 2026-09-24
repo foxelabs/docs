@@ -46,6 +46,21 @@ export default defineConfig({
     ],
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Foxe Labs' }],
     ['meta', { name: 'theme-color', content: '#0a0a0b' }],
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-W70V9P7MJY',
+      },
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-W70V9P7MJY');`,
+    ],
     ...shareHead,
   ],
   // Per-page title, description and canonical URL for share previews.
