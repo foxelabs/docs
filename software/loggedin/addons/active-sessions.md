@@ -115,7 +115,7 @@ window to whatever polling interval you've configured.
 The modal's footer has a **Sign out all sessions** button. Click it, then
 confirm — every session token for that user is destroyed in one call,
 same as the core plugin's Force Logout panel. The
-[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions)
+[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
 action fires on success, so any audit-logging or webhook code you've
 hooked already covers this path too.
 
@@ -129,9 +129,9 @@ destructive primary button to confirm.
 Behind the scenes:
 
 - Single-user selection → calls
-  [`DELETE /loggedin/v1/active-sessions/{user}`](#delete-active-sessions-user).
+  [`DELETE /loggedin/v1/active-sessions/{user}`](#delete-loggedin-v1-active-sessions-user).
 - Multi-user selection → calls
-  [`DELETE /loggedin/v1/active-sessions`](#delete-active-sessions) with
+  [`DELETE /loggedin/v1/active-sessions`](#delete-loggedin-v1-active-sessions) with
   a `user_ids` body.
 
 Both paths fire `loggedin_destroy_all_sessions` once per user cleared.
@@ -205,7 +205,7 @@ caller can re-render without an extra GET.
 
 Destroy every session for one user. Same effect as the core plugin's
 Force Logout panel. Fires
-[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions).
+[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions).
 
 ### `DELETE /loggedin/v1/active-sessions`
 
@@ -254,7 +254,7 @@ add_action(
 
 ::: info "Sign out all" reuses the parent's hook
 The destroy-all paths (both single-user and bulk) fire the parent's
-[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions)
+[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
 action, not a new add-on-specific one. Anything you've already hooked to
 the core action automatically covers this add-on too.
 :::
@@ -287,7 +287,7 @@ install is feeling it.
   discoverable / per-device counterpart.
 - [Real-time Logout](/loggedin/addons/realtime-logout) — make a forced
   sign-out feel instant on the user's open tabs.
-- [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions)
+- [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
   — the parent action this add-on fires on every destroy-all path.
 - [`loggedin.admin.tabs`](/loggedin/developer-docs#loggedin-admin-tabs)
   — the JS filter the add-on uses to inject its tab into the admin.

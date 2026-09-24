@@ -41,7 +41,7 @@ should use `FoxeLabs\Loggedin\`. Hook, filter and option names all start with
 
 The recommended way to extend the plugin is:
 
-1. Hook into [`loggedin_init`](#loggedin_init) so your code runs only after
+1. Hook into [`loggedin_init`](#loggedin-init) so your code runs only after
    every subsystem is up.
 2. Use the documented filters and actions for everything you can — they
    are guaranteed stable.
@@ -139,8 +139,8 @@ do_action( 'loggedin_login_blocked', int $user_id );
 Use it to add audit logging, send a notification, or trigger anti-abuse
 heuristics. The login has already been rejected by the time this fires —
 you can't override the decision from here (use
-[`loggedin_reached_limit`](#loggedin_reached_limit) or
-[`loggedin_bypass`](#loggedin_bypass) for that).
+[`loggedin_reached_limit`](#loggedin-reached-limit) or
+[`loggedin_bypass`](#loggedin-bypass) for that).
 
 ```php
 add_action( 'loggedin_login_blocked', function ( $user_id ) {
@@ -185,7 +185,7 @@ do_action( 'loggedin_destroy_oldest_session', int $user_id );
 | `$user_id` | int | User whose oldest session was cleared. |
 
 Note: this fires **only** in `logout_oldest` mode. In `allow` (Logout
-All) mode you get [`loggedin_destroy_all_sessions`](#loggedin_destroy_all_sessions)
+All) mode you get [`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions)
 instead.
 
 ### `loggedin_destroy_session`
@@ -226,11 +226,11 @@ do_action( 'loggedin_logout_all_users', int $epoch );
 | `$epoch` | int | Unix timestamp sessions must be newer than to stay valid. |
 
 Treat this as "every session older than `$epoch` is now dead". The
-per-user [`loggedin_destroy_all_sessions`](#loggedin_destroy_all_sessions)
+per-user [`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions)
 action never fires for a bulk logout — no per-user loop runs. Sessions
 are destroyed lazily, one by one, as their owners next make a request;
 each of those destructions fires
-[`loggedin_session_invalidated`](#loggedin_session_invalidated).
+[`loggedin_session_invalidated`](#loggedin-session-invalidated).
 
 ```php
 add_action( 'loggedin_logout_all_users', function ( $epoch ) {
@@ -243,7 +243,7 @@ Since 3.3.0.
 ### `loggedin_session_invalidated`
 
 Fires when a session is rejected by the logout epoch — i.e. its owner
-made a request after a [site-wide logout](#loggedin_logout_all_users)
+made a request after a [site-wide logout](#loggedin-logout-all-users)
 with a session predating it.
 
 ```php
@@ -346,13 +346,13 @@ on save. To make it stick you also need to:
    `sanitize_callback`) to whitelist your mode before WordPress hands the
    value to Loggedin's sanitiser, **or**
 2. Translate your mode into one of the built-in modes via your own hook
-   on [`loggedin_reached_limit`](#loggedin_reached_limit) or a custom
+   on [`loggedin_reached_limit`](#loggedin-reached-limit) or a custom
    action handler.
 
 For most extensions the cleaner path is to keep the visible logic on a
 built-in mode and add the extra behaviour as a side effect of
-[`loggedin_destroy_all_sessions`](#loggedin_destroy_all_sessions) or
-[`loggedin_login_blocked`](#loggedin_login_blocked).
+[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) or
+[`loggedin_login_blocked`](#loggedin-login-blocked).
 :::
 
 ### `loggedin_admin_script_vars`
@@ -467,7 +467,7 @@ use. If you write your own hook and want to override either, register at
 a higher priority.
 
 ::: tip Bypassed users skip this filter
-If [`loggedin_bypass`](#loggedin_bypass) returns true for the user, the
+If [`loggedin_bypass`](#loggedin-bypass) returns true for the user, the
 limit check short-circuits and `loggedin_reached_limit` is never reached.
 :::
 
@@ -707,7 +707,7 @@ Errors:
 | `404` | `user_not_found` | No user matched the identifier. |
 
 This endpoint also fires
-[`loggedin_destroy_all_sessions`](#loggedin_destroy_all_sessions) on
+[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) on
 success.
 
 #### `POST /loggedin/v1/sessions/destroy-all`
@@ -733,7 +733,7 @@ session cookie (the admin app), that session is re-stamped and
 survives; when authenticated by an application password (as above),
 there is no session to keep, and nobody is exempted.
 
-Fires [`loggedin_logout_all_users`](#loggedin_logout_all_users), not
+Fires [`loggedin_logout_all_users`](#loggedin-logout-all-users), not
 `loggedin_destroy_all_sessions`.
 
 ### Add-ons endpoints

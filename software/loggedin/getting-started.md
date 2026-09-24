@@ -45,12 +45,12 @@ standard auth pipeline:
    is where Loggedin destroys existing sessions to make room for the new one.
 
 The verdict on whether the user is "at the cap" passes through the
-[`loggedin_reached_limit`](/loggedin/developer-docs#loggedin_reached_limit)
+[`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)
 filter, which is what the [Limit Per User](/loggedin/addons/limit-per-user)
 and [Limit Per Role](/loggedin/addons/limit-per-role) add-ons hook into to
 override the global cap on a per-user or per-role basis.
 
-A separate filter, [`loggedin_bypass`](/loggedin/developer-docs#loggedin_bypass),
+A separate filter, [`loggedin_bypass`](/loggedin/developer-docs#loggedin-bypass),
 lets you exempt specific users or roles from the check entirely.
 
 ## What's next

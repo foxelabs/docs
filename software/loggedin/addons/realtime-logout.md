@@ -72,7 +72,7 @@ flushes every pending change on the tab in a single REST call.
 
 ## Related
 
-- [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions)
+- [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
   — the parent's action that fires when admins use Force Logout. Real-time
   Logout is what makes that logout visible to the user without them having
   to refresh.

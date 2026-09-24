@@ -22,7 +22,7 @@ When you submit the form, Loggedin:
    identifiers](#user) below).
 2. Calls `WP_Session_Tokens::get_instance( $user_id )->destroy_all()`, which
    removes every active session token for that user.
-3. Fires the [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions)
+3. Fires the [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
    action so add-ons or custom code can react.
 
 The next time any of that user's devices makes an authenticated request,
@@ -116,9 +116,9 @@ Consequences of that design:
   the same as stock WordPress.
 * **Different hooks fire.** Because there's no per-user loop,
   `loggedin_destroy_all_sessions` does not fire. Add-ons get
-  [`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin_logout_all_users)
+  [`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin-logout-all-users)
   once at trigger time, and
-  [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin_session_invalidated)
+  [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin-session-invalidated)
   for each stale session as it's rejected.
 
 ::: tip Same thing from the command line

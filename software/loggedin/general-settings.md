@@ -102,12 +102,12 @@ is denied.
 Pick this when you'd rather have users sign out of an existing device
 themselves than have Loggedin pre-empt that choice for them. The error
 message can be customised via the
-[`loggedin_error_message`](/loggedin/developer-docs#loggedin_error_message)
+[`loggedin_error_message`](/loggedin/developer-docs#loggedin-error-message)
 filter.
 
 ::: tip Extending the logic list
 Developers can add their own logic modes via the
-[`loggedin_logics`](/loggedin/developer-docs#loggedin_logics) PHP filter.
+[`loggedin_logics`](/loggedin/developer-docs#loggedin-logics) PHP filter.
 New modes appear automatically in the radio group, but adding a mode also
 requires extending the sanitiser — see the developer docs for the full
 pattern.

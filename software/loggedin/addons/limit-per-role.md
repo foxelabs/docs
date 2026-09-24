@@ -68,7 +68,7 @@ cap inherited from a sibling role.
 ## How the cap is enforced
 
 The add-on hooks the parent plugin's
-[`loggedin_reached_limit`](/loggedin/developer-docs#loggedin_reached_limit)
+[`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)
 filter at priority `10`. It overrides the global verdict whenever the user
 holds at least one role with a configured limit.
 
@@ -107,5 +107,5 @@ slugs that aren't currently registered).
 - [General Settings](/loggedin/general-settings) — global fallback limit.
 - [Limit Per User](/loggedin/addons/limit-per-user) — per-user override
   (wins over this add-on).
-- [`loggedin_reached_limit`](/loggedin/developer-docs#loggedin_reached_limit)
+- [`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)
   — the underlying filter.

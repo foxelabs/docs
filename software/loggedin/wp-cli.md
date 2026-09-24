@@ -126,10 +126,10 @@ Success: Destroyed 1 session for editor.
 ```
 
 Destroying all sessions fires
-[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin_destroy_all_sessions),
+[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions),
 the same action the admin panel fires, so add-ons and custom code see
 both paths. A single-session destroy fires
-[`loggedin_destroy_session`](/loggedin/developer-docs#loggedin_destroy_session)
+[`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session)
 instead.
 
 ::: warning `--token` with an empty value is rejected
@@ -165,9 +165,9 @@ storage backend.
 
 Because no per-user loop runs, `loggedin_destroy_all_sessions` does
 **not** fire. Listen for
-[`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin_logout_all_users)
+[`loggedin_logout_all_users`](/loggedin/developer-docs#loggedin-logout-all-users)
 (once, at trigger time) and
-[`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin_session_invalidated)
+[`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin-session-invalidated)
 (per session, as each is rejected) instead.
 
 ::: warning Nobody is exempt on the CLI
@@ -193,7 +193,7 @@ $ wp loggedin settings list
 
 Supports `--format=table|csv|json|yaml`. Settings registered by add-ons
 through
-[`loggedin_settings_defaults`](/loggedin/developer-docs#loggedin_settings_defaults)
+[`loggedin_settings_defaults`](/loggedin/developer-docs#loggedin-settings-defaults)
 appear here automatically.
 
 ## `wp loggedin settings get`
@@ -289,7 +289,7 @@ detail and one-click sign-out.
 
 Add-ons can register their own subcommands under the `wp loggedin`
 namespace on the
-[`loggedin_cli_init`](/loggedin/developer-docs#loggedin_cli_init) action,
+[`loggedin_cli_init`](/loggedin/developer-docs#loggedin-cli-init) action,
 which fires after the core commands are registered.
 
 ```php

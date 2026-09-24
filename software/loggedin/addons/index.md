@@ -129,7 +129,7 @@ slot immediately.
 
 When more than one Loggedin limit add-on is active they hook the same
 filter
-([`loggedin_reached_limit`](/loggedin/developer-docs#loggedin_reached_limit))
+([`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit))
 at different priorities:
 
 | Source | Priority |

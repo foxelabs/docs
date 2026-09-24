@@ -62,7 +62,7 @@ non-admin can't elevate their own limit through a crafted request.
 ## How the cap is enforced
 
 The add-on hooks the parent plugin's
-[`loggedin_reached_limit`](/loggedin/developer-docs#loggedin_reached_limit)
+[`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)
 filter at priority `11`. On each login attempt the parent first builds the
 global verdict; this add-on then reads the target user's meta key and, if
 a positive value is stored, recomputes the verdict using that limit
@@ -90,5 +90,5 @@ that value regardless of any role-level limit configured for them.
   is configured.
 - [Limit Per Role](/loggedin/addons/limit-per-role) — bulk-configure
   limits per WordPress role.
-- [`loggedin_reached_limit`](/loggedin/developer-docs#loggedin_reached_limit)
+- [`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)
   — the underlying filter.
