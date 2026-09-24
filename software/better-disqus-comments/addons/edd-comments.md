@@ -38,7 +38,7 @@ Disqus follows each download's **Allow comments** setting, in its
 
 To hide Disqus on one download, untick **Allow comments** in its
 **Discussion** box. To keep downloads out entirely, add `download` to
-[Exclude post types](/disqus-conditional-load/display#exclude-post-types).
+[Exclude post types](/better-disqus-comments/display#exclude-post-types).
 
 ::: tip Don't see the Discussion box?
 Open **Screen Options** at the top of the download editor and tick
@@ -69,6 +69,6 @@ being active is the switch now.
 
 ## Related
 
-- [Getting Started](/disqus-conditional-load/getting-started#where-disqus-shows)
+- [Getting Started](/better-disqus-comments/getting-started#where-disqus-shows)
   — where Disqus shows.
-- [Addons](/disqus-conditional-load/addons/) — installing and licensing.
+- [Addons](/better-disqus-comments/addons/) — installing and licensing.

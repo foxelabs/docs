@@ -15,12 +15,12 @@ plug into the free plugin's settings page.
 
 | Addon | What it does | Where its settings are |
 | --- | --- | --- |
-| **[Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons)** | Six ready-made styles for the **Load Comments** button, and the Disqus comment count on it. | Comment loading panel |
-| **[Scroll Load](/disqus-conditional-load/addons/scroll-load)** | Start loading Disqus on the visitor's first scroll, so comments are ready when they get there. | Comment loading panel |
-| **[Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments)** | Disqus on product pages — in a new tab, below the description or instead of reviews. | WooCommerce panel |
-| **[Comments for EDD](/disqus-conditional-load/addons/edd-comments)** | Disqus on Easy Digital Downloads product pages. | No settings |
-| **[Comments Widget](/disqus-conditional-load/addons/comments-widget)** | The Disqus thread in a sidebar or footer widget. | Widgets screen |
-| **[Latest Comments Widget](/disqus-conditional-load/addons/latest-comments)** | Your latest Disqus comments in a widget, with avatars and excerpts. | Widgets screen |
+| **[Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)** | Six ready-made styles for the **Load Comments** button, and the Disqus comment count on it. | Comment loading panel |
+| **[Scroll Load](/better-disqus-comments/addons/scroll-load)** | Start loading Disqus on the visitor's first scroll, so comments are ready when they get there. | Comment loading panel |
+| **[Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)** | Disqus on product pages — in a new tab, below the description or instead of reviews. | WooCommerce panel |
+| **[Comments for EDD](/better-disqus-comments/addons/edd-comments)** | Disqus on Easy Digital Downloads product pages. | No settings |
+| **[Comments Widget](/better-disqus-comments/addons/comments-widget)** | The Disqus thread in a sidebar or footer widget. | Widgets screen |
+| **[Latest Comments Widget](/better-disqus-comments/addons/latest-comments)** | Your latest Disqus comments in a widget, with avatars and excerpts. | Widgets screen |
 
 Each addon is sold on its own:
 
@@ -30,7 +30,7 @@ Each addon is sold on its own:
 | 3 | $29.99 | $89.99 |
 | 15 | $89.99 | $269.99 |
 
-The **[Pro Bundle](/disqus-conditional-load/addons/pro-bundle)** includes all
+The **[Pro Bundle](/better-disqus-comments/addons/pro-bundle)** includes all
 of them — and every future addon — from **$34.99 a year**. See
 [dclwp.com/pricing](https://dclwp.com/pricing/) for current prices.
 
@@ -41,7 +41,7 @@ Better Disqus Comments is active.
 ## The Addons tab
 
 **Disqus → Addons** lists every addon, with the
-[Pro Bundle](/disqus-conditional-load/addons/pro-bundle) at the top. Click
+[Pro Bundle](/better-disqus-comments/addons/pro-bundle) at the top. Click
 **Refresh Addons** to reload the list — it's cached for about a day, so do
 this right after a purchase or when a new addon comes out.
 
@@ -100,7 +100,7 @@ typo, an expired license, or no sites left on it — the window stays open with
 the reason. Fix it and try again.
 
 Bought the **Pro Bundle**? Activate it once from the bundle banner instead —
-see [Pro Bundle](/disqus-conditional-load/addons/pro-bundle#activating-the-bundle).
+see [Pro Bundle](/better-disqus-comments/addons/pro-bundle#activating-the-bundle).
 
 ## Deactivating a license
 

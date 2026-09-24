@@ -46,7 +46,7 @@ popular:
       link: https://docs.foxelabs.com/software/loggedin/getting-started
     - title: Better Disqus Comments
       desc: Lazy-loaded Disqus, comment sync and SEO
-      link: https://docs.foxelabs.com/software/disqus-conditional-load/getting-started
+      link: https://docs.foxelabs.com/software/better-disqus-comments/getting-started
     - title: Lazy Load for Comments
       desc: Defer comment loading until asked
       link: https://docs.foxelabs.com/software/lazy-load-for-comments/getting-started

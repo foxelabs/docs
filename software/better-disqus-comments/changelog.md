@@ -12,39 +12,39 @@ numbers, listed at the [bottom](#addons).
 ## 13.0.0
 
 The plugin becomes a complete Disqus plugin of its own, under a new name.
-See [Upgrading](/disqus-conditional-load/upgrading) for what to do on your
+See [Upgrading](/better-disqus-comments/upgrading) for what to do on your
 site.
 
 ### Added
 
 * **Works on its own.** The official *Disqus Comment System* plugin is no
-  longer needed. Enter your [shortname](/disqus-conditional-load/disqus-account#shortname)
+  longer needed. Enter your [shortname](/better-disqus-comments/disqus-account#shortname)
   and comments show — the plugin builds the Disqus embed itself.
-* **[Comment Sync](/disqus-conditional-load/comment-sync)**, ported from the
+* **[Comment Sync](/better-disqus-comments/comment-sync)**, ported from the
   official plugin: Disqus pushes each new comment to your site as it's
   posted, and it's saved as a WordPress comment. It uses the same webhook
   address and signing token, so existing subscriptions keep working.
   API credentials are sent in the request body instead of the URL, so they
   don't end up in server logs.
-* **[Sync past comments](/disqus-conditional-load/comment-sync#sync-past-comments)**
+* **[Sync past comments](/better-disqus-comments/comment-sync#sync-past-comments)**
   — pull in comments from a date range.
-* **[Export comments to Disqus](/disqus-conditional-load/comment-sync#export-comments-to-disqus)**
+* **[Export comments to Disqus](/better-disqus-comments/comment-sync#export-comments-to-disqus)**
   — send your WordPress comments to Disqus. The upload runs on your server,
   so the access token never reaches the browser.
 * **Toolbar menu** — Moderate, Analytics and Disqus Settings links, for users
   who can moderate comments.
-* **[Print the script inline](/disqus-conditional-load/advanced#print-the-script-inline)**
+* **[Print the script inline](/better-disqus-comments/advanced#print-the-script-inline)**
   for caching and minify plugins that break script loading.
-* **[Addons](/disqus-conditional-load/addons/)** tab with the
-  [Pro Bundle](/disqus-conditional-load/addons/pro-bundle): one license key
+* **[Addons](/better-disqus-comments/addons/)** tab with the
+  [Pro Bundle](/better-disqus-comments/addons/pro-bundle): one license key
   for every addon.
 * Settings from the official Disqus plugin — shortname, API keys, sync token,
   inline script — are copied over once on upgrade.
 * A notice for sites that used Disqus Single Sign-On, which isn't supported.
-* Addon extension points: the [`dcl_load_method_options`](/disqus-conditional-load/developer-docs#dcl-load-method-options)
-  filter, `window.dclEmbed` for [custom load methods](/disqus-conditional-load/developer-docs#adding-a-load-method),
-  and the [`dcl.settings.panels`](/disqus-conditional-load/developer-docs#dcl-settings-panels)
-  and [`dcl.settings.loading.fields`](/disqus-conditional-load/developer-docs#dcl-settings-loading-fields)
+* Addon extension points: the [`dcl_load_method_options`](/better-disqus-comments/developer-docs#dcl-load-method-options)
+  filter, `window.dclEmbed` for [custom load methods](/better-disqus-comments/developer-docs#adding-a-load-method),
+  and the [`dcl.settings.panels`](/better-disqus-comments/developer-docs#dcl-settings-panels)
+  and [`dcl.settings.loading.fields`](/better-disqus-comments/developer-docs#dcl-settings-loading-fields)
   settings slots.
 
 ### Changed
@@ -54,11 +54,11 @@ site.
 * The settings page is a top-level **Disqus** menu, just below **Comments**,
   with **Settings**, **Addons** and **Help** tabs and one **Save Changes**
   button.
-* The [mobile loading method](/disqus-conditional-load/comment-loading#on-mobile-devices),
+* The [mobile loading method](/better-disqus-comments/comment-loading#on-mobile-devices),
   a DCL Pro feature before, is now free.
 * DCL Pro is replaced by six addons, sold alone or in the Pro Bundle. See
-  [Upgrading from DCL Pro 11.x](/disqus-conditional-load/upgrading#from-dcl-pro-11-x).
-* Button styles moved to the [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons)
+  [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x).
+* Button styles moved to the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
   addon. Your stored style is kept and applies again once the addon is
   active.
 * Loading methods from inactive addons fall back to **When comments come
@@ -164,7 +164,7 @@ site.
 * **10.1.3** — Comment width in `%` or `px`. Cloudflare Rocket Loader option.
   The thread is centred.
 * **10.1.2** — Checks the user agent is set before reading it.
-* **10.1.1** — [SEO mode](/disqus-conditional-load/seo-mode): search engines
+* **10.1.1** — [SEO mode](/better-disqus-comments/seo-mode): search engines
   get synced WordPress comments, even with lazy loading.
 * **10.1.0** — Output fix. Tested with WordPress 4.2.4.
 * **10.0.7** — Custom post type fixes, a warning when Disqus isn't set up,
@@ -184,9 +184,9 @@ jumping to linked comments, WooCommerce review support and SSL fixes.
 
 | Addon | Version | Notes |
 | --- | --- | --- |
-| [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons) | 1.0.0 | First release. |
-| [Scroll Load](/disqus-conditional-load/addons/scroll-load) | 1.0.0 | First release. |
-| [Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments) | 1.0.0 | First release. New: show Disqus instead of the Reviews tab. |
-| [Comments for EDD](/disqus-conditional-load/addons/edd-comments) | 1.0.0 | First release. Fixes DCL Pro's EDD support, which never took effect. |
-| [Comments Widget](/disqus-conditional-load/addons/comments-widget) | 1.0.0 | First release. Fixes the thread showing twice when the sidebar came after the content. |
-| [Latest Comments Widget](/disqus-conditional-load/addons/latest-comments) | 1.0.0 | First release. One API request for all widgets, per-widget settings, a backup list for Disqus outages. |
+| [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) | 1.0.0 | First release. |
+| [Scroll Load](/better-disqus-comments/addons/scroll-load) | 1.0.0 | First release. |
+| [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments) | 1.0.0 | First release. New: show Disqus instead of the Reviews tab. |
+| [Comments for EDD](/better-disqus-comments/addons/edd-comments) | 1.0.0 | First release. Fixes DCL Pro's EDD support, which never took effect. |
+| [Comments Widget](/better-disqus-comments/addons/comments-widget) | 1.0.0 | First release. Fixes the thread showing twice when the sidebar came after the content. |
+| [Latest Comments Widget](/better-disqus-comments/addons/latest-comments) | 1.0.0 | First release. One API request for all widgets, per-widget settings, a backup list for Disqus outages. |

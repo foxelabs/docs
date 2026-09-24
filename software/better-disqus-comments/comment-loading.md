@@ -21,7 +21,7 @@ scripts, fonts and iframes aren't downloaded at all.
 | **When the visitor clicks a button** | `click` | A **Load Comments** button replaces the thread until it is clicked. |
 | **Immediately (no lazy load)** | `normal` | Disqus loads with the page, like the official Disqus plugin. |
 
-Addons can add more — the [Scroll Load](/disqus-conditional-load/addons/scroll-load)
+Addons can add more — the [Scroll Load](/better-disqus-comments/addons/scroll-load)
 addon adds **As soon as the visitor scrolls**.
 
 ### When comments come into view
@@ -54,7 +54,7 @@ The button label. Plain text only — HTML is escaped. Don't leave it empty: an
 empty value is saved as is and the button has no label.
 
 ::: tip Show the comment count on the button
-With the [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons)
+With the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
 addon the label becomes *"Load Comments (12)"*, and you can pick one of six
 ready-made button styles.
 :::
@@ -114,13 +114,13 @@ script in the footer then waits for the trigger and injects
 
 Disqus is never loaded twice, and a `disqus_config` function your site
 defines is still called, after the plugin's own — see
-[Developer Docs](/disqus-conditional-load/developer-docs#disqus-config).
+[Developer Docs](/better-disqus-comments/developer-docs#disqus-config).
 
 ## Related
 
-- [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons) —
+- [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) —
   button styles and the comment count on the button.
-- [Scroll Load](/disqus-conditional-load/addons/scroll-load) — start loading
+- [Scroll Load](/better-disqus-comments/addons/scroll-load) — start loading
   on the first scroll.
-- [Advanced](/disqus-conditional-load/advanced) — Cloudflare Rocket Loader
+- [Advanced](/better-disqus-comments/advanced) — Cloudflare Rocket Loader
   and caching or minify plugins that break loading.

@@ -33,11 +33,11 @@ Stop comments from loading on every page view. They load **on scroll or on click
 
 Put [Disqus](https://disqus.com/) comments on your site without the weight. Disqus loads **on scroll or on click**, comments sync into WordPress, and search engines can index them. Formerly *Disqus Conditional Load*.
 
-- 🚀 **[Getting Started](./disqus-conditional-load/getting-started)** — Install and connect your Disqus site
-- ⚙️ **[Comment Loading](./disqus-conditional-load/comment-loading)** — On scroll, on click, or straight away
-- 🔄 **[Comment Sync](./disqus-conditional-load/comment-sync)** — Keep a copy of your comments in WordPress
-- 🧩 **[Addons](./disqus-conditional-load/addons/)** — WooCommerce, EDD, widgets and the Pro Bundle
-- 🧑‍💻 **[Developer Docs](./disqus-conditional-load/developer-docs)** — Hooks, filters and REST endpoints
+- 🚀 **[Getting Started](./better-disqus-comments/getting-started)** — Install and connect your Disqus site
+- ⚙️ **[Comment Loading](./better-disqus-comments/comment-loading)** — On scroll, on click, or straight away
+- 🔄 **[Comment Sync](./better-disqus-comments/comment-sync)** — Keep a copy of your comments in WordPress
+- 🧩 **[Addons](./better-disqus-comments/addons/)** — WooCommerce, EDD, widgets and the Pro Bundle
+- 🧑‍💻 **[Developer Docs](./better-disqus-comments/developer-docs)** — Hooks, filters and REST endpoints
 
 ### WordPress Libraries
 

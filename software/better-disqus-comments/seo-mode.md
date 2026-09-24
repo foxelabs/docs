@@ -11,7 +11,7 @@ when someone scrolls or clicks, which a crawler never does.
 
 **SEO mode** fixes that. Search engine bots never get the Disqus embed.
 Instead they get your theme's own WordPress comment list — filled with your
-Disqus comments by [Comment Sync](/disqus-conditional-load/comment-sync).
+Disqus comments by [Comment Sync](/better-disqus-comments/comment-sync).
 People still get Disqus, lazy loaded as usual.
 
 SEO mode is on by default. It needs nothing else to work, but without sync
@@ -21,9 +21,9 @@ there are usually no WordPress comments to show crawlers.
 
 ## Set it up
 
-1. Set up [Comment Sync](/disqus-conditional-load/comment-sync) so new Disqus
+1. Set up [Comment Sync](/better-disqus-comments/comment-sync) so new Disqus
    comments are copied into WordPress.
-2. Run [Sync past comments](/disqus-conditional-load/comment-sync#sync-past-comments)
+2. Run [Sync past comments](/better-disqus-comments/comment-sync#sync-past-comments)
    to bring in the comments you already have.
 3. Leave **Advanced → Load comments for search engine bots** off (the
    default).
@@ -32,7 +32,7 @@ there are usually no WordPress comments to show crawlers.
 
 | Visitor | Gets |
 | --- | --- |
-| A person | The Disqus thread, loaded by your [loading method](/disqus-conditional-load/comment-loading) |
+| A person | The Disqus thread, loaded by your [loading method](/better-disqus-comments/comment-loading) |
 | A search engine bot | Your theme's normal comments area, listing the approved WordPress comments — including every synced Disqus comment |
 
 A visitor counts as a bot when its user agent contains `bot`, `crawl`,
@@ -75,7 +75,7 @@ people.
 ## Customising
 
 Developers can take full control of the decision with the
-[`dcl_can_load`](/disqus-conditional-load/developer-docs#dcl-can-load) filter —
+[`dcl_can_load`](/better-disqus-comments/developer-docs#dcl-can-load) filter —
 for example to treat another user agent as a bot:
 
 ```php
@@ -89,7 +89,7 @@ add_filter( 'dcl_can_load', function ( $can_load ) {
 
 ## Related
 
-- [Comment Sync](/disqus-conditional-load/comment-sync) — what fills the
+- [Comment Sync](/better-disqus-comments/comment-sync) — what fills the
   WordPress comment list.
-- [Advanced](/disqus-conditional-load/advanced) — the other compatibility
+- [Advanced](/better-disqus-comments/advanced) — the other compatibility
   switches.

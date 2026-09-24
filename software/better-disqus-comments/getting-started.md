@@ -31,7 +31,7 @@ optional:
 The plugin was called **Disqus Conditional Load** until version 13. The slug
 (`disqus-conditional-load`), settings and hooks are unchanged, so existing
 sites and custom code keep working. Coming from the official Disqus plugin or
-DCL Pro? See [Upgrading](/disqus-conditional-load/upgrading).
+DCL Pro? See [Upgrading](/better-disqus-comments/upgrading).
 :::
 
 [[toc]]
@@ -54,7 +54,7 @@ Or download the ZIP from
 upload it under **Plugins → Add New → Upload Plugin**.
 
 If the official *Disqus Comment System* plugin is active, see
-[Upgrading from the official Disqus plugin](/disqus-conditional-load/upgrading#from-the-official-disqus-plugin)
+[Upgrading from the official Disqus plugin](/better-disqus-comments/upgrading#from-the-official-disqus-plugin)
 before you deactivate it — your settings are copied over automatically, but
 only while its data is still there.
 
@@ -72,7 +72,7 @@ screen shows a reminder:
 3. Click **Save Changes**.
 
 That's it — open any post with comments enabled and scroll down. See
-[Disqus Account](/disqus-conditional-load/disqus-account) for finding your
+[Disqus Account](/better-disqus-comments/disqus-account) for finding your
 shortname and what the other keys are for.
 
 ## The settings page
@@ -83,12 +83,12 @@ tabs:
 | Tab | What it has |
 | --- | --- |
 | **Settings** | Five panels — **Disqus**, **Comment loading**, **Display**, **Comment sync** and **Advanced** — plus panels added by addons. One **Save Changes** button at the bottom saves them all. |
-| **Addons** | The addon catalogue and the [Pro Bundle](/disqus-conditional-load/addons/pro-bundle): buy, download and activate licenses. |
+| **Addons** | The addon catalogue and the [Pro Bundle](/better-disqus-comments/addons/pro-bundle): buy, download and activate licenses. |
 | **Help** | Links to these docs, the support forum and priority support. |
 
 The page needs the `manage_options` capability by default (administrators).
 Developers can change that with the
-[`DCL_ACCESS`](/disqus-conditional-load/developer-docs#capability) constant.
+[`DCL_ACCESS`](/better-disqus-comments/developer-docs#capability) constant.
 
 ## Where Disqus shows
 
@@ -99,16 +99,16 @@ the **Comments** block in block themes — on posts where all of these are true:
 - Comments are open on that post.
 - The post is published (not a draft, scheduled, pending or trashed).
 - Its post type isn't in **Exclude post types** on the
-  [Display](/disqus-conditional-load/display#exclude-post-types) panel.
+  [Display](/better-disqus-comments/display#exclude-post-types) panel.
 - The visitor isn't a search engine bot — bots get
-  [SEO mode](/disqus-conditional-load/seo-mode) instead.
+  [SEO mode](/better-disqus-comments/seo-mode) instead.
 
 WooCommerce products are left alone so product reviews keep working. The
-[Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments)
+[Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)
 addon puts Disqus on product pages.
 
 To place the thread somewhere else in your content, use the `[dcl-comments]`
-[shortcode](/disqus-conditional-load/developer-docs#shortcodes).
+[shortcode](/better-disqus-comments/developer-docs#shortcodes).
 
 ## The toolbar menu
 
@@ -127,15 +127,15 @@ core **Comments** menu is left in place.
 
 ## What's next
 
-- [Comment Loading](/disqus-conditional-load/comment-loading) — pick when
+- [Comment Loading](/better-disqus-comments/comment-loading) — pick when
   Disqus loads, on desktop and on mobile.
-- [Display](/disqus-conditional-load/display) — comment counts, excluded post
+- [Display](/better-disqus-comments/display) — comment counts, excluded post
   types and the width of the thread.
-- [Comment Sync](/disqus-conditional-load/comment-sync) — keep a copy of your
+- [Comment Sync](/better-disqus-comments/comment-sync) — keep a copy of your
   Disqus comments in WordPress.
-- [SEO Mode](/disqus-conditional-load/seo-mode) — let search engines index
+- [SEO Mode](/better-disqus-comments/seo-mode) — let search engines index
   your comments.
-- [Addons](/disqus-conditional-load/addons/) — WooCommerce, EDD, widgets and
+- [Addons](/better-disqus-comments/addons/) — WooCommerce, EDD, widgets and
   more.
-- [Developer Docs](/disqus-conditional-load/developer-docs) — hooks,
+- [Developer Docs](/better-disqus-comments/developer-docs) — hooks,
   shortcodes and REST endpoints.

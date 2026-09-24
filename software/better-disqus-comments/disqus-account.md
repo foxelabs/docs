@@ -7,7 +7,7 @@ description: Connect Better Disqus Comments to your Disqus site with a shortname
 
 Better Disqus Comments talks to Disqus directly. Showing comments needs only
 your site's **shortname**. The API keys are optional and only needed for
-[Comment Sync](/disqus-conditional-load/comment-sync) and a few addons.
+[Comment Sync](/better-disqus-comments/comment-sync) and a few addons.
 
 [[toc]]
 
@@ -49,9 +49,9 @@ While no shortname is saved:
 
 | Field | Key | Needed for |
 | --- | --- | --- |
-| **Public key** | `public_key` | [Comment Sync](/disqus-conditional-load/comment-sync), the [Latest Comments Widget](/disqus-conditional-load/addons/latest-comments), the comment count on [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons) |
-| **Secret key** | `secret_key` | [Comment Sync](/disqus-conditional-load/comment-sync) |
-| **Admin access token** | `access_token` | [Comment Sync](/disqus-conditional-load/comment-sync) |
+| **Public key** | `public_key` | [Comment Sync](/better-disqus-comments/comment-sync), the [Latest Comments Widget](/better-disqus-comments/addons/latest-comments), the comment count on [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) |
+| **Secret key** | `secret_key` | [Comment Sync](/better-disqus-comments/comment-sync) |
+| **Admin access token** | `access_token` | [Comment Sync](/better-disqus-comments/comment-sync) |
 
 All three come from a Disqus **API application**:
 
@@ -95,7 +95,7 @@ at the bottom of the screen confirms the save: *"Settings saved."*
 
 ## Related
 
-- [Comment Sync](/disqus-conditional-load/comment-sync) — what the API keys
+- [Comment Sync](/better-disqus-comments/comment-sync) — what the API keys
   unlock.
-- [Upgrading](/disqus-conditional-load/upgrading) — how the shortname and keys
+- [Upgrading](/better-disqus-comments/upgrading) — how the shortname and keys
   are carried over from the official Disqus plugin.

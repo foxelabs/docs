@@ -10,7 +10,7 @@ your WordPress database too, as regular WordPress comments:
 
 - **Your data stays yours.** If you ever leave Disqus, the comments are
   already in WordPress.
-- **Search engines can read them.** [SEO mode](/disqus-conditional-load/seo-mode)
+- **Search engines can read them.** [SEO mode](/better-disqus-comments/seo-mode)
   shows the synced comments to crawlers.
 - **It's instant.** Disqus pushes each new comment to your site as it's
   posted. There's no scheduled job and no polling, so it doesn't use up your
@@ -25,7 +25,7 @@ has two one-off tools: [pull in past comments](#sync-past-comments) and
 ## Set up sync
 
 You need a Disqus API application — see
-[API keys](/disqus-conditional-load/disqus-account#api-keys).
+[API keys](/better-disqus-comments/disqus-account#api-keys).
 
 1. In **Disqus → Settings → Comment sync**, enter the **Public key**,
    **Secret key** and **Admin access token**.
@@ -39,7 +39,7 @@ posted on Disqus now appear under **Comments** in WordPress within seconds.
 ::: tip Upgrading from the official Disqus plugin?
 If sync was already set up there, it keeps working — the webhook address and
 signing token are carried over. See
-[Upgrading](/disqus-conditional-load/upgrading#from-the-official-disqus-plugin).
+[Upgrading](/better-disqus-comments/upgrading#from-the-official-disqus-plugin).
 :::
 
 ## Sync status
@@ -164,7 +164,7 @@ forum.
 
 **Last event says the forum doesn't match.** The comment came from a Disqus
 site with a different shortname than the one saved. Check the
-[shortname](/disqus-conditional-load/disqus-account#shortname).
+[shortname](/better-disqus-comments/disqus-account#shortname).
 
 **"No post found for Disqus thread".** The Disqus thread doesn't belong to a
 post on this site — usually a post that was deleted, or a thread created on a
@@ -172,9 +172,9 @@ staging copy.
 
 ## Related
 
-- [Disqus Account](/disqus-conditional-load/disqus-account) — getting the API
+- [Disqus Account](/better-disqus-comments/disqus-account) — getting the API
   keys.
-- [SEO Mode](/disqus-conditional-load/seo-mode) — showing synced comments to
+- [SEO Mode](/better-disqus-comments/seo-mode) — showing synced comments to
   search engines.
-- [Developer Docs](/disqus-conditional-load/developer-docs#sync) — the
+- [Developer Docs](/better-disqus-comments/developer-docs#sync) — the
   webhook endpoint and the `dcl_comment_synced` action.

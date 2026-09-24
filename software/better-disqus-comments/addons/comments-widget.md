@@ -19,12 +19,12 @@ post content. It's lazy loaded like everywhere else on your site.
 4. Save.
 
 The widget has no other settings. Loading method, button and width come from
-the [plugin settings](/disqus-conditional-load/comment-loading).
+the [plugin settings](/better-disqus-comments/comment-loading).
 
 ## Where it shows
 
 The widget shows only where Disqus can load — on single posts with comments
-open (see [Where Disqus shows](/disqus-conditional-load/getting-started#where-disqus-shows)).
+open (see [Where Disqus shows](/better-disqus-comments/getting-started#where-disqus-shows)).
 Everywhere else, archives included, it shows nothing at all, not even its
 title.
 
@@ -82,7 +82,7 @@ the addon fixes that.
 
 ## Related
 
-- [Latest Comments Widget](/disqus-conditional-load/addons/latest-comments) —
+- [Latest Comments Widget](/better-disqus-comments/addons/latest-comments) —
   a list of recent comments instead of the thread.
-- [Comment Loading](/disqus-conditional-load/comment-loading) — how the
+- [Comment Loading](/better-disqus-comments/comment-loading) — how the
   thread loads.

@@ -109,7 +109,7 @@ The built-in rules, in order: a shortname is set; not a feed;
 [`dsq_can_load`](#dsq-can-load) doesn't return `false`; a singular view of a
 post; comments open; the post isn't a draft, pending, scheduled, auto-draft
 or trashed; the post type isn't [excluded](#dcl-excluded-cpts); and the
-visitor isn't a bot, unless [caching support](/disqus-conditional-load/seo-mode#load-comments-for-search-engine-bots)
+visitor isn't a bot, unless [caching support](/better-disqus-comments/seo-mode#load-comments-for-search-engine-bots)
 is on.
 
 ```php
@@ -129,7 +129,7 @@ When it returns `false`, the theme's normal WordPress comments show instead.
 ### `dcl_excluded_cpts`
 
 Filter. Post types that never show Disqus: the
-[Exclude post types](/disqus-conditional-load/display#exclude-post-types)
+[Exclude post types](/better-disqus-comments/display#exclude-post-types)
 setting, plus `product` while WooCommerce review support is on.
 
 ```php
@@ -144,7 +144,7 @@ add_filter( 'dcl_excluded_cpts', function ( $cpts ) {
 Filter. Default `true`: WooCommerce products keep their own reviews template
 and are excluded from Disqus. Return `false` to let Disqus replace product
 reviews. The
-[Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments)
+[Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)
 addon uses this.
 
 ### `dsq_can_load`
@@ -237,13 +237,13 @@ Filter. The button label. Escaped on output — plain text only.
 ### `dcl_button_class`
 
 Filter. The button's CSS classes: the
-[Button CSS classes](/disqus-conditional-load/comment-loading#button-css-classes)
+[Button CSS classes](/better-disqus-comments/comment-loading#button-css-classes)
 setting plus the selected style.
 
 ### `dcl_button_styles`
 
 Filter. Registered button styles, as `class => label`. Empty in the free
-plugin; the [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons)
+plugin; the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
 addon registers its six here. A stored style only takes effect while it's
 registered.
 
@@ -251,7 +251,7 @@ registered.
 
 Action. Fires where the theme's comments area was blanked — when the
 [shortcode](#shortcodes) or the
-[Comments Widget](/disqus-conditional-load/addons/comments-widget) shows the
+[Comments Widget](/better-disqus-comments/addons/comments-widget) shows the
 thread elsewhere.
 
 ### Templates
@@ -357,7 +357,7 @@ Filter. The whole `window.dclData` object passed to the front-end script:
 
 Filter. Whether comment-count markers and Disqus's `count.js` are output on
 this request. Default: a shortname is set,
-[counts are on](/disqus-conditional-load/display#show-disqus-comment-counts),
+[counts are on](/better-disqus-comments/display#show-disqus-comment-counts),
 not a feed, and [`dsq_can_load`](#dsq-can-load) allows `'count'`.
 
 The plugin wraps the output of WordPress's `comments_number` in
@@ -367,7 +367,7 @@ around those markers into Disqus count links.
 ## Adding a load method
 
 Addons can add a loading method in three steps — this is how
-[Scroll Load](/disqus-conditional-load/addons/scroll-load) works.
+[Scroll Load](/better-disqus-comments/addons/scroll-load) works.
 
 1. **Offer it** in the settings:
 
@@ -424,12 +424,12 @@ add_action( 'dcl_comment_synced', function ( $comment_id, $data, $verb ) {
 | `$data` | `array` | The comment as Disqus sent it. |
 | `$verb` | `string` | `create`, `update` or `force_sync`. |
 
-It doesn't fire for [Sync past comments](/disqus-conditional-load/comment-sync#sync-past-comments).
+It doesn't fire for [Sync past comments](/better-disqus-comments/comment-sync#sync-past-comments).
 
 ### `dcl_export_post_types`
 
 Filter. Post types whose comments are
-[exported to Disqus](/disqus-conditional-load/comment-sync#export-comments-to-disqus).
+[exported to Disqus](/better-disqus-comments/comment-sync#export-comments-to-disqus).
 Default: public post types that support comments.
 
 ## Settings screen
@@ -563,7 +563,7 @@ add_filter( 'dcl_register_addon', function ( $addons ) {
 } );
 ```
 
-Premium addons are licensed by the [Pro Bundle](/disqus-conditional-load/addons/pro-bundle)
+Premium addons are licensed by the [Pro Bundle](/better-disqus-comments/addons/pro-bundle)
 automatically.
 
 ### `dcl_addons_catalog`
@@ -632,20 +632,20 @@ subscription handshake), `create`, `update` and `force_sync`; others get
 
 | Key | Default | Setting |
 | --- | --- | --- |
-| `dcl_type` | `scroll` | [Load comments](/disqus-conditional-load/comment-loading#load-comments) |
-| `dcl_type_mob` | `''` | [On mobile devices](/disqus-conditional-load/comment-loading#on-mobile-devices) |
-| `dcl_btn_txt` | `Load Comments` | [Button text](/disqus-conditional-load/comment-loading#button-text) |
-| `dcl_btn_class` | `''` | [Button CSS classes](/disqus-conditional-load/comment-loading#button-css-classes) |
-| `dcl_message` | `Loading...` | [Loading message](/disqus-conditional-load/comment-loading#loading-message) |
-| `dcl_btn_style` | `''` | [Button style](/disqus-conditional-load/addons/advanced-buttons#button-style) |
-| `dcl_btn_count` | `0` | [Comment count on the button](/disqus-conditional-load/addons/advanced-buttons#show-the-comment-count-on-the-button) |
-| `dcl_count_disable` | `1` | [Show Disqus comment counts](/disqus-conditional-load/display#show-disqus-comment-counts) — `1` means **on** |
-| `dcl_cpt_exclude` | `''` | [Exclude post types](/disqus-conditional-load/display#exclude-post-types) |
-| `dcl_div_width` | `''` | [Comments width](/disqus-conditional-load/display#comments-width) |
+| `dcl_type` | `scroll` | [Load comments](/better-disqus-comments/comment-loading#load-comments) |
+| `dcl_type_mob` | `''` | [On mobile devices](/better-disqus-comments/comment-loading#on-mobile-devices) |
+| `dcl_btn_txt` | `Load Comments` | [Button text](/better-disqus-comments/comment-loading#button-text) |
+| `dcl_btn_class` | `''` | [Button CSS classes](/better-disqus-comments/comment-loading#button-css-classes) |
+| `dcl_message` | `Loading...` | [Loading message](/better-disqus-comments/comment-loading#loading-message) |
+| `dcl_btn_style` | `''` | [Button style](/better-disqus-comments/addons/advanced-buttons#button-style) |
+| `dcl_btn_count` | `0` | [Comment count on the button](/better-disqus-comments/addons/advanced-buttons#show-the-comment-count-on-the-button) |
+| `dcl_count_disable` | `1` | [Show Disqus comment counts](/better-disqus-comments/display#show-disqus-comment-counts) — `1` means **on** |
+| `dcl_cpt_exclude` | `''` | [Exclude post types](/better-disqus-comments/display#exclude-post-types) |
+| `dcl_div_width` | `''` | [Comments width](/better-disqus-comments/display#comments-width) |
 | `dcl_div_width_type` | `px` | Width unit |
-| `dcl_caching` | `0` | [Load comments for search engine bots](/disqus-conditional-load/advanced#load-comments-for-search-engine-bots) |
-| `dcl_cfasync` | `0` | [Cloudflare Rocket Loader compatibility](/disqus-conditional-load/advanced#cloudflare-rocket-loader-compatibility) |
-| `dcl_render_inline` | `0` | [Print the script inline](/disqus-conditional-load/advanced#print-the-script-inline) |
+| `dcl_caching` | `0` | [Load comments for search engine bots](/better-disqus-comments/advanced#load-comments-for-search-engine-bots) |
+| `dcl_cfasync` | `0` | [Cloudflare Rocket Loader compatibility](/better-disqus-comments/advanced#cloudflare-rocket-loader-compatibility) |
+| `dcl_render_inline` | `0` | [Print the script inline](/better-disqus-comments/advanced#print-the-script-inline) |
 
 Switches are stored as `0` or `1`.
 

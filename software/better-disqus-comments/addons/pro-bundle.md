@@ -8,12 +8,12 @@ description: Every Better Disqus Comments addon, and every future one, under one
 The **Pro Bundle** is every Better Disqus Comments addon in one plan, with
 one license key:
 
-- [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons)
-- [Scroll Load](/disqus-conditional-load/addons/scroll-load)
-- [Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments)
-- [Comments for EDD](/disqus-conditional-load/addons/edd-comments)
-- [Comments Widget](/disqus-conditional-load/addons/comments-widget)
-- [Latest Comments Widget](/disqus-conditional-load/addons/latest-comments)
+- [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
+- [Scroll Load](/better-disqus-comments/addons/scroll-load)
+- [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)
+- [Comments for EDD](/better-disqus-comments/addons/edd-comments)
+- [Comments Widget](/better-disqus-comments/addons/comments-widget)
+- [Latest Comments Widget](/better-disqus-comments/addons/latest-comments)
 
 **Future addons are included** at no extra cost, for as long as your license
 is valid.
@@ -43,7 +43,7 @@ to your [Freemius account](https://users.freemius.com/).
 
 One key licenses every addon on the site:
 
-1. [Download and install](/disqus-conditional-load/addons/#installing-an-addon)
+1. [Download and install](/better-disqus-comments/addons/#installing-an-addon)
    the addons you want. Install at least one before activating — the bundle
    has nothing to license otherwise.
 2. Open **Disqus → Addons**.
@@ -91,7 +91,7 @@ support until you renew.
 
 ## Related
 
-- [Addons](/disqus-conditional-load/addons/) — installing addons and
+- [Addons](/better-disqus-comments/addons/) — installing addons and
   single-addon licenses.
-- [Upgrading from DCL Pro 11.x](/disqus-conditional-load/upgrading#from-dcl-pro-11-x)
+- [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x)
   — existing DCL Pro customers.

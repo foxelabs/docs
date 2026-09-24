@@ -6,7 +6,7 @@ description: Six ready-made styles for the Load Comments button, and the Disqus 
 # Advanced Buttons
 
 The **Advanced Buttons** addon improves the **Load Comments** button that the
-[click loading method](/disqus-conditional-load/comment-loading#when-the-visitor-clicks-a-button)
+[click loading method](/better-disqus-comments/comment-loading#when-the-visitor-clicks-a-button)
 shows:
 
 - **Button styles** — six ready-made looks instead of your theme's default
@@ -49,7 +49,7 @@ your theme's CSS:
 }
 ```
 
-Your own [Button CSS classes](/disqus-conditional-load/comment-loading#button-css-classes)
+Your own [Button CSS classes](/better-disqus-comments/comment-loading#button-css-classes)
 are still added next to the style's classes.
 
 ## Show the comment count on the button
@@ -62,7 +62,7 @@ Posts Disqus has no thread for yet — nobody has opened their comments — keep
 the plain label.
 
 The count needs your Disqus
-[public API key](/disqus-conditional-load/disqus-account#api-keys). Without
+[public API key](/better-disqus-comments/disqus-account#api-keys). Without
 one, the toggle's help text says so and the label is left alone.
 
 ### Caching
@@ -72,7 +72,7 @@ so most page views make no API request. A failed lookup is remembered for 15
 minutes, so a post Disqus doesn't know yet doesn't cost a request on every
 view. The cached count for a post is cleared when a comment is added to or
 deleted from it in WordPress — for example by
-[Comment Sync](/disqus-conditional-load/comment-sync).
+[Comment Sync](/better-disqus-comments/comment-sync).
 
 ## Developer hooks
 
@@ -110,6 +110,6 @@ settings and the same count cache as DCL Pro 11.x.
 
 ## Related
 
-- [Comment Loading](/disqus-conditional-load/comment-loading) — the button
+- [Comment Loading](/better-disqus-comments/comment-loading) — the button
   text, classes and loading message.
-- [Addons](/disqus-conditional-load/addons/) — installing and licensing.
+- [Addons](/better-disqus-comments/addons/) — installing and licensing.

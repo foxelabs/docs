@@ -11,7 +11,7 @@ lists them: who commented, a short excerpt, and a link straight to the
 comment.
 
 It needs your Disqus
-[public API key](/disqus-conditional-load/disqus-account#api-keys).
+[public API key](/better-disqus-comments/disqus-account#api-keys).
 
 [[toc]]
 
@@ -52,7 +52,7 @@ The widget never slows your pages with API requests:
   can't be reached, or your API limit is used up, the widget keeps showing it.
 - **Back-off on errors.** After a failed request with no backup, the widget
   waits a minute before trying again, instead of trying on every page view.
-- **Instant with sync.** With [Comment Sync](/disqus-conditional-load/comment-sync)
+- **Instant with sync.** With [Comment Sync](/better-disqus-comments/comment-sync)
   on, the cache is cleared whenever a new comment arrives.
 
 The Disqus API allows 1,000 requests an hour per key, shared with everything
@@ -110,7 +110,7 @@ request for every comment it showed.
 
 ## Related
 
-- [Comments Widget](/disqus-conditional-load/addons/comments-widget) — the
+- [Comments Widget](/better-disqus-comments/addons/comments-widget) — the
   full thread in a widget.
-- [Comment Sync](/disqus-conditional-load/comment-sync) — keeps the list
+- [Comment Sync](/better-disqus-comments/comment-sync) — keeps the list
   instantly up to date.

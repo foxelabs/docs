@@ -68,7 +68,7 @@ Advanced** — WooCommerce's name for "comments open". Tick it on the products
 that should show Disqus, for any of the three placements.
 
 If you added `product` to
-[Exclude post types](/disqus-conditional-load/display#exclude-post-types),
+[Exclude post types](/better-disqus-comments/display#exclude-post-types),
 that wins: no product shows Disqus.
 
 ## Block themes
@@ -100,7 +100,7 @@ stored outside the four options shows as the nearest one.
 
 ## Related
 
-- [Display](/disqus-conditional-load/display#exclude-post-types) — excluded
+- [Display](/better-disqus-comments/display#exclude-post-types) — excluded
   post types.
-- [Developer Docs](/disqus-conditional-load/developer-docs#dcl-woocommerce-review-support)
+- [Developer Docs](/better-disqus-comments/developer-docs#dcl-woocommerce-review-support)
   — the `dcl_woocommerce_review_support` filter.

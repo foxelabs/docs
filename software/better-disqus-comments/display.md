@@ -63,7 +63,7 @@ are `page`.
 ::: tip WooCommerce products
 Products are always left out while WooCommerce is active, so product reviews
 keep working, even though `product` isn't in this list. The
-[Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments)
+[Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)
 addon brings Disqus to product pages. If you add `product` here yourself, the
 addon respects it.
 :::
@@ -87,7 +87,7 @@ When set, the plugin adds this CSS on pages where Disqus loads:
 
 ## Related
 
-- [Comment Loading](/disqus-conditional-load/comment-loading) — when Disqus
+- [Comment Loading](/better-disqus-comments/comment-loading) — when Disqus
   loads.
-- [Developer Docs](/disqus-conditional-load/developer-docs#loading-and-detection)
+- [Developer Docs](/better-disqus-comments/developer-docs#loading-and-detection)
   — the `dcl_excluded_cpts` and `dcl_can_count` filters.

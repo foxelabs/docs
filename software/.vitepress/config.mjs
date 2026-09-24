@@ -125,27 +125,27 @@ export default defineConfig({
         items: [
           {
             text: 'Getting Started',
-            link: '/disqus-conditional-load/getting-started',
+            link: '/better-disqus-comments/getting-started',
           },
           {
             text: 'Disqus Account',
-            link: '/disqus-conditional-load/disqus-account',
+            link: '/better-disqus-comments/disqus-account',
           },
           {
             text: 'Comment Loading',
-            link: '/disqus-conditional-load/comment-loading',
+            link: '/better-disqus-comments/comment-loading',
           },
-          { text: 'Display', link: '/disqus-conditional-load/display' },
+          { text: 'Display', link: '/better-disqus-comments/display' },
           {
             text: 'Comment Sync',
-            link: '/disqus-conditional-load/comment-sync',
+            link: '/better-disqus-comments/comment-sync',
           },
-          { text: 'SEO Mode', link: '/disqus-conditional-load/seo-mode' },
-          { text: 'Advanced', link: '/disqus-conditional-load/advanced' },
-          { text: 'Upgrading', link: '/disqus-conditional-load/upgrading' },
+          { text: 'SEO Mode', link: '/better-disqus-comments/seo-mode' },
+          { text: 'Advanced', link: '/better-disqus-comments/advanced' },
+          { text: 'Upgrading', link: '/better-disqus-comments/upgrading' },
           {
             text: 'Addons',
-            base: '/disqus-conditional-load/addons',
+            base: '/better-disqus-comments/addons',
             collapsed: true,
             items: [
               { text: 'Overview', link: '/' },
@@ -163,9 +163,9 @@ export default defineConfig({
           },
           {
             text: 'Developer Docs',
-            link: '/disqus-conditional-load/developer-docs',
+            link: '/better-disqus-comments/developer-docs',
           },
-          { text: 'Changelog', link: '/disqus-conditional-load/changelog' },
+          { text: 'Changelog', link: '/better-disqus-comments/changelog' },
         ],
       },
       {

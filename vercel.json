@@ -26,6 +26,16 @@
       "permanent": true
     },
     {
+      "source": "/software/disqus-conditional-load",
+      "destination": "/software/better-disqus-comments/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/software/disqus-conditional-load/:path*",
+      "destination": "/software/better-disqus-comments/:path*",
+      "permanent": true
+    },
+    {
       "source": "/software/404-to-301",
       "destination": "https://foxelabs.com/software/plugins/404-to-301",
       "permanent": true

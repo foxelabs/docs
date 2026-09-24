@@ -17,9 +17,9 @@ default — turn one on only when you have the problem it solves.
 > By default Disqus is hidden from crawlers. Turn this on if you use page
 > caching, so cached pages still include the comments.
 
-Turning this on switches [SEO mode](/disqus-conditional-load/seo-mode) off:
+Turning this on switches [SEO mode](/better-disqus-comments/seo-mode) off:
 bots get the Disqus embed like people do. See
-[Page caching](/disqus-conditional-load/seo-mode#page-caching) for when you
+[Page caching](/better-disqus-comments/seo-mode#page-caching) for when you
 need it and the alternative.
 
 ## Cloudflare Rocket Loader compatibility
@@ -65,11 +65,11 @@ this turned on automatically when they upgrade.
 Work through these in order:
 
 1. **Check the shortname.** A typo shows a Disqus error in the thread. See
-   [Shortname](/disqus-conditional-load/disqus-account#shortname).
+   [Shortname](/better-disqus-comments/disqus-account#shortname).
 2. **Check the post.** Comments must be open, and the post type not
-   [excluded](/disqus-conditional-load/display#exclude-post-types).
+   [excluded](/better-disqus-comments/display#exclude-post-types).
 3. **Switch to Immediately** under
-   [Comment loading](/disqus-conditional-load/comment-loading). If comments
+   [Comment loading](/better-disqus-comments/comment-loading). If comments
    now load, a script optimiser is interfering with lazy loading.
 4. **Exclude the script from optimisation.** In your caching or minify
    plugin, exclude `disqus-conditional-load/build/embed.js` from combining,
@@ -83,7 +83,7 @@ with a link to a post where it happens.
 
 ## Related
 
-- [SEO Mode](/disqus-conditional-load/seo-mode) — what the bots switch
+- [SEO Mode](/better-disqus-comments/seo-mode) — what the bots switch
   changes.
-- [Comment Loading](/disqus-conditional-load/comment-loading) — the loading
+- [Comment Loading](/better-disqus-comments/comment-loading) — the loading
   methods.

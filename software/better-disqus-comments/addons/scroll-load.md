@@ -6,7 +6,7 @@ description: Start loading Disqus on the visitor's first scroll, so comments are
 # Scroll Load
 
 The **Scroll Load** addon adds one more
-[loading method](/disqus-conditional-load/comment-loading): **As soon as the
+[loading method](/better-disqus-comments/comment-loading): **As soon as the
 visitor scrolls**.
 
 The built-in **When comments come into view** waits until the visitor reaches
@@ -19,7 +19,7 @@ they're usually ready.
 
 ## Setting it up
 
-1. [Install and activate](/disqus-conditional-load/addons/#installing-an-addon)
+1. [Install and activate](/better-disqus-comments/addons/#installing-an-addon)
    the addon.
 2. Go to **Disqus → Settings → Comment loading**.
 3. Under **Load comments** — or **On mobile devices** — choose **As soon as
@@ -59,7 +59,7 @@ works again.
 
 ## Related
 
-- [Comment Loading](/disqus-conditional-load/comment-loading) — all loading
+- [Comment Loading](/better-disqus-comments/comment-loading) — all loading
   methods.
-- [Developer Docs](/disqus-conditional-load/developer-docs#adding-a-load-method)
+- [Developer Docs](/better-disqus-comments/developer-docs#adding-a-load-method)
   — how an addon adds a loading method.

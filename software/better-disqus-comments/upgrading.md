@@ -7,7 +7,7 @@ description: Move to Better Disqus Comments 13 from the official Disqus plugin, 
 
 Version 13 makes Better Disqus Comments a complete Disqus plugin of its own.
 It no longer needs the official *Disqus Comment System* plugin, and the old
-**DCL Pro** plugin is replaced by separate [addons](/disqus-conditional-load/addons/).
+**DCL Pro** plugin is replaced by separate [addons](/better-disqus-comments/addons/).
 
 Your settings carry over in every case below. Pick the section that matches
 your site.
@@ -23,10 +23,10 @@ plugin's settings once and copies them over:
 
 | Official plugin | Copied to |
 | --- | --- |
-| Forum shortname | [Shortname](/disqus-conditional-load/disqus-account#shortname) |
-| API public key, secret key, admin access token | [API keys](/disqus-conditional-load/disqus-account#api-keys) |
-| Sync token | The [sync token](/disqus-conditional-load/disqus-account#the-sync-token), so comment sync keeps working |
-| Inline JavaScript option | [Print the script inline](/disqus-conditional-load/advanced#print-the-script-inline) |
+| Forum shortname | [Shortname](/better-disqus-comments/disqus-account#shortname) |
+| API public key, secret key, admin access token | [API keys](/better-disqus-comments/disqus-account#api-keys) |
+| Sync token | The [sync token](/better-disqus-comments/disqus-account#the-sync-token), so comment sync keeps working |
+| Inline JavaScript option | [Print the script inline](/better-disqus-comments/advanced#print-the-script-inline) |
 
 Values are only copied into empty fields — anything already set in Better
 Disqus Comments wins.
@@ -46,7 +46,7 @@ Disqus Comments wins.
 ::: warning Don't delete the official plugin first
 Deleting the official plugin also deletes its settings. If that happens
 before step 2, there is nothing to copy and you'll need to
-[enter the shortname](/disqus-conditional-load/disqus-account#shortname)
+[enter the shortname](/better-disqus-comments/disqus-account#shortname)
 again.
 :::
 
@@ -84,9 +84,9 @@ Disqus settings allow it. If you depend on SSO, let us know on the
   **Comments**, instead of under **Comments → Disqus**.
 - **Lazy loading.** Comments load when they come into view by default. To
   keep the official plugin's behaviour, pick
-  [Immediately](/disqus-conditional-load/comment-loading#immediately).
+  [Immediately](/better-disqus-comments/comment-loading#immediately).
 - **Crawlers.** Search engine bots get your synced WordPress comments instead
-  of the Disqus embed — see [SEO Mode](/disqus-conditional-load/seo-mode).
+  of the Disqus embed — see [SEO Mode](/better-disqus-comments/seo-mode).
 - **Threads.** Comments stay attached to the same posts: the Disqus
   identifier is built exactly as the official plugin built it.
 
@@ -97,26 +97,26 @@ changed. What's new:
 
 - The official Disqus plugin is no longer needed. If it's active, follow
   [From the official Disqus plugin](#from-the-official-disqus-plugin) above.
-- The separate [mobile loading method](/disqus-conditional-load/comment-loading#on-mobile-devices),
+- The separate [mobile loading method](/better-disqus-comments/comment-loading#on-mobile-devices),
   a DCL Pro feature before, is now free.
-- [Comment Sync](/disqus-conditional-load/comment-sync) and
-  [SEO Mode](/disqus-conditional-load/seo-mode) are built in.
+- [Comment Sync](/better-disqus-comments/comment-sync) and
+  [SEO Mode](/better-disqus-comments/seo-mode) are built in.
 
 ## From DCL Pro 11.x
 
 DCL Pro was one plugin with every premium feature. It's replaced by six
 separate addons, each doing one thing, sold alone or together in the
-[Pro Bundle](/disqus-conditional-load/addons/pro-bundle):
+[Pro Bundle](/better-disqus-comments/addons/pro-bundle):
 
 | DCL Pro feature | Addon |
 | --- | --- |
-| WooCommerce integration | [Comments for WooCommerce](/disqus-conditional-load/addons/woocommerce-comments) |
-| Easy Digital Downloads integration | [Comments for EDD](/disqus-conditional-load/addons/edd-comments) |
-| Disqus Comments widget | [Comments Widget](/disqus-conditional-load/addons/comments-widget) |
-| Disqus Latest Comments widget | [Latest Comments Widget](/disqus-conditional-load/addons/latest-comments) |
-| Button styles, comment count on the button | [Advanced Buttons](/disqus-conditional-load/addons/advanced-buttons) |
-| "On Scroll Start" loading | [Scroll Load](/disqus-conditional-load/addons/scroll-load) |
-| Separate mobile loading method | Now free, in [Comment Loading](/disqus-conditional-load/comment-loading#on-mobile-devices) |
+| WooCommerce integration | [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments) |
+| Easy Digital Downloads integration | [Comments for EDD](/better-disqus-comments/addons/edd-comments) |
+| Disqus Comments widget | [Comments Widget](/better-disqus-comments/addons/comments-widget) |
+| Disqus Latest Comments widget | [Latest Comments Widget](/better-disqus-comments/addons/latest-comments) |
+| Button styles, comment count on the button | [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) |
+| "On Scroll Start" loading | [Scroll Load](/better-disqus-comments/addons/scroll-load) |
+| Separate mobile loading method | Now free, in [Comment Loading](/better-disqus-comments/comment-loading#on-mobile-devices) |
 
 Existing DCL Pro customers get the Pro Bundle; we'll email you your new
 license key.
@@ -128,10 +128,10 @@ license key.
 2. **Install and activate Better Disqus Comments** from WordPress.org.
 3. **Download the addons you use** from your
    [Freemius account](https://users.freemius.com/), and install and activate
-   them. See [Installing an addon](/disqus-conditional-load/addons/#installing-an-addon).
+   them. See [Installing an addon](/better-disqus-comments/addons/#installing-an-addon).
 4. **Activate your license** in **Disqus → Addons**. A Pro Bundle key is
    activated on every addon at once — see
-   [Pro Bundle](/disqus-conditional-load/addons/pro-bundle).
+   [Pro Bundle](/better-disqus-comments/addons/pro-bundle).
 5. Delete DCL Pro.
 
 Your DCL Pro settings — button style, WooCommerce placement, widget settings,
@@ -146,9 +146,9 @@ to Better Disqus Comments and the addons first.
 
 ## Related
 
-- [Getting Started](/disqus-conditional-load/getting-started) — a tour of the
+- [Getting Started](/better-disqus-comments/getting-started) — a tour of the
   plugin.
-- [Addons](/disqus-conditional-load/addons/) — installing addons and
+- [Addons](/better-disqus-comments/addons/) — installing addons and
   activating licenses.
-- [Changelog](/disqus-conditional-load/changelog) — everything that changed in
+- [Changelog](/better-disqus-comments/changelog) — everything that changed in
   13.0.0.
