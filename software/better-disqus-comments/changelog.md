@@ -37,7 +37,7 @@ site.
 * **[Print the script inline](/better-disqus-comments/advanced#print-the-script-inline)**
   for caching and minify plugins that break script loading.
 * **[Addons](/better-disqus-comments/addons/)** tab with the
-  [Pro Bundle](/better-disqus-comments/addons/pro-bundle): one license key
+  [Premium Bundle](/better-disqus-comments/addons/pro-bundle): one license key
   for every addon.
 * Settings from the official Disqus plugin — shortname, API keys, sync token,
   inline script — are copied over once on upgrade.
@@ -57,7 +57,7 @@ site.
   button.
 * The [mobile loading method](/better-disqus-comments/comment-loading#on-mobile-devices),
   a DCL Pro feature before, is now free.
-* DCL Pro is replaced by six addons, sold alone or in the Pro Bundle. See
+* DCL Pro is replaced by six addons, sold alone or in the Premium Bundle. See
   [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x).
 * Button styles moved to the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
   addon. Your stored style is kept and applies again once the addon is

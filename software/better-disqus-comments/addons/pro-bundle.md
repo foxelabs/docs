@@ -1,11 +1,11 @@
 ---
-title: Pro Bundle
+title: Premium Bundle
 description: Every Better Disqus Comments addon, and every future one, under one license key.
 ---
 
-# Pro Bundle
+# Premium Bundle
 
-The **Pro Bundle** is every Better Disqus Comments addon in one plan, with
+The **Premium Bundle** is every Better Disqus Comments addon in one plan, with
 one license key:
 
 - [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
@@ -22,7 +22,7 @@ is valid.
 
 ## Buying
 
-Click **Get Pro Bundle** on the banner at the top of **Disqus → Addons**, or
+Click **Get Premium Bundle** on the banner at the top of **Disqus → Addons**, or
 go to [dclwp.com](https://dclwp.com/). Checkout is handled by
 [Freemius](https://freemius.com/), which emails your license key and a link
 to your [Freemius account](https://users.freemius.com/).
@@ -35,11 +35,11 @@ One key licenses every addon on the site:
    the addons you want. Install at least one before activating — the bundle
    has nothing to license otherwise.
 2. Open **Disqus → Addons**.
-3. On the **Pro Bundle** banner, click **Have a key? Activate license**.
+3. On the **Premium Bundle** banner, click **Have a key? Activate license**.
 4. Paste your key into **License Key** and click **Activate**.
 
 The key is activated on every installed addon at once. The banner switches to
-**Active**, and each card reads **Licensed via Pro Bundle**.
+**Active**, and each card reads **Licensed via Premium Bundle**.
 
 If an addon already had its own license, the bundle replaces it on this site
 and frees that license for use elsewhere.
@@ -48,9 +48,9 @@ and frees that license for use elsewhere.
 
 Install another addon at any time — you don't need to enter the key again.
 The next time you open any admin page, the bundle licenses it automatically.
-Until then its card reads **Pro Bundle activation pending**.
+Until then its card reads **Premium Bundle activation pending**.
 
-Addons covered by the bundle show **Included in your Pro Bundle** and a
+Addons covered by the bundle show **Included in your Premium Bundle** and a
 **Download** button, even before you install them.
 
 ## Managing the bundle

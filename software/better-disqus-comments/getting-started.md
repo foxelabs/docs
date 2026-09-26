@@ -83,7 +83,7 @@ tabs:
 | Tab | What it has |
 | --- | --- |
 | **Settings** | Five panels — **Disqus**, **Comment loading**, **Display**, **Comment sync** and **Advanced** — plus panels added by addons. One **Save Changes** button at the bottom saves them all. |
-| **Addons** | The addon catalogue and the [Pro Bundle](/better-disqus-comments/addons/pro-bundle): buy, download and activate licenses. |
+| **Addons** | The addon catalogue and the [Premium Bundle](/better-disqus-comments/addons/pro-bundle): buy, download and activate licenses. |
 | **Help** | Links to these docs, the support forum and priority support. |
 
 The page needs the `manage_options` capability by default (administrators).

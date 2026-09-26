@@ -23,7 +23,7 @@ plug into the free plugin's settings page.
 | **[Latest Comments Widget](/better-disqus-comments/addons/latest-comments)** | Your latest Disqus comments in a widget, with avatars and excerpts. | Widgets screen |
 
 Each addon is sold on its own at [dclwp.com](https://dclwp.com/). The
-**[Pro Bundle](/better-disqus-comments/addons/pro-bundle)** includes all of
+**[Premium Bundle](/better-disqus-comments/addons/pro-bundle)** includes all of
 them — and every future addon — under one license.
 
 Addons need Better Disqus Comments **13.0** or later. Each one declares the
@@ -33,7 +33,7 @@ Better Disqus Comments is active.
 ## The Addons tab
 
 **Disqus → Addons** lists every addon, with the
-[Pro Bundle](/better-disqus-comments/addons/pro-bundle) at the top. Click
+[Premium Bundle](/better-disqus-comments/addons/pro-bundle) at the top. Click
 **Refresh Addons** to reload the list — it's cached for about a day, so do
 this right after a purchase or when a new addon comes out.
 
@@ -41,11 +41,11 @@ Each card shows the addon's state:
 
 | Badge | Meaning |
 | --- | --- |
-| **Licensed via Pro Bundle** | Installed and licensed through your Pro Bundle. |
+| **Licensed via Premium Bundle** | Installed and licensed through your Premium Bundle. |
 | **Active and licensed** | Installed, with its own license active. |
-| **Pro Bundle activation pending** | Installed, and your Pro Bundle will license it on the next admin page load. |
+| **Premium Bundle activation pending** | Installed, and your Premium Bundle will license it on the next admin page load. |
 | **Installed, license not active** | Installed, but no license is active on this site. |
-| **Included in your Pro Bundle** | Not installed yet, but your Pro Bundle covers it — just download it. |
+| **Included in your Premium Bundle** | Not installed yet, but your Premium Bundle covers it — just download it. |
 | **Premium addon** | Not installed; available to buy. |
 
 And one button:
@@ -53,9 +53,9 @@ And one button:
 | Button | Does |
 | --- | --- |
 | **Activate license** / **Manage license** | Opens the license window for an installed addon. |
-| **Download** | Opens your Freemius account to download an addon your Pro Bundle covers. |
+| **Download** | Opens your Freemius account to download an addon your Premium Bundle covers. |
 | **Buy addon** | Opens the addon's checkout. |
-| *Included in Pro Bundle* | Nothing to do — the bundle handles the license. |
+| *Included in Premium Bundle* | Nothing to do — the bundle handles the license. |
 
 **Details** opens the addon's product page.
 
@@ -91,8 +91,8 @@ The badge changes to **Active and licensed**. If the key is rejected — a
 typo, an expired license, or no sites left on it — the window stays open with
 the reason. Fix it and try again.
 
-Bought the **Pro Bundle**? Activate it once from the bundle banner instead —
-see [Pro Bundle](/better-disqus-comments/addons/pro-bundle#activating-the-bundle).
+Bought the **Premium Bundle**? Activate it once from the bundle banner instead —
+see [Premium Bundle](/better-disqus-comments/addons/pro-bundle#activating-the-bundle).
 
 ## Deactivating a license
 

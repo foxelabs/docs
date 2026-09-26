@@ -40,7 +40,7 @@ Put [Disqus](https://disqus.com/) comments on your site without the weight. Disq
 - 🚀 **[Getting Started](./better-disqus-comments/getting-started)** — Install and connect your Disqus site
 - ⚙️ **[Comment Loading](./better-disqus-comments/comment-loading)** — On scroll, on click, or straight away
 - 🔄 **[Comment Sync](./better-disqus-comments/comment-sync)** — Keep a copy of your comments in WordPress
-- 🧩 **[Addons](./better-disqus-comments/addons/)** — WooCommerce, EDD, widgets and the Pro Bundle
+- 🧩 **[Addons](./better-disqus-comments/addons/)** — WooCommerce, EDD, widgets and the Premium Bundle
 - 🧑‍💻 **[Developer Docs](./better-disqus-comments/developer-docs)** — Hooks, filters and REST endpoints
 
 ### WordPress Libraries

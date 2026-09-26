@@ -38,7 +38,7 @@ FoxeLabs\DCL\
 │         Mapper, Exporter,
 │         ApiService, Log}   Comment sync, manual sync and export
 ├── Addons\{Addons, Catalog,
-│           Bundle}          Freemius wiring, addon catalogue, Pro Bundle license
+│           Bundle}          Freemius wiring, addon catalogue, Premium Bundle license
 ├── Admin\…                  Menu, settings page, notices, toolbar menu
 ├── Api\…                    REST controllers under dcl/v1
 └── Compat\Manager           Official Disqus plugin detection, WooCommerce reviews
@@ -563,7 +563,7 @@ add_filter( 'dcl_register_addon', function ( $addons ) {
 } );
 ```
 
-Premium addons are licensed by the [Pro Bundle](/better-disqus-comments/addons/pro-bundle)
+Premium addons are licensed by the [Premium Bundle](/better-disqus-comments/addons/pro-bundle)
 automatically.
 
 ### `dcl_addons_catalog`
@@ -572,7 +572,7 @@ Filter. The addon rows shown on the **Addons** tab.
 
 ### `dcl_addons_bundle`
 
-Filter. The Pro Bundle banner's data. Return an empty array to hide the
+Filter. The Premium Bundle banner's data. Return an empty array to hide the
 banner.
 
 ## REST API
@@ -593,7 +593,7 @@ All need the plugin's [capability](#capability) and a REST nonce.
 | `dcl/v1/addons` | `GET` | The addon catalogue and bundle. |
 | `dcl/v1/addons/refresh` | `POST` | Reload the catalogue from Freemius. |
 | `dcl/v1/addons/<id>/license` | `POST`, `DELETE` | Activate (`key`) or deactivate an addon's license. |
-| `dcl/v1/addons/bundle/license` | `POST`, `DELETE` | Activate (`key`) or deactivate the Pro Bundle. |
+| `dcl/v1/addons/bundle/license` | `POST`, `DELETE` | Activate (`key`) or deactivate the Premium Bundle. |
 
 General settings use WordPress's settings endpoint, `/wp/v2/settings`, under
 the `dcl_gnrl_options` key.
@@ -626,7 +626,7 @@ subscription handshake), `create`, `update` and `force_sync`; others get
 | `dcl_db_version` | Data version, for one-time migrations. |
 | `dcl_sso_notice` | Set when an upgraded site used Disqus SSO; cleared when the notice is dismissed. |
 | `dcl_sync_last_message` | The last sync event. |
-| `dcl_bundle_license` | The Pro Bundle license key. |
+| `dcl_bundle_license` | The Premium Bundle license key. |
 
 `dcl_gnrl_options` keys:
 
