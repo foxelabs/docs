@@ -37,7 +37,7 @@ site.
 * **[Print the script inline](/better-disqus-comments/advanced#print-the-script-inline)**
   for caching and minify plugins that break script loading.
 * **[Addons](/better-disqus-comments/addons/)** tab with the
-  [Premium Bundle](/better-disqus-comments/addons/pro-bundle): one license key
+  [Premium Bundle](/better-disqus-comments/addons/premium-bundle): one license key
   for every addon.
 * Settings from the official Disqus plugin — shortname, API keys, sync token,
   inline script — are copied over once on upgrade.

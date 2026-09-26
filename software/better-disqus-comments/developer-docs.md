@@ -563,7 +563,7 @@ add_filter( 'dcl_register_addon', function ( $addons ) {
 } );
 ```
 
-Premium addons are licensed by the [Premium Bundle](/better-disqus-comments/addons/pro-bundle)
+Premium addons are licensed by the [Premium Bundle](/better-disqus-comments/addons/premium-bundle)
 automatically.
 
 ### `dcl_addons_catalog`

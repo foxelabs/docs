@@ -23,7 +23,7 @@ plug into the free plugin's settings page.
 | **[Latest Comments Widget](/better-disqus-comments/addons/latest-comments)** | Your latest Disqus comments in a widget, with avatars and excerpts. | Widgets screen |
 
 Each addon is sold on its own at [dclwp.com](https://dclwp.com/). The
-**[Premium Bundle](/better-disqus-comments/addons/pro-bundle)** includes all of
+**[Premium Bundle](/better-disqus-comments/addons/premium-bundle)** includes all of
 them — and every future addon — under one license.
 
 Addons need Better Disqus Comments **13.0** or later. Each one declares the
@@ -33,7 +33,7 @@ Better Disqus Comments is active.
 ## The Addons tab
 
 **Disqus → Addons** lists every addon, with the
-[Premium Bundle](/better-disqus-comments/addons/pro-bundle) at the top. Click
+[Premium Bundle](/better-disqus-comments/addons/premium-bundle) at the top. Click
 **Refresh Addons** to reload the list — it's cached for about a day, so do
 this right after a purchase or when a new addon comes out.
 
@@ -92,7 +92,7 @@ typo, an expired license, or no sites left on it — the window stays open with
 the reason. Fix it and try again.
 
 Bought the **Premium Bundle**? Activate it once from the bundle banner instead —
-see [Premium Bundle](/better-disqus-comments/addons/pro-bundle#activating-the-bundle).
+see [Premium Bundle](/better-disqus-comments/addons/premium-bundle#activating-the-bundle).
 
 ## Deactivating a license
 

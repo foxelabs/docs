@@ -160,7 +160,7 @@ export default defineConfig({
             collapsed: true,
             items: [
               { text: 'Overview', link: '/' },
-              { text: 'Premium Bundle', link: '/pro-bundle' },
+              { text: 'Premium Bundle', link: '/premium-bundle' },
               { text: 'Advanced Buttons', link: '/advanced-buttons' },
               { text: 'Scroll Load', link: '/scroll-load' },
               {

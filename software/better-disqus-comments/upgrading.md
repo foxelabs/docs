@@ -106,7 +106,7 @@ changed. What's new:
 
 DCL Pro was one plugin with every premium feature. It's replaced by six
 separate addons, each doing one thing, sold alone or together in the
-[Premium Bundle](/better-disqus-comments/addons/pro-bundle):
+[Premium Bundle](/better-disqus-comments/addons/premium-bundle):
 
 | DCL Pro feature | Addon |
 | --- | --- |
@@ -131,7 +131,7 @@ license key.
    them. See [Installing an addon](/better-disqus-comments/addons/#installing-an-addon).
 4. **Activate your license** in **Disqus → Addons**. A Premium Bundle key is
    activated on every addon at once — see
-   [Premium Bundle](/better-disqus-comments/addons/pro-bundle).
+   [Premium Bundle](/better-disqus-comments/addons/premium-bundle).
 5. Delete DCL Pro.
 
 Your DCL Pro settings — button style, WooCommerce placement, widget settings,
