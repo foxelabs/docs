@@ -21,6 +21,11 @@
       "permanent": true
     },
     {
+      "source": "/software/convocept",
+      "destination": "/software/convocept/getting-started",
+      "permanent": true
+    },
+    {
       "source": "/software/loggedin",
       "destination": "/software/loggedin/getting-started",
       "permanent": true

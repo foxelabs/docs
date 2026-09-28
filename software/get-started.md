@@ -1,5 +1,5 @@
 ---
-description: "Documentation for Foxe Labs WordPress plugins and PHP libraries: Better Disqus Comments, Loggedin, Lazy Load for Comments and the wp-* libraries."
+description: "Documentation for Foxe Labs WordPress plugins and PHP libraries: Convocept, Better Disqus Comments, Loggedin, Lazy Load for Comments and the wp-* libraries."
 ---
 
 # Get Started
@@ -13,6 +13,16 @@ Foxe Labs builds **open-source WordPress plugins and PHP libraries**. Our focus 
 This site is the official home for our product documentation: installation guides, what each setting does, WP-CLI commands, developer reference, and version history.
 
 ## Our Products
+
+### Convocept
+
+A **fast, native comment system** for WordPress. Threaded replies, upvotes, email subscriptions and spam protection, with zero JavaScript on page load, and every comment kept in your own database. Imports from Disqus.
+
+- 🚀 **[Getting Started](./convocept/getting-started)** — Install and find your way around
+- 📥 **[Import from Disqus](./convocept/import-from-disqus)** — Bring your Disqus comments home
+- 🎨 **[Theming](./convocept/theming)** — Colours, CSS custom properties and templates
+- 🧑‍💻 **[Developer Docs](./convocept/developer-docs)** — Hooks, REST routes and templates
+- 🗒️ **[Changelog](./convocept/changelog)** — Version history
 
 ### Loggedin
 

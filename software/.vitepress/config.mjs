@@ -3,7 +3,7 @@ import { nav, siteTitle, logo, logoLink, socialLinks, footer, shareHead, shareTa
 
 
 // Index pages that only redirect (see vercel.json), kept out of the sitemap.
-const REDIRECT_STUBS = ['better-disqus-comments/', 'loggedin/', 'lazy-load-for-comments/']
+const REDIRECT_STUBS = ['better-disqus-comments/', 'loggedin/', 'lazy-load-for-comments/', 'convocept/']
 export default defineConfig({
   title: 'Foxe Labs Docs',
   description: 'Official documentation for Foxe Labs software',
@@ -86,6 +86,28 @@ export default defineConfig({
       {
         text: 'Introduction',
         items: [{ text: 'Get Started', link: '/get-started' }],
+      },
+      {
+        text: 'Convocept',
+        items: [
+          { text: 'Getting Started', link: '/convocept/getting-started' },
+          { text: 'General', link: '/convocept/general' },
+          { text: 'Appearance', link: '/convocept/appearance' },
+          { text: 'Composer', link: '/convocept/composer' },
+          { text: 'Moderation & Spam', link: '/convocept/moderation' },
+          { text: 'Subscriptions', link: '/convocept/subscriptions' },
+          { text: 'Advanced', link: '/convocept/advanced' },
+          {
+            text: 'Import from Disqus',
+            link: '/convocept/import-from-disqus',
+          },
+          { text: 'Switching Plugins', link: '/convocept/switching-plugins' },
+          { text: 'Theming', link: '/convocept/theming' },
+          { text: 'Performance', link: '/convocept/performance' },
+          { text: 'WP-CLI', link: '/convocept/wp-cli' },
+          { text: 'Developer Docs', link: '/convocept/developer-docs' },
+          { text: 'Changelog', link: '/convocept/changelog' },
+        ],
       },
       {
         text: 'Loggedin',
