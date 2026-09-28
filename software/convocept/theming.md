@@ -27,17 +27,17 @@ The accent colour (links, buttons, focus rings) is set on the same page.
 ## CSS custom properties
 
 Everything is scoped under `.convocept`. Override tokens, not selectors.
-Convocept's stylesheet is printed next to the thread, after your theme's
-styles, so start your selectors with `body` to win over its defaults:
+Convocept's defaults have no specificity, so any rule in your theme's
+stylesheet wins:
 
 ```css
-body .convocept {
+.convocept {
 	--convocept-radius: 4px;
 	--convocept-font: Georgia, serif;
 }
 
 /* Only the dark palette. */
-body .convocept[data-convocept-theme="dark"] {
+.convocept[data-convocept-theme="dark"] {
 	--convocept-bg: #000;
 }
 ```

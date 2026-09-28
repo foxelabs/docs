@@ -64,10 +64,9 @@ comment cookies are set only when the reader ticks the box.
 | **Anonymized** | The last part removed (`203.0.113.0`, or the last 80 bits of an IPv6 address). |
 | **None** | No address at all. |
 
-Akismet and Convocept's own checks still see the full address when a
-comment arrives; only what is saved changes. WordPress's own address-based
-rules (IP entries in the moderation and disallowed lists) see the saved
-form, so with **Anonymized** or **None** they can't match a full address. The setting also applies to
+Every check still sees the full address when a comment arrives: Akismet,
+Convocept's own checks, and WordPress's flood control and the IP entries in
+its moderation and disallowed lists. Only what is saved changes. The setting also applies to
 [imported comments](/convocept/import-from-disqus). Comments already stored
 are not changed.
 
