@@ -77,17 +77,17 @@ Everything lives under **Comments → Convocept**, with a sidebar of pages:
 | Page | What it has |
 | --- | --- |
 | [General](/convocept/general) | Where Convocept shows, order, comments per page, reply depth, upvotes and live updates. |
-| [Appearance](/convocept/appearance) | Colour scheme and accent colour. |
-| [Composer](/convocept/composer) | How long authors may edit their comment, and the Discussion settings that apply. |
-| [Moderation & spam](/convocept/moderation) | The spam checks in place and comments waiting for review. |
-| [Subscriptions](/convocept/subscriptions) | Email subscriptions, double opt-in and sending. |
+| [Appearance](/convocept/appearance) | Colour scheme, accent colour and a preview. |
+| [Comment form](/convocept/composer) | How long authors may edit their comment, [email subscriptions](/convocept/subscriptions) and sending, and the Discussion settings that apply. |
+| [Spam & moderation](/convocept/moderation) | Comments waiting for review and the spam checks in place. |
 | [Advanced](/convocept/advanced) | Proxies and visitor IPs, privacy, structured data and uninstall. |
 | [Import](/convocept/import-from-disqus) | Import comments from Disqus. |
 | **Help** | Links to these docs, the support forum and your versions. |
 
-Changes on several pages are kept together: a bar at the bottom shows how
-many settings changed, and **Save changes** saves them all at once. The page
-needs the `manage_options` capability (administrators).
+Changes on several pages are kept together: the page header shows how many
+settings changed, **Save** saves them all at once and **Discard** undoes
+them. The header stays in view while you scroll. The page needs the
+`manage_options` capability (administrators).
 
 Each page has its own address, such as
 `wp-admin/edit-comments.php?page=convocept&tab=appearance`, so you can

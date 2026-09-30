@@ -6,8 +6,9 @@ description: The Convocept comment form — formatting, preview, editing after p
 # Composer
 
 The composer is Convocept's comment form. **Comments → Convocept →
-Composer** sets how long authors may edit their comments, and shows the
-WordPress settings the form follows.
+Comment form** sets how long authors may edit their comments and the
+[email subscriptions](/convocept/subscriptions), and shows the WordPress
+settings the form follows.
 
 [[toc]]
 

@@ -6,7 +6,7 @@ description: Email comment subscriptions in Convocept — reply notifications, s
 # Subscriptions
 
 Convocept has comment subscriptions built in, so you don't need a separate
-"subscribe to comments" plugin. **Comments → Convocept → Subscriptions**
+"subscribe to comments" plugin. **Comments → Convocept → Comment form**
 turns them on and off.
 
 [[toc]]

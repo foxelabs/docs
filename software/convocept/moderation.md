@@ -5,9 +5,9 @@ description: How Convocept keeps spam out without CAPTCHAs, works with Akismet, 
 
 # Moderation & Spam
 
-**Comments → Convocept → Moderation & spam** shows the protection in place
-and how many comments are waiting for review. There is nothing to set up:
-the checks are on for every site.
+**Comments → Convocept → Spam & moderation** shows how many comments are
+waiting for review (the sidebar counts them too) and the protection in
+place. There is nothing to set up: the checks are on for every site.
 
 [[toc]]
 

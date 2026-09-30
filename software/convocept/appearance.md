@@ -27,8 +27,10 @@ or the thread sits on a busy background.
 ## Accent colour
 
 Used for links, buttons and focus rings in the thread. Default: **#2563eb**
-(blue). Pick a colour or type a hex value; **Reset** goes back to the
-default.
+(blue). Click the colour to open the picker: pick any colour, type a hex
+value, or choose one of your theme's colours or the suggested ones.
+**Reset** goes back to the default. The **Preview** under it shows a
+comment and the form in the colours you picked.
 
 If the colour is too light to read as text on white (a contrast below
 4.5:1), the screen warns you. Links are drawn slightly darker than the
