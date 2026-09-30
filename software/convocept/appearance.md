@@ -1,12 +1,17 @@
 ---
 title: Appearance
-description: Match Convocept's comments to your theme, or pick a light or dark palette and an accent colour.
+description: Pick Convocept's light or dark palette and an accent colour. The thread uses your theme's font.
 ---
 
 # Appearance
 
-**Comments → Convocept → Appearance** sets how the thread looks next to your
-theme. For deeper changes, see [Theming](/convocept/theming).
+**Comments → Convocept → Appearance** sets how the thread looks. For deeper
+changes, see [Theming](/convocept/theming).
+
+The thread has its own simple design: a card with its own background, text
+sizes, spacing, fields and buttons, so it looks the same and stays readable
+in every theme. Only the font family comes from your theme. Theme styles for
+comment sections (buttons, inputs, lists, headings) don't reach it.
 
 [[toc]]
 
@@ -14,15 +19,13 @@ theme. For deeper changes, see [Theming](/convocept/theming).
 
 | Option | What readers see |
 | --- | --- |
-| **Match the theme** (default) | Your theme's text and background colours. Borders and muted text are mixed from the text colour, so it works on light and dark themes alike. |
+| **Light** (default) | Dark text on a white card. Fits light, tinted and dark themes alike. |
+| **Dark** | Light text on a dark card, for dark themes. |
 | **Follow the reader's device** | Light or dark, from the reader's system setting (`prefers-color-scheme`). |
-| **Always light** | Dark text on a light background of its own. |
-| **Always dark** | Light text on a dark background of its own. |
 
-**Match the theme** is the right choice for most sites: the thread picks up
-your theme's fonts and colours and looks like part of the page. Pick one of
-the fixed palettes when your theme's colours don't suit a comment section,
-or the thread sits on a busy background.
+The thread is at most 720px wide (or your block theme's content width, if
+narrower) and centred, so it stays readable in themes that give comments the
+full page width.
 
 ## Accent colour
 

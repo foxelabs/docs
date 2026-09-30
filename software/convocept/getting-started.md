@@ -118,9 +118,10 @@ WordPress way. Upvotes, editing, preview and live updates need JavaScript.
 
 ## Moderating in the thread
 
-Users who can moderate comments see extra actions on each comment in the
-thread: **Approve**, **Pin**, **Spam**, **Trash** and **Edit in
-dashboard**, and the comments waiting for approval on that post. The core
+Users who can moderate comments get a **⋯** menu on each comment in the
+thread: **Approve**, **Pin to top**, **Edit in dashboard**, **Mark as spam**
+and **Move to trash**, and see the comments waiting for approval on that
+post. The core
 **Comments** screen keeps working as usual, with a column that shows when
 one of Convocept's spam checks held a comment. See
 [Moderation & Spam](/convocept/moderation).

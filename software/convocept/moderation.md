@@ -60,16 +60,16 @@ button that opens **Comments → Pending**.
 
 ## Moderating in the thread
 
-Users who can moderate comments get extra actions on every comment, right
-in the thread:
+Users who can moderate comments get a **⋯** (Moderate) menu on every
+comment, right in the thread:
 
 | Action | Does |
 | --- | --- |
 | **Approve** | Publish a comment that is waiting for approval. |
-| **Pin** / **Unpin** | Keep an approved top-level comment at the top of the thread. |
-| **Spam** | Mark as spam (and teach Akismet). |
-| **Trash** | Move to the trash. |
+| **Pin to top** / **Unpin** | Keep an approved top-level comment at the top of the thread. |
 | **Edit in dashboard** | Open the comment in the WordPress editor. |
+| **Mark as spam** | Mark as spam (and teach Akismet). |
+| **Move to trash** | Move to the trash. |
 
 Moderators also see the post's comments waiting for approval in the thread,
 marked as pending: new top-level comments at the top, and replies under

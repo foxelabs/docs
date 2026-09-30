@@ -15,9 +15,10 @@ turns them on and off.
 
 - **Email me replies to my comment** — a checkbox in the comment form.
 - **Email me all new comments** — every new comment on the post.
-- **Subscribe without commenting** — "Get new comments on this post by
-  email", a small form under the comment form while comments are open, or
-  anywhere with the [block or shortcode](#block-and-shortcode).
+- **Subscribe without commenting** — the **Follow** button next to the sort
+  switch opens "Get new comments on this post by email" while comments are
+  open (it works without JavaScript too), or put the form anywhere with the
+  [block or shortcode](#block-and-shortcode).
 - **Manage subscriptions** — every email links to a page listing the
   reader's subscriptions, where they can unsubscribe from one post or from
   everything.

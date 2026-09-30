@@ -5,8 +5,9 @@ description: Restyle Convocept with CSS custom properties, replace its styleshee
 
 # Theming
 
-Convocept looks at home in most themes without changes. When you want more control, restyle it
-with CSS custom properties first, and override templates only for changes to the markup.
+Convocept draws its own design and takes only the font family from your theme, so it looks
+the same in every theme without changes. When you want more control, restyle it with CSS custom
+properties first, and override templates only for changes to the markup.
 
 [[toc]]
 
@@ -17,18 +18,19 @@ with CSS custom properties first, and override templates only for changes to the
 
 | Setting | `data-convocept-theme` | Colours |
 |---|---|---|
-| Match the theme (default) | `auto` | Text and background inherited from the theme; borders and muted text are mixed from the text colour, so light and dark themes both work. |
+| Light (default) | `light` | Built-in light palette on a white card. |
+| Dark | `dark` | Built-in dark palette on a dark card. |
 | Follow the reader's device | `system` | Light or dark palette from the reader's `prefers-color-scheme`. |
-| Always light | `light` | Built-in light palette on its own background. |
-| Always dark | `dark` | Built-in dark palette on its own background. |
 
 The accent colour (links, buttons, focus rings) is set on the same page.
 
 ## CSS custom properties
 
-Everything is scoped under `.convocept`. Override tokens, not selectors.
-Convocept's defaults have no specificity, so any rule in your theme's
-stylesheet wins:
+Everything is scoped under `#comments.convocept`. Inside it, theme styles are reset to the
+browser's defaults, and Convocept's rules use that ID so theme rules for comment sections
+(`#respond input`, `.entry-content button`) don't reach the thread. Override tokens, not
+selectors. The token defaults have no specificity, so any rule in your theme's stylesheet
+wins:
 
 ```css
 .convocept {
@@ -53,15 +55,21 @@ stylesheet rules.
 | `--convocept-link` | Links and other accent-coloured text (by default the accent mixed toward the text colour, for contrast). |
 | `--convocept-danger` | Spam/Trash actions and error messages. |
 | `--convocept-text` | Main text. |
-| `--convocept-bg` | Thread background (`transparent` in the `auto` scheme). |
+| `--convocept-bg` | The thread's card background. |
 | `--convocept-muted` | Dates, counts, secondary actions. |
-| `--convocept-border` | Borders and the reply thread line. |
-| `--convocept-surface` | Pinned comments, tabs, subtle panels. |
+| `--convocept-border` | The card border and dividers. |
+| `--convocept-border-strong` | Form fields and the reply thread line. |
+| `--convocept-surface` | Tabs, the sort switch, badges, the follow panel. |
 | `--convocept-field-bg` | Form fields. |
-| `--convocept-radius` | Corner radius. |
-| `--convocept-gap` | Spacing between comments and around the thread. |
-| `--convocept-avatar` | Avatar size. |
-| `--convocept-font`, `--convocept-font-size` | Typeface and base size. |
+| `--convocept-warning`, `--convocept-warning-line` | A moderator's view of comments waiting for approval. |
+| `--convocept-radius` | Corner radius of the card. |
+| `--convocept-max-width` | Widest the thread gets (default 720px). |
+| `--convocept-gap` | Spacing between comments. |
+| `--convocept-avatar` | Avatar size of top-level comments (replies use 28px). |
+| `--convocept-font`, `--convocept-font-size` | Typeface (default: the theme's) and base size (default 15px). |
+
+Sizes are in pixels, so themes that change the page's root font size don't
+shrink or grow the thread.
 
 Keep text contrast at 4.5:1 or more when you change colours; the built-in values are checked
 against WCAG 2.2 AA.
