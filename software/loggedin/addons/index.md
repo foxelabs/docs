@@ -104,6 +104,12 @@ rejected (mistyped, already at its activation cap, expired, etc.), the
 modal stays open with an inline error message — fix the key and click
 **Activate** again.
 
+::: tip Valid key rejected as invalid?
+Loggedin 3.0.0 to 3.3.0 could shorten some valid keys before
+sending them, so they were rejected as **Invalid license key**. Update
+Loggedin to 3.3.1 or later, then activate the key again.
+:::
+
 ## Deactivating a license
 
 If you need to move the license to another site, sell or hand off the

@@ -9,6 +9,12 @@ Full release history for **Loggedin**. The plugin's bundled
 `readme.txt` keeps only the latest couple of releases; the complete
 history lives here.
 
+## 3.3.1
+
+### Fixed
+
+* Some valid add-on license keys were rejected with **Invalid license key**. The license endpoint ran the key through `sanitize_text_field()`, which strips a `%` followed by two hex characters (0–9 or a–f, in either case) as if it were a URL-encoded character. Freemius keys can contain exactly that, for example `%bB`, so those keys reached the licensing server shortened. The key is now only trimmed. If an add-on license failed to activate before, [activate it again](/loggedin/addons/#activating-a-license) after updating.
+
 ## 3.3.0
 
 ### Added
