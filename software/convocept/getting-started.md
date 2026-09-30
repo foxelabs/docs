@@ -61,11 +61,16 @@ come from **Settings → Discussion**, exactly as before:
 - whether commenters must be logged in, or give a name and email;
 - moderation: holding comments for approval, the moderation and
   disallowed-word lists and the link limit;
-- avatars.
+- avatars;
+- the emails to you about new comments and comments waiting for review.
 
 Convocept's own [General](/convocept/general#thread) settings take over the
 threading and paging options (threading depth, comments per page, which
-page shows first and the order) on posts where it shows.
+page shows first and the order) on posts where it shows. Pingbacks and
+trackbacks are still saved, and listed under **Comments**, but not shown
+under the post. A notice at the top of **Settings → Discussion** says this
+too. Those options stay there because they still apply to other post types
+and if you turn Convocept off.
 
 Akismet, Antispam Bee and similar plugins keep checking every comment,
 because Convocept posts comments through WordPress's own comment handling.

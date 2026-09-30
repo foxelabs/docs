@@ -75,7 +75,9 @@ this show in one flat list at the last level, marked **Replying to**
 
 This replaces the threading and paging options in **Settings → Discussion**
 (threaded comments and their depth, comments per page, which page shows
-first, and their order) on posts where Convocept shows.
+first, and their order) on posts where Convocept shows. Turning threaded
+comments off there does not flatten Convocept's thread: set **Reply depth**
+to 1 for that.
 
 ### Replies shown
 
