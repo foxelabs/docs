@@ -177,12 +177,12 @@ export default defineConfig({
           { text: 'Advanced', link: '/better-disqus-comments/advanced' },
           { text: 'Upgrading', link: '/better-disqus-comments/upgrading' },
           {
-            text: 'Addons',
+            text: 'Add-ons',
             base: '/better-disqus-comments/addons',
             collapsed: true,
             items: [
               { text: 'Overview', link: '/' },
-              { text: 'Premium Bundle', link: '/premium-bundle' },
+              { text: 'Pro Bundle', link: '/premium-bundle' },
               { text: 'Advanced Buttons', link: '/advanced-buttons' },
               { text: 'Scroll Load', link: '/scroll-load' },
               {

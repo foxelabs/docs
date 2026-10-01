@@ -6,13 +6,13 @@ description: Show Disqus comments on WooCommerce product pages — in a new tab,
 # Comments for WooCommerce
 
 Better Disqus Comments leaves WooCommerce products alone, so product reviews
-keep working. The **Comments for WooCommerce** addon brings Disqus to your
+keep working. The **Comments for WooCommerce** add-on brings Disqus to your
 product pages too, lazy loaded like everywhere else on your site.
 
-When active, it adds a **WooCommerce** panel to **Disqus → Settings**, after
-**Display**.
+When active, it adds a **WooCommerce** card to the **Disqus → Display**
+page, below **Comment section**.
 
-Requires WooCommerce 8.0 or later. The addon declares WooCommerce as a
+Requires WooCommerce 8.0 or later. The add-on declares WooCommerce as a
 required plugin and is compatible with High-Performance Order Storage.
 
 [[toc]]
@@ -73,7 +73,7 @@ that wins: no product shows Disqus.
 
 ## Block themes
 
-The addon works with block themes: all three placements go through
+The add-on works with block themes: all three placements go through
 WooCommerce's product tabs, which the **Product Details** block renders.
 
 ## Renaming the tab
@@ -88,14 +88,14 @@ add_filter( 'dcl_woocommerce_comments_tab_title', function () {
 
 ## Saving
 
-The panel saves with the settings page's **Save Changes** button, along with
+The card saves with the **Save** button at the top of the page, along with
 every other setting.
 
 ## Coming from DCL Pro
 
-Your placement and tab position carry over — the addon uses the same
+Your placement and tab position carry over — the add-on uses the same
 settings (`dcl_int_options`) as DCL Pro 11.x. DCL Pro's separate on/off
-switch is gone: the addon being active is the switch. A tab position DCL Pro
+switch is gone: the add-on being active is the switch. A tab position DCL Pro
 stored outside the four options shows as the nearest one.
 
 ## Related

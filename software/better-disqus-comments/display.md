@@ -5,8 +5,8 @@ description: Disqus comment counts, excluded post types and the width of the com
 
 # Display
 
-The **Display** panel controls comment counts, where Disqus never shows, and
-how wide the thread is.
+The **Display** page has two parts: **Comment counts**, and **Comment
+section** for where Disqus never shows and how wide the thread is.
 
 [[toc]]
 
@@ -25,13 +25,18 @@ How it works:
 - The count text from WordPress's `comments_number` is wrapped in a
   `<span class="dsq-postid">` marker carrying the post's Disqus identifier.
 - Links around those markers are pointed at `#disqus_thread`.
-- Disqus's `count.js` is loaded once and fills in the numbers.
+- Disqus's `count.js` is loaded once and fills in the numbers. It loads only
+  on pages that actually print a count.
 
 Counts show on archives and listings too, not only where the thread loads.
-They need a shortname and are never added to feeds.
+Posts that don't show the Disqus thread keep the WordPress count: posts with
+comments closed (including old posts WordPress closes automatically),
+password-protected posts until the password is entered, and excluded post
+types. Counts need a shortname and are never added to feeds.
 
-Turn it off if your theme doesn't show comment counts — `count.js` is loaded
-on every page where counts are allowed, so turning it off saves a request.
+Turn it off to keep WordPress's own counts, or if you want no request to
+Disqus on archive pages. If your theme shows no counts, no count script
+loads, so leaving it on costs nothing.
 
 ::: info The key name is inverted
 The setting is stored as `dcl_count_disable`, but `1` means counts are
@@ -64,8 +69,8 @@ are `page`.
 Products are always left out while WooCommerce is active, so product reviews
 keep working, even though `product` isn't in this list. The
 [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)
-addon brings Disqus to product pages. If you add `product` here yourself, the
-addon respects it.
+add-on brings Disqus to product pages. If you add `product` here yourself, the
+add-on respects it.
 :::
 
 To show Disqus only on some posts of a type, close comments on the others:
@@ -77,7 +82,8 @@ Disqus follows each post's **Allow comments** setting.
 **Default:** empty (theme width), `px`
 
 Limit the width of the Disqus thread and centre it. Enter a number and pick
-the **Unit**, `px` or `%`. Leave it empty to use your theme's width.
+the **Width unit**: **Pixels (px)** or **Percent of the content area (%)**.
+Leave it empty to use your theme's width.
 
 When set, the plugin adds this CSS on pages where Disqus loads:
 

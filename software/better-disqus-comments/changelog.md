@@ -27,8 +27,8 @@ site.
   address and signing token, so existing subscriptions keep working.
   API credentials are sent in the request body instead of the URL, so they
   don't end up in server logs.
-* **[Sync past comments](/better-disqus-comments/comment-sync#sync-past-comments)**
-  — pull in comments from a date range.
+* **[Import past comments](/better-disqus-comments/comment-sync#sync-past-comments)**
+  — pull in comments from a date range, on the new **Import & export** page.
 * **[Export comments to Disqus](/better-disqus-comments/comment-sync#export-comments-to-disqus)**
   — send your WordPress comments to Disqus. The upload runs on your server,
   so the access token never reaches the browser.
@@ -36,13 +36,15 @@ site.
   who can moderate comments.
 * **[Print the script inline](/better-disqus-comments/advanced#print-the-script-inline)**
   for caching and minify plugins that break script loading.
-* **[Addons](/better-disqus-comments/addons/)** tab with the
-  [Premium Bundle](/better-disqus-comments/addons/premium-bundle): one license key
-  for every addon.
+* An **[Add-ons](/better-disqus-comments/addons/)** page with the
+  [Pro Bundle](/better-disqus-comments/addons/premium-bundle): one license key
+  for every add-on.
+* A **Help** page that copies your plugin, WordPress and PHP versions for a
+  support request.
 * Settings from the official Disqus plugin — shortname, API keys, sync token,
   inline script — are copied over once on upgrade.
 * A notice for sites that used Disqus Single Sign-On, which isn't supported.
-* Addon extension points: the [`dcl_load_method_options`](/better-disqus-comments/developer-docs#dcl-load-method-options)
+* Add-on extension points: the [`dcl_load_method_options`](/better-disqus-comments/developer-docs#dcl-load-method-options)
   filter, `window.dclEmbed` for [custom load methods](/better-disqus-comments/developer-docs#adding-a-load-method),
   and the [`dcl.settings.panels`](/better-disqus-comments/developer-docs#dcl-settings-panels)
   and [`dcl.settings.loading.fields`](/better-disqus-comments/developer-docs#dcl-settings-loading-fields)
@@ -51,24 +53,32 @@ site.
 ### Changed
 
 * Renamed to **Better Disqus Comments**. The slug, text domain, settings and
-  hooks are unchanged.
-* The settings page is a top-level **Disqus** menu, just below **Comments**,
-  with **Settings**, **Addons** and **Help** tabs and one **Save Changes**
-  button.
+  shortcodes are unchanged, and most hooks are kept.
+* A new settings screen in its own **Disqus** menu below **Comments**, with
+  General, Display, Comment sync, Advanced, Import & export, Add-ons and Help
+  pages. Save and Discard sit in the header, and you are warned before
+  leaving with unsaved changes.
 * The [mobile loading method](/better-disqus-comments/comment-loading#on-mobile-devices),
   a DCL Pro feature before, is now free.
-* DCL Pro is replaced by six addons, sold alone or in the Premium Bundle. See
+* DCL Pro is replaced by six add-ons, sold alone or in the Pro Bundle. See
   [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x).
 * Button styles moved to the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
-  addon. Your stored style is kept and applies again once the addon is
+  add-on. Your stored style is kept and applies again once the add-on is
   active.
-* Loading methods from inactive addons fall back to **When comments come
-  into view**, and come back when the addon is reactivated.
+* Loading methods from inactive add-ons fall back to **When comments come
+  into view**, and come back when the add-on is reactivated.
+* Requires WordPress 6.6 or later and PHP 7.4 or later.
 
 ### Removed
 
 * The dependency on the official Disqus plugin.
 * Disqus Single Sign-On (SSO).
+* A few old developer hooks. `dcl_custom_vars` and `dcl_count_vars` are
+  replaced by `dcl_embed_vars` and `dcl_localized_data`. `dcl_settings_tab`
+  is removed: add settings with the `dcl_settings_schema` filter or the
+  `dcl.settings.panels` JavaScript filter. Also removed:
+  `dcl_script_file_name`, `dcl_is_current_page_dcl`, `dcl_admin_footer_text`,
+  `dcl_not_configured_alert_text` and `dcl_incompatible_alert_text`.
 
 ## 12.0.0
 

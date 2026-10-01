@@ -7,14 +7,14 @@ description: Connect Better Disqus Comments to your Disqus site with a shortname
 
 Better Disqus Comments talks to Disqus directly. Showing comments needs only
 your site's **shortname**. The API keys are optional and only needed for
-[Comment Sync](/better-disqus-comments/comment-sync) and a few addons.
+[Comment Sync](/better-disqus-comments/comment-sync) and a few add-ons.
 
 [[toc]]
 
 ## Shortname
 
-**Panel:** Disqus &middot; **Stored in:** `dcl_disqus_account.shortname`
-&middot; **Default:** empty
+**Page:** General, under **Disqus site** &middot; **Stored in:**
+`dcl_disqus_account.shortname` &middot; **Default:** empty
 
 The unique name of your site on Disqus — the *example* in
 `example.disqus.com`. Disqus calls it the site's *shortname*; you chose it when
@@ -38,20 +38,21 @@ Disqus error such as *"We were unable to load Disqus"*, check the spelling.
 While no shortname is saved:
 
 - no comments or comment counts are shown to visitors;
-- the settings page shows *"Enter your Disqus shortname to start showing
-  comments."*;
+- the **General** page shows *"Comments are off until you add your Disqus
+  shortname"*, and the sidebar marks it **Needs fixing**;
 - every other admin screen shows a reminder linking to the settings;
 - the toolbar **Disqus** menu only has **Configure Plugin**.
 
 ## API keys
 
-**Panel:** Comment sync &middot; **Stored in:** `dcl_disqus_account`
+**Page:** Comment sync, under **Disqus API** &middot; **Stored in:**
+`dcl_disqus_account`
 
 | Field | Key | Needed for |
 | --- | --- | --- |
-| **Public key** | `public_key` | [Comment Sync](/better-disqus-comments/comment-sync), the [Latest Comments Widget](/better-disqus-comments/addons/latest-comments), the comment count on [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) |
-| **Secret key** | `secret_key` | [Comment Sync](/better-disqus-comments/comment-sync) |
-| **Admin access token** | `access_token` | [Comment Sync](/better-disqus-comments/comment-sync) |
+| **Public key** | `public_key` | [Comment Sync](/better-disqus-comments/comment-sync) with import and export, the [Latest Comments Widget](/better-disqus-comments/addons/latest-comments), the comment count on [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) |
+| **Secret key** | `secret_key` | [Comment Sync](/better-disqus-comments/comment-sync) with import and export |
+| **Admin access token** | `access_token` | [Comment Sync](/better-disqus-comments/comment-sync) with import and export |
 
 All three come from a Disqus **API application**:
 
@@ -63,15 +64,15 @@ All three come from a Disqus **API application**:
    access token).
 4. On the application's **Settings**, make sure the access level allows
    reading and writing to your forums, and add your site's domain.
-5. Paste the three values into the **Comment sync** panel and click **Save
-   Changes**.
+5. On **Disqus → Comment sync**, paste the three values under **Disqus API**
+   and click **Save**.
 
 ### How secrets are stored
 
 The secret key and access token are write-only:
 
 - They are never sent back to the browser. After saving, the fields are empty
-  with the placeholder *"Saved — leave blank to keep"*.
+  with the placeholder *"Saved. Leave blank to keep it."*
 - Leaving a field blank when you save keeps the stored value.
 - To replace one, type the new value and save.
 
@@ -84,14 +85,15 @@ settings REST endpoint.
 There is a fourth credential with no field on the settings page: the **sync
 token**, which Disqus uses to sign the comments it sends to your site. It is
 generated for you — a random 64-character value — the first time you click
-**Enable sync**. Sites upgrading from the official Disqus plugin keep their
+**Turn on sync**. Sites upgrading from the official Disqus plugin keep their
 existing token.
 
 ## Saving
 
-Account fields save with the same **Save Changes** button as every other
-setting. The button stays disabled until something has changed, and a message
-at the bottom of the screen confirms the save: *"Settings saved."*
+Account fields save with the same **Save** button as every other setting,
+at the top of the page. It does nothing until something has changed, and a
+message at the bottom of the screen confirms the save: *"Settings saved."*
+See [Saving](/better-disqus-comments/getting-started#saving).
 
 ## Related
 

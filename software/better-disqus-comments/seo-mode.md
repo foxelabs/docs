@@ -23,10 +23,11 @@ there are usually no WordPress comments to show crawlers.
 
 1. Set up [Comment Sync](/better-disqus-comments/comment-sync) so new Disqus
    comments are copied into WordPress.
-2. Run [Sync past comments](/better-disqus-comments/comment-sync#sync-past-comments)
-   to bring in the comments you already have.
-3. Leave **Advanced → Load comments for search engine bots** off (the
-   default).
+2. Run [Import past comments](/better-disqus-comments/comment-sync#sync-past-comments),
+   on the **Import & export** page, to bring in the comments you already
+   have.
+3. Leave **Load comments for search engine bots**, on the **Advanced** page,
+   off (the default).
 
 ## What bots see
 
@@ -56,18 +57,17 @@ Cache, a host or CDN cache, …), you have two options:
 1. **Keep SEO mode, and exclude bots from the cache.** Some caches can skip
    caching for bot user agents or keep a separate bot cache. This keeps SEO
    mode fully working.
-2. **Turn SEO mode off.** Turn on **Advanced → Load comments for search
-   engine bots**. Bots then get the Disqus embed like everyone else, so the
-   cache is always safe — but crawlers no longer see your comments as
-   indexable text.
+2. **Turn SEO mode off.** Turn on **Load comments for search engine bots**
+   on the **Advanced** page. Bots then get the Disqus embed like everyone
+   else, so the cache is always safe — but crawlers no longer see your
+   comments as indexable text.
 
 ## Load comments for search engine bots
 
-**Panel:** Advanced &middot; **Setting key:** `dcl_gnrl_options.dcl_caching`
+**Page:** Advanced &middot; **Setting key:** `dcl_gnrl_options.dcl_caching`
 &middot; **Default:** `0` (off)
 
-> By default Disqus is hidden from crawlers. Turn this on if you use page
-> caching, so cached pages still include the comments.
+> Turn on with page caching, so cached pages still include the comments.
 
 Off means SEO mode is on. On means SEO mode is off: bots are treated like
 people.

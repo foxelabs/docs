@@ -6,15 +6,15 @@ description: Show Disqus comments on Easy Digital Downloads product pages, right
 # Comments for EDD
 
 Easy Digital Downloads product pages — *downloads* — don't have comments, so
-there's nowhere for Disqus to show. The **Comments for EDD** addon turns
+there's nowhere for Disqus to show. The **Comments for EDD** add-on turns
 comments on for downloads. Your theme then shows its comments area after the
 download content, and Better Disqus Comments puts the lazy-loaded Disqus
 thread there, as on your posts.
 
-There's nothing to set up: activate the addon and open comments on your
-downloads. It has no settings panel.
+There's nothing to set up: activate the add-on and open comments on your
+downloads. It adds nothing to the settings screen.
 
-Requires Easy Digital Downloads, which the addon declares as a required
+Requires Easy Digital Downloads, which the add-on declares as a required
 plugin.
 
 [[toc]]
@@ -26,7 +26,7 @@ Disqus follows each download's **Allow comments** setting, in its
 
 - **New downloads** follow your site's default, under **Settings →
   Discussion → Allow people to submit comments on new posts**.
-- **Existing downloads** — created before the addon was active — have
+- **Existing downloads** — created before the add-on was active — have
   comments **closed**, because downloads didn't support comments then.
 
 ### Open comments on existing downloads
@@ -55,7 +55,7 @@ usually right after the download content. In block themes, that's the
 
 ### `dcl_edd_comments_enabled`
 
-Return `false` to keep comment support off for downloads while the addon is
+Return `false` to keep comment support off for downloads while the add-on is
 active.
 
 ```php
@@ -64,11 +64,11 @@ add_filter( 'dcl_edd_comments_enabled', '__return_false' );
 
 ## Coming from DCL Pro
 
-Nothing to set up again. DCL Pro 11.x had an on/off switch for EDD; the addon
+Nothing to set up again. DCL Pro 11.x had an on/off switch for EDD; the add-on
 being active is the switch now.
 
 ## Related
 
 - [Getting Started](/better-disqus-comments/getting-started#where-disqus-shows)
   — where Disqus shows.
-- [Addons](/better-disqus-comments/addons/) — installing and licensing.
+- [Add-ons](/better-disqus-comments/addons/) — installing and licensing.

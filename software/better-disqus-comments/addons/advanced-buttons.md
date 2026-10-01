@@ -5,7 +5,7 @@ description: Six ready-made styles for the Load Comments button, and the Disqus 
 
 # Advanced Buttons
 
-The **Advanced Buttons** addon improves the **Load Comments** button that the
+The **Advanced Buttons** add-on improves the **Load Comments** button that the
 [click loading method](/better-disqus-comments/comment-loading#when-the-visitor-clicks-a-button)
 shows:
 
@@ -14,7 +14,8 @@ shows:
 - **Comment count** — *"Load Comments (12)"*, so visitors can see there's a
   discussion worth opening.
 
-When active, both options appear in the **Comment loading** panel while
+When active, both options appear on the **General** page, in the **Load
+comments button** card, with a **Preview** below them. That card shows while
 **When the visitor clicks a button** is selected, for desktop or mobile.
 
 [[toc]]
@@ -62,8 +63,10 @@ Posts Disqus has no thread for yet — nobody has opened their comments — keep
 the plain label.
 
 The count needs your Disqus
-[public API key](/better-disqus-comments/disqus-account#api-keys). Without
-one, the toggle's help text says so and the label is left alone.
+[public API key](/better-disqus-comments/disqus-account#api-keys), entered on
+the **Comment sync** page. Without one, the toggle's help text reads *"Needs a
+Disqus public API key. Add it on the Comment sync page, then save."* and the
+label is left alone.
 
 ### Caching
 
@@ -105,11 +108,11 @@ Kept from DCL Pro 11.x.
 
 ## Coming from DCL Pro
 
-Your button style and count setting carry over — the addon uses the same
+Your button style and count setting carry over — the add-on uses the same
 settings and the same count cache as DCL Pro 11.x.
 
 ## Related
 
 - [Comment Loading](/better-disqus-comments/comment-loading) — the button
   text, classes and loading message.
-- [Addons](/better-disqus-comments/addons/) — installing and licensing.
+- [Add-ons](/better-disqus-comments/addons/) — installing and licensing.

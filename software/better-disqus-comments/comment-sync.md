@@ -16,8 +16,10 @@ your WordPress database too, as regular WordPress comments:
   posted. There's no scheduled job and no polling, so it doesn't use up your
   Disqus API limit.
 
-Sync is optional and off until you turn it on. The **Comment sync** panel also
-has two one-off tools: [pull in past comments](#sync-past-comments) and
+Sync is optional and off until you turn it on. It's set up on the
+**Comment sync** page. The **Import & export** page, under **Manage** in the
+sidebar, has two one-off tools that use the same API keys:
+[import past comments](#sync-past-comments) and
 [export WordPress comments to Disqus](#export-comments-to-disqus).
 
 [[toc]]
@@ -27,12 +29,13 @@ has two one-off tools: [pull in past comments](#sync-past-comments) and
 You need a Disqus API application — see
 [API keys](/better-disqus-comments/disqus-account#api-keys).
 
-1. In **Disqus → Settings → Comment sync**, enter the **Public key**,
-   **Secret key** and **Admin access token**.
-2. Click **Save Changes**. The panel now shows **Sync status**.
-3. Click **Enable sync**.
+1. On the **Disqus → Comment sync** page, under **Disqus API**, enter the
+   **Public key**, **Secret key** and **Admin access token**.
+2. Click **Save** at the top of the page. A **Sync status** card appears
+   below the keys.
+3. Click **Turn on sync**.
 
-The status changes to **Active**, and the last event reads *"Sync connection
+**Sync** changes to **On**, and **Last event** reads *"Sync connection
 established with Disqus."* once Disqus has confirmed your site. New comments
 posted on Disqus now appear under **Comments** in WordPress within seconds.
 
@@ -46,18 +49,19 @@ signing token are carried over. See
 
 | You see | Meaning |
 | --- | --- |
-| **Status: Active** with **Disable sync** | Disqus sends new comments to your site. |
-| **Status: Off** with **Enable sync** | Sync is set up but paused, or not turned on yet. |
-| *"The webhook secret on Disqus is out of date. Click “Enable sync” to repair it."* | The token Disqus signs with no longer matches your site's — for example after moving the site. **Enable sync** fixes it. |
-| *"Could not reach Disqus."* or a Disqus error | The status couldn't be loaded. Check the API keys, then reload the page. |
-| *"Comment sync is paused while the official Disqus plugin is active."* | Deactivate the official plugin — see [below](#while-the-official-disqus-plugin-is-active). |
+| **Sync: On** with **Turn off sync** | Disqus sends new comments to your site. |
+| **Sync: Off** with **Turn on sync** | Sync is set up but paused, or not turned on yet. |
+| *"The webhook secret on Disqus is out of date"* with **Repair sync** | The token Disqus signs with no longer matches your site's — for example after moving the site. **Repair sync** fixes it. |
+| *"Could not check the sync status"* with **Check again** | The status couldn't be loaded. The notice gives the reason, such as *"Could not reach Disqus."* or a Disqus error. Check the API keys, then click **Check again**. |
+| *"Comment sync is paused while the official Disqus plugin is active"* | Deactivate the official plugin — see [below](#while-the-official-disqus-plugin-is-active). |
 
-Under the status, **Last event** shows the most recent sync event and when it
+Below **Sync**, **Last event** shows the most recent sync event and when it
 happened, for example *"Synced comment 6123456789 from Disqus."* or *"Could
-not sync a comment from Disqus: …"*. Only the latest event is kept.
+not sync a comment from Disqus: …"*. It reads **None yet** until the first
+event. Only the latest event is kept.
 
-**Disable sync** tells Disqus to stop sending comments. The connection on
-Disqus's side is kept, so **Enable sync** turns it back on with one click.
+**Turn off sync** tells Disqus to stop sending comments. The connection on
+Disqus's side is kept, so **Turn on sync** turns it back on with one click.
 Comments already synced stay in WordPress.
 
 ## How comments are saved
@@ -87,21 +91,29 @@ WordPress doesn't change it on Disqus — moderate on Disqus, and the change
 syncs back.
 :::
 
-## Sync past comments
+## Import past comments {#sync-past-comments}
 
 Sync only catches comments posted after it's turned on. To pull in older
-ones:
+ones, open **Disqus → Import & export**:
 
-1. Under **Sync past comments**, choose a **From** and **To** date. They
+1. Under **Import past comments**, choose a **From** and **To** date. They
    default to the last 30 days; the end date can't be in the future.
-2. Click **Sync past comments**.
+2. Click **Import comments**.
 
-The tool works through your Disqus comments 100 at a time and shows progress:
-*"250 comments synced, 0 failed."* You can **Stop** at any time and run it
-again later — comments already in WordPress are updated, not duplicated.
+The tool works through your Disqus comments 100 at a time and counts them as
+it goes, under **Importing…** (**Imported** once it's done) and **Failed**.
+You can **Stop** at any time and run it again later — comments already in
+WordPress are updated, not duplicated. You don't need to turn on sync first,
+only to save the API keys.
 
-Keep the tab open while it runs. For a site with years of comments, sync a
+Keep the tab open while it runs. For a site with years of comments, import a
 year or so at a time.
+
+::: tip No API keys yet?
+Until the keys are saved on the **Comment sync** page, **Import & export**
+shows *"Add your Disqus API keys first"* instead of the tools. Its **Add API
+keys** button takes you there.
+:::
 
 A comment can fail when its thread can't be matched to a post — for example a
 post that was deleted, or a thread created by a different site. Failures are
@@ -112,9 +124,11 @@ counted but don't stop the run.
 The other direction: send comments that exist only in WordPress — from before
 you used Disqus, say — to Disqus, so they show up in the Disqus thread.
 
-1. Under **Export comments to Disqus**, click **Export comments**.
-2. Wait for *"Done."* Progress shows as *"20 posts checked, 5 exported with
-   48 comments."*
+1. On **Disqus → Import & export**, under **Export comments to Disqus**,
+   click **Export comments**.
+2. Wait for *"Done."* A progress bar shows how far it got, as *"20 posts
+   checked, 5 exported with 48 comments."* You can **Stop** it at any
+   time.
 
 What is exported:
 
@@ -127,7 +141,7 @@ What is exported:
 
 The upload happens from your server, so your access token never reaches the
 browser. Posts that fail are listed under *"Some posts could not be
-exported:"* with the reason.
+exported"* with the reason.
 
 ::: warning Run it once
 Disqus processes imports in the background, and it can take a while before
@@ -142,18 +156,22 @@ The official plugin and this one use the same webhook address, so only one
 can receive comments. While the official plugin is active:
 
 - a warning asks you to deactivate it, on every admin screen;
-- **Enable sync**, **Disable sync** and **Sync past comments** are disabled;
+- **Turn on sync**, **Turn off sync** and **Repair sync** are disabled, and
+  the **Comment sync** page says *"Comment sync is paused while the official
+  Disqus plugin is active"*;
+- **Import comments** is disabled, and the **Import & export** page says
+  *"Importing is paused while the official Disqus plugin is active"*;
 - displaying comments keeps working.
 
 Deactivate *Disqus Comment System* and sync picks up where it left off.
 
 ## Troubleshooting
 
-**Status stays Off after Enable sync.** Check the three keys — the error
+**Sync stays Off after Turn on sync.** Check the three keys — the error
 message comes from Disqus. The API application must allow writing to your
 forum.
 
-**Enabled, but comments don't arrive.** Disqus must be able to reach
+**Sync is on, but comments don't arrive.** Disqus must be able to reach
 `https://your-site.com/wp-json/disqus/v1/sync/webhook`:
 
 - Your site must be public — Disqus can't reach `localhost` or a site behind a

@@ -5,8 +5,8 @@ description: Compatibility switches for page caching, Cloudflare Rocket Loader a
 
 # Advanced
 
-The **Advanced** panel holds three compatibility switches. All are off by
-default — turn one on only when you have the problem it solves.
+The **Advanced** page holds three switches, under **Compatibility**. All are
+off by default — turn one on only when you have the problem it solves.
 
 [[toc]]
 
@@ -14,8 +14,7 @@ default — turn one on only when you have the problem it solves.
 
 **Setting key:** `dcl_gnrl_options.dcl_caching` &middot; **Default:** `0`
 
-> By default Disqus is hidden from crawlers. Turn this on if you use page
-> caching, so cached pages still include the comments.
+> Turn on with page caching, so cached pages still include the comments.
 
 Turning this on switches [SEO mode](/better-disqus-comments/seo-mode) off:
 bots get the Disqus embed like people do. See
@@ -26,23 +25,24 @@ need it and the alternative.
 
 **Setting key:** `dcl_gnrl_options.dcl_cfasync` &middot; **Default:** `0`
 
-> Adds data-cfasync="false" to the DCL script so Rocket Loader leaves it
-> alone.
+> Adds data-cfasync="false" so Rocket Loader leaves the script alone.
 
 Cloudflare's [Rocket Loader](https://developers.cloudflare.com/speed/optimization/content/rocket-loader/)
 defers every script on the page, which can stop comments from loading or
-make them load late. With this on, the plugin's script tag becomes:
+make them load late. With this on, the plugin's script tag and the settings
+data printed just before it are both marked:
 
 ```html
-<script type="text/javascript" src="…/build/embed.js" data-cfasync="false"></script>
+<script data-cfasync="false" id="dcl-comments-js-extra">var dclData = {…};</script>
+<script data-cfasync="false" id="dcl-comments-js" src="…/build/embed.js"></script>
 ```
 
-and Rocket Loader skips it. Only turn it on if Rocket Loader is enabled for
+and Rocket Loader skips them. Only turn it on if Rocket Loader is enabled for
 your site and comments misbehave.
 
-::: tip Pick one
-This has no effect together with **Print the script inline** — an inline
-script has no tag of its own to mark. Use one or the other.
+::: tip Works with inline mode
+Together with **Print the script inline**, the inline script and its data
+are marked the same way, so you can use both.
 :::
 
 ## Print the script inline
@@ -50,12 +50,16 @@ script has no tag of its own to mark. Use one or the other.
 **Setting key:** `dcl_gnrl_options.dcl_render_inline` &middot; **Default:**
 `0`
 
-> Outputs the DCL script directly in the page instead of as a separate file.
 > Try this if a caching or minify plugin stops comments from loading.
 
-Some optimisation plugins combine, defer or rewrite script files in ways that
-break the loader. Printing it inline, in the footer, keeps it out of their
-reach. The script is small, so the cost is a few kilobytes per page.
+The plugin's script is then printed directly in the page instead of loaded
+as a separate file. Some optimisation plugins combine, defer or rewrite
+script files in ways that break the loader. Printing it inline, in the
+footer, keeps it out of their reach. The script is small, so the cost is a
+few kilobytes per page.
+
+It applies to pages that show the Disqus thread. Pages that only show
+comment counts, such as archives, still load the script as a file.
 
 Sites that had the official Disqus plugin's inline JavaScript option on get
 this turned on automatically when they upgrade.
@@ -68,9 +72,10 @@ Work through these in order:
    [Shortname](/better-disqus-comments/disqus-account#shortname).
 2. **Check the post.** Comments must be open, and the post type not
    [excluded](/better-disqus-comments/display#exclude-post-types).
-3. **Switch to Immediately** under
-   [Comment loading](/better-disqus-comments/comment-loading). If comments
-   now load, a script optimiser is interfering with lazy loading.
+3. **Switch to Immediately (no lazy load)** under
+   [Comment loading](/better-disqus-comments/comment-loading) on the
+   **General** page. If comments now load, a script optimiser is interfering
+   with lazy loading.
 4. **Exclude the script from optimisation.** In your caching or minify
    plugin, exclude `disqus-conditional-load/build/embed.js` from combining,
    deferring and delaying — or turn on **Print the script inline**.

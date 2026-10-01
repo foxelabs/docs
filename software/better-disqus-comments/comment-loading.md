@@ -5,9 +5,10 @@ description: Choose when Disqus loads — on scroll, on click or immediately —
 
 # Comment Loading
 
-The **Comment loading** panel decides *when* Disqus loads. Until then, the
-page carries only an empty placeholder and a small script — Disqus's own
-scripts, fonts and iframes aren't downloaded at all.
+The **Comment loading** settings, on the **General** page, decide *when*
+Disqus loads. Until then, the page carries only an empty placeholder and a
+small script — Disqus's own scripts, fonts and iframes aren't downloaded at
+all.
 
 [[toc]]
 
@@ -21,8 +22,8 @@ scripts, fonts and iframes aren't downloaded at all.
 | **When the visitor clicks a button** | `click` | A **Load Comments** button replaces the thread until it is clicked. |
 | **Immediately (no lazy load)** | `normal` | Disqus loads with the page, like the official Disqus plugin. |
 
-Addons can add more — the [Scroll Load](/better-disqus-comments/addons/scroll-load)
-addon adds **As soon as the visitor scrolls**.
+Add-ons can add more — the [Scroll Load](/better-disqus-comments/addons/scroll-load)
+add-on adds **As soon as the visitor scrolls**.
 
 ### When comments come into view
 
@@ -44,7 +45,8 @@ thread area shows a **Load Comments** button; clicking it shows the
 
 A link to a comment (`#comment-…`) clicks the button automatically.
 
-Choosing this method, for desktop or mobile, shows three more fields.
+Choosing this method, for desktop or mobile, adds a **Load comments
+button** card below with three more fields.
 
 #### Button text
 
@@ -55,7 +57,7 @@ empty value is saved as is and the button has no label.
 
 ::: tip Show the comment count on the button
 With the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
-addon the label becomes *"Load Comments (12)"*, and you can pick one of six
+add-on the label becomes *"Load Comments (12)"*, and you can pick one of six
 ready-made button styles.
 :::
 
@@ -98,11 +100,11 @@ mobile — to everyone. If you use different methods, enable your cache's
 separate mobile cache, or use the same method for both.
 :::
 
-## If a method's addon is switched off
+## If a method's add-on is switched off
 
-A method added by an addon is only offered while that addon is active. If
-the addon is deactivated, pages fall back to **When comments come into view**
-— but your choice is kept, and comes back as soon as the addon is active
+A method added by an add-on is only offered while that add-on is active. If
+the add-on is deactivated, pages fall back to **When comments come into view**
+— but your choice is kept, and comes back as soon as the add-on is active
 again.
 
 ## How lazy loading works

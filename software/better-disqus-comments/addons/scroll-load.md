@@ -5,7 +5,7 @@ description: Start loading Disqus on the visitor's first scroll, so comments are
 
 # Scroll Load
 
-The **Scroll Load** addon adds one more
+The **Scroll Load** add-on adds one more
 [loading method](/better-disqus-comments/comment-loading): **As soon as the
 visitor scrolls**.
 
@@ -20,13 +20,13 @@ they're usually ready.
 ## Setting it up
 
 1. [Install and activate](/better-disqus-comments/addons/#installing-an-addon)
-   the addon.
-2. Go to **Disqus → Settings → Comment loading**.
+   the add-on.
+2. Go to **Disqus → General** and find **Comment loading**.
 3. Under **Load comments** — or **On mobile devices** — choose **As soon as
    the visitor scrolls**.
-4. Click **Save Changes**.
+4. Click **Save**.
 
-The addon has no other settings.
+The add-on has no other settings.
 
 ## How it compares
 
@@ -48,13 +48,13 @@ Disqus loads without waiting for a scroll when:
 
 ## Deactivating
 
-If the addon is deactivated, pages fall back to **When comments come into
-view**. Your choice is kept, and comes back when the addon is active again.
+If the add-on is deactivated, pages fall back to **When comments come into
+view**. Your choice is kept, and comes back when the add-on is active again.
 
 ## Coming from DCL Pro
 
 This is DCL Pro 11.x's **On Scroll Start** method. It's stored the same way
-(`scroll_start`), so a site that used it keeps it — install the addon and it
+(`scroll_start`), so a site that used it keeps it — install the add-on and it
 works again.
 
 ## Related
@@ -62,4 +62,4 @@ works again.
 - [Comment Loading](/better-disqus-comments/comment-loading) — all loading
   methods.
 - [Developer Docs](/better-disqus-comments/developer-docs#adding-a-load-method)
-  — how an addon adds a loading method.
+  — how an add-on adds a loading method.

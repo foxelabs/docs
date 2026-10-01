@@ -5,7 +5,7 @@ description: Place the Disqus comment thread in a sidebar, footer or any other w
 
 # Comments Widget
 
-The **Comments Widget** addon adds a **Disqus Comments** widget that shows the
+The **Comments Widget** add-on adds a **Disqus Comments** widget that shows the
 Disqus thread in any widget area — a sidebar, a footer — instead of below the
 post content. It's lazy loaded like everywhere else on your site.
 
@@ -74,11 +74,11 @@ Filters the widget form's HTML. Kept from DCL Pro 11.x.
 ## Coming from DCL Pro
 
 Widgets you placed with DCL Pro 11.x stay where they are, with their titles —
-the widget is the same one. DCL Pro's on/off switch is gone: the addon being
+the widget is the same one. DCL Pro's on/off switch is gone: the add-on being
 active is the switch.
 
 DCL Pro could show the thread twice when the sidebar came after the content;
-the addon fixes that.
+the add-on fixes that.
 
 ## Related
 

@@ -1,11 +1,11 @@
 ---
-title: Premium Bundle
-description: Every Better Disqus Comments addon, and every future one, under one license key.
+title: Pro Bundle
+description: Every Better Disqus Comments add-on, and every future one, under one license key.
 ---
 
-# Premium Bundle
+# Pro Bundle
 
-The **Premium Bundle** is every Better Disqus Comments addon in one plan, with
+The **Pro Bundle** is every Better Disqus Comments add-on in one plan, with
 one license key:
 
 - [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
@@ -15,71 +15,74 @@ one license key:
 - [Comments Widget](/better-disqus-comments/addons/comments-widget)
 - [Latest Comments Widget](/better-disqus-comments/addons/latest-comments)
 
-**Future addons are included** at no extra cost, for as long as your license
-is valid.
+**Future add-ons are included**, for as long as your license is valid.
 
 [[toc]]
 
 ## Buying
 
-Click **Get Premium Bundle** on the banner at the top of **Disqus → Addons**, or
-go to [dclwp.com](https://dclwp.com/). Checkout is handled by
-[Freemius](https://freemius.com/), which emails your license key and a link
-to your [Freemius account](https://users.freemius.com/).
+Click **Get the bundle** on the **Pro Bundle** card at the top of
+**Disqus → Add-ons**, or go to [dclwp.com](https://dclwp.com/). Checkout is
+handled by [Freemius](https://freemius.com/), which emails your license key
+and a link to the
+[Freemius customer portal](https://customers.freemius.com/store/20281).
 
 ## Activating the bundle
 
-One key licenses every addon on the site:
+One key licenses every premium add-on on the site:
 
 1. [Download and install](/better-disqus-comments/addons/#installing-an-addon)
-   the addons you want. Install at least one before activating — the bundle
+   the add-ons you want. Install at least one before activating — the bundle
    has nothing to license otherwise.
-2. Open **Disqus → Addons**.
-3. On the **Premium Bundle** banner, click **Have a key? Activate license**.
-4. Paste your key into **License Key** and click **Activate**.
+2. Open **Disqus → Add-ons**.
+3. On the **Pro Bundle** card, click **Have a key? Activate it**.
+4. Paste your key into **License key** and click **Activate license**.
 
-The key is activated on every installed addon at once. The banner switches to
-**Active**, and each card reads **Licensed via Premium Bundle**.
+The key is activated on every installed add-on at once. The **Pro Bundle**
+card then says every premium add-on is licensed through it, and each
+installed add-on's card reads **Active · Pro Bundle**.
 
-If an addon already had its own license, the bundle replaces it on this site
+If an add-on already had its own license, the bundle replaces it on this site
 and frees that license for use elsewhere.
 
-### Addons you install later
+### Add-ons you install later
 
-Install another addon at any time — you don't need to enter the key again.
-The next time you open any admin page, the bundle licenses it automatically.
-Until then its card reads **Premium Bundle activation pending**.
+Install another add-on at any time — you don't need to enter the key again.
+On the next admin page load, the bundle licenses it automatically. If that
+doesn't work, it tries again at most once an hour. Until then the add-on's
+card reads **Installed · activating license**.
 
-Addons covered by the bundle show **Included in your Premium Bundle** and a
-**Download** button, even before you install them.
+While the bundle is active, add-ons you haven't installed yet show
+**In your Pro Bundle** and a **Download** button.
 
 ## Managing the bundle
 
-Click **Manage** on the banner to open the bundle's license window:
+Click **Manage license** on the **Pro Bundle** card to open the bundle's
+license window:
 
-- **Deactivate** removes the license from every addon licensed through the
-  bundle on this site, and frees one site on your plan. The addons keep
-  working, without updates.
+- **Deactivate license** removes the license from every add-on licensed
+  through the bundle on this site, and frees one site on your plan. The
+  add-ons keep working, without updates.
 - **Manage account** opens your Freemius account — downloads, invoices,
   renewals and the list of sites using your key.
 
-Licenses of addons covered by the bundle are managed only from the banner:
-their cards have no license button of their own.
+Licenses of add-ons covered by the bundle are managed only from the
+**Pro Bundle** card: their cards have no license button of their own.
 
 ## Sites and the bundle
 
-A bundle license counts **sites**, not addons: activating it on one site with
-six addons uses one site from your plan.
+A bundle license counts **sites**, not add-ons: activating it on one site with
+six add-ons uses one site from your plan.
 
 ## Renewing
 
 Yearly plans renew automatically through Freemius. If a license expires, the
-addons keep working on your sites — you just stop getting updates and
+add-ons keep working on your sites — you just stop getting updates and
 support until you renew.
 
 ## Related
 
-- [Addons](/better-disqus-comments/addons/) — installing addons and
-  single-addon licenses.
+- [Add-ons](/better-disqus-comments/addons/) — installing add-ons and
+  single add-on licenses.
 - [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x)
   — existing DCL Pro customers.

@@ -7,7 +7,7 @@ description: Move to Better Disqus Comments 13 from the official Disqus plugin, 
 
 Version 13 makes Better Disqus Comments a complete Disqus plugin of its own.
 It no longer needs the official *Disqus Comment System* plugin, and the old
-**DCL Pro** plugin is replaced by separate [addons](/better-disqus-comments/addons/).
+**DCL Pro** plugin is replaced by separate [add-ons](/better-disqus-comments/addons/).
 
 Your settings carry over in every case below. Pick the section that matches
 your site.
@@ -38,7 +38,9 @@ Disqus Comments wins.
 2. **Load any page of your site** or the admin. The settings are copied on
    the first request.
 3. **Check the settings** under **Disqus** in the admin menu: the shortname
-   and keys should be filled in.
+   on the **General** page and the keys on the **Comment sync** page should
+   be filled in. While the official plugin is active, the admin menu has two
+   **Disqus** menus; this plugin's is the lower one.
 4. **Deactivate *Disqus Comment System*.** The yellow notice at the top of the
    admin has a direct link.
 5. Delete the official plugin if you like.
@@ -60,10 +62,10 @@ screen shows a notice that can't be dismissed:
 > Disqus plugin. Your settings have been carried over. Please deactivate the
 > Disqus Comment System plugin — comment sync stays paused until you do.
 
-Comment sync in Better Disqus Comments stays paused until you deactivate the
-official plugin. After that, Disqus keeps sending comments to the same
-address and Better Disqus Comments receives them — there's nothing to set up
-again.
+Comment sync and importing past comments in Better Disqus Comments stay
+paused until you deactivate the official plugin. After that, Disqus keeps
+sending comments to the same address and Better Disqus Comments receives
+them — there's nothing to set up again.
 
 ### Single Sign-On (SSO)
 
@@ -80,8 +82,10 @@ Disqus settings allow it. If you depend on SSO, let us know on the
 
 ### What's different
 
-- **Menu.** Settings live under **Disqus** in the admin menu, just below
-  **Comments**, instead of under **Comments → Disqus**.
+- **Menu.** The official plugin's **Disqus** menu took the place of
+  WordPress's **Comments** menu. Now **Comments** is back, and the settings
+  live in this plugin's own **Disqus** menu, just below it. Moderation opens
+  on disqus.com from the toolbar's **Disqus** menu.
 - **Lazy loading.** Comments load when they come into view by default. To
   keep the official plugin's behaviour, pick
   [Immediately](/better-disqus-comments/comment-loading#immediately).
@@ -105,10 +109,10 @@ changed. What's new:
 ## From DCL Pro 11.x
 
 DCL Pro was one plugin with every premium feature. It's replaced by six
-separate addons, each doing one thing, sold alone or together in the
-[Premium Bundle](/better-disqus-comments/addons/premium-bundle):
+separate add-ons, each doing one thing, sold alone or together in the
+[Pro Bundle](/better-disqus-comments/addons/premium-bundle):
 
-| DCL Pro feature | Addon |
+| DCL Pro feature | Add-on |
 | --- | --- |
 | WooCommerce integration | [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments) |
 | Easy Digital Downloads integration | [Comments for EDD](/better-disqus-comments/addons/edd-comments) |
@@ -118,7 +122,7 @@ separate addons, each doing one thing, sold alone or together in the
 | "On Scroll Start" loading | [Scroll Load](/better-disqus-comments/addons/scroll-load) |
 | Separate mobile loading method | Now free, in [Comment Loading](/better-disqus-comments/comment-loading#on-mobile-devices) |
 
-Existing DCL Pro customers get the Premium Bundle; we'll email you your new
+Existing DCL Pro customers get the Pro Bundle; we'll email you your new
 license key.
 
 ### Steps
@@ -126,29 +130,38 @@ license key.
 1. **Deactivate DCL Pro.** The free plugin can't be activated while DCL Pro
    is active.
 2. **Install and activate Better Disqus Comments** from WordPress.org.
-3. **Download the addons you use** from your
-   [Freemius account](https://users.freemius.com/), and install and activate
-   them. See [Installing an addon](/better-disqus-comments/addons/#installing-an-addon).
-4. **Activate your license** in **Disqus → Addons**. A Premium Bundle key is
-   activated on every addon at once — see
-   [Premium Bundle](/better-disqus-comments/addons/premium-bundle).
-5. Delete DCL Pro.
+3. **Download the add-ons you use** from the
+   [Freemius customer portal](https://customers.freemius.com/store/20281/downloads),
+   and install and activate them. See
+   [Installing an add-on](/better-disqus-comments/addons/#installing-an-addon).
+4. **Activate your license** in **Disqus → Add-ons**. Use the new key from
+   the email, not your old DCL Pro key. A Pro Bundle key is activated on
+   every add-on at once — see
+   [Pro Bundle](/better-disqus-comments/addons/premium-bundle).
+5. **Leave DCL Pro deactivated**, or remove its
+   `disqus-conditional-load-pro` folder by FTP or your host's file manager.
+
+::: warning Don't delete DCL Pro from the Plugins screen
+Deleting DCL Pro under **Plugins** runs its uninstaller, which erases the
+settings DCL Pro and Better Disqus Comments share. Keep it deactivated, or
+remove its folder by FTP or your host's file manager.
+:::
 
 Your DCL Pro settings — button style, WooCommerce placement, widget settings,
-the scroll loading method — are kept and picked up by each addon as soon as
+the scroll loading method — are kept and picked up by each add-on as soon as
 it's active. Widgets you placed stay in their sidebars.
 
 ::: warning Keep the official Disqus plugin until you switch
 DCL Pro 11.x relies on the official Disqus plugin. If you remove the official
 plugin while DCL Pro is still active, DCL Pro stops showing comments. Switch
-to Better Disqus Comments and the addons first.
+to Better Disqus Comments and the add-ons first.
 :::
 
 ## Related
 
 - [Getting Started](/better-disqus-comments/getting-started) — a tour of the
   plugin.
-- [Addons](/better-disqus-comments/addons/) — installing addons and
+- [Add-ons](/better-disqus-comments/addons/) — installing add-ons and
   activating licenses.
 - [Changelog](/better-disqus-comments/changelog) — everything that changed in
   13.0.0.

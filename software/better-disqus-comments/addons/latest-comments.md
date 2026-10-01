@@ -6,12 +6,13 @@ description: Show your latest Disqus comments in a sidebar or footer widget, wit
 # Latest Comments Widget
 
 WordPress's own **Recent Comments** widget can't see Disqus comments. The
-**Latest Comments Widget** addon adds a **Disqus Latest Comments** widget that
+**Latest Comments Widget** add-on adds a **Disqus Latest Comments** widget that
 lists them: who commented, a short excerpt, and a link straight to the
 comment.
 
 It needs your Disqus
-[public API key](/better-disqus-comments/disqus-account#api-keys).
+[public API key](/better-disqus-comments/disqus-account#api-keys), entered on
+the **Comment sync** page.
 
 [[toc]]
 
@@ -103,7 +104,7 @@ add_filter( 'dcl_latest_comments_cache_time', function () {
 Widgets you placed with DCL Pro 11.x stay where they are. DCL Pro had one set
 of widget settings for the whole site; each widget now has its own. Until you
 save a widget, it uses your DCL Pro settings, so nothing changes. DCL Pro's
-on/off switch is gone: the addon being active is the switch.
+on/off switch is gone: the add-on being active is the switch.
 
 The widget is also much lighter than DCL Pro's, which made one extra API
 request for every comment it showed.

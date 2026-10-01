@@ -24,34 +24,36 @@ optional:
   as they are posted, and older ones can be pulled in or sent the other way.
 - **SEO mode** — search engines get your comments as plain WordPress comments
   they can index, while people get Disqus.
-- **Addons** — Disqus on WooCommerce and Easy Digital Downloads pages, comment
+- **Add-ons** — Disqus on WooCommerce and Easy Digital Downloads pages, comment
   widgets, button styles and more.
 
 ::: info Formerly Disqus Conditional Load
 The plugin was called **Disqus Conditional Load** until version 13. The slug
-(`disqus-conditional-load`), settings and hooks are unchanged, so existing
-sites and custom code keep working. Coming from the official Disqus plugin or
-DCL Pro? See [Upgrading](/better-disqus-comments/upgrading).
+(`disqus-conditional-load`), settings and shortcodes are unchanged, and most
+hooks are kept, so existing sites keep working. A few old developer hooks
+were removed; the [Changelog](/better-disqus-comments/changelog) lists them.
+Coming from the official Disqus plugin or DCL Pro? See
+[Upgrading](/better-disqus-comments/upgrading).
 :::
 
 [[toc]]
 
 ## Requirements
 
-- WordPress **6.5** or later
+- WordPress **6.6** or later
 - PHP **7.4** or later
 - A Disqus site. [Create one on Disqus](https://disqus.com/admin/create/) if
   you don't have it yet — it's free.
 
 ## Install
 
-1. In your WordPress admin, go to **Plugins → Add New**.
+1. In your WordPress admin, go to **Plugins → Add New Plugin**.
 2. Search for **Better Disqus Comments**.
 3. Click **Install Now**, then **Activate**.
 
 Or download the ZIP from
 [WordPress.org](https://wordpress.org/plugins/disqus-conditional-load/) and
-upload it under **Plugins → Add New → Upload Plugin**.
+upload it under **Plugins → Add New Plugin → Upload Plugin**.
 
 If the official *Disqus Comment System* plugin is active, see
 [Upgrading from the official Disqus plugin](/better-disqus-comments/upgrading#from-the-official-disqus-plugin)
@@ -60,33 +62,59 @@ only while its data is still there.
 
 ## Connect your Disqus site
 
-Until a shortname is saved, nothing is shown to visitors and every admin
-screen shows a reminder:
+Until a shortname is saved, nothing is shown to visitors and the WordPress
+admin shows a reminder:
 
 > Better Disqus Comments is almost ready. Enter your Disqus shortname to start
 > showing comments.
 
-1. Open **Disqus** in the WordPress admin menu (just below **Comments**).
-2. In the **Disqus** panel, enter your **Shortname** — the *example* in
+1. Open **Disqus** in the WordPress admin menu (just below **Comments**). The
+   **General** page opens. Until a shortname is saved, it says *"Comments are
+   off until you add your Disqus shortname"* and the sidebar marks it
+   **Needs fixing**.
+2. Under **Disqus site**, enter your **Shortname** — the *example* in
    `example.disqus.com`. Pasting the full address works too.
-3. Click **Save Changes**.
+3. Click **Save** at the top of the page.
 
 That's it — open any post with comments enabled and scroll down. See
 [Disqus Account](/better-disqus-comments/disqus-account) for finding your
 shortname and what the other keys are for.
 
-## The settings page
+## The settings screen
 
-Everything lives on one page under **Disqus** in the admin menu, with three
-tabs:
+Everything lives under **Disqus** in the admin menu. A sidebar lists the
+pages in three groups:
 
-| Tab | What it has |
-| --- | --- |
-| **Settings** | Five panels — **Disqus**, **Comment loading**, **Display**, **Comment sync** and **Advanced** — plus panels added by addons. One **Save Changes** button at the bottom saves them all. |
-| **Addons** | The addon catalogue and the [Premium Bundle](/better-disqus-comments/addons/premium-bundle): buy, download and activate licenses. |
-| **Help** | Links to these docs, the support forum and priority support. |
+| Group | Page | What it has |
+| --- | --- | --- |
+| Settings | **General** | **Disqus site** (your shortname) and **Comment loading**, plus **Load comments button** while the click method is in use. |
+| | **Display** | **Comment counts**, and **Comment section**: excluded post types and the width of the thread. |
+| | **Comment sync** | **Disqus API** (the API keys), then **Sync status** once the keys are saved. |
+| | **Advanced** | **Compatibility** switches for caching and optimisation plugins. |
+| Manage | **Import & export** | Import past Disqus comments, and export WordPress comments to Disqus. |
+| More | **Add-ons** | The add-ons and the [Pro Bundle](/better-disqus-comments/addons/premium-bundle): buy, download and activate licenses. |
+| | **Help** | Links to these docs, the support forum and priority support, and your plugin, WordPress and PHP versions to copy into a support request. |
 
-The page needs the `manage_options` capability by default (administrators).
+Add-ons add their settings to these pages too; each add-on's guide says
+where.
+
+Each page has its own address, so a reload or a bookmark opens the same
+page.
+
+### Saving
+
+**Save** sits in the header at the top of each settings page. It does
+nothing until you change something. Then the header counts your
+changes — *"2 unsaved changes"* — and **Discard** appears to undo them.
+
+Changes on different pages are kept together, and one **Save** saves them
+all. A message at the bottom of the screen confirms it: *"Settings saved."*
+If you try to leave with unsaved changes, the browser asks first.
+
+If saving fails, a notice says *"The settings could not be saved"* and why.
+Your changes are kept; click **Try again**.
+
+The screen needs the `manage_options` capability by default (administrators).
 Developers can change that with the
 [`DCL_ACCESS`](/better-disqus-comments/developer-docs#capability) constant.
 
@@ -99,13 +127,13 @@ the **Comments** block in block themes — on posts where all of these are true:
 - Comments are open on that post.
 - The post is published (not a draft, scheduled, pending or trashed).
 - Its post type isn't in **Exclude post types** on the
-  [Display](/better-disqus-comments/display#exclude-post-types) panel.
+  [Display](/better-disqus-comments/display#exclude-post-types) page.
 - The visitor isn't a search engine bot — bots get
   [SEO mode](/better-disqus-comments/seo-mode) instead.
 
 WooCommerce products are left alone so product reviews keep working. The
 [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments)
-addon puts Disqus on product pages.
+add-on puts Disqus on product pages.
 
 To place the thread somewhere else in your content, use the `[dcl-comments]`
 [shortcode](/better-disqus-comments/developer-docs#shortcodes).
@@ -135,7 +163,7 @@ core **Comments** menu is left in place.
   Disqus comments in WordPress.
 - [SEO Mode](/better-disqus-comments/seo-mode) — let search engines index
   your comments.
-- [Addons](/better-disqus-comments/addons/) — WooCommerce, EDD, widgets and
+- [Add-ons](/better-disqus-comments/addons/) — WooCommerce, EDD, widgets and
   more.
 - [Developer Docs](/better-disqus-comments/developer-docs) — hooks,
   shortcodes and REST endpoints.
