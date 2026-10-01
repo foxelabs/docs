@@ -1,13 +1,13 @@
 ---
 title: Upgrading
-description: Move to Better Disqus Comments 13 from the official Disqus plugin, from Disqus Conditional Load, or from DCL Pro 11.x.
+description: Move to Better Disqus Comments 13 from the official Disqus plugin, from Disqus Conditional Load, or from the 11.x Pro plugin.
 ---
 
 # Upgrading
 
 Version 13 makes Better Disqus Comments a complete Disqus plugin of its own.
 It no longer needs the official *Disqus Comment System* plugin, and the old
-**DCL Pro** plugin is replaced by separate [add-ons](/better-disqus-comments/addons/).
+**Pro** plugin is replaced by separate [add-ons](/better-disqus-comments/addons/).
 
 Your settings carry over in every case below. Pick the section that matches
 your site.
@@ -102,17 +102,17 @@ changed. What's new:
 - The official Disqus plugin is no longer needed. If it's active, follow
   [From the official Disqus plugin](#from-the-official-disqus-plugin) above.
 - The separate [mobile loading method](/better-disqus-comments/comment-loading#on-mobile-devices),
-  a DCL Pro feature before, is now free.
+  a Pro feature before, is now free.
 - [Comment Sync](/better-disqus-comments/comment-sync) and
   [SEO Mode](/better-disqus-comments/seo-mode) are built in.
 
-## From DCL Pro 11.x
+## From the Pro plugin (11.x)
 
-DCL Pro was one plugin with every premium feature. It's replaced by six
+In version 11, every premium feature came in one Pro plugin. It's replaced by six
 separate add-ons, each doing one thing, sold alone or together in the
 [Pro Bundle](/better-disqus-comments/addons/premium-bundle):
 
-| DCL Pro feature | Add-on |
+| Pro plugin feature | Add-on |
 | --- | --- |
 | WooCommerce integration | [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments) |
 | Easy Digital Downloads integration | [Comments for EDD](/better-disqus-comments/addons/edd-comments) |
@@ -122,38 +122,38 @@ separate add-ons, each doing one thing, sold alone or together in the
 | "On Scroll Start" loading | [Scroll Load](/better-disqus-comments/addons/scroll-load) |
 | Separate mobile loading method | Now free, in [Comment Loading](/better-disqus-comments/comment-loading#on-mobile-devices) |
 
-Existing DCL Pro customers get the Pro Bundle; we'll email you your new
+Existing Pro customers get the Pro Bundle; we'll email you your new
 license key.
 
 ### Steps
 
-1. **Deactivate DCL Pro.** The free plugin can't be activated while DCL Pro
-   is active.
+1. **Deactivate the Pro plugin.** Better Disqus Comments can't be activated
+   while it is active.
 2. **Install and activate Better Disqus Comments** from WordPress.org.
 3. **Download the add-ons you use** from the
    [Freemius customer portal](https://customers.freemius.com/store/20281/downloads),
    and install and activate them. See
    [Installing an add-on](/better-disqus-comments/addons/#installing-an-addon).
 4. **Activate your license** in **Disqus → Add-ons**. Use the new key from
-   the email, not your old DCL Pro key. A Pro Bundle key is activated on
+   the email, not your old Pro key. A Pro Bundle key is activated on
    every add-on at once — see
    [Pro Bundle](/better-disqus-comments/addons/premium-bundle).
-5. **Leave DCL Pro deactivated**, or remove its
+5. **Leave the Pro plugin deactivated**, or remove its
    `disqus-conditional-load-pro` folder by FTP or your host's file manager.
 
-::: warning Don't delete DCL Pro from the Plugins screen
-Deleting DCL Pro under **Plugins** runs its uninstaller, which erases the
-settings DCL Pro and Better Disqus Comments share. Keep it deactivated, or
+::: warning Don't delete the Pro plugin from the Plugins screen
+Deleting the Pro plugin under **Plugins** runs its uninstaller, which erases
+the settings it shares with Better Disqus Comments. Keep it deactivated, or
 remove its folder by FTP or your host's file manager.
 :::
 
-Your DCL Pro settings — button style, WooCommerce placement, widget settings,
+Your Pro settings — button style, WooCommerce placement, widget settings,
 the scroll loading method — are kept and picked up by each add-on as soon as
 it's active. Widgets you placed stay in their sidebars.
 
 ::: warning Keep the official Disqus plugin until you switch
-DCL Pro 11.x relies on the official Disqus plugin. If you remove the official
-plugin while DCL Pro is still active, DCL Pro stops showing comments. Switch
+The 11.x Pro plugin relies on the official Disqus plugin. If you remove the
+official plugin while the Pro plugin is still active, comments stop showing. Switch
 to Better Disqus Comments and the add-ons first.
 :::
 

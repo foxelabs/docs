@@ -84,5 +84,5 @@ support until you renew.
 
 - [Add-ons](/better-disqus-comments/addons/) — installing add-ons and
   single add-on licenses.
-- [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x)
-  — existing DCL Pro customers.
+- [Upgrading from the Pro plugin](/better-disqus-comments/upgrading#from-the-pro-plugin-11-x)
+  — existing Pro customers.

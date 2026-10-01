@@ -51,9 +51,9 @@ Disqus loads without waiting for a scroll when:
 If the add-on is deactivated, pages fall back to **When comments come into
 view**. Your choice is kept, and comes back when the add-on is active again.
 
-## Coming from DCL Pro
+## Coming from version 11
 
-This is DCL Pro 11.x's **On Scroll Start** method. It's stored the same way
+This is version 11's **On Scroll Start** method. It's stored the same way
 (`scroll_start`), so a site that used it keeps it — install the add-on and it
 works again.
 

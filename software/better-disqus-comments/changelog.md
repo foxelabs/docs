@@ -59,9 +59,9 @@ site.
   pages. Save and Discard sit in the header, and you are warned before
   leaving with unsaved changes.
 * The [mobile loading method](/better-disqus-comments/comment-loading#on-mobile-devices),
-  a DCL Pro feature before, is now free.
-* DCL Pro is replaced by six add-ons, sold alone or in the Pro Bundle. See
-  [Upgrading from DCL Pro 11.x](/better-disqus-comments/upgrading#from-dcl-pro-11-x).
+  a Pro feature before, is now free.
+* The Pro plugin is replaced by six add-ons, sold alone or in the Pro Bundle.
+  See [Upgrading from the Pro plugin](/better-disqus-comments/upgrading#from-the-pro-plugin-11-x).
 * Button styles moved to the [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons)
   add-on. Your stored style is kept and applies again once the add-on is
   active.
@@ -198,6 +198,6 @@ jumping to linked comments, WooCommerce review support and SSL fixes.
 | [Advanced Buttons](/better-disqus-comments/addons/advanced-buttons) | 1.0.0 | First release. |
 | [Scroll Load](/better-disqus-comments/addons/scroll-load) | 1.0.0 | First release. |
 | [Comments for WooCommerce](/better-disqus-comments/addons/woocommerce-comments) | 1.0.0 | First release. New: show Disqus instead of the Reviews tab. |
-| [Comments for EDD](/better-disqus-comments/addons/edd-comments) | 1.0.0 | First release. Fixes DCL Pro's EDD support, which never took effect. |
+| [Comments for EDD](/better-disqus-comments/addons/edd-comments) | 1.0.0 | First release. Fixes the 11.x EDD support, which never took effect. |
 | [Comments Widget](/better-disqus-comments/addons/comments-widget) | 1.0.0 | First release. Fixes the thread showing twice when the sidebar came after the content. |
 | [Latest Comments Widget](/better-disqus-comments/addons/latest-comments) | 1.0.0 | First release. One API request for all widgets, per-widget settings, a backup list for Disqus outages. |

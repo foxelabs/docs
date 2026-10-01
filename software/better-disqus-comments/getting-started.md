@@ -32,7 +32,7 @@ The plugin was called **Disqus Conditional Load** until version 13. The slug
 (`disqus-conditional-load`), settings and shortcodes are unchanged, and most
 hooks are kept, so existing sites keep working. A few old developer hooks
 were removed; the [Changelog](/better-disqus-comments/changelog) lists them.
-Coming from the official Disqus plugin or DCL Pro? See
+Coming from the official Disqus plugin or the 11.x Pro plugin? See
 [Upgrading](/better-disqus-comments/upgrading).
 :::
 

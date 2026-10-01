@@ -62,9 +62,9 @@ active.
 add_filter( 'dcl_edd_comments_enabled', '__return_false' );
 ```
 
-## Coming from DCL Pro
+## Coming from version 11
 
-Nothing to set up again. DCL Pro 11.x had an on/off switch for EDD; the add-on
+Nothing to set up again. Version 11 had an on/off switch for EDD; the add-on
 being active is the switch now.
 
 ## Related

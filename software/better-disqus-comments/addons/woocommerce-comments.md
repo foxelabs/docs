@@ -91,11 +91,11 @@ add_filter( 'dcl_woocommerce_comments_tab_title', function () {
 The card saves with the **Save** button at the top of the page, along with
 every other setting.
 
-## Coming from DCL Pro
+## Coming from version 11
 
 Your placement and tab position carry over — the add-on uses the same
-settings (`dcl_int_options`) as DCL Pro 11.x. DCL Pro's separate on/off
-switch is gone: the add-on being active is the switch. A tab position DCL Pro
+settings (`dcl_int_options`) as version 11. Its separate on/off switch is
+gone: the add-on being active is the switch. A tab position version 11
 stored outside the four options shows as the nearest one.
 
 ## Related

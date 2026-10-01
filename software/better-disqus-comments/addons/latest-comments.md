@@ -70,7 +70,7 @@ A site with no comments yet shows *"No comments yet."*
 ## Styling
 
 The widget's small stylesheet loads only while the widget is in use. The
-list keeps DCL Pro's class names — `dcl-latest-comments-widget`,
+list keeps version 11's class names — `dcl-latest-comments-widget`,
 `dcl-latest-comments-item`, `dcl-latest-comments-author` and so on — so custom
 CSS carries over.
 
@@ -99,14 +99,14 @@ add_filter( 'dcl_latest_comments_cache_time', function () {
 } );
 ```
 
-## Coming from DCL Pro
+## Coming from version 11
 
-Widgets you placed with DCL Pro 11.x stay where they are. DCL Pro had one set
-of widget settings for the whole site; each widget now has its own. Until you
-save a widget, it uses your DCL Pro settings, so nothing changes. DCL Pro's
-on/off switch is gone: the add-on being active is the switch.
+Widgets you placed with version 11 stay where they are. Version 11 had one
+set of widget settings for the whole site; each widget now has its own. Until
+you save a widget, it uses your version 11 settings, so nothing changes. The
+old on/off switch is gone: the add-on being active is the switch.
 
-The widget is also much lighter than DCL Pro's, which made one extra API
+The widget is also much lighter than version 11's, which made one extra API
 request for every comment it showed.
 
 ## Related

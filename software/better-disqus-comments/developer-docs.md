@@ -1037,5 +1037,5 @@ Deleting the plugin removes `dcl_gnrl_options`, `dcl_disqus_account`,
 left behind. Synced comments, their meta, add-on license activations and
 the official Disqus plugin's own settings are left in place.
 
-Nothing is removed while Disqus Conditional Load Pro is active, as it shares
+Nothing is removed while the 11.x Pro plugin is active, as it shares
 these options.

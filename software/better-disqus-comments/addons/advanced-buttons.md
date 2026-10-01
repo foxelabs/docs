@@ -99,17 +99,17 @@ add_filter( 'dcl_advanced_buttons_count_text', function ( $label, $text, $count 
 
 ### `dcl_module_comments_count_cache`
 
-Return `false` to turn the count cache off. Kept from DCL Pro 11.x.
+Return `false` to turn the count cache off. Kept from version 11.
 
 ### `dcl_module_comments_count_cache_time`
 
 How long a count is cached, in seconds. Default `3600`; the minimum is `60`.
-Kept from DCL Pro 11.x.
+Kept from version 11.
 
-## Coming from DCL Pro
+## Coming from version 11
 
 Your button style and count setting carry over — the add-on uses the same
-settings and the same count cache as DCL Pro 11.x.
+settings and the same count cache as version 11.
 
 ## Related
 
