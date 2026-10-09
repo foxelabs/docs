@@ -1,9 +1,9 @@
 ---
-title: Composer
+title: Comment Form
 description: The Convocept comment form — formatting, preview, editing after posting and the WordPress Discussion settings it follows.
 ---
 
-# Composer
+# Comment Form
 
 The composer is Convocept's comment form. **Comments → Convocept →
 Comment form** sets how long authors may edit their comments and the

@@ -93,7 +93,8 @@ never deletes anything.
 ### Delete all Convocept data when the plugin is deleted
 
 Off by default. When on, deleting the plugin from **Plugins** also removes
-Convocept's settings, subscriptions, upvotes, pins and edit history. Leave
+Convocept's settings, subscriptions, upvotes, pins and the other data it
+adds to comments. Leave
 it off to keep them for a later reinstall.
 
 It also removes the marks Convocept keeps on comments: which comments were

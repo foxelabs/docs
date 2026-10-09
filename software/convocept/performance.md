@@ -19,8 +19,8 @@ can't be released.
 | What | Budget | 1.0.0 |
 |---|---|---|
 | JavaScript on page load | 0 KB from files, 0 requests | 0 requests; a ~550 B gzipped inline loader |
-| Interactive script, loaded when needed | ≤ 8 KB gzipped | 5.8 KB |
-| Stylesheet, inlined next to the thread | ≤ 5 KB gzipped | 2.9 KB |
+| Interactive script, loaded when needed | ≤ 8 KB gzipped | 6.2 KB |
+| Stylesheet, inlined next to the thread | ≤ 5 KB gzipped | 3.8 KB |
 | Extra requests on page load | 0 | 0 |
 | Layout shift caused by the comments | none | CLS 0 |
 

@@ -19,7 +19,7 @@ form on every post. Nothing is deleted, and turning it back on brings
 Convocept back with every comment.
 
 While it is off, the General page shows a reminder with a **Turn Convocept
-on** button, and the header of every page shows **Off**.
+on** button, and the sidebar shows **Off** next to the version.
 
 ### Show on
 

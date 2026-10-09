@@ -14,7 +14,7 @@ turns them on and off.
 ## What readers can do
 
 - **Email me replies to my comment** — a checkbox in the comment form.
-- **Email me all new comments** — every new comment on the post.
+- **Email me all new comments on this post** — every new comment on the post.
 - **Subscribe without commenting** — the **Follow** button next to the sort
   switch opens "Get new comments on this post by email" while comments are
   open (it works without JavaScript too), or put the form anywhere with the

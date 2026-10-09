@@ -13,10 +13,10 @@ working, and nothing is lost if you ever switch back.
 
 It is built to cost nothing on page load:
 
-- **0 KB of JavaScript** when the page loads. A small script (under 6 KB
+- **0 KB of JavaScript** when the page loads. A small script (about 6 KB
   gzipped) loads only when a reader scrolls near the comments or starts
   typing.
-- **0 extra requests.** The stylesheet (under 3 KB) is inlined next to the
+- **0 extra requests.** The stylesheet (under 4 KB gzipped) is inlined next to the
   comments.
 - **Server-rendered.** Readers and search engines get the comments in the
   page HTML, and page caches can serve the page to everyone.
@@ -48,7 +48,8 @@ writes the standard WordPress comment tables.
 ::: tip Coming from Disqus, wpDiscuz or Subscribe to Comments Reloaded?
 Disqus comments can be imported in a few clicks: see
 [Import from Disqus](/convocept/import-from-disqus). wpDiscuz comments are
-already WordPress comments and show up straight away: see
+already WordPress comments and show up straight away, and Subscribe to
+Comments Reloaded is replaced by built-in subscriptions: see
 [Switching Plugins](/convocept/switching-plugins).
 :::
 
@@ -138,8 +139,8 @@ kept.
 
 - [General](/convocept/general) — where comments show and how the thread is
   split into pages.
-- [Appearance](/convocept/appearance) — match your theme, or pick light or
-  dark.
+- [Appearance](/convocept/appearance) — light, dark or the reader's device
+  setting, and an accent colour.
 - [Import from Disqus](/convocept/import-from-disqus) — bring your Disqus
   comments home.
 - [Theming](/convocept/theming) — CSS custom properties and template

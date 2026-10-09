@@ -93,8 +93,8 @@ export default defineConfig({
           { text: 'Getting Started', link: '/convocept/getting-started' },
           { text: 'General', link: '/convocept/general' },
           { text: 'Appearance', link: '/convocept/appearance' },
-          { text: 'Composer', link: '/convocept/composer' },
-          { text: 'Moderation & Spam', link: '/convocept/moderation' },
+          { text: 'Comment Form', link: '/convocept/composer' },
+          { text: 'Spam & Moderation', link: '/convocept/moderation' },
           { text: 'Subscriptions', link: '/convocept/subscriptions' },
           { text: 'Advanced', link: '/convocept/advanced' },
           {

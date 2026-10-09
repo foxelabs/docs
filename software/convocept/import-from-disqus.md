@@ -25,7 +25,7 @@ You can upload the `.xml.gz` file as it is; there's no need to unpack it.
 
 1. Go to **Comments → Convocept → Import**, or **Tools → Import → Disqus
    (Convocept)**.
-2. Choose the export file and click **Upload and analyse**.
+2. Choose the export file and click **Upload and review**.
 3. Review the **dry run**:
    - how many comments will be imported;
    - how many belong to pages found on your site;

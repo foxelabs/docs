@@ -1,9 +1,9 @@
 ---
-title: Moderation & Spam
+title: Spam & Moderation
 description: How Convocept keeps spam out without CAPTCHAs, works with Akismet, and lets moderators act right in the thread.
 ---
 
-# Moderation & Spam
+# Spam & Moderation
 
 **Comments → Convocept → Spam & moderation** shows how many comments are
 waiting for review (the sidebar counts them too) and the protection in
@@ -19,7 +19,7 @@ These checks run on every comment, without asking readers to solve anything:
 | --- | --- |
 | **Hidden trap field for bots** | A field people never see. A comment that fills it in goes straight to spam. |
 | **Minimum time to write a comment** | A comment sent within 3 seconds of the form appearing is held for review. The form carries a signed token, so the time can't be faked. |
-| **Link limit** | A comment with as many links as the Discussion link limit (default 2) is held for review. |
+| **Link limit** | A comment with as many links as the Discussion link limit (default 2) is held for review. WordPress counts HTML links; Convocept also counts links written in Markdown. |
 | **Limits on how fast one visitor can post** | Per-visitor limits on posting, editing, previews, upvotes and subscriptions. |
 | **Akismet** | Shows whether Akismet is active. |
 
