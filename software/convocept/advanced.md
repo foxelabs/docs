@@ -53,8 +53,12 @@ to WordPress's own comment data. **Settings → Privacy** gets suggested text
 for your privacy policy, describing what Convocept stores.
 
 Convocept makes no requests to other sites, loads nothing from other
-servers and sets no cookies of its own. WordPress's own "save my name"
-comment cookies are set only when the reader ticks the box.
+servers and sets no cookies of its own. The one exception is WordPress's
+Gravatar avatars: with **Show Avatars** on in **Settings → Discussion** (the
+WordPress default), readers' browsers load avatar images from Gravatar.
+Turn it off and Convocept shows initials instead, with no outside request.
+WordPress's own "save my name" comment cookies are set only when the reader
+ticks the box.
 
 ### IP address stored with new comments
 

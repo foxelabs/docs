@@ -34,7 +34,8 @@ can't be released.
   before it arrives are replayed.
 - **No extra requests.** The stylesheet is inlined just before the thread, so it neither blocks
   the article above nor causes a flash of unstyled comments. Icons are inline SVG; no fonts, no
-  emoji images, no third-party calls.
+  emoji images, no third-party calls (Gravatar avatars load only while **Show Avatars** is on in
+  Settings → Discussion).
 - **Cached rendering.** Rendered comment lists are cached (object cache when available,
   otherwise transients) and refreshed automatically whenever a comment changes.
 - **Cheap queries.** Core's comment query for the theme's comment template is skipped; Convocept
