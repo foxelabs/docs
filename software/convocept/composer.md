@@ -29,7 +29,8 @@ before Convocept, are edited from the dashboard.
 
 Edits are checked against the **Settings → Discussion** rules again: the
 link limit, the moderation list and the disallowed-words list. An edit that
-matches one is held for review.
+matches one is held for review. So is an edit that adds a link: spam
+filters such as Akismet only check new comments.
 
 ## Set in WordPress
 
