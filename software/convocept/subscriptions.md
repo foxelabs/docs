@@ -21,7 +21,8 @@ turns them on and off.
   [block or shortcode](#block-and-shortcode).
 - **Manage subscriptions** — every email links to a page listing the
   reader's subscriptions, where they can unsubscribe from one post or from
-  everything.
+  everything. The page sits inside your theme's header and footer and uses
+  the same card design, colour scheme and accent colour as the comments.
 - **Unsubscribe** — the link in each email opens that page with an
   **Unsubscribe** button. Mail apps that show their own **Unsubscribe**
   button (the `List-Unsubscribe` header) unsubscribe in one click.

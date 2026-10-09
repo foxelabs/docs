@@ -96,7 +96,7 @@ the copy. Convocept uses the theme's copy from then on (child themes first, then
 | `composer.php` | The comment form. It works without JavaScript; keep its `data-convocept-*` attributes, the script relies on them. |
 | `pagination.php` | Page links and "Load more comments". |
 | `subscribe-form.php` | "Get new comments by email". |
-| `subscription-manage.php` | The page where readers manage subscriptions. |
+| `subscription-manage.php` | The page where readers manage subscriptions. It uses the thread's styles and tokens (its wrapper is `#comments.convocept` too). |
 | `emails/*.php` | Confirmation and notification emails (HTML and plain text). |
 
 Each template starts with a comment listing the `$args` it receives. After updating Convocept,
