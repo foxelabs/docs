@@ -8,7 +8,26 @@ description: Release history of Convocept, the fast native comment system for Wo
 Release history for **Convocept**. The plugin's bundled `readme.txt` keeps
 only the latest releases; the complete history lives here.
 
-## 1.0.0 — 2026-10-09
+## 1.0.1 — 2026-10-13
+
+A fix for sites on PHP 7.4 to 8.1. Recommended for every site on PHP older
+than 8.2.
+
+### Fixed
+
+* **Links and inline code in comments on PHP 7.4 to 8.1.** In comments written
+  with the Convocept [composer](/convocept/composer), links, web addresses and
+  inline code showed as a number instead (for example "see 0"), and PHP
+  logged a "Null byte in regex" warning. They display correctly again after
+  updating. The stored comments were never changed, so nothing needs
+  repairing, and the update clears the cached comment HTML straight away.
+
+### Changed
+
+* The plugin's readme links to the [Convocept website](https://convocept.com),
+  these docs, the migration guides and support.
+
+## 1.0.0 — 2026-10-13
 
 The first release of Convocept: a server-rendered comment system with zero
 JavaScript on page load.
