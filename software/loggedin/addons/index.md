@@ -1,5 +1,5 @@
 ---
-description: "Optional Loggedin add-ons for active session management, auto logout, real-time logout and per-user or per-role session limits."
+description: "Optional Loggedin add-ons for active session management, real-time logout and per-user or per-role session limits."
 title: Add-ons
 ---
 
@@ -7,36 +7,49 @@ title: Add-ons
 
 Loggedin keeps the core plugin lean and ships extra capabilities as separate,
 opt-in add-ons. Each one is a small standalone plugin that depends on the
-free core — when active, an add-on's options appear right alongside the
-core's on the Loggedin settings tab (or, in the Limit Per User case, on the
-profile screen) instead of in a separate admin page.
+free core. When active, an add-on's settings appear on the Loggedin
+screen itself, as a card on a core page or as a page in the sidebar (or,
+for Limit Per User, on the profile screen), never in a separate admin
+menu.
 
 [[toc]]
 
-## The Add-ons tab
+## The Add-ons page
 
-In **wp-admin → Users → Loggedin → Add-ons** you'll find the catalog of
-first-party add-ons. Each card shows what the add-on does and a button to
-either buy it (if you haven't yet), manage its license (premium add-ons),
-or open its marketing page (anything not currently installed). Add-ons
-require the core Loggedin plugin to be active — each add-on declares
-`Requires Plugins: loggedin` and WordPress will refuse to activate them
-otherwise.
+**Users → Loggedin → More › Add-ons** (`&tab=addons`) lists the
+first-party add-ons. Each card shows what the add-on does, its state, and
+a button to get it (anything not installed) or manage its license
+(installed premium add-ons). Add-ons need the core Loggedin plugin to be
+active: each add-on declares `Requires Plugins: loggedin`, and WordPress
+refuses to activate them otherwise.
 
-The catalog itself is fetched from the licensing backend and cached for
-roughly a day. The **Refresh Addons** button in the top-right of the tab
-re-pulls the catalog immediately — useful right after a purchase or when a
-new add-on has just been released.
+The list is fetched from the licensing backend and cached for roughly a
+day. **Refresh list**, at the top of the page, fetches it again at once.
+That's useful right after a purchase or when a new add-on has just been
+released.
 
 ## Available add-ons
 
 | Add-on | What it does | Where it lives |
 | --- | --- | --- |
-| **[Active Sessions](/loggedin/addons/active-sessions)** | List every user with a live session, drill into per-device detail, and sign out single sessions or every session for a user. | Sessions tab |
-| **[Auto Logout](/loggedin/addons/auto-logout)** | Sign out idle users after a timeout you set, with a warning countdown and per-role rules, plus control over how long a login lasts. | Settings tab |
-| **[Real-time Logout](/loggedin/addons/realtime-logout)** | Polls the server every few seconds so a session that ends on one device immediately reloads any open tabs to wp-login. | Settings tab |
+| **[Active Sessions](/loggedin/addons/active-sessions)** | List every user with a live session, drill into per-device detail, and sign out single sessions or every session for a user. | **Manage › Active sessions** page |
+| **[Real-time Logout](/loggedin/addons/realtime-logout)** | Polls the server every few seconds so a session that ends on one device immediately reloads any open tabs to wp-login. | **Real-time logout** card on **Login limits** |
 | **[Limit Per User](/loggedin/addons/limit-per-user)** | Override the global session cap for a single user account from the user's profile page. | Profile screen |
-| **[Limit Per Role](/loggedin/addons/limit-per-role)** | Override the global session cap per WordPress role (admin/editor/subscriber/custom). | Settings tab |
+| **[Limit Per Role](/loggedin/addons/limit-per-role)** | Override the global session cap per WordPress role (admin/editor/subscriber/custom). | **Limits per role** card on **Login limits** |
+
+::: tip Looking for Auto Logout?
+Auto logout is free and built into Loggedin since 3.4.0. The paid add-on
+is retired, and your settings carry over. See
+[Auto Logout](/loggedin/auto-logout#moving-from-the-auto-logout-add-on).
+:::
+
+::: info Update your add-ons for Loggedin 3.4.0
+Loggedin 3.4.0 rebuilt its settings screen. Add-ons made for the old
+screen still work, but their settings can look out of place. If you run
+Active Sessions older than 1.2.0, or Limit Per Role or Real-time Logout
+older than 2.2.0, a notice on the Plugins screen and the Loggedin screen
+lists them, with a link to **Dashboard → Updates**.
+:::
 
 ## Installing an add-on
 
@@ -78,31 +91,27 @@ itself.
 
 ## Activating a license
 
-Open **Users → Loggedin → Add-ons**. Each installed add-on appears as a
-card with its current state in the header:
+Open **Users → Loggedin → More › Add-ons**. Each card shows the add-on's
+state at the bottom, with a button next to it:
 
-| Badge / button | Meaning |
-| --- | --- |
-| **Active** pill | The add-on plugin is installed and active on this site. |
-| **Free** / **Premium** | The add-on's pricing tier. |
-| **Licensed** | A license key is currently activated for this add-on. |
-| **Unlicensed** | The add-on is installed but no license key has been activated. |
-| **Manage license** | Opens the license modal for an installed add-on. |
-| **Activate license** | Same modal, shown when no key has been activated yet. |
-| **Get it** / **Buy Now** | The add-on isn't installed locally — the button links out to the purchase page. |
+| State | Button | Meaning |
+| --- | --- | --- |
+| **Active** | — | A free add-on, installed and active on this site. |
+| **Active · licensed** | **Manage license** | A premium add-on, active, with a license activated. |
+| **Installed · no license** | **Activate license** | A premium add-on, active, but no license key has been activated. |
+| **Premium · not installed** / **Free · not installed** | **Get add-on** | The add-on isn't installed. The button opens its page. |
 
-For an unlicensed premium card:
+For a card showing **Installed · no license**:
 
-1. Click **Activate license**. A modal opens.
-2. Paste your license key into the **License Key** field.
-3. Click **Activate**.
+1. Click **Activate license**. A dialog opens.
+2. Paste your license key into the **License key** field.
+3. Click **Activate license**.
 
-The button shows **Activating…** while the request is in flight. On success
-the modal closes, the card's badge flips to **Licensed**, and a
-confirmation snackbar appears in the lower-left corner. If the key is
-rejected (mistyped, already at its activation cap, expired, etc.), the
-modal stays open with an inline error message — fix the key and click
-**Activate** again.
+The button shows a busy state while the request runs. On success the
+dialog closes and the card changes to **Active · licensed**. If the key
+is rejected (mistyped, already at its activation cap, expired, and so
+on), the dialog stays open with **The license was not changed** and the
+reason. Fix the key and click **Activate license** again.
 
 ::: tip Valid key rejected as invalid?
 Loggedin 3.0.0 to 3.3.0 could shorten some valid keys before
@@ -116,11 +125,11 @@ If you need to move the license to another site, sell or hand off the
 site, or just clear an old key:
 
 1. Click **Manage license** on the licensed add-on's card.
-2. Click **Deactivate**.
+2. Click **Deactivate license**.
 
-The button shows **Deactivating…** while the request is in flight. The
-license key field is read-only while a license is active — deactivate
-first if you want to change the key.
+The button shows a busy state while the request runs. While a license is
+active, the dialog doesn't show the key: deactivate first if you want to
+use a different one.
 
 Once deactivated, the add-on keeps working on this site (deactivation only
 stops automatic updates) and the license key is freed up to be activated
@@ -149,8 +158,8 @@ that cap regardless of any role-level limit configured for them.
 
 ## Uninstalling
 
-Deactivating an add-on stops its behaviour and removes its panel from the
-settings UI; the core plugin keeps working. Each add-on registers its own
+Deactivating an add-on stops its behaviour and removes its card or page
+from the Loggedin screen; the core plugin keeps working. Each add-on registers its own
 uninstall hook, so deleting an add-on cleans up its stored option (or user
 meta) and leaves nothing behind.
 

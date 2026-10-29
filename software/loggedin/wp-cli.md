@@ -184,13 +184,23 @@ Prints every setting and its current value.
 
 ```bash
 $ wp loggedin settings list
-+---------+-------+
-| key     | value |
-+---------+-------+
-| maximum | 3     |
-| logic   | block |
-+---------+-------+
++--------------------+-------+
+| key                | value |
++--------------------+-------+
+| maximum            | 3     |
+| logic              | block |
+| unlock             | 1     |
+| exempt_admins      | 1     |
+| password_signout   | 1     |
+| message            |       |
+| displaced_redirect |       |
++--------------------+-------+
 ```
+
+On/off settings print `1` for on and an empty value for off. The keys
+added in 3.4.0 are described under
+[Settings storage](/loggedin/developer-docs#settings-storage). Auto
+logout's settings live in their own options, so they aren't listed here.
 
 Supports `--format=table|csv|json|yaml`. Settings registered by add-ons
 through
@@ -218,7 +228,16 @@ Success: Updated logic to block.
 
 Valid values for `logic` are `allow` (Logout All), `logout_oldest`
 (Logout Oldest) and `block` (Block New) — see
-[General Settings](/loggedin/general-settings) for what each mode does.
+[Login Limits](/loggedin/general-settings#login-logic) for what each mode
+does.
+
+On/off settings (`unlock`, `exempt_admins`, `password_signout`) take
+`true`/`false`, `yes`/`no`, `on`/`off` or `1`/`0`:
+
+```bash
+$ wp loggedin settings set exempt_admins on
+Success: Updated exempt_admins to true.
+```
 
 Writes go through the same sanitizer as the REST API and the admin UI,
 and a value the sanitizer would reject or alter is refused **before**
@@ -249,8 +268,8 @@ has no way to address one specific session:
 On a site with a custom backend, `sessions list` prints a warning
 explaining that the list may be empty or incomplete, and
 `destroy --token=` errors out and points you at the destroy-all form.
-This mirrors the [Logout Oldest](/loggedin/general-settings) mode's
-constraint.
+This mirrors the [Logout Oldest](/loggedin/general-settings#logout-oldest)
+mode's constraint.
 
 ## Recipes
 

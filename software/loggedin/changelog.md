@@ -9,6 +9,40 @@ Full release history for **Loggedin**. The plugin's bundled
 `readme.txt` keeps only the latest couple of releases; the complete
 history lives here.
 
+## 3.4.0
+
+### Added
+
+* A new settings screen under **Users → Loggedin**, with a sidebar of pages: **Settings** › [Login limits](/loggedin/general-settings), [Lockout & recovery](/loggedin/lockout-recovery) and [Auto logout](/loggedin/auto-logout); **Manage** › [Sessions](/loggedin/force-logout); **More** › [Add-ons](/loggedin/addons/) and Help. Each page has its own address (`&tab=lockout`), and **Save** sits in the page header, with **Discard** and a count of unsaved changes. See [The settings screen](/loggedin/general-settings#the-settings-screen).
+* [Don't limit administrators](/loggedin/lockout-recovery#administrators) — users who can manage the site can sign in on any number of devices and are never signed out by the limit.
+* The [blocked-login message](/loggedin/lockout-recovery#message) can be set on the Lockout & recovery page. A link, bold and italics are allowed. The `loggedin_error_message` filter still has the last word.
+* [Self-unlock by email](/loggedin/lockout-recovery#let-blocked-users-sign-out-their-other-devices) — a user refused by Block New can email themselves a link that signs out their other devices, then log in. The offer only appears after the right password. Links are single-use, expire after 15 minutes, and at most one email goes out per user every 5 minutes.
+* A device [signed out by a newer login](/loggedin/lockout-recovery#signed-out-by-a-newer-login) under Logout Oldest or Logout All is told why on the login screen, or [sent to a page you choose](/loggedin/lockout-recovery#send-them-to-this-page-instead) on its next front-end page view.
+* [Auto logout](/loggedin/auto-logout) is now free and built in: idle logout with a warning countdown, timeouts per role (the shortest wins), and session length for normal and "Remember Me" logins. Off by default. It replaces the paid Auto Logout add-on, which is retired: its settings carry over unchanged, and if it's still active, Loggedin takes over and asks you to remove it.
+* [Sign out on password change](/loggedin/user-sessions#sign-out-on-password-change) — a password change or reset ends the user's other sessions, so sessions that can no longer be used stop counting towards the limit. On by default.
+* [Users screen](/loggedin/user-sessions#the-users-screen): a **Sessions** column, a sortable **Last login** column, and a **Sign out everywhere** row and bulk action.
+* [Your sessions](/loggedin/user-sessions#your-own-profile) on the profile screen: every device you're signed in on, with the device, a masked IP address and when it signed in, and a **Sign out** button for each other device. Someone else's profile shows a count.
+* [`loggedin_settings_schema`](/loggedin/developer-docs#declaring-settings-in-php) — add-ons can declare pages, cards and fields in PHP, including a per-role table, and ship no admin JavaScript. Add-ons with a screen of their own can draw it with [`window.loggedin.ui`](/loggedin/developer-docs#window-loggedin-ui).
+* A notice lists add-ons built for the old settings screen: Active Sessions before 1.2.0, Limit Per Role and Real-time Logout before 2.2.0. Filterable with [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions).
+* Filters [`loggedin_displaced_message`](/loggedin/developer-docs#loggedin-displaced-message), [`loggedin_unlock_email`](/loggedin/developer-docs#loggedin-unlock-email), [`loggedin_settings_schema`](/loggedin/developer-docs#loggedin-settings-schema), [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions) and [`loggedin_auto_logout_timeout`](/loggedin/developer-docs#loggedin-auto-logout-timeout).
+* Actions [`loggedin_unlock_requested`](/loggedin/developer-docs#loggedin-unlock-requested), [`loggedin_unlocked`](/loggedin/developer-docs#loggedin-unlocked), [`loggedin_password_signout`](/loggedin/developer-docs#loggedin-password-signout), [`loggedin_users_list_sign_out`](/loggedin/developer-docs#loggedin-users-list-sign-out) and [`loggedin_auto_logout_expired`](/loggedin/developer-docs#loggedin-auto-logout-expired).
+
+### Improved
+
+* Logout Oldest and Logout All now also limit [logins that skip the login form](/loggedin/compatibility) — social login, magic links and popup logins that call `wp_set_auth_cookie()` directly. Block New still can't refuse those logins.
+* Block New checks the password before showing the limit error. A wrong password gets WordPress's usual error, so only the account's owner learns that the limit was reached.
+* Logout Oldest ends as many of the oldest sessions as it takes for the new login to fit, for users who hold more sessions than a since-lowered limit allows.
+* [`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session) now also fires when a user signs a device out from their profile.
+* Add-ons built for the old screen keep working: their panels are drawn as cards on Login limits, and their tabs join the Manage group. Links from before 3.4.0 (`#addons`, `#support`) still open the right page.
+* `wp loggedin settings set` accepts `true`/`false`, `yes`/`no`, `on`/`off` or `1`/`0` for on/off settings.
+
+### Changed
+
+* Requires WordPress 6.5.
+* Sites updating from an earlier version keep self-unlock and **Don't limit administrators** off until an administrator turns them on, so nothing changes under them. A one-time notice suggests leaving administrators out of the limit.
+* The Force Logout panel moved to **Manage › Sessions**, as **Sign out a user** and **Sign out all users**.
+* The Support tab is now **Help**.
+
 ## 3.3.1
 
 ### Fixed

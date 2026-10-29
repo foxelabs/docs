@@ -15,8 +15,16 @@ if it were still authenticated until the user clicks something that
 triggers a new request. With this add-on, that window typically shrinks to
 whatever polling interval you've configured (60 seconds by default).
 
-When active, this add-on adds a **Real-time Logout** panel to the
-[Settings tab](/loggedin/general-settings) directly under General Settings.
+When active, this add-on adds a **Real-time logout** card to the
+[Login limits](/loggedin/general-settings) page: **Users → Loggedin →
+Settings › Login limits**, below the core cards.
+
+::: info Version 2.2.0 and later
+Real-time Logout 2.2.0 is the first version built for the settings screen
+in Loggedin 3.4.0. Older versions still work: their panel is shown as a
+card on **Login limits**, and Loggedin lists the add-on in a notice asking
+you to update it. This page describes 2.2.0.
+:::
 
 [[toc]]
 
@@ -28,14 +36,15 @@ fixed interval. We chose polling because it works on every WordPress host
 and at the recommended 60 s interval the load is negligible.
 :::
 
-## Refresh interval (seconds)
+## Check every (seconds)
 
 **Setting key:** `loggedin_realtime_logout_refresh_interval` &middot;
 **Default:** `60`
 
-How often each open tab pings the server to ask whether the session is
-still active. Stored as an integer in its own site option; minimum value
-is `1` (values below that are clamped at save and on read).
+How often each open tab asks the server whether the session is still
+active. Stored as an integer in its own site option; the smallest value
+is `1`. On the screen, a lower value blocks **Save**; one written another
+way is reset to the default of `60`.
 
 Every authenticated page (front-end and admin) ships the polling script.
 The script runs `setInterval(check, intervalMs)` and posts to
@@ -65,11 +74,11 @@ The polling script is enqueued on:
 there's nothing to poll for, and we don't ship a no-op bundle to anonymous
 traffic.
 
-## Save flow
+## Saving
 
-The setting lives on the parent plugin's **Settings** tab. Edits do not
-persist until you click **Save Changes** at the bottom of the page, which
-flushes every pending change on the tab in a single REST call.
+Edits don't persist until you click **Save** in the page header, which
+saves every pending change on the screen in one request. See
+[Saving](/loggedin/general-settings#saving).
 
 ## Related
 
@@ -77,5 +86,7 @@ flushes every pending change on the tab in a single REST call.
   — the parent's action that fires when admins use Force Logout. Real-time
   Logout is what makes that logout visible to the user without them having
   to refresh.
-- [Force Logout](/loggedin/force-logout) — the admin-facing Force
-  Logout panel.
+- [Force Logout](/loggedin/force-logout) — sign users out from the
+  **Sessions** page.
+- [Auto logout](/loggedin/auto-logout#working-with-add-ons) — this
+  add-on's checks carry an idle logout to every open tab.

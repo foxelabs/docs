@@ -113,8 +113,12 @@ export default defineConfig({
         text: 'Loggedin',
         items: [
           { text: 'Getting Started', link: '/loggedin/getting-started' },
-          { text: 'General Settings', link: '/loggedin/general-settings' },
+          { text: 'Login Limits', link: '/loggedin/general-settings' },
+          { text: 'Lockout & Recovery', link: '/loggedin/lockout-recovery' },
+          { text: 'Auto Logout', link: '/loggedin/auto-logout' },
           { text: 'Force Logout', link: '/loggedin/force-logout' },
+          { text: 'User Sessions', link: '/loggedin/user-sessions' },
+          { text: 'Compatibility', link: '/loggedin/compatibility' },
           { text: 'WP-CLI', link: '/loggedin/wp-cli' },
           {
             text: 'Add-ons',
@@ -123,7 +127,6 @@ export default defineConfig({
             items: [
               { text: 'Overview', link: '/' },
               { text: 'Active Sessions', link: '/active-sessions' },
-              { text: 'Auto Logout', link: '/auto-logout' },
               { text: 'Real-time Logout', link: '/realtime-logout' },
               { text: 'Limit Per User', link: '/limit-per-user' },
               { text: 'Limit Per Role', link: '/limit-per-role' },

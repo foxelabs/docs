@@ -10,44 +10,49 @@ WordPress user role. Instead of applying one global number to every user
 on the site, you can give administrators more headroom while keeping
 subscribers and customers on a tighter cap — or vice versa.
 
-The add-on adds its own panel to the parent plugin's settings screen.
-Open **Users → Loggedin → Settings** — the **Limit Per Role** panel sits
-between the General Settings and the Force Logout panels.
+The add-on adds a **Limits per role** card to the **Login limits** page:
+**Users → Loggedin → Settings › Login limits**, below the core cards.
+Once it's active, the "Need a different limit for some roles?" line under
+**Maximum active sessions** goes away.
+
+::: info Version 2.2.0 and later
+Limit Per Role 2.2.0 is the first version built for the settings screen
+in Loggedin 3.4.0. Older versions still work: their panel is shown as a
+card on **Login limits**, and Loggedin lists the add-on in a notice asking
+you to update it. This page describes 2.2.0.
+:::
 
 [[toc]]
 
 ## How it works
 
-A short notice at the top of the panel surfaces the two rules to keep in
-mind:
+The card's description sums up the two rules:
 
-> Roles without a custom limit use the global setting above. If a user
-> has multiple roles with custom limits, the highest one applies.
+> Roles not listed here use the maximum above, and a user with more than
+> one listed role gets the highest of their limits.
 
-Below the notice is the role list itself — each registered WordPress role
-on your site (built-in or custom) gets one row with two controls.
+Below it is a table with one row per role that has its own limit. Roles
+not in the table use the global **Maximum active sessions**.
 
-## Enable checkbox
+## Adding a role
 
-**Input:** Checkbox per role
+Click **Add a role**. A new row appears with a role picker and a
+**Maximum active sessions** field, which starts at the global maximum.
+Pick the role and set its limit. A role already in the table isn't
+offered again.
 
-Toggles whether a role has a custom limit at all.
-
-- **Unchecked** — no override; users with this role use the global limit.
-- **Checked** — the number input becomes editable and the role uses the
-  custom limit.
-
-## Limit input
+## Limit
 
 **Setting key:** `loggedin_limit_per_role_limits[<role_slug>]` &middot;
 **Default:** *unset (use the global limit)*
 
-A number input visible (or active) once the role's checkbox is enabled.
-Minimum is `1`; non-positive values are stripped at save.
+The number of sessions a user with that role may hold. The smallest value
+is `1`; anything lower blocks **Save** until it's fixed.
 
-Roles you've unchecked are removed from the stored map entirely — they
-don't persist as `0`. The full option (`loggedin_limit_per_role_limits`)
-is stored as a `{ role_slug: int }` map.
+To send a role back to the global limit, remove its row. Removed roles
+are dropped from the stored map entirely; they don't persist as `0`. The
+full option (`loggedin_limit_per_role_limits`) is stored as a
+`{ role_slug: int }` map.
 
 ## Multi-role users — "highest wins"
 
@@ -73,7 +78,7 @@ The add-on hooks the parent plugin's
 filter at priority `10`. It overrides the global verdict whenever the user
 holds at least one role with a configured limit.
 
-The selected [Login Logic](/loggedin/general-settings#login-logic) still
+The selected [login logic](/loggedin/general-settings#login-logic) still
 applies — only the numeric cap changes.
 
 ## Priority over other add-ons
@@ -91,9 +96,9 @@ override whatever this add-on decided.
 
 ## Saving
 
-Edits don't persist until you click **Save Changes** at the bottom of the
-Settings tab. The Save button flushes every pending edit on the page —
-both this panel and the General Settings — in a single REST round-trip.
+Edits don't persist until you click **Save** in the page header. It saves
+every pending change on the screen, this card and the core settings
+alike, in one request. See [Saving](/loggedin/general-settings#saving).
 
 ## Behaviour with custom roles
 
@@ -105,7 +110,9 @@ slugs that aren't currently registered).
 
 ## Related
 
-- [General Settings](/loggedin/general-settings) — global fallback limit.
+- [Login Limits](/loggedin/general-settings) — global fallback limit.
+- [Auto logout](/loggedin/auto-logout#timeouts-per-role) — idle timeouts
+  per role, where the *shortest* wins.
 - [Limit Per User](/loggedin/addons/limit-per-user) — per-user override
   (wins over this add-on).
 - [`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)

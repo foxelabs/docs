@@ -5,21 +5,31 @@ title: Active Sessions
 
 # Active Sessions
 
-The **Active Sessions** add-on adds a new tab to the Loggedin admin that
+The **Active Sessions** add-on adds a page to the Loggedin admin that
 lists every user with at least one live WordPress session — one row per
 user, sortable and searchable — and a per-row modal that shows each of
 their individual sessions (IP address, device, login time) with sign-out
 buttons for one session at a time, or all at once.
 
 Where the core plugin's
-[Force Logout](/loggedin/force-logout) panel needs you to know the user
-upfront and is all-or-nothing, this add-on gives you a discoverable list
-and per-device control. Useful for membership sites, LMS courses, and any
+[Sessions page](/loggedin/force-logout) needs you to know the user
+upfront and is all-or-nothing, and the
+[Users screen](/loggedin/user-sessions#the-users-screen) shows only a count
+per user, this add-on gives you a discoverable list and per-device
+control. Useful for membership sites, LMS courses, and any
 install where an admin needs operational visibility into who is signed in
 right now.
 
-When active, the add-on adds a **Sessions** tab to
-**Users → Loggedin**, sitting between **Settings** and **Addons**.
+When active, the add-on adds **Manage › Active sessions** to
+**Users → Loggedin**, right after the core **Sessions** page
+(`&tab=active-sessions`).
+
+::: info Version 1.2.0 and later
+Active Sessions 1.2.0 is the first version built for the settings screen
+in Loggedin 3.4.0. Older versions still work: Loggedin moves their page
+to **Manage › Active sessions** and lists the add-on in a notice asking
+you to update it.
+:::
 
 [[toc]]
 
@@ -28,14 +38,14 @@ This add-on reads sessions from WordPress's default
 `WP_User_Meta_Session_Tokens` storage backend (the one that ships with
 core). Sites that replace the session manager via the
 `session_token_manager` filter — uncommon, mostly large enterprise hosts
-that use Redis or a custom store — will see a yellow notice at the top of
-the tab and an empty or partial list. Custom-backend support may come in
+that use Redis or a custom store — will see a warning at the top of
+the page and an empty or partial list. Custom-backend support may come in
 a future release.
 :::
 
-## The Sessions tab
+## The Active sessions page
 
-The tab renders a [DataViews](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dataviews/)
+The page renders a [DataViews](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dataviews/)
 table with one row per user. Each row shows:
 
 | Column | What it shows |
@@ -115,7 +125,7 @@ window to whatever polling interval you've configured.
 
 The modal's footer has a **Sign out all sessions** button. Click it, then
 confirm — every session token for that user is destroyed in one call,
-same as the core plugin's Force Logout panel. The
+same as **Sign out a user** on the core Sessions page. The
 [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
 action fires on success, so any audit-logging or webhook code you've
 hooked already covers this path too.
@@ -204,8 +214,8 @@ caller can re-render without an extra GET.
 
 ### `DELETE /loggedin/v1/active-sessions/{user}`
 
-Destroy every session for one user. Same effect as the core plugin's
-Force Logout panel. Fires
+Destroy every session for one user. Same effect as **Sign out a user**
+on the core Sessions page. Fires
 [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions).
 
 ### `DELETE /loggedin/v1/active-sessions`
@@ -284,11 +294,13 @@ install is feeling it.
 ## Related
 
 - [Force Logout](/loggedin/force-logout) — the core plugin's
-  Force Logout panel. Single-user, all-or-nothing; this add-on is the
+  **Sessions** page. Single-user, all-or-nothing; this add-on is the
   discoverable / per-device counterpart.
+- [User Sessions](/loggedin/user-sessions) — session counts on the Users
+  screen, and each user's own devices on their profile.
 - [Real-time Logout](/loggedin/addons/realtime-logout) — make a forced
   sign-out feel instant on the user's open tabs.
 - [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
   — the parent action this add-on fires on every destroy-all path.
 - [`loggedin.admin.tabs`](/loggedin/developer-docs#loggedin-admin-tabs)
-  — the JS filter the add-on uses to inject its tab into the admin.
+  — the JS filter the add-on uses to add its page to the admin.

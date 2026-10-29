@@ -31,6 +31,11 @@
       "permanent": true
     },
     {
+      "source": "/software/loggedin/addons/auto-logout",
+      "destination": "/software/loggedin/auto-logout",
+      "permanent": true
+    },
+    {
       "source": "/software/lazy-load-for-comments",
       "destination": "/software/lazy-load-for-comments/getting-started",
       "permanent": true

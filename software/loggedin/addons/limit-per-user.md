@@ -6,16 +6,17 @@ title: Limit Per User
 # Limit Per User
 
 The **Limit Per User** add-on lets you set a concurrent-session cap that
-applies to a single user account, overriding the global limit configured
-on the main Loggedin settings page. Use this when a specific account
+applies to a single user account, overriding the global limit set on
+the [Login limits](/loggedin/general-settings) page. Use this when a specific account
 legitimately needs more (or fewer) parallel sessions than your default — a
 shared editorial login, a service account, an executive who roams between
 four devices, etc.
 
-This add-on has no panel on the main Loggedin settings page. Its only UI
-is a field added to the WordPress **profile** screen — both for your own
-profile and for the "edit user" screen administrators see when they edit
-other users.
+This add-on adds nothing to the **Users → Loggedin** screen. Its only UI
+is a field on the WordPress **profile** screen. Only people who can edit
+other users (administrators; super admins on multisite) see it, on their
+own profile and when they edit someone else. Other users never see their
+own limit and can't change it.
 
 [[toc]]
 
@@ -23,17 +24,20 @@ other users.
 
 Open the user edit screen — either **Users → Profile** (your own) or
 **Users → All Users → Edit** for someone else — and scroll down. The field
-is rendered under a **Loggedin** heading with a lock icon, near the bottom
-of the page.
+is under a **Login limit** heading, near the bottom of the page.
 
-## Concurrent Sessions Limit
+Since Loggedin 3.4.0 the same screen also has a **Your sessions** list on
+your own profile, or a **Sessions** count on someone else's. Those come
+from the core plugin; see [User Sessions](/loggedin/user-sessions).
+
+## Maximum active sessions
 
 **Setting key:** `loggedin_per_user_limit` (user meta) &middot;
 **Default:** *empty (use the global limit)*
 
-A single number input that overrides the global concurrent-session limit
-for this user only. Minimum is `0`; placeholder text reads "Use the global
-limit".
+A single number input, with "sessions" after it, that overrides the
+global concurrent-session limit for this user only. Minimum is `0`. Leave
+it empty to use the role or site limit.
 
 The override applies only to the user being edited. Other users continue
 to use whatever limit applies to them (global, or a per-role limit if you
@@ -57,8 +61,10 @@ The field is saved by the standard WordPress profile-update flow — click
 button for the Loggedin field, and the value takes effect immediately on
 the next login attempt.
 
-A nonce check and the `edit_user` capability are enforced on save, so a
-non-admin can't elevate their own limit through a crafted request.
+Saving needs a valid nonce, the `edit_users` capability and permission to
+edit that user. Every user may edit their own profile, so since 2.2.0 the
+field also needs `edit_users`: before, any user could raise their own limit
+from their profile.
 
 ## How the cap is enforced
 
@@ -69,7 +75,7 @@ global verdict; this add-on then reads the target user's meta key and, if
 a positive value is stored, recomputes the verdict using that limit
 instead.
 
-The selected [Login Logic](/loggedin/general-settings#login-logic) (Logout
+The selected [login logic](/loggedin/general-settings#login-logic) (Logout
 Oldest / Logout All / Block New) still applies — the only thing the
 override changes is the numeric cap.
 
@@ -87,7 +93,7 @@ that value regardless of any role-level limit configured for them.
 
 ## Related
 
-- [General Settings](/loggedin/general-settings) — where the global limit
+- [Login Limits](/loggedin/general-settings) — where the global limit
   is configured.
 - [Limit Per Role](/loggedin/addons/limit-per-role) — bulk-configure
   limits per WordPress role.
