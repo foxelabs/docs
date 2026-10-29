@@ -22,28 +22,34 @@ small companion plugin.
 
 ```
 FoxeLabs\Loggedin\
-├── Plugin                       Constants (version, slug, option key, REST namespace)
-├── Core                         Boot orchestrator — wires every module and fires loggedin_init
-├── Setup\{Settings, Upgrader}   Options store + version bump handler
-├── Front\Session_Guard          Hooks the WordPress auth pipeline; enforces the cap
-├── Front\{Session_Store,        Single-session reads and ends (default storage only),
-│          Logout_Epoch}         and the site-wide logout epoch
-├── Front\{Unlock, Displaced}    Self-unlock by email; the "signed out by a newer login" notice
-├── Front\{Password_Signout,     Ends other sessions on a password change;
-│          Last_Login}           records the last login time
-├── Auto_Logout\{Settings,       Idle logout and session length
-│   Idle_Guard, Lifetime}
-├── Admin\{Admin, Assets}        Menu + page + React bundle enqueue (admin only)
-├── Admin\{Users_List,           Users screen columns and actions; "Your sessions" on the profile;
-│   Profile_Sessions,            the one-time administrator notice
-│   Exempt_Admins_Notice}
-├── Addons\{Addons, Catalog,     Freemius wiring, shaped catalogue for the React UI,
-│           Outdated_Addons}     and the "add-on needs an update" notice
-├── Api\{Endpoint, Settings,
-│         Sessions, Addons}      REST controllers under /loggedin/v1
-├── Cli\…                        WP-CLI commands (WP-CLI requests only)
-└── Contracts\Singleton          Shared trait used by every module
+├── Plugin                         Constants (version, slug, option key, REST namespace);
+│                                  builds every service and fires loggedin_init
+├── Settings\{Settings, Upgrader}  Options store + version bump handler
+├── Sessions\SessionGuard          Hooks the WordPress auth pipeline; enforces the cap
+├── Sessions\{SessionStore,        Single-session reads and ends (default storage only),
+│            LogoutEpoch,          the site-wide logout epoch,
+│            LastLogin}            and the last login time
+├── Modules\AutoLogout\…           Idle logout and session length
+├── Modules\Lockout\…              Self-unlock by email; the "signed out by a newer login" notice
+├── Modules\PasswordSignout\…      Ends other sessions on a password change
+├── Modules\UserSessions\…         Users screen columns and actions; "Your sessions" on the profile
+├── Admin\{Admin, Assets,          Menu, page, React bundle enqueue (admin only),
+│          ExemptAdminsNotice}     and the one-time administrator notice
+├── Addons\{Addons, Catalog,       Freemius wiring, shaped catalogue for the React UI,
+│           OutdatedAddons}        and the "add-on needs an update" notice
+├── Rest\{Endpoint, SettingsEndpoint,
+│         SessionsEndpoint,
+│         AddonsEndpoint}          REST controllers under /loggedin/v1
+├── Cli\…                          WP-CLI commands (WP-CLI requests only)
+└── Uninstaller                    Removes Loggedin's data when the plugin is deleted
 ```
+
+Before 3.4.0 the classes had WordPress-style names (`Front\Session_Guard`,
+`Setup\Settings`) and each was a singleton reached with `::instance()`.
+Since 3.4.0 `Plugin` builds each service once and passes it to the
+classes that need it. Each module talks to the rest of the plugin only
+through hooks, so the hooks below are the stable surface; class names
+can change between releases.
 
 ::: info Namespace changed in 3.2.0
 These classes lived under `DuckDev\Loggedin\` before 3.2.0, when the plugin
@@ -166,12 +172,12 @@ helps; don't write it.
 Fires once every plugin module has been wired up.
 
 ```php
-do_action( 'loggedin_init', \FoxeLabs\Loggedin\Core $core );
+do_action( 'loggedin_init', \FoxeLabs\Loggedin\Plugin $plugin );
 ```
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `$core` | `Core` | The shared `Core` instance, for context. |
+| `$plugin` | `Plugin` | The plugin instance. Before 3.4.0 this was the `Core` instance. |
 
 This is the canonical place for an add-on plugin to boot itself — the
 Settings store and the REST namespace are guaranteed to be ready by the
@@ -274,6 +280,38 @@ logins that skip the login form.
 Ending one session needs WordPress's default session storage (user
 meta). With a custom storage backend nothing ends, and this doesn't
 fire.
+
+### `loggedin_sessions_displacing`
+
+Fires when a new login is about to end the user's other sessions, under
+**Logout All** or **Logout Oldest**, while those sessions still exist.
+Covers logins that skip the login form too. Loggedin uses it to
+[tell those devices why](/loggedin/lockout-recovery#signed-out-by-a-newer-login)
+they were signed out.
+
+```php
+do_action( 'loggedin_sessions_displacing', int $user_id, string[] $verifiers );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$user_id` | int | User signing in. |
+| `$verifiers` | string[] | Hashed tokens (verifiers) of the sessions about to end, as `session_tokens` is keyed. |
+
+```php
+add_action( 'loggedin_sessions_displacing', function ( $user_id, $verifiers ) {
+    // Log which devices a new login pushed out.
+}, 10, 2 );
+```
+
+It doesn't fire when there is nothing to end. Listing sessions needs
+WordPress's default session storage (user meta), so with a custom storage
+backend it doesn't fire. After it, the sessions end and
+[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) or
+[`loggedin_destroy_oldest_session`](#loggedin-destroy-oldest-session)
+fires.
+
+Since 3.4.0.
 
 ### `loggedin_destroy_session`
 
@@ -482,11 +520,24 @@ add_action( 'loggedin_cli_init', function () {
 
 Since 3.1.0.
 
+### `loggedin_uninstalled`
+
+Fires after Loggedin has removed its options and user meta, when the
+plugin is deleted from the Plugins screen. Add-ons clean up after
+themselves in their own uninstall routine; this is for code that extends
+Loggedin from a theme or a site plugin.
+
+```php
+do_action( 'loggedin_uninstalled' );
+```
+
+Since 3.4.0.
+
 ## Filters
 
 ### `loggedin_settings_defaults`
 
-Filters the default values returned by `Setup\Settings::defaults()`.
+Filters the default values returned by `Settings\Settings::defaults()`.
 Useful when you're registering your own settings keys that should ship a
 sensible default for first-time reads.
 
@@ -738,12 +789,13 @@ Filters the error message rendered on wp-login when a user is blocked by
 **Block New** mode.
 
 ```php
-apply_filters( 'loggedin_error_message', string $message );
+apply_filters( 'loggedin_error_message', string $message, WP_User $user );
 ```
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `$message` | string | The [Message](/loggedin/lockout-recovery#message) set on Lockout & recovery, or the built-in message when that's empty. |
+| `$user` | `WP_User` | The user who was blocked. Since 3.4.0. |
 
 ```php
 add_filter( 'loggedin_error_message', function ( $message ) {
@@ -752,8 +804,9 @@ add_filter( 'loggedin_error_message', function ( $message ) {
 ```
 
 The filter runs after the setting, so it wins. When self-unlock is on,
-the **Email me a link to sign out my other devices.** link is added
-after the filtered message; the filter doesn't see it.
+Loggedin adds the **Email me a link to sign out my other devices.** link
+on this same filter at priority 100, so a callback at the default
+priority doesn't see it.
 
 ### `loggedin_displaced_message`
 

@@ -27,7 +27,7 @@ history lives here.
 * [`loggedin_settings_schema`](/loggedin/developer-docs#declaring-settings-in-php) — add-ons can declare pages, cards and fields in PHP, including a per-role table, and ship no admin JavaScript. Add-ons with a screen of their own can draw it with [`window.loggedin.ui`](/loggedin/developer-docs#window-loggedin-ui), whose `TableCard` fits a table of six or seven columns on a 1280px screen without scrolling sideways.
 * A notice lists add-ons built for the old settings screen: Active Sessions before 1.2.0, Limit Per Role and Real-time Logout before 2.2.0. Filterable with [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions).
 * Filters [`loggedin_displaced_message`](/loggedin/developer-docs#loggedin-displaced-message), [`loggedin_unlock_email`](/loggedin/developer-docs#loggedin-unlock-email), [`loggedin_settings_schema`](/loggedin/developer-docs#loggedin-settings-schema), [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions) and [`loggedin_auto_logout_timeout`](/loggedin/developer-docs#loggedin-auto-logout-timeout).
-* Actions [`loggedin_unlock_requested`](/loggedin/developer-docs#loggedin-unlock-requested), [`loggedin_unlocked`](/loggedin/developer-docs#loggedin-unlocked), [`loggedin_password_signout`](/loggedin/developer-docs#loggedin-password-signout), [`loggedin_users_list_sign_out`](/loggedin/developer-docs#loggedin-users-list-sign-out) and [`loggedin_auto_logout_expired`](/loggedin/developer-docs#loggedin-auto-logout-expired).
+* Actions [`loggedin_unlock_requested`](/loggedin/developer-docs#loggedin-unlock-requested), [`loggedin_unlocked`](/loggedin/developer-docs#loggedin-unlocked), [`loggedin_password_signout`](/loggedin/developer-docs#loggedin-password-signout), [`loggedin_users_list_sign_out`](/loggedin/developer-docs#loggedin-users-list-sign-out), [`loggedin_auto_logout_expired`](/loggedin/developer-docs#loggedin-auto-logout-expired), [`loggedin_sessions_displacing`](/loggedin/developer-docs#loggedin-sessions-displacing) and [`loggedin_uninstalled`](/loggedin/developer-docs#loggedin-uninstalled).
 
 ### Improved
 
@@ -39,6 +39,7 @@ history lives here.
 * `wp loggedin settings set` accepts `true`/`false`, `yes`/`no`, `on`/`off` or `1`/`0` for on/off settings.
 * Login modes added with [`loggedin_logics`](/loggedin/developer-docs#loggedin-logics) can be saved. The add-on that adds one enforces it, and if that add-on goes, the setting reads as **Logout All**.
 * The old `?loggedin_logout=1` sign-out link now also needs the `manage_options` capability, as the Sessions page does, and fires [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions).
+* Deleting the plugin also removes the review notice's settings, which it had left behind since 3.0.2, and on multisite removes Loggedin's settings from every site.
 
 ### Changed
 
@@ -47,6 +48,8 @@ history lives here.
 * The Force Logout panel moved to **Manage › Sessions**, as **Sign out a user** and **Sign out all users**.
 * The Support tab is now **Help**.
 * [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin-session-invalidated) passes the session's hashed token (verifier), like the other session actions, instead of the raw token from the login cookie.
+* [`loggedin_error_message`](/loggedin/developer-docs#loggedin-error-message) also passes the blocked `WP_User`, and the self-unlock link is added on that filter at priority 100.
+* [`loggedin_init`](/loggedin/developer-docs#loggedin-init) passes the `Plugin` instance instead of `Core`. The plugin's classes moved to PSR-4 names (see the [architecture overview](/loggedin/developer-docs#architecture-overview)); only `Plugin` is meant to be used from outside.
 
 ## 3.3.1
 
