@@ -39,9 +39,8 @@ released.
 | **[Limit Per Role](/loggedin/addons/limit-per-role)** | Override the global session cap per WordPress role (admin/editor/subscriber/custom). | **Limits per role** card on **Login limits** |
 
 ::: tip Looking for Auto Logout?
-Auto logout is free and built into Loggedin since 3.4.0. The paid add-on
-is retired, and your settings carry over. See
-[Auto Logout](/loggedin/auto-logout#moving-from-the-auto-logout-add-on).
+Auto logout is free and built into Loggedin since 3.4.0. See
+[Auto Logout](/loggedin/auto-logout).
 :::
 
 ::: info Update your add-ons for Loggedin 3.4.0

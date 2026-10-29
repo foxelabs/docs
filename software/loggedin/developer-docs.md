@@ -32,8 +32,7 @@ FoxeLabs\Loggedin\
 ├── Front\{Password_Signout,     Ends other sessions on a password change;
 │          Last_Login}           records the last login time
 ├── Auto_Logout\{Settings,       Idle logout and session length
-│   Idle_Guard, Lifetime,
-│   Retired_Addon}
+│   Idle_Guard, Lifetime}
 ├── Admin\{Admin, Assets}        Menu + page + React bundle enqueue (admin only)
 ├── Admin\{Users_List,           Users screen columns and actions; "Your sessions" on the profile;
 │   Profile_Sessions,            the one-time administrator notice
@@ -109,8 +108,7 @@ array(
 | `displaced_redirect` | [Lockout & recovery](/loggedin/lockout-recovery#send-them-to-this-page-instead) | Sanitised with `esc_url_raw()` (`http` and `https` only), then `wp_validate_redirect()`: an address on a host that isn't allowed for redirects is stored as `''`. |
 | `password_signout` | [Auto logout](/loggedin/user-sessions#sign-out-on-password-change) | `true` on new and updated sites. |
 
-Auto logout keeps its settings in two options of its own, with the names
-the retired Auto Logout add-on used:
+Auto logout keeps its settings in two options of its own:
 
 ```php
 // loggedin_auto_logout_settings
@@ -158,7 +156,7 @@ helps; don't write it.
 | --- | --- | --- |
 | `loggedin_logout_all_before` | Option (autoloaded) | Unix time of the last [site-wide logout](#loggedin-logout-all-users). A session that began before it ends on its next request. Since 3.3.0. |
 | `loggedin_last_login` | User meta | Unix time of the user's last login, written on `wp_login`. Shown in the **Last login** column on the Users screen. Since 3.4.0. |
-| `loggedin_auto_logout_activity` | User meta | `{ verifier: unix_time }`: each device's last activity, for [auto logout](/loggedin/auto-logout). The name the retired Auto Logout add-on used. Since 3.4.0. |
+| `loggedin_auto_logout_activity` | User meta | `{ verifier: unix_time }`: each device's last activity, for [auto logout](/loggedin/auto-logout). Since 3.4.0. |
 | `loggedin_displaced` | User meta | `{ verifier: unix_time }`: sessions ended by a newer login, so that device can be told why. At most 20, kept for 14 days. Since 3.4.0. |
 
 ## Actions
@@ -463,8 +461,7 @@ add_action( 'loggedin_auto_logout_expired', function ( $user_id, $timeout ) {
 }, 10, 2 );
 ```
 
-Since 3.4.0 in core. The retired Auto Logout add-on 1.0.0 added it, with
-the same name and arguments.
+Since 3.4.0.
 
 ### `loggedin_cli_init`
 
@@ -833,8 +830,7 @@ add_filter( 'loggedin_auto_logout_timeout', function ( $minutes, $user ) {
 
 With a timeout of `0`, the idle script isn't loaded for that user either.
 
-Since 3.4.0 in core. The retired Auto Logout add-on 1.0.0 added it, with
-the same name and arguments.
+Since 3.4.0.
 
 ### `loggedin_settings_schema`
 

@@ -20,9 +20,7 @@ Settings › Auto logout** (`&tab=auto-logout`). The same page holds
 [Password changes](/loggedin/user-sessions#sign-out-on-password-change),
 which signs out a user's other devices when their password changes.
 
-Auto logout is part of the free plugin since Loggedin 3.4.0. It used to
-be the paid **Auto Logout** add-on, which is now retired: see
-[Moving from the Auto Logout add-on](#moving-from-the-auto-logout-add-on).
+Auto logout is part of the free plugin since Loggedin 3.4.0.
 
 [[toc]]
 
@@ -218,27 +216,6 @@ Loggedin and the [Active Sessions](/loggedin/addons/active-sessions)
 add-on all rewrite whole. Frequent activity writes in there would let an
 administrator's sign-out be undone a moment later by that user's next
 activity write. A separate row means the two never collide.
-
-## Moving from the Auto Logout add-on
-
-Auto logout was a paid add-on, **Loggedin - Auto Logout**, until
-Loggedin 3.4.0. It's now part of the free plugin, and the add-on is
-retired. It's no longer listed on the Add-ons page or sold.
-
-- **Your settings carry over.** Core uses the same options, user meta,
-  AJAX action and hooks the add-on used:
-  `loggedin_auto_logout_settings`, `loggedin_auto_logout_role_timeouts`,
-  `loggedin_auto_logout_activity`, `loggedin_auto_logout_ping`,
-  `loggedin_auto_logout_timeout` and `loggedin_auto_logout_expired`.
-  Nothing to migrate, and snippets written for the add-on keep working.
-- **If the add-on is still active**, Loggedin stops it from starting and
-  runs auto logout itself, from the same settings. Nothing is enforced
-  twice, and the add-on's old panel doesn't load. A notice on the
-  Plugins screen and on the Loggedin screen says
-  **Auto logout is now part of Loggedin.** and asks you to remove the
-  add-on.
-- **Removing the add-on** is safe: deactivate it, then delete it. Your
-  settings stay, because core uses them.
 
 ## Working with add-ons
 
