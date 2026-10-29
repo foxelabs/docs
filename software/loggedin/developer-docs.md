@@ -186,7 +186,9 @@ time this fires.
 ```php
 add_action(
     'loggedin_init',
-    array( \FoxeLabs\Loggedin\RealtimeLogout\Plugin::class, 'boot' )
+    static function (): void {
+        \FoxeLabs\Loggedin\RealtimeLogout\Plugin::instance()->boot();
+    }
 );
 ```
 
