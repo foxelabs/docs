@@ -19,7 +19,9 @@ Once it's active, the "Need a different limit for some roles?" line under
 Limit Per Role 2.2.0 is the first version built for the settings screen
 in Loggedin 3.4.0. Older versions still work: their panel is shown as a
 card on **Login limits**, and Loggedin lists the add-on in a notice asking
-you to update it. This page describes 2.2.0.
+you to update it. With Loggedin older than 3.4.0, 2.2.0 keeps its old
+**Limit Per Role** panel on the **Settings** tab, so you can update the
+add-on and Loggedin in either order. This page describes 2.2.0.
 :::
 
 [[toc]]
@@ -36,10 +38,11 @@ not in the table use the global **Maximum active sessions**.
 
 ## Adding a role
 
-Click **Add a role**. A new row appears with a role picker and a
-**Maximum active sessions** field, which starts at the global maximum.
-Pick the role and set its limit. A role already in the table isn't
-offered again.
+Click **Add a role**. A new row appears with the first role not yet in
+the table and a **Maximum active sessions** field, which starts at the
+global maximum. Change the role in the picker if you need another one,
+and set its limit. A role already in the table isn't offered again, and
+**Add a role** goes away once every role has a row.
 
 ## Limit
 
@@ -47,9 +50,11 @@ offered again.
 **Default:** *unset (use the global limit)*
 
 The number of sessions a user with that role may hold. The smallest value
-is `1`; anything lower blocks **Save** until it's fixed.
+is `1`; anything lower shows "Enter a whole number, 1 or more." and blocks
+**Save** until it's fixed.
 
-To send a role back to the global limit, remove its row. Removed roles
+To send a role back to the global limit, remove its row with the **×**
+button at its end. Removed roles
 are dropped from the stored map entirely; they don't persist as `0`. The
 full option (`loggedin_limit_per_role_limits`) is stored as a
 `{ role_slug: int }` map.
@@ -104,9 +109,11 @@ alike, in one request. See [Saving](/loggedin/general-settings#saving).
 
 The role list is built from `wp_roles()->get_names()`, so any role
 registered by another plugin or by your theme appears automatically. If
-you delete a custom role after configuring a limit for it, the next save
-drops the orphaned entry from the stored map (the sanitiser skips role
-slugs that aren't currently registered).
+you delete a custom role after configuring a limit for it, its row stays
+in the table, showing the role's slug, and the limit no longer applies to
+anyone. The next time you save a change to this card, the orphaned entry is dropped
+from the stored map (the sanitiser skips role slugs that aren't currently
+registered).
 
 ## Related
 

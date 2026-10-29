@@ -55,8 +55,10 @@ as `#addons`, still open the right page.
 **Save** sits in the page header, at the top of every settings page. It
 stays disabled until you change something. Next to it:
 
-- A status line counts your unsaved changes.
-- **Discard** throws away every unsaved change.
+- A status line counts your unsaved changes, or the settings that need
+  fixing.
+- **Discard**, shown while there are unsaved changes, throws them all
+  away.
 
 Changes on different pages save together. You can change the limit on
 **Login limits**, switch to **Auto logout**, change a timeout there, and
@@ -67,7 +69,9 @@ the field and marks its page **Needs fixing** in the sidebar. **Save**
 stays disabled until it's fixed. If you try to leave the screen with
 unsaved changes, your browser asks you to confirm.
 
-The **Sessions** page acts the moment you click, so it has no **Save**.
+The **Sessions** page acts the moment you click, so it has no **Save**
+of its own. **Save** shows there, and on **Add-ons** and **Help**, only
+while another page has unsaved changes.
 
 ## Login limit
 
@@ -83,6 +87,14 @@ window does **not** end a session. The token stays until the user logs
 out, the session expires, or a new login ends it under the rule below.
 
 The smallest value is `1`.
+
+Under the field, two lines point to add-ons, and each link opens the
+**Add-ons** page:
+
+- **Need a different limit for some roles? Limit Per Role**
+- **Need a different limit for one account? Limit Per User**
+
+Each line is hidden once that add-on is active.
 
 ::: tip Different limits for some users
 [Limit Per Role](/loggedin/addons/limit-per-role) sets a limit per role,

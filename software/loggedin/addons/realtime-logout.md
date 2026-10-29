@@ -7,8 +7,8 @@ title: Real-time Logout
 
 The **Real-time Logout** add-on detects when a session has ended on the
 server — because the user logged out elsewhere, was force-logged-out by an
-admin, or hit the concurrent-session limit — and immediately reloads any
-open tab so the user is bounced back to wp-login.
+admin, or hit the concurrent-session limit — and reloads any open tab at
+its next check so the user is bounced back to wp-login.
 
 Without this add-on, an "already logged-out" browser tab keeps rendering as
 if it were still authenticated until the user clicks something that
@@ -23,7 +23,9 @@ Settings › Login limits**, below the core cards.
 Real-time Logout 2.2.0 is the first version built for the settings screen
 in Loggedin 3.4.0. Older versions still work: their panel is shown as a
 card on **Login limits**, and Loggedin lists the add-on in a notice asking
-you to update it. This page describes 2.2.0.
+you to update it. With Loggedin older than 3.4.0, 2.2.0 keeps its old
+**Real-time Logout** panel on the **Settings** tab, so you can update the
+add-on and Loggedin in either order. This page describes 2.2.0.
 :::
 
 [[toc]]
@@ -42,17 +44,19 @@ and at the recommended 60 s interval the load is negligible.
 **Default:** `60`
 
 How often each open tab asks the server whether the session is still
-active. Stored as an integer in its own site option; the smallest value
-is `1`. On the screen, a lower value blocks **Save**; one written another
-way is reset to the default of `60`.
+active. The field's help text reads: "Each open tab asks your server this
+often. Every check is a request, so 60 seconds or more suits most sites."
+Stored as an integer in its own site option; the smallest value is `1`.
+On the screen, a lower value blocks **Save**; one written another way is
+reset to the default of `60`.
 
 Every authenticated page (front-end and admin) ships the polling script.
 The script runs `setInterval(check, intervalMs)` and posts to
 `admin-ajax.php?action=loggedin_refresh_check`. The endpoint replies
-`{ active: true }` for logged-in users and `{ active: false }` for everyone
-else; on `false`, the script triggers `window.location.reload(true)` to
-force a hard refresh past the browser cache, which causes WordPress to
-redirect the now-unauthenticated visitor to wp-login.
+`{ "success": true, "data": { "active": true } }` for logged-in users and
+`"active": false` for everyone else; on `false`, the script triggers
+`window.location.reload(true)` to force a hard refresh past the browser
+cache, which causes WordPress to redirect the now-unauthenticated visitor to wp-login.
 
 ::: warning Pick the interval carefully
 Each open tab makes one HTTP request per interval. A site with hundreds of

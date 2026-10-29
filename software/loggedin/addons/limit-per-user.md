@@ -12,7 +12,9 @@ legitimately needs more (or fewer) parallel sessions than your default — a
 shared editorial login, a service account, an executive who roams between
 four devices, etc.
 
-This add-on adds nothing to the **Users → Loggedin** screen. Its only UI
+This add-on adds no settings to the **Users → Loggedin** screen; once it's
+active, the "Need a different limit for one account?" line under
+**Maximum active sessions** on **Login limits** goes away. Its only UI
 is a field on the WordPress **profile** screen. Only people who can edit
 other users (administrators; super admins on multisite) see it, on their
 own profile and when they edit someone else. Other users never see their
@@ -36,8 +38,9 @@ from the core plugin; see [User Sessions](/loggedin/user-sessions).
 **Default:** *empty (use the global limit)*
 
 A single number input, with "sessions" after it, that overrides the
-global concurrent-session limit for this user only. Minimum is `0`. Leave
-it empty to use the role or site limit.
+global concurrent-session limit for this user only. Minimum is `0`. The
+help text reads: "How many devices this user can be signed in on at the
+same time. Leave empty to use the role or site limit."
 
 The override applies only to the user being edited. Other users continue
 to use whatever limit applies to them (global, or a per-role limit if you

@@ -16,7 +16,8 @@ reach their other devices, or when an account was left signed in
 somewhere you can't reach. Use the second after a suspected leak or a
 change to your session policy.
 
-Both act the moment you confirm. Neither goes through the page header's
+**Sign out a user** acts the moment you click, and **Sign out all
+users** once you confirm. Neither goes through the page header's
 **Save**.
 
 [[toc]]
@@ -58,6 +59,13 @@ out which one you typed:
 | Anything else (e.g. `jdoe`) | `user_login` |
 
 If no user matches, an error snackbar says so and no sessions end.
+
+::: warning Naming yourself signs you out too
+If you enter your own account, every one of your sessions ends,
+including the one you're using, and your next request goes to the login
+screen. To keep this browser and end the rest, use **Log Out Everywhere
+Else** on your profile instead.
+:::
 
 ### The Sign out everywhere button
 
@@ -142,4 +150,5 @@ per user, use the **Sessions** column on the
 [Users screen](/loggedin/user-sessions#the-users-screen). To see each
 device of every signed-in user and end them one at a time, use the
 [Active Sessions](/loggedin/addons/active-sessions) add-on. Until it's
-installed, a line on the **Sign out a user** card points to it.
+active, a line on the **Sign out a user** card points to it: **Want to
+see who is signed in, or end one device at a time? Active Sessions**.

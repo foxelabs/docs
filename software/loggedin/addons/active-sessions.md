@@ -22,13 +22,17 @@ right now.
 
 When active, the add-on adds **Manage › Active sessions** to
 **Users → Loggedin**, right after the core **Sessions** page
-(`&tab=active-sessions`).
+(`&tab=active-sessions`). It also removes the "Want to see who is signed
+in, or end one device at a time?" line from the core **Sessions** page.
 
 ::: info Version 1.2.0 and later
 Active Sessions 1.2.0 is the first version built for the settings screen
 in Loggedin 3.4.0. Older versions still work: Loggedin moves their page
 to **Manage › Active sessions** and lists the add-on in a notice asking
-you to update it.
+you to update it. With Loggedin older than 3.4.0, 1.2.0 keeps its old
+**Sessions** tab. The add-on needs WordPress 6.9 or later; if the scripts
+it depends on are missing, an admin notice says so instead of showing an
+empty page.
 :::
 
 [[toc]]
@@ -46,27 +50,30 @@ a future release.
 ## The Active sessions page
 
 The page renders a [DataViews](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dataviews/)
-table with one row per user. Each row shows:
+table in a **Signed-in users** card, with one row per user. Each row shows:
 
 | Column | What it shows |
 | --- | --- |
 | **User** | Display name and email (with avatar). Falls back to the username when there's no display name. |
 | **Role** | Translated role labels — comma-separated for multi-role users. |
 | **Active sessions** | Count of live (non-expired) session tokens. |
-| **Last login** | Date / time of the newest active session, in the site's date format. |
+| **Last login** | Date / time of the newest active session, in the site's date format with a 24-hour time. |
 | **Last IP** | IP address recorded against the newest active session. IPv6 addresses are shown in their short form (`::1`, not `0000:…:0001`). |
 
 **Username** and **Email** columns are also available, hidden by default
-since 1.2.0. Turn them on, or hide or reorder any column, from the DataViews **View options** menu in the
+(Username since 1.2.0). Turn them on, or hide or reorder any column, from the DataViews **View options** menu in the
 top-right of the table. The view (sort, columns, page size, density) is
 persisted to `localStorage` under `loggedin_active_sessions_view`, so
-your preferences survive a reload.
+your preferences survive a reload. A view saved by an older version is
+kept as it was, so after updating you may still see **Username** until you
+hide it.
 
 ### Search and sort
 
 Type into the search box at the top of the table to free-text match
 against username, email, and display name. Sortable columns:
 
+- User (sorts by display name)
 - Username
 - Email
 - Active sessions
@@ -84,10 +91,12 @@ the pager directly from the response — no count query running on every
 page change.
 
 ::: info Empty state
-If nobody is signed in, the table shows an "No active sessions" empty
+If nobody is signed in, the table shows a "No active sessions" empty
 state — users appear here as soon as they log in. If your search /
 filters hide every row, the empty state offers a **Clear filters**
-button instead.
+button instead. If the list can't be loaded, a **The active sessions
+could not be loaded** notice with a **Try again** button appears above
+the table.
 :::
 
 ## Viewing one user's sessions
@@ -98,7 +107,7 @@ listing every active session that user holds, one section per session:
 | Field | What it shows |
 | --- | --- |
 | **Device** | The user-agent string WordPress recorded at login. |
-| **IP address** | The IP the session was started from. |
+| **IP address** | The IP the session was started from. IPv6 addresses are shown in their short form. |
 | **Signed in** | When the session was created. |
 | **Expires** | When WordPress will stop honouring this token, with a "in X days/hours/minutes" hint. |
 
@@ -132,9 +141,10 @@ hooked already covers this path too.
 ## Bulk sign-out from the list
 
 The table supports row selection. Tick one or more rows and use the
-**Sign out all** bulk action in the action bar above the list. A
-confirmation modal lists every user you're about to sign out; click the
-destructive primary button to confirm.
+**Sign out all** bulk action in the action bar above the list (the same
+action is in each row's **⋮** menu). A **Sign out users** confirmation
+asks "Sign out every session for _N_ users?" (or names the user, when
+there's only one); click **Yes, sign out** to confirm.
 
 Behind the scenes:
 
@@ -164,10 +174,11 @@ carries `X-WP-Total` and `X-WP-TotalPages` headers.
 | `orderby` | string | `last_login` | One of `user_login`, `display_name`, `user_email`, `session_count`, `last_login`. Anything else is ignored. |
 | `order` | string | `desc` | `asc` or `desc`. |
 | `page` | integer | `1` | 1-indexed. |
-| `per_page` | integer | `25` | Clamped 1–100. |
+| `per_page` | integer | `25` | 1–100. A value outside that range is rejected. |
 
 Each row carries `user_id`, `user_login`, `user_email`, `display_name`,
-`roles`, `avatar_url`, `session_count`, `last_login`, `last_ip`.
+`roles` (translated role names), `avatar_url`, `session_count`,
+`last_login`, `last_ip`.
 
 ### `GET /loggedin/v1/active-sessions/{user}`
 

@@ -43,8 +43,7 @@ FoxeLabs\Loggedin\
 ├── Api\{Endpoint, Settings,
 │         Sessions, Addons}      REST controllers under /loggedin/v1
 ├── Cli\…                        WP-CLI commands (WP-CLI requests only)
-├── Contracts\Singleton          Shared trait used by every module
-└── Utils\…                      Shared helpers
+└── Contracts\Singleton          Shared trait used by every module
 ```
 
 ::: info Namespace changed in 3.2.0
@@ -134,11 +133,12 @@ The options are registered with `show_in_rest`, so:
   endpoints exist for CLI / cURL recipes.
 
 The REST schema uses `additionalProperties: false` — **unknown keys are
-dropped at the REST boundary**. If you want to extend the option with new
-keys, register your own `show_in_rest` site option (the pattern every
-official add-on uses) — don't try to write directly to
-`loggedin_settings`; your keys will survive in storage but the sanitiser
-will drop them on the next save through the UI.
+left out when the option is read over REST, and a write that includes
+one is rejected**. If you want to extend the option with new keys,
+register your own `show_in_rest` site option (the pattern every official
+add-on uses) — don't try to write directly to `loggedin_settings`: the
+sanitiser runs on every write to the option, `update_option()` included,
+and drops keys it doesn't know.
 
 ::: info Logic mode internals
 - `allow` is the value the screen labels as **Logout All**.
@@ -148,6 +148,18 @@ will drop them on the next save through the UI.
 These names are stored exactly as shown; rename them carefully — existing
 installs depend on the value, not the label.
 :::
+
+### Other stored data
+
+Loggedin keeps a little more state outside its settings. Read it if it
+helps; don't write it.
+
+| Name | Kind | Holds |
+| --- | --- | --- |
+| `loggedin_logout_all_before` | Option (autoloaded) | Unix time of the last [site-wide logout](#loggedin-logout-all-users). A session that began before it ends on its next request. Since 3.3.0. |
+| `loggedin_last_login` | User meta | Unix time of the user's last login, written on `wp_login`. Shown in the **Last login** column on the Users screen. Since 3.4.0. |
+| `loggedin_auto_logout_activity` | User meta | `{ verifier: unix_time }`: each device's last activity, for [auto logout](/loggedin/auto-logout). The name the retired Auto Logout add-on used. Since 3.4.0. |
+| `loggedin_displaced` | User meta | `{ verifier: unix_time }`: sessions ended by a newer login, so that device can be told why. At most 20, kept for 14 days. Since 3.4.0. |
 
 ## Actions
 
@@ -212,6 +224,8 @@ paths:
    login form (see [Compatibility](/loggedin/compatibility)).
 2. **Sign out a user** on the [Sessions page](/loggedin/force-logout),
    and the REST endpoint behind it.
+3. [`wp loggedin sessions destroy <user>`](/loggedin/wp-cli#wp-loggedin-sessions-destroy)
+   without `--token`.
 
 Other ways of signing a user out everywhere fire their own action
 instead:
@@ -253,7 +267,12 @@ instead.
 
 Since 3.4.0, a login ends oldest sessions one at a time until the new
 one fits, so this can fire more than once for a single login when the
-limit was lowered after the user signed in.
+limit was lowered after the user signed in. Since 3.4.0 it also fires for
+logins that skip the login form.
+
+Ending one session needs WordPress's default session storage (user
+meta). With a custom storage backend nothing ends, and this doesn't
+fire.
 
 ### `loggedin_destroy_session`
 
@@ -272,7 +291,7 @@ do_action( 'loggedin_destroy_session', int $user_id, string $token );
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `$user_id` | int | User whose session was destroyed. |
-| `$token` | string | Hashed token of the destroyed session. The raw token is never exposed. |
+| `$token` | string | Hashed token (verifier) of the destroyed session, as `session_tokens` is keyed. This action never passes the raw token. |
 
 ```php
 add_action( 'loggedin_destroy_session', function ( $user_id, $token ) {
@@ -324,7 +343,7 @@ do_action( 'loggedin_session_invalidated', int $user_id, string $token );
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `$user_id` | int | User whose session was invalidated. |
-| `$token` | string | Hashed token of the destroyed session. |
+| `$token` | string | Raw session token from the user's login cookie, not the hashed verifier the other session actions pass. `hash( 'sha256', $token )` gives the verifier. |
 
 Fires at most once per stale session, at the moment that session's
 owner next makes an authenticated request — which may be seconds or
@@ -467,8 +486,8 @@ Since 3.1.0.
 
 ### `loggedin_settings_defaults`
 
-Filters the default values returned by `Settings::defaults()`. Useful
-when you're registering your own settings keys that should ship a
+Filters the default values returned by `Setup\Settings::defaults()`.
+Useful when you're registering your own settings keys that should ship a
 sensible default for first-time reads.
 
 ```php
@@ -489,16 +508,23 @@ add_filter( 'loggedin_settings_defaults', function ( $defaults ) {
 ::: warning Schema vs defaults
 Adding a key here does **not** make it acceptable to the
 `/wp/v2/settings` endpoint — the REST schema for `loggedin_settings`
-rejects unknown keys. For settings that need a UI, register your own
-site option via `register_setting()` with `show_in_rest` (see
-[Adding a custom Settings panel](#adding-a-custom-settings-panel)) — it's
-what the official add-ons do.
+rejects unknown keys. Nor can the key be changed: the sanitiser keeps the
+input only for the built-in keys, so every write stores your key's
+default, whatever was passed. For settings that need a UI, register your
+own site option via `register_setting()` with `show_in_rest` (see
+[Declaring settings in PHP](#declaring-settings-in-php)) — it's what the
+official add-ons do.
+
+The merged settings are cached for the request, and the cache is cleared
+when `loggedin_init` fires. Add this filter no later than that: in your
+add-on's `loggedin_init` callback at the default priority is fine.
 :::
 
 ### `loggedin_logics`
 
-Filters the catalogue of available **Login Logic** modes. Each entry is
-a `{ label, desc }` map keyed by the mode id.
+Filters the catalogue of available **Login Logic** modes, shown as tiles
+on Login limits. Each entry is a `{ label, desc }` map keyed by the mode
+id.
 
 ```php
 apply_filters( 'loggedin_logics', array $logics );
@@ -519,23 +545,20 @@ add_filter( 'loggedin_logics', function ( $logics ) {
 } );
 ```
 
-::: danger Adding a mode is two-step
-The Settings sanitiser hard-codes the list of allowed modes (`allow`,
-`logout_oldest`, `block`). If you only hook `loggedin_logics`, your new
-mode appears as a tile on Login limits but gets **silently reverted** to `allow`
-on save. To make it stick you also need to:
+::: danger A new mode can't be saved
+Only `allow`, `logout_oldest` and `block` can be stored. The REST schema
+for `loggedin_settings` lists them as an enum, and the Settings sanitiser
+turns any other value into `allow`. If you only hook `loggedin_logics`,
+your new mode appears as a tile on Login limits, but **Save** fails with
+a REST error while it's selected, and a value written any other way
+(`update_option()`, for one) is stored as `allow`. The session guard also
+enforces only the three built-in modes.
 
-1. Hook `pre_update_option_loggedin_settings` (or a wrapper option's
-   `sanitize_callback`) to whitelist your mode before WordPress hands the
-   value to Loggedin's sanitiser, **or**
-2. Translate your mode into one of the built-in modes via your own hook
-   on [`loggedin_reached_limit`](#loggedin-reached-limit) or a custom
-   action handler.
-
-For most extensions the cleaner path is to keep the visible logic on a
-built-in mode and add the extra behaviour as a side effect of
+Keep the visible logic on a built-in mode and add the extra behaviour as
+a side effect of
 [`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) or
-[`loggedin_login_blocked`](#loggedin-login-blocked).
+[`loggedin_login_blocked`](#loggedin-login-blocked), or change the
+verdict with [`loggedin_reached_limit`](#loggedin-reached-limit).
 :::
 
 ### `loggedin_admin_script_vars`
@@ -550,8 +573,9 @@ apply_filters( 'loggedin_admin_script_vars', array $vars );
 ```
 
 Default keys: `version`, `slug`, `name`, `page`, `restUrl`, `restNonce`,
-`adminUrl`, `logics`. Since 3.4.0 also `wpVersion`, `phpVersion`, `urls`,
-`defaultMessage`, `activeAddons` (slugs of the registered add-ons),
+`adminUrl`, `logics`. Since 3.4.0 also `homeUrl`, `wpVersion`,
+`phpVersion`, `urls`, `defaultMessage`, `activeAddons` (slugs of the
+registered add-ons),
 `roles` (`{ slug: name }`), `autoLogout` (the largest allowed values) and
 `schema` (the resolved [`loggedin_settings_schema`](#loggedin-settings-schema)).
 
@@ -624,9 +648,12 @@ Each shaped row carries: `id`, `title`, `icon`, `link`, `description`,
 
 ### `loggedin_reached_limit`
 
-The core override hook for the concurrent-session check. Runs every time
-a user authenticates, after the global verdict has been computed but
-before any sessions are destroyed.
+The core override hook for the concurrent-session check. Runs whenever
+Loggedin checks a user against the limit, after the global verdict has
+been computed but before any sessions are destroyed: on each login (under
+Block New, before the password is checked) and, since 3.4.0, again as
+each new session is created, which covers logins that skip the login
+form. Under Logout Oldest it runs again after each session it ends.
 
 ```php
 apply_filters( 'loggedin_reached_limit', bool $reached, int $user_id, int $count );
@@ -753,7 +780,7 @@ apply_filters( 'loggedin_unlock_email', array $email, WP_User $user );
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `$email` | array | `to`, `subject` and `message`, passed to `wp_mail()`. The message is plain text and already contains the unlock link. |
+| `$email` | array | `to`, `subject` and `message`, passed to `wp_mail()`. The message is plain text and already contains the unlock link. Other keys, such as `headers`, are ignored. |
 | `$user` | `WP_User` | User being emailed. |
 
 ```php
@@ -892,7 +919,7 @@ add_filter( 'loggedin_settings_schema', function ( array $schema ) {
         'id'          => 'loggedin-limit-per-role',
         'page'        => 'login-limits',
         'title'       => __( 'Limits per role', 'my-addon' ),
-        'description' => __( 'Roles not listed here use the maximum above.', 'my-addon' ),
+        'description' => __( 'Roles not listed here use the maximum above, and a user with more than one listed role gets the highest of their limits.', 'my-addon' ),
     );
 
     $schema['fields'][] = array(
@@ -991,7 +1018,7 @@ left out of the sidebar.
 | Key | Required | Description |
 | --- | --- | --- |
 | `id` | Yes | Card id; fields point at it with `card`. |
-| `page` | No | Page to show on: a core page (`login-limits`, `lockout`, `auto-logout`, `sessions`) or one you declared. Defaults to `login-limits`. |
+| `page` | No | Page to show on: a core page (`login-limits`, `lockout`, `auto-logout`, `sessions`), one you declared or one added with [`loggedin.admin.tabs`](#loggedin-admin-tabs). Defaults to `login-limits`, which is also used when `page` names no page. |
 | `title` | Yes | Card title. |
 | `description` | No | One sentence under the title. |
 
@@ -1008,10 +1035,10 @@ Cards from add-ons appear after the page's own cards.
 | `label` | All | Field label. For `role-table`, the label of each row's number. |
 | `help` | All | One line under the field. |
 | `default` | All | Value shown while the option has none. |
-| `show_if` | All | `array( 'key' => …, 'equals' => … )`: show the field only while that key of the same option has that value. |
+| `show_if` | All | `array( 'key' => …, 'equals' => … )`: show the field only while that key of the same option has that value. The comparison is strict, so match the stored type: a `toggle` stores `1` or `0`. |
 | `unit` | `number`, `role-table` | Unit shown inside the field, e.g. `minutes`. |
 | `unit_one` | `number` | Singular unit, used when the value is `1`. |
-| `min`, `max` | `number`, `role-table` | Allowed range. Values outside it block **Save**. A `role-table` defaults `min` to `1`. |
+| `min`, `max` | `number`, `role-table` | Allowed range. Values outside it, and numbers that aren't whole, block **Save**. A `role-table` defaults `min` to `1`. |
 | `options` | `select` | List of `value`, `label` and optional `help` (shown under the select when that option is chosen). |
 | `cast` | `select` | `int` stores the chosen value as a number. |
 | `default_from` | `role-table` | An `option.key`, such as `loggedin_settings.maximum`, whose value a new row starts with. Falls back to `default`, then `min`. |
@@ -1035,7 +1062,7 @@ script puts them on `window.loggedin.ui`:
 | Layout | `Card`, `TableCard`, `Notice`, `ExternalLink`, `PageHeader`, `PageFooter`, `Sidebar`, `SectionSelect` |
 | Fields | `Toggle`, `NumberField`, `TextField`, `TextareaField`, `SelectField`, `CheckboxList`, `ChoiceTiles` |
 | Feedback | `StatusList`, `StatTiles`, `Snackbars` |
-| Add-ons | `AddonCard`, `AddonHint`, `SectionHead`, `StoreButton` |
+| Add-ons | `AddonCard`, `AddonCardSkeleton`, `AddonHint`, `SectionHead`, `StoreButton` |
 | Other | `Icon`, and `Button`, `Modal`, `Spinner` from `@wordpress/components` |
 
 Read it while rendering, not when your script loads. Your script may run
@@ -1124,6 +1151,7 @@ a page of your own, or replace the content of a core page.
 
 ```js
 import { addFilter } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
 
 addFilter(
     'loggedin.admin.tabs',
@@ -1157,8 +1185,8 @@ Each entry must have `key`, `label` and `component`:
 | _neither_ | — | The page goes at the end of the sidebar. |
 
 The [Active Sessions](/loggedin/addons/active-sessions) add-on uses this
-filter to add **Manage › Active sessions** after **Sessions**. Its 1.x
-versions, which don't set `group`, are moved there automatically and
+filter to add **Manage › Active sessions** after **Sessions**. Versions
+before 1.2.0, which don't set `group`, are moved there automatically and
 relabelled **Active sessions**.
 
 Links from before 3.4.0 used `#hash` addresses (`#settings`, `#addons`,
@@ -1273,8 +1301,8 @@ Response: the full settings array after the update.
 
 | Body field | Type | Validation |
 | --- | --- | --- |
-| `maximum` | integer | Minimum `1`. Clamped at the schema boundary. |
-| `logic` | string | Enum: `allow`, `logout_oldest`, `block`. |
+| `maximum` | integer | Minimum `1`. A lower value is rejected with `400` (`rest_invalid_param`). |
+| `logic` | string | Enum: `allow`, `logout_oldest`, `block`. Any other value is rejected with `400`. |
 
 This endpoint only changes `maximum` and `logic`. The settings added in
 3.4.0 (`unlock`, `exempt_admins`, `password_signout`, `message`,
@@ -1318,6 +1346,7 @@ Errors:
 
 | Status | Code | Cause |
 | --- | --- | --- |
+| `400` | `rest_missing_callback_param` | No `user` field. |
 | `400` | `missing_identifier` | Empty `user` field. |
 | `404` | `user_not_found` | No user matched the identifier. |
 
@@ -1410,8 +1439,14 @@ curl -X DELETE https://example.com/wp-json/loggedin/v1/addons/19616/license \
   -u admin:application-password
 ```
 
-Both license endpoints return the freshly-decorated catalogue row on
-success and `WP_Error` with `400` on failure.
+On success, both license endpoints return the success flag and the
+freshly-decorated catalogue row:
+
+```json
+{ "success": true, "addon": { "id": 19616, "is_license_active": true, "...": "additional fields" } }
+```
+
+On failure they return a `WP_Error` with `400`.
 
 ## Recipes
 
@@ -1488,16 +1523,21 @@ add_action( 'init', function () {
 
 Look at the [`loggedin-realtime-logout`](https://github.com/Joel-James/loggedin-realtime-logout)
 and [`loggedin-limit-per-role`](https://github.com/Joel-James/loggedin-limit-per-role)
-source for full working examples.
+source for full working examples. Since 2.2.0 both declare their settings
+with `loggedin_settings_schema`; their earlier releases used a React
+panel like the one above.
 
 ### Bypassing the limit for a service account
 
 ```php
 add_filter( 'loggedin_bypass', function ( $bypass, $user_id ) {
     $user = get_user_by( 'id', $user_id );
-    return $user && 'service-account' === $user->user_login;
+    return $bypass || ( $user && 'service-account' === $user->user_login );
 }, 10, 2 );
 ```
+
+Keeping `$bypass` leaves [Don't limit administrators](/loggedin/lockout-recovery#administrators)
+working.
 
 ### Overriding the limit per capability
 
@@ -1523,6 +1563,11 @@ add_action( 'loggedin_destroy_all_sessions', function ( $user_id ) {
     );
 } );
 ```
+
+This action also fires when a **Logout All** login ends a user's other
+sessions. **Sign out everywhere** on the Users screen fires
+[`loggedin_users_list_sign_out`](#loggedin-users-list-sign-out) instead;
+hook both if you need every admin sign-out.
 
 ## Session duration
 

@@ -18,10 +18,11 @@ menu.
 
 **Users → Loggedin → More › Add-ons** (`&tab=addons`) lists the
 first-party add-ons. Each card shows what the add-on does, its state, and
-a button to get it (anything not installed) or manage its license
-(installed premium add-ons). Add-ons need the core Loggedin plugin to be
+a button to get it (anything not active on this site) or manage its license
+(active premium add-ons). Add-ons need the core Loggedin plugin to be
 active: each add-on declares `Requires Plugins: loggedin`, and WordPress
-refuses to activate them otherwise.
+refuses to activate them otherwise. The current add-ons need Loggedin
+3.0.0 or later; on an older version they activate but do nothing.
 
 The list is fetched from the licensing backend and cached for roughly a
 day. **Refresh list**, at the top of the page, fetches it again at once.
@@ -33,8 +34,8 @@ released.
 | Add-on | What it does | Where it lives |
 | --- | --- | --- |
 | **[Active Sessions](/loggedin/addons/active-sessions)** | List every user with a live session, drill into per-device detail, and sign out single sessions or every session for a user. | **Manage › Active sessions** page |
-| **[Real-time Logout](/loggedin/addons/realtime-logout)** | Polls the server every few seconds so a session that ends on one device immediately reloads any open tabs to wp-login. | **Real-time logout** card on **Login limits** |
-| **[Limit Per User](/loggedin/addons/limit-per-user)** | Override the global session cap for a single user account from the user's profile page. | Profile screen |
+| **[Real-time Logout](/loggedin/addons/realtime-logout)** | Checks the server at a set interval (every 60 seconds by default) so a tab whose session has ended reloads to wp-login. | **Real-time logout** card on **Login limits** |
+| **[Limit Per User](/loggedin/addons/limit-per-user)** | Override the global session cap for a single user account from the user's profile page. | **Login limit** section on the profile screen |
 | **[Limit Per Role](/loggedin/addons/limit-per-role)** | Override the global session cap per WordPress role (admin/editor/subscriber/custom). | **Limits per role** card on **Login limits** |
 
 ::: tip Looking for Auto Logout?
@@ -48,7 +49,8 @@ Loggedin 3.4.0 rebuilt its settings screen. Add-ons made for the old
 screen still work, but their settings can look out of place. If you run
 Active Sessions older than 1.2.0, or Limit Per Role or Real-time Logout
 older than 2.2.0, a notice on the Plugins screen and the Loggedin screen
-lists them, with a link to **Dashboard → Updates**.
+lists them, with a link to **Dashboard → Updates**. The notice is shown to
+users who can update plugins.
 :::
 
 ## Installing an add-on
@@ -99,7 +101,7 @@ state at the bottom, with a button next to it:
 | **Active** | — | A free add-on, installed and active on this site. |
 | **Active · licensed** | **Manage license** | A premium add-on, active, with a license activated. |
 | **Installed · no license** | **Activate license** | A premium add-on, active, but no license key has been activated. |
-| **Premium · not installed** / **Free · not installed** | **Get add-on** | The add-on isn't installed. The button opens its page. |
+| **Premium · not installed** / **Free · not installed** | **Get add-on** | The add-on isn't installed, or is installed but not active. The button opens its page. |
 
 For a card showing **Installed · no license**:
 
@@ -159,9 +161,12 @@ that cap regardless of any role-level limit configured for them.
 ## Uninstalling
 
 Deactivating an add-on stops its behaviour and removes its card or page
-from the Loggedin screen; the core plugin keeps working. Each add-on registers its own
-uninstall hook, so deleting an add-on cleans up its stored option (or user
-meta) and leaves nothing behind.
+from the Loggedin screen (or, for Limit Per User, its profile field); the
+core plugin keeps working. Limit Per Role, Limit Per User and Real-time
+Logout each register an uninstall hook, so deleting one cleans up its
+stored option (or user meta) and leaves nothing behind. Active Sessions
+stores nothing on the server; only its table view stays in your browser's
+`localStorage`.
 
 ## Troubleshooting
 

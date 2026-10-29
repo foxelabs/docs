@@ -86,7 +86,9 @@ signed in on, newest first.
 | **Signed in** | When the session started, as "5 minutes ago". Hover it for the exact date and time. |
 
 The device you're using is marked **This device**. Every other row has a
-**Sign out** button that ends that session alone. A notice then says
+**Sign out** button that ends that session alone. For screen readers,
+each button names its row, such as "Sign out Chrome on macOS, signed in
+5 minutes ago". A notice then says
 "That device was signed out." If the session had already ended, it says
 "That device was already signed out."
 

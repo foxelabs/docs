@@ -35,17 +35,27 @@ individual command, to see the same reference from your terminal.
 
 ## Identifying a user
 
-Every `sessions` command takes a `<user>` argument that accepts three
-forms — the same ones the [Force Logout](/loggedin/force-logout) panel
-accepts:
+Every `sessions` command takes a `<user>` argument that accepts the
+same three forms as the [User field](/loggedin/force-logout#user) on
+the Sessions page. The lookup is WP-CLI's own, the one `wp user` uses,
+so it is a little more forgiving than the Sessions page, which doesn't
+fall back from an email address to a username:
 
 | Input looks like | Looked up as |
 | --- | --- |
 | Digits only (e.g. `42`) | User ID |
-| Contains an `@` (e.g. `user@example.com`) | Email address |
+| An email address (e.g. `user@example.com`) | Email address, then `user_login` if no account has that email |
 | Anything else (e.g. `jdoe`) | `user_login` |
 
-If nothing matches, the command exits with an error and changes nothing.
+If a username is all digits and another user has that number as their
+ID, WP-CLI warns and uses the ID.
+
+If nothing matches, the command exits with an error and changes nothing:
+
+```bash
+$ wp loggedin sessions count nobody
+Error: Invalid user ID, email or login: 'nobody'
+```
 
 ## `wp loggedin sessions list`
 
@@ -59,7 +69,7 @@ wp loggedin sessions list <user> [--field=<field>] [--fields=<fields>] [--format
 | --- | --- |
 | `--field=<field>` | Print only this field's value for each session. |
 | `--fields=<fields>` | Comma-separated columns to show. Default: `token,login,expiration,ip,ua` |
-| `--format=<format>` | `table` (default), `csv`, `json`, `yaml`, `count`, `ids` |
+| `--format=<format>` | `table` (default), `csv`, `json`, `yaml`, `count`, `ids`. `ids` prints the token hashes on one line, separated by spaces. |
 
 Columns:
 
@@ -73,12 +83,15 @@ Columns:
 
 ```bash
 $ wp loggedin sessions list editor@example.com
-+------------------+---------------------+---------------------+-----------+------------------+
-| token            | login               | expiration          | ip        | ua               |
-+------------------+---------------------+---------------------+-----------+------------------+
++------------------+---------------------+---------------------+-------------+-----------------+
+| token            | login               | expiration          | ip          | ua              |
++------------------+---------------------+---------------------+-------------+-----------------+
 | a69662435664c6.. | 2026-07-29 09:01:18 | 2026-07-31 09:01:18 | 203.0.113.9 | Mozilla/5.0 ... |
-+------------------+---------------------+---------------------+-----------+------------------+
++------------------+---------------------+---------------------+-------------+-----------------+
 ```
+
+A user with no active sessions gets
+`Success: No active sessions for <login>.` instead of a table.
 
 Expired-but-not-yet-deleted tokens are filtered out. WordPress only
 prunes those when the user next signs in, so the raw database row is not
@@ -105,7 +118,8 @@ stays accurate on sites using a custom session backend.
 
 Destroys sessions, signing the user out. Without `--token`, **every**
 session for the user is destroyed — the CLI equivalent of the
-[Force Logout](/loggedin/force-logout) panel.
+[Sign out a user](/loggedin/force-logout#sign-out-a-user) card on the
+Sessions page.
 
 ```bash
 wp loggedin sessions destroy <user> [--token=<hash>] [--yes]
@@ -126,9 +140,13 @@ $ wp loggedin sessions destroy 42 --token=a69662435664c6... --yes
 Success: Destroyed 1 session for editor.
 ```
 
+If the user has no active sessions, the command prints
+`Success: No active sessions for <login>.` and asks nothing. A
+`--token` that matches none of the user's sessions is an error.
+
 Destroying all sessions fires
 [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions),
-the same action the admin panel fires, so add-ons and custom code see
+the same action the Sessions page fires, so add-ons and custom code see
 both paths. A single-session destroy fires
 [`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session)
 instead.
@@ -142,7 +160,8 @@ command errors out instead. Drop the flag entirely when you mean "all".
 ## `wp loggedin sessions destroy-all`
 
 Signs out **every user on the site** — the CLI equivalent of the
-[Logout All Users](/loggedin/force-logout#logout-all-users) button.
+[Sign out all users](/loggedin/force-logout#logout-all-users) button.
+Added in 3.3.0.
 
 ```bash
 wp loggedin sessions destroy-all [--yes]
@@ -214,7 +233,8 @@ $ wp loggedin settings get maximum
 3
 ```
 
-An unknown key errors out and lists the valid keys.
+On/off settings print `1` or an empty line, as in `list`. An unknown
+key errors out and lists the valid keys.
 
 ## `wp loggedin settings set`
 
@@ -226,8 +246,9 @@ $ wp loggedin settings set logic block
 Success: Updated logic to block.
 ```
 
-Valid values for `logic` are `allow` (Logout All), `logout_oldest`
-(Logout Oldest) and `block` (Block New) — see
+`maximum` takes a whole number of 1 or more. Valid values for `logic`
+are `allow` (Logout All), `logout_oldest` (Logout Oldest) and `block`
+(Block New) — see
 [Login Limits](/loggedin/general-settings#login-logic) for what each mode
 does.
 
@@ -238,6 +259,12 @@ On/off settings (`unlock`, `exempt_admins`, `password_signout`) take
 $ wp loggedin settings set exempt_admins on
 Success: Updated exempt_admins to true.
 ```
+
+`message` takes text, where a link, bold and italics (`<a href>`,
+`<strong>`, `<em>`) are allowed. `displaced_redirect` takes the URL of a
+page on this site, or on a host allowed by the
+[`allowed_redirect_hosts`](https://developer.wordpress.org/reference/hooks/allowed_redirect_hosts/)
+filter. Pass an empty string (`""`) to clear either.
 
 Writes go through the same sanitizer as the REST API and the admin UI,
 and a value the sanitizer would reject or alter is refused **before**

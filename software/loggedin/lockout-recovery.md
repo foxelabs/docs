@@ -196,9 +196,14 @@ your choice on its next page view, such as your membership account page
 or a page explaining your one-device policy.
 
 - Enter a full address, starting with `https://` or `http://`.
-- It must be on this site, or on a host you allow with the
+  Anything else shows "Enter a full address, starting with https:// or
+  http://." under the field.
+- It must be a page on this site. An address on another site shows
+  "Use a page on this site.", and **Save** stays disabled until it's
+  fixed. Set from [WP-CLI](/loggedin/wp-cli) or code instead, a host you
+  allow with the
   [`allowed_redirect_hosts`](https://developer.wordpress.org/reference/hooks/allowed_redirect_hosts/)
-  filter. An address on any other site is cleared when you save.
+  filter is accepted too.
 - It happens once, on the device's next **front-end** page view. In
   wp-admin, the device goes to the login screen and sees the message
   instead.
