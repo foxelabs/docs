@@ -50,15 +50,14 @@ table with one row per user. Each row shows:
 
 | Column | What it shows |
 | --- | --- |
-| **User** | Display name (with avatar). Falls back to the username when there's no display name. |
-| **Username** | `user_login` value. |
-| **Email** | `user_email` value. |
+| **User** | Display name and email (with avatar). Falls back to the username when there's no display name. |
 | **Role** | Translated role labels — comma-separated for multi-role users. |
 | **Active sessions** | Count of live (non-expired) session tokens. |
 | **Last login** | Date / time of the newest active session, in the site's date format. |
-| **Last IP** | IP address recorded against the newest active session. |
+| **Last IP** | IP address recorded against the newest active session. IPv6 addresses are shown in their short form (`::1`, not `0000:…:0001`). |
 
-Hide or reorder columns from the DataViews **View options** menu in the
+**Username** and **Email** columns are also available, hidden by default
+since 1.2.0. Turn them on, or hide or reorder any column, from the DataViews **View options** menu in the
 top-right of the table. The view (sort, columns, page size, density) is
 persisted to `localStorage` under `loggedin_active_sessions_view`, so
 your preferences survive a reload.
