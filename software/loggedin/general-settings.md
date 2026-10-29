@@ -197,8 +197,8 @@ told why on its login screen, or sent to a page you choose. See
 ::: tip Extending the logic list
 Developers can add their own modes through the
 [`loggedin_logics`](/loggedin/developer-docs#loggedin-logics) PHP filter.
-A new mode appears as a tile automatically, but it also needs the
-sanitizer extended. See the developer docs for the pattern.
+A new mode appears as a tile and can be saved, but the code that adds
+it also has to enforce it. See the developer docs.
 :::
 
 ## Related

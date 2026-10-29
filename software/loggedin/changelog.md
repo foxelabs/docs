@@ -37,6 +37,8 @@ history lives here.
 * [`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session) now also fires when a user signs a device out from their profile.
 * Add-ons built for the old screen keep working: their panels are drawn as cards on Login limits, and their tabs join the Manage group. Links from before 3.4.0 (`#addons`, `#support`) still open the right page.
 * `wp loggedin settings set` accepts `true`/`false`, `yes`/`no`, `on`/`off` or `1`/`0` for on/off settings.
+* Login modes added with [`loggedin_logics`](/loggedin/developer-docs#loggedin-logics) can be saved. The add-on that adds one enforces it, and if that add-on goes, the setting reads as **Logout All**.
+* The old `?loggedin_logout=1` sign-out link now also needs the `manage_options` capability, as the Sessions page does, and fires [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions).
 
 ### Changed
 
@@ -44,6 +46,7 @@ history lives here.
 * Sites updating from an earlier version keep self-unlock and **Don't limit administrators** off until an administrator turns them on, so nothing changes under them. A one-time notice suggests leaving administrators out of the limit.
 * The Force Logout panel moved to **Manage › Sessions**, as **Sign out a user** and **Sign out all users**.
 * The Support tab is now **Help**.
+* [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin-session-invalidated) passes the session's hashed token (verifier), like the other session actions, instead of the raw token from the login cookie.
 
 ## 3.3.1
 

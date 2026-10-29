@@ -226,6 +226,9 @@ paths:
    and the REST endpoint behind it.
 3. [`wp loggedin sessions destroy <user>`](/loggedin/wp-cli#wp-loggedin-sessions-destroy)
    without `--token`.
+4. Since 3.4.0, the old `wp-admin/?loggedin_logout=1&loggedin_user=<id>`
+   link, which needs a `loggedin-options` nonce and the `manage_options`
+   capability.
 
 Other ways of signing a user out everywhere fire their own action
 instead:
@@ -343,7 +346,7 @@ do_action( 'loggedin_session_invalidated', int $user_id, string $token );
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `$user_id` | int | User whose session was invalidated. |
-| `$token` | string | Raw session token from the user's login cookie, not the hashed verifier the other session actions pass. `hash( 'sha256', $token )` gives the verifier. |
+| `$token` | string | Hashed token (verifier) of the invalidated session, as `session_tokens` is keyed. Before 3.4.0 this was the raw token from the login cookie. |
 
 Fires at most once per stale session, at the moment that session's
 owner next makes an authenticated request — which may be seconds or
@@ -524,7 +527,9 @@ add-on's `loggedin_init` callback at the default priority is fine.
 
 Filters the catalogue of available **Login Logic** modes, shown as tiles
 on Login limits. Each entry is a `{ label, desc }` map keyed by the mode
-id.
+id. Since 3.4.0 a mode added here can also be saved: the REST schema and
+the Settings sanitiser accept every mode in this list, plus the three
+built-in ones even if you remove their tiles.
 
 ```php
 apply_filters( 'loggedin_logics', array $logics );
@@ -545,20 +550,28 @@ add_filter( 'loggedin_logics', function ( $logics ) {
 } );
 ```
 
-::: danger A new mode can't be saved
-Only `allow`, `logout_oldest` and `block` can be stored. The REST schema
-for `loggedin_settings` lists them as an enum, and the Settings sanitiser
-turns any other value into `allow`. If you only hook `loggedin_logics`,
-your new mode appears as a tile on Login limits, but **Save** fails with
-a REST error while it's selected, and a value written any other way
-(`update_option()`, for one) is stored as `allow`. The session guard also
-enforces only the three built-in modes.
+::: warning Your add-on enforces its own mode
+Loggedin enforces only `allow`, `logout_oldest` and `block`. While your
+mode is selected, Loggedin's own limit does nothing, so your add-on has
+to check the stored mode and act on it in its own hooks:
 
-Keep the visible logic on a built-in mode and add the extra behaviour as
-a side effect of
-[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) or
-[`loggedin_login_blocked`](#loggedin-login-blocked), or change the
-verdict with [`loggedin_reached_limit`](#loggedin-reached-limit).
+```php
+add_filter( 'wp_authenticate_user', function ( $user ) {
+    $settings = (array) get_option( 'loggedin_settings', array() );
+
+    if ( $user instanceof WP_User && 'notify_only' === ( $settings['logic'] ?? '' ) ) {
+        // Your behaviour here.
+    }
+
+    return $user;
+} );
+```
+
+Add the filter by `init`, for example in your add-on's `loggedin_init`
+callback: the list is read then to build the REST schema. If your add-on
+is deactivated while its mode is selected, the stored mode reads as the
+default, **Logout All**, so the limit keeps working, and the next save
+stores that.
 :::
 
 ### `loggedin_admin_script_vars`
