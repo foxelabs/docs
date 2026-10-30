@@ -21,7 +21,7 @@ history lives here.
 * [Self-unlock by email](/loggedin/lockout-recovery#let-blocked-users-sign-out-their-other-devices) — a user refused by Block New can email themselves a link that signs out their other devices, then log in. The offer only appears after the right password. Links are single-use, expire after 15 minutes, and at most one email goes out per user every 5 minutes.
 * A device [signed out by a newer login](/loggedin/lockout-recovery#signed-out-by-a-newer-login) under Logout Oldest or Logout All is told why on the login screen, or [sent to a page you choose](/loggedin/lockout-recovery#send-them-to-this-page-instead) on its next front-end page view.
 * [Auto logout](/loggedin/auto-logout) is now free and built in: idle logout with a warning countdown, timeouts per role (the shortest wins), and session length for normal and "Remember Me" logins. Off by default. A REST request from a session that just idled out gets a `loggedin_idle_logout` error (status 401) carrying the login URL, and the Loggedin screen sends you there.
-* [Sign out on password change](/loggedin/user-sessions#sign-out-on-password-change) — a password change or reset ends the user's other sessions, so sessions that can no longer be used stop counting towards the limit. On by default.
+* [Sign out on password change](/loggedin/user-sessions#sign-out-on-password-change) — a password change or reset ends the user's other sessions, so sessions that can no longer be used stop counting towards the limit. On for new sites. A password an LDAP or SSO plugin copies in as the user signs in doesn't count.
 * [Users screen](/loggedin/user-sessions#the-users-screen): a **Sessions** column, a sortable **Last login** column, and a **Sign out everywhere** row and bulk action.
 * [Your sessions](/loggedin/user-sessions#your-own-profile) on the profile screen: every device you're signed in on, with the device, a masked IP address and when it signed in, and a **Sign out** button for each other device. Someone else's profile shows a count.
 * [`loggedin_settings_schema`](/loggedin/developer-docs#declaring-settings-in-php) — add-ons can declare pages, cards and fields in PHP, including a per-role table, and ship no admin JavaScript. Add-ons with a screen of their own can draw it with [`window.loggedin.ui`](/loggedin/developer-docs#window-loggedin-ui), whose `TableCard` fits a table of six or seven columns on a 1280px screen without scrolling sideways.
@@ -31,7 +31,8 @@ history lives here.
 
 ### Improved
 
-* Logout Oldest and Logout All now also limit [logins that skip the login form](/loggedin/compatibility) — social login, magic links and popup logins that call `wp_set_auth_cookie()` directly. Block New still can't refuse those logins.
+* Logout Oldest and Logout All now also limit [logins that skip the login form](/loggedin/compatibility) — social login, magic links and popup logins that call `wp_set_auth_cookie()` directly. Block New still can't refuse those logins, unless the plugin asks first (Nextend Social Login's **Login restriction**). The [compatibility page](/loggedin/compatibility#tested-plugins) lists the plugins tested.
+* Switching to a user with User Switching isn't treated as their login, so it signs out none of their devices.
 * Block New checks the password before showing the limit error. A wrong password gets WordPress's usual error, so only the account's owner learns that the limit was reached.
 * Logout Oldest skips sessions that have already expired, and ends as many of the oldest live sessions as it takes for the new login to fit, for users who hold more sessions than a since-lowered limit allows.
 * [`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session) now also fires when a user signs a device out from their profile.
@@ -45,13 +46,14 @@ history lives here.
 
 ### Fixed
 
-* Checking a password without signing in, such as WooCommerce's "current password" field, an application password before WordPress 6.8, or the first step of a two-factor login, no longer signs the user out of their other devices under Logout All or Logout Oldest. Those modes now make room only [as a new session is created](/loggedin/getting-started#how-the-limit-is-enforced).
+* Checking a password without signing in, such as WooCommerce's "current password" field, an application password before WordPress 6.8, or the first step of a two-factor login, no longer signs the user out of their other devices under Logout All or Logout Oldest. Those modes now make room only [once a new session is in place](/loggedin/getting-started#how-the-limit-is-enforced): with a two-factor plugin, after the code is entered.
+* The Block New message and its unlock link now show through Ultimate Member's login form and Limit Login Attempts Reloaded, which replaced them with an "incorrect password" error.
 * [`wp loggedin sessions list`](/loggedin/wp-cli#session-storage-support) no longer shows leftover sessions on a site that stores sessions elsewhere, such as Redis.
 
 ### Changed
 
 * Requires WordPress 6.5.
-* Sites updating from an earlier version keep self-unlock and **Don't limit administrators** off until an administrator turns them on, so nothing changes under them. A one-time notice suggests leaving administrators out of the limit.
+* Sites updating from an earlier version keep self-unlock, **Don't limit administrators** and sign out on password change off until an administrator turns them on, so nothing changes under them. A one-time notice suggests leaving administrators out of the limit.
 * The Force Logout panel moved to **Manage › Sessions**, as **Sign out a user** and **Sign out all users**.
 * The Support tab is now **Help**.
 * [`loggedin_session_invalidated`](/loggedin/developer-docs#loggedin-session-invalidated) passes the session's hashed token (verifier), like the other session actions, instead of the raw token from the login cookie.

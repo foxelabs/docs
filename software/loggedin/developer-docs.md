@@ -785,9 +785,10 @@ Each shaped row carries: `id`, `title`, `icon`, `link`, `description`,
 The core override hook for the concurrent-session check. Runs whenever
 Loggedin checks a user against the limit, after the global verdict has
 been computed but before any sessions are destroyed: on each login (under
-Block New, before the password is checked) and, since 3.4.0, again as
-each new session is created, which covers logins that skip the login
-form. Under Logout Oldest it runs again after each session it ends.
+Block New, before the password is checked) and, since 3.4.0, again at
+the end of a request that created a session, which covers logins that
+skip the login form. Under Logout Oldest it runs again after each session
+it ends.
 
 ```php
 apply_filters( 'loggedin_reached_limit', bool $reached, int $user_id, int $count );
@@ -797,7 +798,7 @@ apply_filters( 'loggedin_reached_limit', bool $reached, int $user_id, int $count
 | --- | --- | --- |
 | `$reached` | bool | Whether the upstream check says the limit is reached. |
 | `$user_id` | int | User id being checked. |
-| `$count` | int | Current count of active session tokens. |
+| `$count` | int | Active sessions that count against the limit. The session being created in this request isn't counted. |
 
 ```php
 // Allow user 123 up to 10 sessions regardless of the global cap.

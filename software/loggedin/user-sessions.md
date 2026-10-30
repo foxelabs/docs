@@ -119,7 +119,7 @@ the [Active Sessions](/loggedin/addons/active-sessions) add-on.
 
 ## Sign out on password change
 
-**Setting key:** `password_signout` &middot; **Default:** on
+**Setting key:** `password_signout` &middot; **Default:** on for new sites; off for sites updated from before 3.4.0
 
 Set on **Settings › Auto logout**, in the **Password changes** card:
 **Sign out the other devices**.
@@ -143,6 +143,11 @@ It covers:
 A user who changes their own password stays signed in on the device they
 did it from. Every other session ends. When an administrator changes
 someone else's password, all of that user's sessions end.
+
+A password written while the user signs in doesn't count as a change.
+LDAP, Active Directory and single sign-on plugins often copy the
+directory password into WordPress on every login; without this, each
+login would sign the user out of every other device.
 
 After the sessions end,
 [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)

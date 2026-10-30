@@ -54,11 +54,13 @@ Loggedin attaches to two points in the standard auth pipeline:
    where the login is rejected with an error on the wp-login screen if the
    user is already at the cap and typed the right password.
 2. **`attach_session_information`** — runs as each new session is
-   created, before it is stored. In **Logout All** or **Logout Oldest**
-   mode, this is where Loggedin destroys existing sessions to make room
-   for the new one. Every login that creates a session passes through it,
-   including social login and magic links that skip the login form. See
-   [Compatibility](/loggedin/compatibility).
+   created. In **Logout All** or **Logout Oldest** mode, Loggedin notes
+   the sessions the user already has, and at the end of the request ends
+   them to make room, if the new session is still there. Every login that
+   creates a session passes through it, including social login and magic
+   links that skip the login form. Two-factor plugins that end the new
+   session to ask for a code don't sign out any devices until the code is
+   entered. See [Compatibility](/loggedin/compatibility).
 
 Before 3.4.0, Logout All and Logout Oldest made room on the
 `check_password` filter. That filter runs on every password check, not
