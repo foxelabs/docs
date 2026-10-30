@@ -43,8 +43,10 @@ This add-on reads sessions from WordPress's default
 core). Sites that replace the session manager via the
 `session_token_manager` filter — uncommon, mostly large enterprise hosts
 that use Redis or a custom store — will see a warning at the top of
-the page and an empty or partial list. Custom-backend support may come in
-a future release.
+the page and an empty list. Since 1.2.0 the list stays empty rather than
+showing rows left in user meta from before the site switched backends,
+and single sessions can't be signed out. Custom-backend support may come
+in a future release.
 :::
 
 ## The Active sessions page
@@ -57,7 +59,7 @@ table in a **Signed-in users** card, with one row per user. Each row shows:
 | **User** | Display name and email (with avatar). Falls back to the username when there's no display name. |
 | **Role** | Translated role labels — comma-separated for multi-role users. |
 | **Active sessions** | Count of live (non-expired) session tokens. |
-| **Last login** | Date / time of the newest active session, in the site's date format with a 24-hour time. |
+| **Last login** | Date / time of the newest active session, in the site's date and time formats (**Settings → General**). |
 | **Last IP** | IP address recorded against the newest active session. IPv6 addresses are shown in their short form (`::1`, not `0000:…:0001`). |
 
 **Username** and **Email** columns are also available, hidden by default
@@ -111,7 +113,8 @@ listing every active session that user holds, one section per session:
 | **Signed in** | When the session was created. |
 | **Expires** | When WordPress will stop honouring this token, with a "in X days/hours/minutes" hint. |
 
-Sessions are listed newest-first.
+Sessions are listed newest-first. Dates use the site's date and time
+formats, the same as the **Last login** column.
 
 ### Sign out a single session
 
@@ -180,6 +183,9 @@ Each row carries `user_id`, `user_login`, `user_email`, `display_name`,
 `roles` (translated role names), `avatar_url`, `session_count`,
 `last_login`, `last_ip`.
 
+On a site with a custom session storage backend, this returns an empty
+list with `X-WP-Total: 0`. Since 1.2.0.
+
 ### `GET /loggedin/v1/active-sessions/{user}`
 
 Return every active session for a single user. The response shape:
@@ -209,16 +215,23 @@ Return every active session for a single user. The response shape:
 is never returned. Use the hash as the `{hash}` segment of the per-session
 destroy endpoint below.
 
+On a site with a custom session storage backend, `user` is returned as
+usual and `sessions` is an empty array. Since 1.2.0.
+
 ### `DELETE /loggedin/v1/active-sessions/{user}/{hash}`
 
 Destroy one specific session for a user. The hash must be a 64-char
 hex string (the route regex enforces this).
 
 Response on success carries the user's refreshed `sessions` array so the
-caller can re-render without an extra GET.
+caller can re-render without an extra GET. Fires
+[`loggedin_active_sessions_destroyed`](#loggedin-active-sessions-destroyed),
+then the parent's
+[`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session).
 
 | Status | Code | Cause |
 | --- | --- | --- |
+| `409` | `loggedin_as_custom_storage` | The site uses a custom session storage backend, so single sessions can't be signed out. Since 1.2.0. |
 | `404` | `loggedin_as_user_not_found` | No user with that id. |
 | `404` | `loggedin_as_session_not_found` | The hash didn't match any active token for the user. |
 
@@ -247,6 +260,11 @@ array lists the user ids that were processed. Fires
 Fires after one single session is destroyed via the
 `DELETE /loggedin/v1/active-sessions/{user}/{hash}` endpoint. Use it for
 audit logging where the "all sessions" action is too coarse.
+
+Since 1.2.0 the parent's
+[`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session)
+fires right after it, with the same arguments, so code hooked to the
+parent's single sign-outs covers this path too.
 
 ```php
 do_action(
@@ -294,7 +312,9 @@ The list view runs a single `SELECT user_id, meta_value FROM wp_usermeta
 WHERE meta_key = 'session_tokens'` query, unserialises each row in PHP,
 drops expired tokens, and applies search / sort / pagination on the
 result. The row count is bounded by "users who have ever logged in" —
-typically far fewer than total registered users on a site.
+typically far fewer than total registered users on a site. Since 1.2.0,
+roles and avatars are looked up only for the rows on the current page,
+not for every signed-in user.
 
 For installs past tens of thousands of users with active sessions this
 becomes the bottleneck; a dedicated index table would replace the

@@ -26,7 +26,7 @@ FoxeLabs\Loggedin\
 │                                  builds every service and fires loggedin_init
 ├── Settings\{Settings, Upgrader}  Options store + version bump handler
 ├── Sessions\SessionGuard          Hooks the WordPress auth pipeline; enforces the cap
-├── Sessions\{SessionStore,        Single-session reads and ends (default storage only),
+├── Sessions\{SessionStore,        Session reads and sign-outs (single sessions: default storage only),
 │            LogoutEpoch,          the site-wide logout epoch,
 │            LastLogin}            and the last login time
 ├── Modules\AutoLogout\…           Idle logout and session length
@@ -138,11 +138,13 @@ The options are registered with `show_in_rest`, so:
 
 The REST schema uses `additionalProperties: false` — **unknown keys are
 left out when the option is read over REST, and a write that includes
-one is rejected**. If you want to extend the option with new keys,
-register your own `show_in_rest` site option (the pattern every official
-add-on uses) — don't try to write directly to `loggedin_settings`: the
-sanitiser runs on every write to the option, `update_option()` included,
-and drops keys it doesn't know.
+one is rejected**. The sanitiser runs on every write to the option,
+`update_option()` included, and drops keys it doesn't know. To store a
+key of your own in `loggedin_settings`, give it a schema through
+[`loggedin_settings_properties`](#loggedin-settings-properties) and a
+default through [`loggedin_settings_defaults`](#loggedin-settings-defaults).
+Registering your own `show_in_rest` site option, the pattern every
+official add-on uses, works too.
 
 ::: info Logic mode internals
 - `allow` is the value the screen labels as **Logout All**.
@@ -222,8 +224,8 @@ add_action( 'loggedin_login_blocked', function ( $user_id ) {
 
 ### `loggedin_destroy_all_sessions`
 
-Fires when the plugin destroys all of a user's sessions on one of these
-paths:
+Fires when the plugin signs a user out of every device. Every path does
+this in one place, so the action fires for all of them:
 
 1. The **Logout All** (`allow`) login logic, when a new login displaces
    every existing session. Since 3.4.0 this includes logins that skip the
@@ -232,16 +234,27 @@ paths:
    and the REST endpoint behind it.
 3. [`wp loggedin sessions destroy <user>`](/loggedin/wp-cli#wp-loggedin-sessions-destroy)
    without `--token`.
-4. Since 3.4.0, the old `wp-admin/?loggedin_logout=1&loggedin_user=<id>`
-   link, which needs a `loggedin-options` nonce and the `manage_options`
+4. The old `wp-admin/?loggedin_logout=1&loggedin_user=<id>` link, which
+   since 3.4.0 needs a `loggedin-options` nonce and the `manage_options`
    capability.
+5. **Sign out everywhere** on the
+   [Users screen](/loggedin/user-sessions#sign-out-everywhere), once per
+   user for a bulk action. Also fires
+   [`loggedin_users_list_sign_out`](#loggedin-users-list-sign-out).
+6. [Sign out on password change](/loggedin/user-sessions#sign-out-on-password-change).
+   Also fires [`loggedin_password_signout`](#loggedin-password-signout).
+7. The link in the
+   [unlock email](/loggedin/lockout-recovery#let-blocked-users-sign-out-their-other-devices).
+   Also fires [`loggedin_unlocked`](#loggedin-unlocked).
 
-Other ways of signing a user out everywhere fire their own action
-instead:
-[`loggedin_users_list_sign_out`](#loggedin-users-list-sign-out),
-[`loggedin_unlocked`](#loggedin-unlocked),
-[`loggedin_password_signout`](#loggedin-password-signout) and, for a
-site-wide logout, [`loggedin_logout_all_users`](#loggedin-logout-all-users).
+On paths 5 to 7 this action fires first, then the more specific one.
+When users sign themselves out, from the Users screen or by changing
+their own password, the session they are using is kept and the action
+still fires.
+
+A site-wide logout fires
+[`loggedin_logout_all_users`](#loggedin-logout-all-users) instead: no
+per-user loop runs.
 
 ```php
 do_action( 'loggedin_destroy_all_sessions', int $user_id );
@@ -256,6 +269,9 @@ add_action( 'loggedin_destroy_all_sessions', function ( $user_id ) {
     // Bust your app's per-user cache, fire a webhook, etc.
 } );
 ```
+
+Since 2.0.0. Since 3.4.0 also fires for the Users screen, password
+changes and the unlock email.
 
 ### `loggedin_destroy_oldest_session`
 
@@ -324,6 +340,11 @@ user's sessions. Triggered by:
 - A user clicking **Sign out** next to one of their devices under
   [Your sessions](/loggedin/user-sessions#your-own-profile) on their
   profile. Since 3.4.0.
+- An administrator signing out one session from the
+  [Active Sessions](/loggedin/addons/active-sessions#sign-out-a-single-session)
+  add-on, through
+  [`DELETE /loggedin/v1/active-sessions/{user}/{hash}`](/loggedin/addons/active-sessions#delete-loggedin-v1-active-sessions-user-hash).
+  Since Active Sessions 1.2.0.
 
 ```php
 do_action( 'loggedin_destroy_session', int $user_id, string $token );
@@ -431,8 +452,8 @@ do_action( 'loggedin_unlocked', int $user_id );
 | --- | --- | --- |
 | `$user_id` | int | User who was signed out everywhere. |
 
-[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) does
-not fire on this path.
+[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) fires
+just before it. Before 3.4.0 it didn't fire on this path.
 
 Since 3.4.0.
 
@@ -453,6 +474,8 @@ do_action( 'loggedin_password_signout', int $user_id );
 
 When the user changed their own password, the session they did it from
 is kept. Otherwise every session is destroyed.
+[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) fires
+just before this action.
 
 Since 3.4.0.
 
@@ -473,6 +496,8 @@ do_action( 'loggedin_users_list_sign_out', int $user_id );
 
 If the administrator signed themselves out, the session they are using
 was kept.
+[`loggedin_destroy_all_sessions`](#loggedin-destroy-all-sessions) fires
+just before this action.
 
 Since 3.4.0.
 
@@ -540,8 +565,8 @@ Since 3.4.0.
 ### `loggedin_settings_defaults`
 
 Filters the default values returned by `Settings\Settings::defaults()`.
-Useful when you're registering your own settings keys that should ship a
-sensible default for first-time reads.
+Use it to give a key of your own a default, alongside its schema in
+[`loggedin_settings_properties`](#loggedin-settings-properties).
 
 ```php
 apply_filters( 'loggedin_settings_defaults', array $defaults );
@@ -558,13 +583,15 @@ add_filter( 'loggedin_settings_defaults', function ( $defaults ) {
 } );
 ```
 
-::: warning Schema vs defaults
-Adding a key here does **not** make it acceptable to the
-`/wp/v2/settings` endpoint — the REST schema for `loggedin_settings`
-rejects unknown keys. Nor can the key be changed: the sanitiser keeps the
-input only for the built-in keys, so every write stores your key's
-default, whatever was passed. For settings that need a UI, register your
-own site option via `register_setting()` with `show_in_rest` (see
+::: warning A default alone can't be saved
+A key added only here is read with its default, and listed by
+[`wp loggedin settings list`](/loggedin/wp-cli#wp-loggedin-settings-list),
+but it can't be changed: the REST schema for `loggedin_settings` rejects
+it, and the sanitiser stores the default whatever was passed. Add its
+schema through
+[`loggedin_settings_properties`](#loggedin-settings-properties) too. For
+settings that need a UI, you can instead register your own site option
+via `register_setting()` with `show_in_rest` (see
 [Declaring settings in PHP](#declaring-settings-in-php)) — it's what the
 official add-ons do.
 
@@ -572,6 +599,49 @@ The merged settings are cached for the request, and the cache is cleared
 when `loggedin_init` fires. Add this filter no later than that: in your
 add-on's `loggedin_init` callback at the default priority is fine.
 :::
+
+### `loggedin_settings_properties`
+
+Filters the JSON schema of each key in `loggedin_settings`. It is the one
+list of accepted keys: the option's `/wp/v2/settings` schema,
+[`POST /loggedin/v1/settings`](#post-loggedin-v1-settings) and the
+sanitiser all read it.
+
+```php
+apply_filters( 'loggedin_settings_properties', array $properties );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$properties` | array | JSON schema keyed by setting id. |
+
+An add-on that stores its own key in `loggedin_settings` adds the key's
+schema here and its default through
+[`loggedin_settings_defaults`](#loggedin-settings-defaults). Both REST
+routes then accept the key, and the sanitiser stores it after validating
+and sanitising it against the schema. A value that doesn't validate is
+stored as the default.
+
+```php
+add_filter( 'loggedin_settings_properties', function ( $properties ) {
+    $properties['my_addon_flag'] = array( 'type' => 'boolean' );
+    return $properties;
+} );
+
+add_filter( 'loggedin_settings_defaults', function ( $defaults ) {
+    $defaults['my_addon_flag'] = true;
+    return $defaults;
+} );
+```
+
+Built-in keys (`maximum`, `logic`, `unlock`, `exempt_admins`,
+`password_signout`, `message`, `displaced_redirect`) can't be replaced:
+an entry for one of them is ignored, and they keep their own sanitising.
+
+The schema is read when the option is registered on `init`. Add this
+filter before then: in your add-on's `loggedin_init` callback is fine.
+
+Since 3.4.0.
 
 ### `loggedin_logics`
 
@@ -884,6 +954,31 @@ add_filter( 'loggedin_auto_logout_timeout', function ( $minutes, $user ) {
 ```
 
 With a timeout of `0`, the idle script isn't loaded for that user either.
+
+Since 3.4.0.
+
+### `loggedin_session_device`
+
+Filters the device name shown for a session in the
+[Your sessions](/loggedin/user-sessions#your-own-profile) list on the
+profile screen, such as "Chrome on macOS". Loggedin reads the browser and
+system from the user agent itself; this filter lets you plug in a full
+user-agent parser instead.
+
+```php
+apply_filters( 'loggedin_session_device', string $name, string $ua );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$name` | string | Device name, such as "Chrome on macOS", or "Unknown device". |
+| `$ua` | string | User agent stored with the session. |
+
+```php
+add_filter( 'loggedin_session_device', function ( $name, $ua ) {
+    return false !== strpos( $ua, 'MyCompanyApp' ) ? 'MyCompany app' : $name;
+}, 10, 2 );
+```
 
 Since 3.4.0.
 
@@ -1351,8 +1446,8 @@ Response:
 
 #### `POST /loggedin/v1/settings`
 
-Updates the settings. Partial payloads are supported — any omitted key
-keeps its current value.
+Updates the settings. Partial payloads are supported — only the keys
+sent are written, and any omitted key keeps its current value.
 
 ```bash
 curl -X POST https://example.com/wp-json/loggedin/v1/settings \
@@ -1366,12 +1461,16 @@ Response: the full settings array after the update.
 | Body field | Type | Validation |
 | --- | --- | --- |
 | `maximum` | integer | Minimum `1`. A lower value is rejected with `400` (`rest_invalid_param`). |
-| `logic` | string | Enum: `allow`, `logout_oldest`, `block`. Any other value is rejected with `400`. |
+| `logic` | string | Enum: `allow`, `logout_oldest`, `block`, or a mode added through [`loggedin_logics`](#loggedin-logics). Any other value is rejected with `400`. |
+| `unlock`, `exempt_admins`, `password_signout` | boolean | A value that isn't a boolean is rejected with `400`. |
+| `message` | string | Sanitised as described under [Settings storage](#settings-storage). |
+| `displaced_redirect` | string | Sanitised as described under [Settings storage](#settings-storage). |
 
-This endpoint only changes `maximum` and `logic`. The settings added in
-3.4.0 (`unlock`, `exempt_admins`, `password_signout`, `message`,
-`displaced_redirect`) keep their values. Change them through
-`/wp/v2/settings` or [`wp loggedin settings set`](/loggedin/wp-cli#wp-loggedin-settings-set).
+Since 3.4.0 the endpoint accepts every key in the settings schema,
+including keys add-ons add through
+[`loggedin_settings_properties`](#loggedin-settings-properties). Before
+3.4.0 it changed only `maximum` and `logic`. Fields the schema doesn't
+list are ignored.
 
 ::: tip Two ways to read / write settings
 The React UI uses `/wp/v2/settings` (core-data) because the option is
@@ -1628,10 +1727,11 @@ add_action( 'loggedin_destroy_all_sessions', function ( $user_id ) {
 } );
 ```
 
-This action also fires when a **Logout All** login ends a user's other
-sessions. **Sign out everywhere** on the Users screen fires
-[`loggedin_users_list_sign_out`](#loggedin-users-list-sign-out) instead;
-hook both if you need every admin sign-out.
+Since 3.4.0 this action fires for every "sign out everywhere" path:
+admin force-logouts, including **Sign out everywhere** on the Users
+screen, and also a **Logout All** login, a password change and the
+unlock email. To react to one path only, hook its own action, such as
+[`loggedin_users_list_sign_out`](#loggedin-users-list-sign-out).
 
 ## Session duration
 

@@ -224,7 +224,9 @@ logout's settings live in their own options, so they aren't listed here.
 Supports `--format=table|csv|json|yaml`. Settings registered by add-ons
 through
 [`loggedin_settings_defaults`](/loggedin/developer-docs#loggedin-settings-defaults)
-appear here automatically.
+appear here automatically. `settings set` can change one only once the
+add-on also gives it a schema through
+[`loggedin_settings_properties`](/loggedin/developer-docs#loggedin-settings-properties).
 
 ## `wp loggedin settings get`
 
@@ -292,9 +294,11 @@ has no way to address one specific session:
 | `sessions list` | ⚠️ Needs the default user-meta storage |
 | `sessions destroy --token=` | ⚠️ Needs the default user-meta storage |
 
-On a site with a custom backend, `sessions list` prints a warning
-explaining that the list may be empty or incomplete, and
-`destroy --token=` errors out and points you at the destroy-all form.
+On a site with a custom backend, `sessions list` prints a warning and
+lists no sessions, and `destroy --token=` errors out and points you at
+the destroy-all form. Before 3.4.0, `sessions list` read the user meta
+directly and could show rows left over from before the site switched
+backends.
 This mirrors the [Logout Oldest](/loggedin/general-settings#logout-oldest)
 mode's constraint.
 

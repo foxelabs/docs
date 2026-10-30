@@ -63,7 +63,8 @@ full option (`loggedin_limit_per_role_limits`) is stored as a
 
 WordPress users can have more than one role at a time. When a multi-role
 user logs in, this add-on collects every configured limit that applies to
-any of their roles and takes the **highest** number as their cap.
+any of their roles and takes the **highest** number as their cap. Code
+can choose differently: see [Choosing a different rule](#choosing-a-different-rule).
 
 | Roles held by user | Configured limits | Effective cap |
 | --- | --- | --- |
@@ -75,6 +76,35 @@ any of their roles and takes the **highest** number as their cap.
 The rule is intentionally permissive rather than restrictive: a user with
 a more "open" role attached to their account isn't surprised by a tighter
 cap inherited from a sibling role.
+
+### Choosing a different rule
+
+The `loggedin_limit_per_role_limit` filter picks the cap for a user who
+holds at least one role with a configured limit.
+
+```php
+apply_filters( 'loggedin_limit_per_role_limit', int $limit, int $user_id, array $matched );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$limit` | int | The cap that applies: the highest value in `$matched`. |
+| `$user_id` | int | User being checked. |
+| `$matched` | array | Limits of the user's roles that have one, keyed by role slug. |
+
+To apply the lowest limit instead:
+
+```php
+add_filter( 'loggedin_limit_per_role_limit', function ( $limit, $user_id, $matched ) {
+    return min( $matched );
+}, 10, 3 );
+```
+
+A value below `1` is ignored, and the highest limit applies. The filter
+doesn't run for users with no configured role limit; they keep the
+global limit.
+
+Since 2.2.0.
 
 ## How the cap is enforced
 

@@ -50,16 +50,22 @@ Stored as an integer in its own site option; the smallest value is `1`.
 On the screen, a lower value blocks **Save**; one written another way is
 reset to the default of `60`.
 
-Every authenticated page (front-end and admin) ships the polling script.
-The script runs `setInterval(check, intervalMs)` and posts to
+Every authenticated page (front-end and admin) ships the polling script,
+unless the
+[`loggedin_realtime_logout_enabled`](#loggedin-realtime-logout-enabled)
+filter turns it off. At each interval the script posts to
 `admin-ajax.php?action=loggedin_refresh_check`. The endpoint replies
 `{ "success": true, "data": { "active": true } }` for logged-in users and
-`"active": false` for everyone else; on `false`, the script triggers
-`window.location.reload(true)` to force a hard refresh past the browser
-cache, which causes WordPress to redirect the now-unauthenticated visitor to wp-login.
+`"active": false` for everyone else; on `false`, the script reloads the
+page with `window.location.reload()`, which causes WordPress to redirect
+the now-unauthenticated visitor to wp-login.
+
+Since 2.2.0, a tab that is hidden (in the background, or in a minimised
+window) skips its checks, and checks once as soon as it is shown again.
+Only the tabs someone is looking at send requests.
 
 ::: warning Pick the interval carefully
-Each open tab makes one HTTP request per interval. A site with hundreds of
+Each visible tab makes one HTTP request per interval. A site with hundreds of
 concurrent users and a 5-second interval is firing tens of thousands of
 requests per minute at `admin-ajax.php`. Keep the interval at **60 seconds
 or higher** unless you're operating on a single-user / small-team install
@@ -78,11 +84,68 @@ The polling script is enqueued on:
 there's nothing to poll for, and we don't ship a no-op bundle to anonymous
 traffic.
 
+To leave the script off for some users or pages, use the
+[`loggedin_realtime_logout_enabled`](#loggedin-realtime-logout-enabled)
+filter. To poll some users more or less often than the setting, use
+[`loggedin_realtime_logout_interval`](#loggedin-realtime-logout-interval).
+
 ## Saving
 
 Edits don't persist until you click **Save** in the page header, which
 saves every pending change on the screen in one request. See
 [Saving](/loggedin/general-settings#saving).
+
+## Hooks
+
+### `loggedin_realtime_logout_enabled`
+
+Filters whether the current page loads the polling script for the
+signed-in user. Return `false` to leave it off, for example for a role
+that doesn't need it or on a page that must not reload.
+
+```php
+apply_filters( 'loggedin_realtime_logout_enabled', bool $enabled, WP_User $user );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$enabled` | bool | Whether to poll. Default `true`. |
+| `$user` | `WP_User` | The signed-in user. |
+
+```php
+// No polling for subscribers.
+add_filter( 'loggedin_realtime_logout_enabled', function ( $enabled, $user ) {
+    return in_array( 'subscriber', (array) $user->roles, true ) ? false : $enabled;
+}, 10, 2 );
+```
+
+Since 2.2.0.
+
+### `loggedin_realtime_logout_interval`
+
+Filters how often the current page checks the user's session, in
+seconds. Every check is a request to the server.
+
+```php
+apply_filters( 'loggedin_realtime_logout_interval', int $seconds, WP_User $user );
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `$seconds` | int | Interval from the [Check every](#check-every-seconds) setting. |
+| `$user` | `WP_User` | The signed-in user. |
+
+```php
+// Administrators are checked every 30 seconds.
+add_filter( 'loggedin_realtime_logout_interval', function ( $seconds, $user ) {
+    return user_can( $user, 'manage_options' ) ? 30 : $seconds;
+}, 10, 2 );
+```
+
+The result is sanitised like the setting: it's cast to a whole number,
+and a value below `1` falls back to the default of `60`.
+
+Since 2.2.0.
 
 ## Related
 

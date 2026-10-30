@@ -66,6 +66,8 @@ Details:
 - If you include yourself, your other devices are signed out but the
   session you're using stays, so you aren't logged out of wp-admin.
 - Each user signed out fires
+  [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions),
+  then
   [`loggedin_users_list_sign_out`](/loggedin/developer-docs#loggedin-users-list-sign-out).
 
 This is the same as **Sign out a user** on the
@@ -143,8 +145,9 @@ did it from. Every other session ends. When an administrator changes
 someone else's password, all of that user's sessions end.
 
 After the sessions end,
-[`loggedin_password_signout`](/loggedin/developer-docs#loggedin-password-signout)
-fires.
+[`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions)
+fires, then
+[`loggedin_password_signout`](/loggedin/developer-docs#loggedin-password-signout).
 
 ## Related
 

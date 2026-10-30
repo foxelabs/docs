@@ -16,20 +16,24 @@ enforces for those logins, and lists plugins worth knowing about.
 
 WordPress signs a user in by creating a session and setting the auth
 cookie. A normal login does that through `wp_signon()`, which first
-checks the username and password. That check is where Loggedin used to
-do all its work:
-
-- **Block New** refuses the login on `wp_authenticate_user`.
-- **Logout Oldest** and **Logout All** make room on `check_password`.
+checks the username and password. Before 3.4.0, that check is where
+Loggedin did all its work: **Block New** refused the login on
+`wp_authenticate_user`, and **Logout Oldest** and **Logout All** made
+room on `check_password`.
 
 A plugin that signs users in another way, by calling
 `wp_set_auth_cookie()` itself once a social provider, an emailed link or
 its own form has confirmed who they are, skips both checks. Before
 3.4.0, those logins weren't limited at all.
 
-Since 3.4.0, Loggedin also checks as each new session is created (the
-`attach_session_information` filter). Every login that creates a
-WordPress session passes through it, however it started.
+Since 3.4.0:
+
+- **Block New** still refuses the login on `wp_authenticate_user`, so it
+  needs the login form.
+- **Logout Oldest** and **Logout All** make room as each new session is
+  created (the `attach_session_information` filter), and no longer on
+  `check_password`. Every login that creates a WordPress session passes
+  through it, however it started.
 
 ## What each mode enforces
 
@@ -65,7 +69,9 @@ Other features and how they behave:
 
 ::: info Requests that never create a session
 Application passwords and other cookie-less API requests don't create a
-WordPress session, so they never count towards the limit.
+WordPress session, so they never count towards the limit. Since 3.4.0
+they don't end other sessions either, and nor does any other password
+check that isn't a login, such as a "current password" field.
 :::
 
 ## Plugins to note

@@ -48,20 +48,24 @@ terminal, a deployment script, or a third-party integration.
 
 ## How the limit is enforced
 
-Every WordPress login passes through two filters Loggedin attaches to the
-standard auth pipeline:
+Loggedin attaches to two points in the standard auth pipeline:
 
 1. **`wp_authenticate_user`** — runs early. In **Block New** mode, this is
    where the login is rejected with an error on the wp-login screen if the
    user is already at the cap and typed the right password.
-2. **`check_password`** — runs after WordPress has identified the user and
-   verified the password. In **Logout All** or **Logout Oldest** mode, this
-   is where Loggedin destroys existing sessions to make room for the new one.
+2. **`attach_session_information`** — runs as each new session is
+   created, before it is stored. In **Logout All** or **Logout Oldest**
+   mode, this is where Loggedin destroys existing sessions to make room
+   for the new one. Every login that creates a session passes through it,
+   including social login and magic links that skip the login form. See
+   [Compatibility](/loggedin/compatibility).
 
-A third point, **`attach_session_information`**, runs as any new session
-is created. It covers logins that skip the login form, such as social
-login and magic links, under Logout All and Logout Oldest. See
-[Compatibility](/loggedin/compatibility).
+Before 3.4.0, Logout All and Logout Oldest made room on the
+`check_password` filter. That filter runs on every password check, not
+only on logins: a WooCommerce "current password" field, application
+passwords before WordPress 6.8, or the first step of a two-factor plugin
+could end sessions without a new login to follow. Since 3.4.0, sessions
+are ended only when a new one is created.
 
 The verdict on whether the user is "at the cap" passes through the
 [`loggedin_reached_limit`](/loggedin/developer-docs#loggedin-reached-limit)

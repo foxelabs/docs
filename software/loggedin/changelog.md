@@ -26,7 +26,7 @@ history lives here.
 * [Your sessions](/loggedin/user-sessions#your-own-profile) on the profile screen: every device you're signed in on, with the device, a masked IP address and when it signed in, and a **Sign out** button for each other device. Someone else's profile shows a count.
 * [`loggedin_settings_schema`](/loggedin/developer-docs#declaring-settings-in-php) — add-ons can declare pages, cards and fields in PHP, including a per-role table, and ship no admin JavaScript. Add-ons with a screen of their own can draw it with [`window.loggedin.ui`](/loggedin/developer-docs#window-loggedin-ui), whose `TableCard` fits a table of six or seven columns on a 1280px screen without scrolling sideways.
 * A notice lists add-ons built for the old settings screen: Active Sessions before 1.2.0, Limit Per Role and Real-time Logout before 2.2.0. Filterable with [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions).
-* Filters [`loggedin_displaced_message`](/loggedin/developer-docs#loggedin-displaced-message), [`loggedin_unlock_email`](/loggedin/developer-docs#loggedin-unlock-email), [`loggedin_settings_schema`](/loggedin/developer-docs#loggedin-settings-schema), [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions) and [`loggedin_auto_logout_timeout`](/loggedin/developer-docs#loggedin-auto-logout-timeout).
+* Filters [`loggedin_displaced_message`](/loggedin/developer-docs#loggedin-displaced-message), [`loggedin_unlock_email`](/loggedin/developer-docs#loggedin-unlock-email), [`loggedin_settings_schema`](/loggedin/developer-docs#loggedin-settings-schema), [`loggedin_addon_minimum_versions`](/loggedin/developer-docs#loggedin-addon-minimum-versions), [`loggedin_auto_logout_timeout`](/loggedin/developer-docs#loggedin-auto-logout-timeout), [`loggedin_settings_properties`](/loggedin/developer-docs#loggedin-settings-properties) (so an add-on's own key in Loggedin's settings is saved) and [`loggedin_session_device`](/loggedin/developer-docs#loggedin-session-device) (to name the devices in a user's session list).
 * Actions [`loggedin_unlock_requested`](/loggedin/developer-docs#loggedin-unlock-requested), [`loggedin_unlocked`](/loggedin/developer-docs#loggedin-unlocked), [`loggedin_password_signout`](/loggedin/developer-docs#loggedin-password-signout), [`loggedin_users_list_sign_out`](/loggedin/developer-docs#loggedin-users-list-sign-out), [`loggedin_auto_logout_expired`](/loggedin/developer-docs#loggedin-auto-logout-expired), [`loggedin_sessions_displacing`](/loggedin/developer-docs#loggedin-sessions-displacing) and [`loggedin_uninstalled`](/loggedin/developer-docs#loggedin-uninstalled).
 
 ### Improved
@@ -35,11 +35,18 @@ history lives here.
 * Block New checks the password before showing the limit error. A wrong password gets WordPress's usual error, so only the account's owner learns that the limit was reached.
 * Logout Oldest skips sessions that have already expired, and ends as many of the oldest live sessions as it takes for the new login to fit, for users who hold more sessions than a since-lowered limit allows.
 * [`loggedin_destroy_session`](/loggedin/developer-docs#loggedin-destroy-session) now also fires when a user signs a device out from their profile.
+* [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions) now fires for every way a user is signed out everywhere, including the Users screen, a password change and the unlock email.
+* [`POST /loggedin/v1/settings`](/loggedin/developer-docs#post-loggedin-v1-settings) accepts every setting, not only the limit and the login mode. Only the keys sent are written.
 * Add-ons built for the old screen keep working: their panels are drawn as cards on Login limits, and their tabs join the Manage group. Links from before 3.4.0 (`#addons`, `#support`) still open the right page.
 * `wp loggedin settings set` accepts `true`/`false`, `yes`/`no`, `on`/`off` or `1`/`0` for on/off settings.
 * Login modes added with [`loggedin_logics`](/loggedin/developer-docs#loggedin-logics) can be saved. The add-on that adds one enforces it, and if that add-on goes, the setting reads as **Logout All**.
 * The old `?loggedin_logout=1` sign-out link now also needs the `manage_options` capability, as the Sessions page does, and fires [`loggedin_destroy_all_sessions`](/loggedin/developer-docs#loggedin-destroy-all-sessions).
 * Deleting the plugin also removes the review notice's settings, which it had left behind since 3.0.2, and on multisite removes Loggedin's settings from every site.
+
+### Fixed
+
+* Checking a password without signing in, such as WooCommerce's "current password" field, an application password before WordPress 6.8, or the first step of a two-factor login, no longer signs the user out of their other devices under Logout All or Logout Oldest. Those modes now make room only [as a new session is created](/loggedin/getting-started#how-the-limit-is-enforced).
+* [`wp loggedin sessions list`](/loggedin/wp-cli#session-storage-support) no longer shows leftover sessions on a site that stores sessions elsewhere, such as Redis.
 
 ### Changed
 
