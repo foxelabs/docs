@@ -165,6 +165,7 @@ helps; don't write it.
 | `loggedin_logout_all_before` | Option (autoloaded) | Unix time of the last [site-wide logout](#loggedin-logout-all-users). A session that began before it ends on its next request. Since 3.3.0. |
 | `loggedin_last_login` | User meta | Unix time of the user's last login, written on `wp_login`. Shown in the **Last login** column on the Users screen. Since 3.4.0. |
 | `loggedin_auto_logout_activity` | User meta | `{ verifier: unix_time }`: each device's last activity, for [auto logout](/loggedin/auto-logout). Since 3.4.0. |
+| `loggedin_auto_logout_changed` | Option (autoloaded) | Unix time an idle timeout last changed. A device with no activity yet counts from this or its login, whichever is later. Since 3.4.0. |
 | `loggedin_displaced` | User meta | `{ verifier: unix_time }`: sessions ended by a newer login, so that device can be told why. At most 20, kept for 14 days. Since 3.4.0. |
 
 ## Actions

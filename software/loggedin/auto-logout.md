@@ -182,8 +182,10 @@ time per device and compares it with the timeout:
   stop, it sends nothing.
 - **WP-CLI and cron** are never signed out. They aren't a person at a
   browser.
-- **A session from before idle logout was turned on** counts from its
-  login time, so it can't escape the timeout.
+- **A session from before idle logout was turned on** counts from the
+  moment you turned it on, or from its login if that is later. Turning
+  it on, or changing a timeout, signs nobody out on the spot, you
+  included: every session gets the full timeout from when you saved.
 
 ## What the user sees
 
@@ -199,6 +201,13 @@ Activity in one tab keeps every other tab alive, with no extra server
 requests: tabs share activity through browser storage. A tab that was
 asleep (laptop closed, or the browser throttling a background tab)
 checks the clock when it wakes, rather than acting on an old timer.
+
+The countdown follows the server's clock, not just the page's. Because
+the server renews its time only every so often, a page can open with the
+server's time a few minutes behind. When the warning is due and you've
+done something the server hasn't heard about, the script tells it first
+and counts again, so the warning only reaches someone who is really
+idle, and never comes after the server has already ended the session.
 
 After an idle logout the user lands on the login screen with **"You were
 signed out because your session was inactive."**
