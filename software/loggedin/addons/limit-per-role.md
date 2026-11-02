@@ -21,7 +21,9 @@ in Loggedin 3.4.0. Older versions still work: their panel is shown as a
 card on **Login limits**, and Loggedin lists the add-on in a notice asking
 you to update it. With Loggedin older than 3.4.0, 2.2.0 keeps its old
 **Limit Per Role** panel on the **Settings** tab, so you can update the
-add-on and Loggedin in either order. This page describes 2.2.0.
+add-on and Loggedin in either order. 2.2.0 needs WordPress 6.1 or later:
+WordPress 6.0 can't save the per-role limits, so sites on it stay on
+2.1.0. This page describes 2.2.0.
 :::
 
 [[toc]]
