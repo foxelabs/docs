@@ -711,7 +711,31 @@ Default keys: `version`, `slug`, `name`, `page`, `restUrl`, `restNonce`,
 `phpVersion`, `urls`, `defaultMessage`, `activeAddons` (slugs of the
 registered add-ons),
 `roles` (`{ slug: name }`), `autoLogout` (the largest allowed values) and
-`schema` (the resolved [`loggedin_settings_schema`](#loggedin-settings-schema)).
+`schema` (the resolved [`loggedin_settings_schema`](#loggedin-settings-schema)) and
+`notices`.
+
+`notices` is a list the app draws with the kit's Notice above every page, so
+a message about Loggedin sits inside its screen rather than above it with
+WordPress's admin notices. Each entry has an `id`, a `tone` (`info`,
+`success`, `warning` or `error`) and a `title`, and optionally `text`,
+`items` (a list of strings) and `actions` (links, each with `label`, `href`
+and an optional `primary` flag). An action reloads the page, so handle it on
+`admin_init` and redirect back.
+
+```php
+add_filter( 'loggedin_admin_script_vars', function ( $vars ) {
+    $vars['notices'][] = array(
+        'id'      => 'my-addon-license',
+        'tone'    => 'warning',
+        'title'   => __( 'Your license has expired.', 'my-addon' ),
+        'text'    => __( 'Renew it to keep getting updates.', 'my-addon' ),
+        'actions' => array(
+            array( 'label' => __( 'Renew', 'my-addon' ), 'href' => 'https://example.com/renew', 'primary' => true ),
+        ),
+    );
+    return $vars;
+} );
+```
 
 `window.loggedin.ui` is not part of this payload: the admin script adds it
 in the browser. See [`window.loggedin.ui`](#window-loggedin-ui).
