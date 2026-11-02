@@ -62,7 +62,8 @@ the now-unauthenticated visitor to wp-login.
 
 Since 2.2.0, a tab that is hidden (in the background, or in a minimised
 window) skips its checks, and checks once as soon as it is shown again.
-Only the tabs someone is looking at send requests.
+Only the tabs someone is looking at send requests, and each check's
+request skips the add-on's translations and admin code.
 
 ::: warning Pick the interval carefully
 Each visible tab makes one HTTP request per interval. A site with hundreds of
