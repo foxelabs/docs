@@ -9,6 +9,16 @@ Full release history for **Loggedin**. The plugin's bundled
 `readme.txt` keeps only the latest couple of releases; the complete
 history lives here.
 
+## 3.4.1
+
+### Fixed
+
+* The login screen no longer shows a critical error when another plugin's `login_message` filter returns nothing ([#34](https://github.com/joel-james/loggedin/issues/34)).
+* A device [signed out by a newer login](/loggedin/lockout-recovery#signed-out-by-a-newer-login) no longer gets a critical error on its next page on WordPress 6.5, or on sites that set `COOKIE_DOMAIN` to `false`. On those sites the "signed in on another device" notice now shows too.
+* Admin screens that another plugin prints outside `wp-admin/admin.php` no longer show a critical error.
+* Loggedin no longer causes a critical error when a callback on [`loggedin_settings_defaults`](/loggedin/developer-docs#loggedin-settings-defaults), `loggedin_register_addon` or [`loggedin_admin_script_vars`](/loggedin/developer-docs#loggedin-admin-script-vars) returns something other than an array, or when a [`loggedin_logics`](/loggedin/developer-docs#loggedin-logics) callback reads Loggedin's settings.
+* Block New passes through anything other than a user that an earlier `wp_authenticate_user` callback returns, instead of treating it as one.
+
 ## 3.4.0
 
 ### Added
